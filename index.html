@@ -30,7 +30,21 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--navy);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-size:16px;font-weight:400}
+body{
+  font-family:'Inter',sans-serif;color:var(--text);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;font-size:16px;font-weight:400;
+  /* ── Egységes oldal háttér ── */
+  background-color:#050A15;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 15% 10%,  rgba(0,212,180,.07)  0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 85% 25%,  rgba(14,165,233,.06) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 60% at 70% 65%,  rgba(0,180,216,.05)  0%, transparent 55%),
+    radial-gradient(ellipse 70% 40% at 20% 85%,  rgba(0,212,180,.04)  0%, transparent 50%),
+    linear-gradient(175deg, #06101E 0%, #050A15 40%, #04080F 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:6px}
@@ -76,27 +90,66 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    HERO
 ────────────────────────────────────────── */
-#hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;overflow:hidden}
-.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.3}
-.blob1{width:600px;height:600px;background:var(--blue);top:-100px;right:-100px}
-.blob2{width:400px;height:400px;background:var(--teal);bottom:-50px;left:-50px}
-.blob3{width:300px;height:300px;background:#0096C7;top:40%;left:30%;animation:float 8s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px}
-.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:120px 0 80px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--light);font-size:13px;font-weight:600;padding:8px 18px;border-radius:50px;margin-bottom:24px;backdrop-filter:blur(10px)}
-.hero-badge .dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
-.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(38px,5.5vw,72px);font-weight:900;color:#fff;line-height:1.03;letter-spacing:-0.04em;margin-bottom:24px;text-shadow:0 2px 30px rgba(0,0,0,.4)}
-.hero-title .line2{display:block;padding-bottom:6px}
-.hero-desc{font-size:18px;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:40px;max-width:480px;font-weight:400}
-.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:56px}
-.hero-stats{display:flex;gap:40px}
-.hstat{text-align:center}
-.hstat-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.04em;color:#fff}
-.hstat-label{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+#hero{min-height:100vh;background:transparent;position:relative;display:flex;align-items:center;overflow:hidden}
+
+/* ── Background layers ── */
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-orb{position:absolute;border-radius:50%;pointer-events:none}
+.orb-teal{width:1000px;height:1000px;background:radial-gradient(circle,rgba(0,212,180,.09) 0%,transparent 60%);top:-320px;right:-200px;filter:blur(60px)}
+.orb-blue{width:700px;height:700px;background:radial-gradient(circle,rgba(14,165,233,.08) 0%,transparent 60%);bottom:-200px;left:-150px;filter:blur(60px)}
+.orb-mid{width:500px;height:500px;background:radial-gradient(circle,rgba(0,150,200,.06) 0%,transparent 70%);top:30%;left:20%;filter:blur(80px);animation:orbDrift 12s ease-in-out infinite}
+@keyframes orbDrift{0%,100%{transform:translate(0,0)}40%{transform:translate(30px,-20px)}70%{transform:translate(-15px,25px)}}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:30px 30px;-webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 20%,transparent 85%);mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 20%,transparent 85%)}
+.hero-shimmer{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(0,212,180,.4) 50%,transparent 95%);animation:shimmer 5s ease-in-out infinite}
+@keyframes shimmer{0%,100%{opacity:.2;transform:scaleX(.6)}50%{opacity:.8;transform:scaleX(1)}}
+
+/* ── Content layout ── */
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:52% 48%;gap:48px;align-items:center;padding:130px 0 90px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:13px;font-weight:600;padding:8px 18px;border-radius:50px;margin-bottom:28px;backdrop-filter:blur(12px)}
+.hero-badge .dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
+.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(40px,5.6vw,76px);font-weight:900;color:#fff;line-height:1.01;letter-spacing:-0.045em;margin-bottom:20px}
+.hero-title .line2{display:block;padding-bottom:8px}
+.word-cycle{background:linear-gradient(90deg,#00D4B4 0%,#0EA5E9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;min-width:4ch}
+.hero-desc{font-size:17px;color:rgba(255,255,255,.58);line-height:1.85;margin-bottom:28px;max-width:440px;font-weight:400}
+
+/* ── Social proof ── */
+.hero-proof{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+.proof-avatars{display:flex;align-items:center;flex-shrink:0}
+.proof-avatar{width:32px;height:32px;border-radius:50%;border:2px solid #080E1A;margin-right:-9px;font-size:11px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.proof-divider{width:1px;height:30px;background:rgba(255,255,255,.1);margin-left:14px;flex-shrink:0}
+.proof-info{margin-left:2px}
+.proof-stars{color:#FBBF24;font-size:11px;letter-spacing:1px;line-height:1}
+.proof-label{color:rgba(255,255,255,.4);font-size:12px;margin-top:3px}
+
+/* ── Buttons ── */
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+
+/* ── Metrics row ── */
+.hero-metrics{display:flex;align-items:center}
+.hm{padding:0 24px 0 0}
+.hm:first-child{padding-left:0}
+.hm-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:900;letter-spacing:-0.04em;color:#fff;display:block;line-height:1}
+.hm-label{font-size:11px;color:rgba(255,255,255,.32);margin-top:4px;letter-spacing:.3px;text-transform:uppercase}
+.hm-sep{width:1px;height:34px;background:rgba(255,255,255,.08);margin-right:24px;flex-shrink:0}
+
+/* ── Globe visual ── */
 .hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+
+/* ── Floating data badges ── */
+.hero-float{position:absolute;background:rgba(4,8,15,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:13px 18px;display:flex;align-items:center;gap:12px;z-index:20;pointer-events:none}
+.hf-top{top:-45px;right:-75px;animation:floatBadge 6s ease-in-out infinite}
+.hf-bot{bottom:-30px;left:-70px;animation:floatBadge 8s ease-in-out infinite 1.2s}
+@keyframes floatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hf-icon-wrap{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hf-icon-wrap.teal{background:rgba(0,212,180,.12);border:1px solid rgba(0,212,180,.2)}
+.hf-icon-wrap.blue{background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.2)}
+.hf-icon-wrap svg{width:17px;height:17px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hf-val{color:#fff;font-weight:800;font-size:14px;line-height:1.2;letter-spacing:-0.02em}
+.hf-lbl{color:rgba(255,255,255,.38);font-size:11px;margin-top:1px}
+.hf-live{display:flex;align-items:center;gap:6px}
+.hf-live-dot{width:7px;height:7px;border-radius:50%;background:#34D399;flex-shrink:0;position:relative}
+.hf-live-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:rgba(52,211,153,.25);animation:pulse 2s infinite}
 /* ── GLOBE ── */
 .globe-wrap{position:relative;width:380px;height:380px;flex-shrink:0}
 .globe-glow-outer{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,216,.18) 0%,transparent 65%);animation:glowPulse 4s ease-in-out infinite;pointer-events:none}
@@ -123,13 +176,6 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .metric-val{color:#fff;font-weight:700}
 .metric-bar{height:6px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:4px;overflow:hidden}
 .metric-fill{height:100%;border-radius:3px;background:var(--grad)}
-.floating-badge{position:absolute;background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:10px}
-.fb-top{top:-30px;right:-20px;animation:float2 5s ease-in-out infinite}
-.fb-bottom{bottom:-20px;left:-30px;animation:float2 7s ease-in-out infinite reverse}
-@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.fb-icon{font-size:24px}
-.fb-num{color:#fff;font-weight:800;font-size:18px;line-height:1}
-.fb-text{color:rgba(255,255,255,.6);font-size:12px}
 .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:12px;cursor:pointer}
 .scroll-arrow{width:20px;height:20px;border-right:2px solid rgba(255,255,255,.4);border-bottom:2px solid rgba(255,255,255,.4);transform:rotate(45deg);animation:scrollBounce 2s infinite}
 @keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
@@ -154,45 +200,142 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    SERVICES
 ────────────────────────────────────────── */
-#services{padding:120px 0;background:var(--white)}
+#services{padding:120px 0;background:transparent}
 .services-header{text-align:center;margin-bottom:72px}
 .services-header .section-sub{margin:0 auto}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.service-card{background:var(--white);border:1px solid #e8f2f8;border-radius:24px;padding:40px 32px;position:relative;overflow:hidden;transition:all .4s ease;cursor:default}
-.service-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .4s}
-.service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+
+/* ── Service card v2 ── */
+.service-card{
+  background:#0B1628;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:28px;
+  padding:40px 36px 36px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, border-color .4s;
+  cursor:default;
+}
+/* Gradient accent top border */
+.service-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent 0%,var(--teal) 40%,var(--blue) 70%,transparent 100%);
+  opacity:.5;
+  transition:opacity .4s;
+}
+/* Faded background number */
+.service-card::after{
+  content:attr(data-num);
+  position:absolute;
+  top:-10px;right:20px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:96px;font-weight:900;
+  color:rgba(255,255,255,.025);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  transition:color .4s;
+}
+.service-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(0,212,180,.25);
+  box-shadow:0 24px 60px rgba(0,212,180,.1), 0 0 0 1px rgba(0,212,180,.12) inset;
+}
 .service-card:hover::before{opacity:1}
-.service-card:hover .sc-icon,
-.service-card:hover .sc-title,
-.service-card:hover .sc-desc,
-.service-card:hover .sc-link,
-.service-card:hover .sc-features li{color:#fff!important;border-color:rgba(255,255,255,.2)!important}
-.service-card:hover .sc-features li::before{color:#fff!important}
-.service-card:hover .sc-icon-wrap{background:rgba(255,255,255,.2)!important}
+.service-card:hover::after{color:rgba(0,212,180,.06)}
 .service-card *{position:relative;z-index:1}
-.sc-icon-wrap{width:64px;height:64px;background:rgba(0,180,216,.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .4s}
-.sc-icon{font-size:28px}
-.sc-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.02em;color:var(--navy);margin-bottom:12px;transition:color .4s}
-.sc-desc{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px;transition:color .4s}
-.sc-features{list-style:none;margin-bottom:28px}
-.sc-features li{font-size:14px;color:var(--muted);padding:6px 0;border-bottom:1px solid #f0f4f8;display:flex;align-items:center;gap:8px;transition:all .4s}
-.sc-features li::before{content:'✓';color:var(--teal);font-weight:700;transition:color .4s}
-.sc-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:600;font-size:14px;text-decoration:none;transition:color .4s}
-.sc-link svg{width:16px;height:16px;transition:transform .3s}
-.sc-link:hover svg{transform:translateX(4px)}
-.service-card.featured{background:var(--navy);border-color:var(--navy)}
-.service-card.featured .sc-title{color:#fff}
-.service-card.featured .sc-desc,.service-card.featured .sc-features li{color:rgba(255,255,255,.6)}
-.service-card.featured .sc-features li{border-color:rgba(255,255,255,.1)}
-.service-card.featured .sc-features li::before{color:var(--teal)}
-.service-card.featured .sc-icon-wrap{background:rgba(0,180,216,.2)}
-.service-card.featured .sc-link{color:var(--teal)}
-.service-card.featured::before{background:linear-gradient(135deg,#0096C7 0%,#00B4D8 100%)}
+
+/* Glow layer on hover */
+.service-card .sc-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(0,212,180,.09) 0%,transparent 70%);
+  opacity:0;transition:opacity .5s;pointer-events:none;z-index:0;
+}
+.service-card:hover .sc-glow{opacity:1}
+
+/* Icon */
+.sc-icon-wrap{
+  width:56px;height:56px;
+  border-radius:16px;
+  background:rgba(0,212,180,.08);
+  border:1px solid rgba(0,212,180,.15);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;
+  transition:background .4s, border-color .4s, box-shadow .4s;
+}
+.sc-icon-wrap svg{width:26px;height:26px;stroke:var(--teal);stroke-width:1.8;fill:none;transition:stroke .4s}
+.service-card:hover .sc-icon-wrap{
+  background:rgba(0,212,180,.15);
+  border-color:rgba(0,212,180,.35);
+  box-shadow:0 0 20px rgba(0,212,180,.15);
+}
+
+/* Label tag */
+.sc-tag{
+  display:inline-block;
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:14px;
+  opacity:.7;
+}
+.sc-title{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:21px;font-weight:800;letter-spacing:-0.025em;
+  color:#fff;
+  margin-bottom:12px;
+}
+.sc-desc{font-size:15px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:28px}
+.sc-features{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:0}
+.sc-features li{
+  font-size:14px;color:rgba(255,255,255,.55);
+  padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;gap:10px;
+  transition:color .3s;
+}
+.sc-features li:last-child{border-bottom:none}
+.sc-features li svg{width:14px;height:14px;stroke:var(--teal);flex-shrink:0;opacity:.8}
+.service-card:hover .sc-features li{color:rgba(255,255,255,.75)}
+.sc-link{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--teal);font-weight:600;font-size:14px;
+  text-decoration:none;
+  border-bottom:1px solid rgba(0,212,180,.25);
+  padding-bottom:2px;
+  transition:gap .3s, border-color .3s, color .3s;
+}
+.sc-link:hover{gap:14px;border-color:var(--teal)}
+.sc-link svg{width:16px;height:16px;stroke:currentColor;fill:none;flex-shrink:0}
+
+/* Featured (middle) card */
+.service-card.featured{
+  background:linear-gradient(160deg,#0A1F3A 0%,#0D2D52 60%,#0A2540 100%);
+  border-color:rgba(14,165,233,.2);
+}
+.service-card.featured::before{
+  background:linear-gradient(90deg,transparent 0%,#0EA5E9 40%,#00D4B4 70%,transparent 100%);
+  opacity:.7;
+}
+.service-card.featured .sc-tag{color:var(--blue)}
+.service-card.featured .sc-icon-wrap{background:rgba(14,165,233,.1);border-color:rgba(14,165,233,.2)}
+.service-card.featured .sc-icon-wrap svg{stroke:var(--blue)}
+.service-card.featured .sc-features li svg{stroke:var(--blue)}
+.service-card.featured .sc-link{color:var(--blue);border-color:rgba(14,165,233,.3)}
+.service-card.featured:hover{
+  border-color:rgba(14,165,233,.4);
+  box-shadow:0 24px 60px rgba(14,165,233,.12), 0 0 0 1px rgba(14,165,233,.15) inset;
+}
+.service-card.featured .sc-glow{
+  background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(14,165,233,.1) 0%,transparent 70%);
+}
 
 /* ──────────────────────────────────────────
    ABOUT / STATS
 ────────────────────────────────────────── */
-#about{padding:120px 0;background:var(--gray)}
+#about{padding:120px 0;background:transparent}
 .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .about-content .section-sub{margin-bottom:36px}
 /* Bento grid */
@@ -229,7 +372,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PROCESS
 ────────────────────────────────────────── */
-#process{padding:120px 0;background:var(--white)}
+#process{padding:120px 0;background:transparent}
 .process-header{text-align:center;margin-bottom:72px}
 .process-header .section-sub{margin:0 auto}
 .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
@@ -245,7 +388,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PORTFOLIO
 ────────────────────────────────────────── */
-#portfolio{padding:120px 0;background:var(--navy)}
+#portfolio{padding:120px 0;background:transparent}
 .portfolio-header{text-align:center;margin-bottom:72px}
 .portfolio-header .section-title{color:#fff}
 .portfolio-header .section-sub{color:rgba(255,255,255,.6);margin:0 auto}
@@ -292,7 +435,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PRICING
 ────────────────────────────────────────── */
-#pricing{padding:120px 0;background:var(--white)}
+#pricing{padding:120px 0;background:transparent}
 .pricing-header{text-align:center;margin-bottom:72px}
 .pricing-header .section-sub{margin:0 auto}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
@@ -323,7 +466,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    FAQ
 ────────────────────────────────────────── */
-#faq{padding:120px 0;background:var(--gray)}
+#faq{padding:120px 0;background:transparent}
 .faq-inner{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
 .faq-aside .section-sub{margin-bottom:40px}
 .faq-list{display:flex;flex-direction:column;gap:16px}
@@ -350,7 +493,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    CONTACT
 ────────────────────────────────────────── */
-#contact{padding:120px 0;background:var(--white)}
+#contact{padding:120px 0;background:transparent}
 .contact-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
 .contact-info .section-sub{margin-bottom:48px}
 .contact-items{display:flex;flex-direction:column;gap:28px;margin-bottom:48px}
@@ -405,8 +548,9 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
   .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
   .hero-content{grid-template-columns:1fr;gap:48px;text-align:center}
   .hero-btns{justify-content:center}
-  .hero-stats{justify-content:center}
-  .hero-desc{margin:0 auto 40px}
+  .hero-proof{justify-content:center}
+  .hero-metrics{justify-content:center}
+  .hero-desc{margin:0 auto;max-width:520px}
   .about-inner{grid-template-columns:1fr}
   .process-steps{grid-template-columns:repeat(2,1fr);gap:40px}
   .process-steps::before{display:none}
@@ -431,11 +575,8 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
    DARK THEME OVERRIDES
 ═══════════════════════════════════════ */
 
-/* Section backgrounds */
-#services{background:#0A1120}
-#about{background:var(--navy)}
-#pricing{background:#0A1120}
-#contact{background:var(--navy)}
+/* Section backgrounds – egységes háttér, mind transparent */
+#services,#about,#pricing,#contact{background:transparent}
 
 /* Section title & sub */
 .section-title{color:#fff}
@@ -444,19 +585,7 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
 /* Nav */
 nav.scrolled{background:rgba(8,14,26,.96)}
 
-/* Service cards */
-.service-card{background:var(--card-bg);border-color:var(--card-border)}
-.service-card:hover{border-color:transparent}
-.sc-title{color:#fff}
-.sc-desc{color:var(--muted)}
-.sc-features li{color:var(--muted);border-bottom-color:var(--card-border)}
-.sc-features li::before{color:var(--teal)}
-.sc-link{color:var(--teal)}
-.service-card.featured{background:linear-gradient(145deg,#0A2240,#0D3060)}
-.service-card.featured .sc-title,.service-card.featured .sc-link{color:#fff}
-.service-card.featured .sc-desc,.service-card.featured .sc-features li{color:rgba(255,255,255,.55)}
-.service-card.featured .sc-features li{border-bottom-color:rgba(255,255,255,.1)}
-.service-card.featured .sc-features li::before{color:var(--teal)}
+/* Service cards – dark stílus már be van építve a kártyákba */
 
 /* About bento */
 .bento-card.b2{background:var(--card-bg);border-color:var(--card-border)}
@@ -467,7 +596,7 @@ nav.scrolled{background:rgba(8,14,26,.96)}
 .ap-title{color:#fff}
 
 /* Portfolio */
-#portfolio{background:#080E1A}
+#portfolio{background:transparent}
 
 /* Pricing cards */
 .price-card{background:var(--card-bg);border-color:var(--card-border)}
@@ -494,7 +623,7 @@ nav.scrolled{background:rgba(8,14,26,.96)}
 .sl{background:var(--card-bg)}
 
 /* Footer */
-footer{background:#050A12}
+footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 .footer-links a{color:rgba(255,255,255,.4)}
 .footer-links a:hover{color:var(--teal)}
 .footer-bottom{border-top-color:rgba(255,255,255,.06)}
@@ -558,68 +687,32 @@ footer{background:#050A12}
 }
 .nav-links a.nav-active{color:var(--teal)!important}
 
-/* ── SEAMLESS SECTION TRANSITIONS ──
-   Minden szekció tetején egy finom gradiens, ami az előző szekció
-   háttérszínéből transparent-ba fut – a határok "felolvadnak"
-────────────────────────────────────── */
+/* ── SZEKCIÓ POZÍCIONÁLÁS ── */
 #services,#about,#process,#portfolio,#pricing,#faq,#contact,footer{position:relative}
-/* Tartalom a gradiens réteg felett */
 #services>.container,#about>.container,#process>.container,
 #portfolio>.container,#pricing>.container,#faq>.container,
-#contact>.container,footer>.container{position:relative;z-index:6}
+#contact>.container,footer>.container{position:relative;z-index:2}
 
-/* Közös stílus */
-#services::before,#about::before,#process::before,
-#portfolio::before,#pricing::before,#faq::before,
-#contact::before,footer::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:140px;
-  pointer-events:none;
-  z-index:5;
+/* Vékony elválasztó vonalak szekciók között */
+#services,#about,#process,#portfolio,#pricing,#faq,#contact{
+  border-top:1px solid rgba(255,255,255,.04);
 }
 
-/* Hero (#080E1A) → Services (#0A1120) */
-#services::before{background:linear-gradient(to bottom,#080E1A 0%,transparent 100%)}
+/* Alternáló szuper-halvány overlay a ritmikához */
+#services::before,#process::before,#pricing::before,#contact::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.012);
+  pointer-events:none;z-index:0;
+}
 
-/* Services (#0A1120) → About (#080E1A) */
-#about::before{background:linear-gradient(to bottom,#0A1120 0%,transparent 100%)}
-
-/* About (#080E1A) → Process */
-#process{background:#0C1628}
-#process::before{background:linear-gradient(to bottom,#080E1A 0%,transparent 100%)}
-
-/* Process → Portfolio (#080E1A) */
-#portfolio::before{background:linear-gradient(to bottom,#0C1628 0%,transparent 100%)}
-
-/* Portfolio (#080E1A) → Pricing (#0A1120) */
-#pricing::before{background:linear-gradient(to bottom,#080E1A 0%,transparent 100%)}
-
-/* Pricing (#0A1120) → FAQ */
-#faq{background:#0B1422}
-#faq::before{background:linear-gradient(to bottom,#0A1120 0%,transparent 100%)}
-
-/* FAQ → CTA: az ::after blendel a CTA elejébe (#080E1A), mert #cta::before foglalt */
+/* FAQ overflow */
 #faq{overflow:visible}
-#faq::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;
-  height:140px;
-  background:linear-gradient(to bottom,transparent 0%,#080E1A 100%);
-  pointer-events:none;z-index:5;
-}
 
-/* CTA → Contact (#080E1A) */
-#contact::before{background:linear-gradient(to bottom,#07213A 0%,transparent 100%)}
-
-/* Contact (#080E1A) → Footer (#050A12) */
-footer::before{background:linear-gradient(to bottom,#080E1A 0%,transparent 100%)}
-
-/* Process szöveg sötét háttérre */
+/* Process szöveg */
 #process .ps-title{color:#fff}
 #process .ps-desc{color:var(--muted)}
-#process .ps-num{background:#0F1E35;border-color:var(--teal);color:var(--teal)}
-#process .process-steps::before{opacity:.4}
+#process .ps-num{background:rgba(14,165,233,.08);border-color:var(--teal);color:var(--teal)}
+#process .process-steps::before{opacity:.35}
 #process .process-header .section-sub{margin:0 auto}
 </style>
 </head>
@@ -644,8 +737,8 @@ footer::before{background:linear-gradient(to bottom,#080E1A 0%,transparent 100%)
       </a>
       <ul class="nav-links">
         <li><a href="#services">Szolgáltatások</a></li>
-        <li><a href="#portfolio">Portfólió</a></li>
         <li><a href="#about">Rólunk</a></li>
+        <li><a href="#portfolio">Portfólió</a></li>
         <li><a href="#pricing">Árak</a></li>
       </ul>
       <div class="nav-cta">
@@ -670,30 +763,93 @@ footer::before{background:linear-gradient(to bottom,#080E1A 0%,transparent 100%)
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
-    <div class="hero-blob blob1"></div>
-    <div class="hero-blob blob2"></div>
-    <div class="hero-blob blob3"></div>
-    <div class="hero-grid"></div>
+    <div class="hero-orb orb-teal"></div>
+    <div class="hero-orb orb-blue"></div>
+    <div class="hero-orb orb-mid"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-shimmer"></div>
   </div>
   <div class="container">
     <div class="hero-content">
+
+      <!-- Bal oldal: tartalom -->
       <div>
         <div class="hero-badge">
           <span class="dot"></span>
-          Weboldalak & Digitális Marketing
+          Weboldal · SEO · Marketing
         </div>
         <h1 class="hero-title">
-          Weboldal, ami<br>
-          <span class="line2" style="background:linear-gradient(90deg,#00B4D8,#90E0EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">tényleg elad</span>
+          Több ügyfél.<br>
+          <span class="line2">Több bevétel. <span class="word-cycle">Online.</span></span>
         </h1>
-        <p class="hero-desc">Professzionális weboldalak, SEO optimalizálás és digitális marketing megoldások, amelyek valódi ügyfeleket hoznak vállalkozásodnak.</p>
+        <p class="hero-desc">Megépítjük azt a digitális jelenlétet, ami valóban dolgozik érted — profi weboldal, Google rangsor, és kampányok, amelyek megtérülnek.</p>
+
+        <!-- Social proof -->
+        <div class="hero-proof">
+          <div class="proof-avatars">
+            <span class="proof-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">N</span>
+            <span class="proof-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">K</span>
+            <span class="proof-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">M</span>
+            <span class="proof-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">A</span>
+            <span class="proof-avatar" style="background:linear-gradient(135deg,#fa709a,#fee140)">P</span>
+          </div>
+          <div class="proof-divider"></div>
+          <div class="proof-info">
+            <div class="proof-stars">★★★★★</div>
+            <div class="proof-label">200+ elégedett ügyfél</div>
+          </div>
+        </div>
+
+        <!-- Gombok -->
         <div class="hero-btns">
           <a href="#contact" class="btn btn-primary">Ingyenes konzultáció</a>
-          <a href="#portfolio" class="btn btn-outline" style="color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.3)">Munkáink</a>
+          <a href="#portfolio" class="btn btn-outline" style="color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.18)">Munkáink megtekintése</a>
+        </div>
+
+        <!-- Metrikák -->
+        <div class="hero-metrics">
+          <div class="hm">
+            <span class="hm-num">200+</span>
+            <span class="hm-label">Projekt</span>
+          </div>
+          <div class="hm-sep"></div>
+          <div class="hm">
+            <span class="hm-num">98%</span>
+            <span class="hm-label">Elégedett ügyfél</span>
+          </div>
+          <div class="hm-sep"></div>
+          <div class="hm">
+            <span class="hm-num">8 év</span>
+            <span class="hm-label">Tapasztalat</span>
+          </div>
         </div>
       </div>
+
+      <!-- Jobb oldal: Globe + floating badge-ek -->
       <div class="hero-visual">
         <div class="globe-wrap">
+
+          <!-- Floating badge – felül -->
+          <div class="hero-float hf-top">
+            <div class="hf-icon-wrap teal">
+              <svg viewBox="0 0 24 24" stroke="#00D4B4"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div>
+              <div class="hf-val">+45% konverzió</div>
+              <div class="hf-lbl">Átlagos növelés</div>
+            </div>
+          </div>
+
+          <!-- Floating badge – alul -->
+          <div class="hero-float hf-bot">
+            <div class="hf-live">
+              <div class="hf-live-dot"></div>
+            </div>
+            <div>
+              <div class="hf-val">Google #1</div>
+              <div class="hf-lbl">Keresési rangsor</div>
+            </div>
+          </div>
           <!-- Külső glow -->
           <div class="globe-glow-outer"></div>
           <!-- Légkör gyűrű -->
@@ -831,44 +987,72 @@ footer::before{background:linear-gradient(to bottom,#080E1A 0%,transparent 100%)
       <p class="section-sub">Teljes körű digitális megoldásokat kínálunk – a tervezéstől a megvalósításig és a növekedésig.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="sc-icon-wrap"><div class="sc-icon">🎨</div></div>
-        <div class="sc-title">Weboldal tervezés</div>
-        <div class="sc-desc">Egyedi, modern és mobilbarát weboldalak, amelyek tükrözik a márkád és konvertálnak.</div>
+
+      <!-- Card 1 – Web -->
+      <div class="service-card reveal" data-num="01">
+        <div class="sc-glow"></div>
+        <div class="sc-icon-wrap">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M2 7h20"/><circle cx="6" cy="5" r=".8" fill="currentColor" stroke="none"/>
+            <circle cx="9" cy="5" r=".8" fill="currentColor" stroke="none"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <div class="sc-tag">Web Design</div>
+        <h3 class="sc-title">Weboldal tervezés</h3>
+        <p class="sc-desc">Egyedi, modern és mobilbarát weboldalak, amelyek tükrözik a márkád és valóban konvertálnak.</p>
         <ul class="sc-features">
-          <li>Egyedi UI/UX design</li>
-          <li>Mobilbarát (responsive)</li>
-          <li>Gyors betöltési sebesség</li>
-          <li>CMS integráció</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Egyedi UI/UX design</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Mobilbarát (responsive)</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Gyors betöltési sebesség</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CMS integráció</li>
         </ul>
-        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="sc-link">Kapcsolatfelvétel <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="service-card featured reveal" style="transition-delay:.1s">
-        <div class="sc-icon-wrap"><div class="sc-icon">🔍</div></div>
-        <div class="sc-title">SEO optimalizálás</div>
-        <div class="sc-desc">Kerülj az első helyre a Google-on és vonzz be folyamatosan új, minőségi látogatókat.</div>
+
+      <!-- Card 2 – SEO (featured) -->
+      <div class="service-card featured reveal" data-num="02">
+        <div class="sc-glow"></div>
+        <div class="sc-icon-wrap">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="sc-tag">SEO & Growth</div>
+        <h3 class="sc-title">SEO optimalizálás</h3>
+        <p class="sc-desc">Kerülj az első helyre a Google-on és vonzz be folyamatosan új, minőségi látogatókat.</p>
         <ul class="sc-features">
-          <li>Technikai SEO audit</li>
-          <li>Kulcsszókutatás & stratégia</li>
-          <li>Tartalomoptimalizálás</li>
-          <li>Backlink építés</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Technikai SEO audit</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Kulcsszókutatás & stratégia</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tartalomoptimalizálás</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Backlink építés</li>
         </ul>
-        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="sc-link">Kapcsolatfelvétel <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="service-card reveal" style="transition-delay:.2s">
-        <div class="sc-icon-wrap"><div class="sc-icon">📢</div></div>
-        <div class="sc-title">Digitális marketing</div>
-        <div class="sc-desc">Google Ads, Facebook kampányok és közösségi média stratégiák, amelyek valóban megtérülnek.</div>
+
+      <!-- Card 3 – Marketing -->
+      <div class="service-card reveal" data-num="03">
+        <div class="sc-glow"></div>
+        <div class="sc-icon-wrap">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <div class="sc-tag">Digital Marketing</div>
+        <h3 class="sc-title">Digitális marketing</h3>
+        <p class="sc-desc">Google Ads, Facebook kampányok és közösségi média stratégiák, amelyek valóban megtérülnek.</p>
         <ul class="sc-features">
-          <li>Google Ads kampányok</li>
-          <li>Facebook & Instagram hirdetések</li>
-          <li>Email marketing</li>
-          <li>Konverzió optimalizálás</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Google Ads kampányok</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Facebook & Instagram hirdetések</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Email marketing</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Konverzió optimalizálás</li>
         </ul>
-        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="sc-link">Kapcsolatfelvétel <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
+
     </div>
-    <div style="text-align:center;margin-top:48px">
+    <div style="text-align:center;margin-top:56px">
       <a href="#contact" class="btn btn-outline">Összes szolgáltatás megtekintése →</a>
     </div>
   </div>
@@ -1374,7 +1558,7 @@ function moveIndicator(link) {
 }
 
 // Indikátor az aktív linkre scroll alapján
-const sections = ['services','portfolio','about','pricing','contact'];
+const sections = ['services','about','portfolio','pricing','contact'];
 sections.forEach(id => {
   ScrollTrigger.create({
     trigger: '#' + id,
@@ -1447,29 +1631,36 @@ navLinks.forEach(link => {
 // ─────────────────────────────────────
 // 1. HERO – cinematic filmszerű belépő
 // ─────────────────────────────────────
-// Hero title sorait külön animáljuk
-gsap.set('.hero-title', { overflow: 'hidden' });
-const heroTl = gsap.timeline({ delay: 0.1 });
+const heroTl = gsap.timeline({ delay: 0.12 });
 heroTl
   .from('.hero-badge', {
-    y: -20, opacity: 0, duration: 0.6, ease: 'power3.out'
+    y: -28, opacity: 0, duration: 0.65, ease: 'power3.out'
   })
   .from('.hero-title', {
-    y: 90, opacity: 0, skewY: 2, duration: 1.0, ease: 'power4.out'
+    y: 80, opacity: 0, skewY: 1.5, filter: 'blur(8px)',
+    duration: 1.05, ease: 'power4.out'
   }, '-=0.3')
   .from('.hero-desc', {
-    y: 32, opacity: 0, duration: 0.75, ease: 'power3.out'
+    y: 30, opacity: 0, filter: 'blur(4px)', duration: 0.75, ease: 'power3.out'
   }, '-=0.55')
-  .from('.hero-btns > *', {
-    y: 24, opacity: 0, duration: 0.55, stagger: 0.1, ease: 'back.out(1.4)'
+  .from('.hero-proof', {
+    y: 22, opacity: 0, duration: 0.6, ease: 'power2.out'
   }, '-=0.5')
-  .from('.hero-stats .hstat', {
-    y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out'
-  }, '-=0.4')
+  .from('.hero-btns > *', {
+    y: 20, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.5)'
+  }, '-=0.45')
+  .from('.hm, .hm-sep', {
+    y: 16, opacity: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out'
+  }, '-=0.35')
   .from('.globe-wrap', {
-    x: 80, opacity: 0, scale: 0.88, duration: 1.3, ease: 'power3.out'
+    x: 70, opacity: 0, scale: 0.86, filter: 'blur(12px)',
+    duration: 1.35, ease: 'power3.out'
   }, '-=1.1')
-  .from('.scroll-hint', { opacity: 0, y: 10, duration: 0.6 }, '-=0.2');
+  .from('.hero-float', {
+    scale: 0.85, opacity: 0, duration: 0.55, stagger: 0.2, ease: 'back.out(1.6)'
+  }, '-=0.6')
+  .from('.scroll-hint', { opacity: 0, y: 8, duration: 0.5 }, '-=0.15');
+
 
 // Hero scroll-out: hero tartalom halványan eltűnik scrollozáskor
 gsap.to('.hero-content', {
