@@ -45,7 +45,7 @@ body{font-family:'Inter',sans-serif;color:#1A2E40;background:var(--white);overfl
 .section-tag{display:inline-block;background:rgba(0,180,216,.1);color:var(--teal);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:16px}
 .section-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:900;line-height:1.08;letter-spacing:-0.03em;color:var(--navy);margin-bottom:16px}
 .section-sub{font-size:17px;color:#3D6070;max-width:560px;line-height:1.75;font-weight:400}
-.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;padding-bottom:4px;display:inline-block}
 
 /* ── REVEAL ANIMATION ── */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
@@ -90,7 +90,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .hero-badge .dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
 .hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(38px,5.5vw,72px);font-weight:900;color:#fff;line-height:1.03;letter-spacing:-0.04em;margin-bottom:24px;text-shadow:0 2px 30px rgba(0,0,0,.4)}
-.hero-title .line2{display:block}
+.hero-title .line2{display:block;padding-bottom:6px}
 .hero-desc{font-size:18px;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:40px;max-width:480px;font-weight:400}
 .hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:56px}
 .hero-stats{display:flex;gap:40px}
@@ -121,16 +121,21 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 @keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
 
 /* ──────────────────────────────────────────
-   LOGO MARQUEE
+   TECH STACK
 ────────────────────────────────────────── */
-.marquee-section{background:#f8fbff;padding:32px 0;border-top:1px solid #e8f4fa;border-bottom:1px solid #e8f4fa;overflow:hidden}
-.marquee-label{text-align:center;font-size:13px;color:var(--muted);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
-.marquee-track{display:flex;gap:60px;animation:marquee 25s linear infinite;width:max-content}
-.marquee-section:hover .marquee-track{animation-play-state:paused}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.marquee-item{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:16px;white-space:nowrap;opacity:.6;transition:opacity .3s}
-.marquee-item:hover{opacity:1}
-.marquee-item .mi-icon{width:32px;height:32px;background:var(--grad);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.tech-section{background:#fff;padding:64px 0;border-top:1px solid #eef2f6;border-bottom:1px solid #eef2f6}
+.tech-section .container{display:flex;align-items:center;gap:56px}
+.tech-label{font-size:13px;color:var(--muted);font-weight:600;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;min-width:fit-content}
+.tech-divider{width:1px;height:40px;background:#dde6ed;flex-shrink:0}
+.tech-scroll{overflow:hidden;flex:1;position:relative}
+.tech-scroll::before{content:'';position:absolute;left:0;top:0;bottom:0;width:60px;background:linear-gradient(90deg,#fff,transparent);z-index:1;pointer-events:none}
+.tech-scroll::after{content:'';position:absolute;right:0;top:0;bottom:0;width:60px;background:linear-gradient(-90deg,#fff,transparent);z-index:1;pointer-events:none}
+.tech-track{display:flex;gap:10px;width:max-content;animation:techScroll 30s linear infinite}
+.tech-section:hover .tech-track{animation-play-state:paused}
+@keyframes techScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tech-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:50px;border:1.5px solid #e2eaf0;font-size:14px;font-weight:600;color:#3D5A6E;white-space:nowrap;transition:all .25s;cursor:default}
+.tech-pill:hover{border-color:var(--teal);color:var(--blue);background:#f0fafd}
+.tech-pill-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 
 /* ──────────────────────────────────────────
    SERVICES
@@ -143,7 +148,12 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .service-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .4s}
 .service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent}
 .service-card:hover::before{opacity:1}
-.service-card:hover .sc-icon,.service-card:hover .sc-title,.service-card:hover .sc-desc,.service-card:hover .sc-link{color:#fff!important;border-color:rgba(255,255,255,.3)!important}
+.service-card:hover .sc-icon,
+.service-card:hover .sc-title,
+.service-card:hover .sc-desc,
+.service-card:hover .sc-link,
+.service-card:hover .sc-features li{color:#fff!important;border-color:rgba(255,255,255,.2)!important}
+.service-card:hover .sc-features li::before{color:#fff!important}
 .service-card:hover .sc-icon-wrap{background:rgba(255,255,255,.2)!important}
 .service-card *{position:relative;z-index:1}
 .sc-icon-wrap{width:64px;height:64px;background:rgba(0,180,216,.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .4s}
@@ -417,10 +427,9 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
       </a>
       <ul class="nav-links">
         <li><a href="#services">Szolgáltatások</a></li>
-        <li><a href="#about">Rólunk</a></li>
         <li><a href="#portfolio">Portfólió</a></li>
+        <li><a href="#about">Rólunk</a></li>
         <li><a href="#pricing">Árak</a></li>
-        <li><a href="#faq">GYIK</a></li>
       </ul>
       <div class="nav-cta">
         <a href="#contact" class="btn btn-primary" style="padding:10px 24px;font-size:14px">Kapcsolat</a>
@@ -435,10 +444,9 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" onclick="closeMobile()">Szolgáltatások</a>
-  <a href="#about" onclick="closeMobile()">Rólunk</a>
   <a href="#portfolio" onclick="closeMobile()">Portfólió</a>
+  <a href="#about" onclick="closeMobile()">Rólunk</a>
   <a href="#pricing" onclick="closeMobile()">Árak</a>
-  <a href="#faq" onclick="closeMobile()">GYIK</a>
   <a href="#contact" onclick="closeMobile()" class="btn btn-primary">Kapcsolat</a>
 </div>
 
@@ -463,27 +471,8 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
         </h1>
         <p class="hero-desc">Professzionális weboldalak, SEO optimalizálás és digitális marketing megoldások, amelyek valódi ügyfeleket hoznak vállalkozásodnak.</p>
         <div class="hero-btns">
-          <a href="#contact" class="btn btn-primary">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.8 12.63 19.79 19.79 0 01.73 4.05 2 2 0 012.7 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.07-1.07a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            Ingyenes konzultáció
-          </a>
-          <a href="#portfolio" class="btn btn-outline" style="color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.3)">
-            Munkáink megtekintése
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="hstat">
-            <div class="hstat-num">200+</div>
-            <div class="hstat-label">Megvalósított projekt</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-num">98%</div>
-            <div class="hstat-label">Elégedett ügyfél</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-num">8 év</div>
-            <div class="hstat-label">Tapasztalat</div>
-          </div>
+          <a href="#contact" class="btn btn-primary">Ingyenes konzultáció</a>
+          <a href="#portfolio" class="btn btn-outline" style="color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.3)">Munkáink</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -511,25 +500,6 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
               <span class="metric-val">0.8s</span>
             </div>
             <div class="metric-bar"><div class="metric-fill" style="width:92%;animation:grow 2.6s ease forwards"></div></div>
-            <div class="metric-row">
-              <span class="metric-label">Google pozíció (átlag)</span>
-              <span class="metric-val">Top 3</span>
-            </div>
-            <div class="metric-bar"><div class="metric-fill" style="width:96%;animation:grow 2.9s ease forwards"></div></div>
-          </div>
-        </div>
-        <div class="floating-badge fb-top">
-          <div class="fb-icon">🚀</div>
-          <div>
-            <div class="fb-num">+127%</div>
-            <div class="fb-text">Több megkeresés</div>
-          </div>
-        </div>
-        <div class="floating-badge fb-bottom">
-          <div class="fb-icon">⭐</div>
-          <div>
-            <div class="fb-num">5.0</div>
-            <div class="fb-text">Google értékelés</div>
           </div>
         </div>
       </div>
@@ -541,36 +511,43 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-label">Technológiák amelyekkel dolgozunk</div>
-  <div style="overflow:hidden">
-    <div class="marquee-track" id="marqueeTrack">
-      <div class="marquee-item"><div class="mi-icon">⚛️</div> React</div>
-      <div class="marquee-item"><div class="mi-icon">🟨</div> JavaScript</div>
-      <div class="marquee-item"><div class="mi-icon">🎨</div> Figma</div>
-      <div class="marquee-item"><div class="mi-icon">🔍</div> SEO Pro</div>
-      <div class="marquee-item"><div class="mi-icon">📊</div> Google Analytics</div>
-      <div class="marquee-item"><div class="mi-icon">🛒</div> WooCommerce</div>
-      <div class="marquee-item"><div class="mi-icon">📱</div> React Native</div>
-      <div class="marquee-item"><div class="mi-icon">☁️</div> AWS</div>
-      <div class="marquee-item"><div class="mi-icon">🔒</div> SSL & Security</div>
-      <div class="marquee-item"><div class="mi-icon">🎯</div> Google Ads</div>
-      <div class="marquee-item"><div class="mi-icon">📧</div> Email Marketing</div>
-      <div class="marquee-item"><div class="mi-icon">🌐</div> WordPress</div>
-      <!-- Duplicate for seamless loop -->
-      <div class="marquee-item"><div class="mi-icon">⚛️</div> React</div>
-      <div class="marquee-item"><div class="mi-icon">🟨</div> JavaScript</div>
-      <div class="marquee-item"><div class="mi-icon">🎨</div> Figma</div>
-      <div class="marquee-item"><div class="mi-icon">🔍</div> SEO Pro</div>
-      <div class="marquee-item"><div class="mi-icon">📊</div> Google Analytics</div>
-      <div class="marquee-item"><div class="mi-icon">🛒</div> WooCommerce</div>
-      <div class="marquee-item"><div class="mi-icon">📱</div> React Native</div>
-      <div class="marquee-item"><div class="mi-icon">☁️</div> AWS</div>
-      <div class="marquee-item"><div class="mi-icon">🔒</div> SSL & Security</div>
-      <div class="marquee-item"><div class="mi-icon">🎯</div> Google Ads</div>
-      <div class="marquee-item"><div class="mi-icon">📧</div> Email Marketing</div>
-      <div class="marquee-item"><div class="mi-icon">🌐</div> WordPress</div>
+<!-- TECH STACK (eltávolítva) -->
+<div class="tech-section" style="display:none">
+  <div class="container">
+    <span class="tech-label">Technológiák</span>
+    <div class="tech-divider"></div>
+    <div class="tech-scroll">
+      <div class="tech-track">
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#61dafb"></div>React</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#f7df1e"></div>JavaScript</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#a259ff"></div>Figma</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#4285f4"></div>Google SEO</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#e37400"></div>Analytics</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#7c5cbf"></div>WooCommerce</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#ff9900"></div>AWS</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#21759b"></div>WordPress</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#000"></div>Next.js</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#fbbc04"></div>Google Ads</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#1877f2"></div>Facebook Ads</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#0a66c2"></div>LinkedIn Ads</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#00b4d8"></div>Email Marketing</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#38bdf8"></div>Tailwind CSS</div>
+        <!-- dupla -->
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#61dafb"></div>React</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#f7df1e"></div>JavaScript</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#a259ff"></div>Figma</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#4285f4"></div>Google SEO</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#e37400"></div>Analytics</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#7c5cbf"></div>WooCommerce</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#ff9900"></div>AWS</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#21759b"></div>WordPress</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#000"></div>Next.js</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#fbbc04"></div>Google Ads</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#1877f2"></div>Facebook Ads</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#0a66c2"></div>LinkedIn Ads</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#00b4d8"></div>Email Marketing</div>
+        <div class="tech-pill"><div class="tech-pill-dot" style="background:#38bdf8"></div>Tailwind CSS</div>
+      </div>
     </div>
   </div>
 </div>
@@ -620,42 +597,9 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
         </ul>
         <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="service-card reveal" style="transition-delay:.3s">
-        <div class="sc-icon-wrap"><div class="sc-icon">🛒</div></div>
-        <div class="sc-title">Webáruház fejlesztés</div>
-        <div class="sc-desc">Professzionális e-commerce megoldások, amelyek növelik az eladásaidat és automatizálják az üzletmenetet.</div>
-        <ul class="sc-features">
-          <li>WooCommerce / Shopify</li>
-          <li>Fizetési integrációk</li>
-          <li>Készletkezelés</li>
-          <li>Konverzióoptimalizált design</li>
-        </ul>
-        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="service-card reveal" style="transition-delay:.4s">
-        <div class="sc-icon-wrap"><div class="sc-icon">📊</div></div>
-        <div class="sc-title">Analitika & Riporting</div>
-        <div class="sc-desc">Adatvezérelt döntések: részletes riportok, KPI-ok és growth hacking stratégiák a növekedéshez.</div>
-        <ul class="sc-features">
-          <li>Google Analytics 4 beállítás</li>
-          <li>Havi teljesítményriportok</li>
-          <li>A/B tesztelés</li>
-          <li>ROI mérés és optimalizálás</li>
-        </ul>
-        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="service-card reveal" style="transition-delay:.5s">
-        <div class="sc-icon-wrap"><div class="sc-icon">🔧</div></div>
-        <div class="sc-title">Karbantartás & Támogatás</div>
-        <div class="sc-desc">Folyamatos technikai támogatás, frissítések és biztonság – hogy te az üzletedre koncentrálhass.</div>
-        <ul class="sc-features">
-          <li>24/7 monitoring</li>
-          <li>Havi frissítések</li>
-          <li>Biztonsági mentések</li>
-          <li>Prioritásos support</li>
-        </ul>
-        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="#contact" class="btn btn-outline">Összes szolgáltatás megtekintése →</a>
     </div>
   </div>
 </section>
@@ -672,26 +616,12 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
             <div class="ai-sub">Azóta hogy az internet létezik</div>
           </div>
         </div>
-        <div class="about-badge-float abf1">
-          <div class="abf-icon">🏆</div>
-          <div>
-            <div class="abf-num">200+</div>
-            <div class="abf-label">Sikeres projekt</div>
-          </div>
-        </div>
-        <div class="about-badge-float abf2">
-          <div class="abf-icon">❤️</div>
-          <div>
-            <div class="abf-num">98%</div>
-            <div class="abf-label">Ügyfélelégedettség</div>
-          </div>
-        </div>
       </div>
       <div class="about-content reveal-right">
         <div class="section-tag">Rólunk</div>
         <h2 class="section-title">Miért válassz<br><span class="grad-text">minket?</span></h2>
         <p class="section-sub">A Siteness egy szenvedélyes, eredményorientált csapat, amely 2016 óta segít magyar vállalkozásoknak online sikereket elérni. Nem csak weboldalakat készítünk – digitális növekedési partnereid vagyunk.</p>
-        <div class="stats-grid">
+        <div class="stats-grid" style="grid-template-columns:1fr 1fr;max-width:340px">
           <div class="stat-box">
             <div class="stat-num" data-target="200">0</div>
             <div class="stat-label">Befejezett projekt</div>
@@ -699,14 +629,6 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
           <div class="stat-box">
             <div class="stat-num" data-target="98">0</div>
             <div class="stat-label">% Elégedett ügyfél</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num" data-target="8">0</div>
-            <div class="stat-label">Év tapasztalat</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num" data-target="15">0</div>
-            <div class="stat-label">Szakértő a csapatban</div>
           </div>
         </div>
         <div class="about-points">
@@ -737,42 +659,6 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process">
-  <div class="container">
-    <div class="process-header reveal">
-      <div class="section-tag">Hogyan dolgozunk</div>
-      <h2 class="section-title">Egyszerű folyamat,<br><span class="grad-text">kivételes eredmény</span></h2>
-      <p class="section-sub">Átlátható, strukturált munkamódszerünkkel minden projekt gördülékenyen halad az ötlettől az élő oldalig.</p>
-    </div>
-    <div class="process-steps">
-      <div class="process-step reveal" style="transition-delay:.0s">
-        <div class="ps-num">01</div>
-        <div class="ps-icon">💬</div>
-        <div class="ps-title">Konzultáció</div>
-        <div class="ps-desc">Megismerjük vállalkozásodat, céljaidat és a célközönségedet. Ingyenes és kötelezettségmentes.</div>
-      </div>
-      <div class="process-step reveal" style="transition-delay:.15s">
-        <div class="ps-num">02</div>
-        <div class="ps-icon">✏️</div>
-        <div class="ps-title">Tervezés & Design</div>
-        <div class="ps-desc">Egyedi tervet és vizuális koncepciót készítünk, amelyet te jóváhagyasz mielőtt fejlesztés indul.</div>
-      </div>
-      <div class="process-step reveal" style="transition-delay:.3s">
-        <div class="ps-num">03</div>
-        <div class="ps-icon">⚙️</div>
-        <div class="ps-title">Fejlesztés</div>
-        <div class="ps-desc">Csapatunk megvalósítja a tervet – gyorsan, precízen, a legmodernebb technológiákkal.</div>
-      </div>
-      <div class="process-step reveal" style="transition-delay:.45s">
-        <div class="ps-num">04</div>
-        <div class="ps-icon">🚀</div>
-        <div class="ps-title">Élesítés & Növekedés</div>
-        <div class="ps-desc">Az oldal élesítése után sem hagyjuk magadra – folyamatos optimalizálással segítjük növekedésedet.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
@@ -895,62 +781,6 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
           <div class="pi-info-title">Kovács & Társai Ügyvédi Iroda</div>
         </div>
       </div>
-      <div class="portfolio-item reveal" style="transition-delay:.4s">
-        <div class="pi-img" style="background:linear-gradient(135deg,#0096C7,#00B4D8)">
-          <div class="pi-mockup">
-            <div class="pi-mock-bar">
-              <div class="pi-dot" style="background:#ff5f57"></div>
-              <div class="pi-dot" style="background:#febc2e"></div>
-              <div class="pi-dot" style="background:#28c840"></div>
-            </div>
-            <div class="pi-content-area">
-              <div class="pi-line"></div>
-              <div class="pi-line short"></div>
-              <div class="pi-line" style="width:70%"></div>
-            </div>
-          </div>
-          <div class="pi-overlay">
-            <div class="pi-overlay-content">
-              <div class="pi-tag">E-commerce</div>
-              <div class="pi-title">SportMax Felszerelés</div>
-              <div class="pi-desc">5x-es ROAS a Google Shopping-on</div>
-              <a href="#contact" class="pi-btn">Részletek →</a>
-            </div>
-          </div>
-        </div>
-        <div class="pi-info">
-          <div class="pi-info-tag">Webáruház + Ads</div>
-          <div class="pi-info-title">SportMax Felszerelés</div>
-        </div>
-      </div>
-      <div class="portfolio-item reveal" style="transition-delay:.5s">
-        <div class="pi-img" style="background:linear-gradient(135deg,#0D2B4A,#0096C7)">
-          <div class="pi-mockup">
-            <div class="pi-mock-bar">
-              <div class="pi-dot" style="background:#ff5f57"></div>
-              <div class="pi-dot" style="background:#febc2e"></div>
-              <div class="pi-dot" style="background:#28c840"></div>
-            </div>
-            <div class="pi-content-area">
-              <div class="pi-line"></div>
-              <div class="pi-line short"></div>
-              <div class="pi-line" style="width:88%"></div>
-            </div>
-          </div>
-          <div class="pi-overlay">
-            <div class="pi-overlay-content">
-              <div class="pi-tag">Branding</div>
-              <div class="pi-title">GreenHome Ingatlan</div>
-              <div class="pi-desc">Teljes brand megújítás és weboldal</div>
-              <a href="#contact" class="pi-btn">Részletek →</a>
-            </div>
-          </div>
-        </div>
-        <div class="pi-info">
-          <div class="pi-info-tag">Branding + Web</div>
-          <div class="pi-info-title">GreenHome Ingatlan</div>
-        </div>
-      </div>
     </div>
     <div class="portfolio-cta reveal">
       <a href="#contact" class="btn btn-white">Mutasd az összes munkát →</a>
@@ -1028,11 +858,8 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
           <li><span class="check">✓</span> 5 oldalas weboldal</li>
           <li><span class="check">✓</span> Mobilbarát design</li>
           <li><span class="check">✓</span> Alap SEO beállítás</li>
-          <li><span class="check">✓</span> Kapcsolati űrlap</li>
           <li><span class="check">✓</span> SSL tanúsítvány</li>
-          <li><span class="check">✓</span> 1 hónap ingyenes support</li>
-          <li class="off"><span class="check">✗</span> Google Ads kampány</li>
-          <li class="off"><span class="check">✗</span> Havi SEO munka</li>
+          <li><span class="check">✓</span> 1 hónap support</li>
         </ul>
         <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center">Ajánlatot kérek</a>
       </div>
@@ -1047,13 +874,10 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
         </div>
         <ul class="pc-features">
           <li><span class="check">✓</span> 10 oldalas weboldal</li>
-          <li><span class="check">✓</span> Egyedi prémium design</li>
           <li><span class="check">✓</span> Teljes SEO optimalizálás</li>
           <li><span class="check">✓</span> Google Ads beállítás</li>
-          <li><span class="check">✓</span> Havi SEO riport</li>
           <li><span class="check">✓</span> Blog szekció + CMS</li>
-          <li><span class="check">✓</span> 3 hónap ingyenes support</li>
-          <li><span class="check">✓</span> Havi 1 tartalmi bejegyzés</li>
+          <li><span class="check">✓</span> 3 hónap support</li>
         </ul>
         <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center">Ajánlatot kérek</a>
       </div>
@@ -1067,10 +891,7 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
         </div>
         <ul class="pc-features">
           <li><span class="check">✓</span> Korlátlan oldalak</li>
-          <li><span class="check">✓</span> Webáruház integráció</li>
-          <li><span class="check">✓</span> Teljes SEO stratégia</li>
-          <li><span class="check">✓</span> Google & Facebook Ads</li>
-          <li><span class="check">✓</span> Email marketing rendszer</li>
+          <li><span class="check">✓</span> Webáruház + Ads</li>
           <li><span class="check">✓</span> Dedikált projektmenedzser</li>
           <li><span class="check">✓</span> 24/7 prioritásos support</li>
           <li><span class="check">✓</span> Havi stratégiai konzultáció</li>
@@ -1081,93 +902,6 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="faq-inner">
-      <div class="faq-aside reveal-left">
-        <div class="section-tag">GYIK</div>
-        <h2 class="section-title">Kérdésed<br>van?</h2>
-        <p class="section-sub">Ha nem találod a választ az alábbi kérdések között, írj nekünk bátran!</p>
-        <a href="#contact" class="btn btn-primary" style="margin-top:8px">Kérdezz minket</a>
-      </div>
-      <div class="faq-list reveal-right">
-        <div class="faq-item open">
-          <div class="faq-question">
-            <span class="faq-q-text">Mennyi ideig tart egy weboldal elkészítése?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Egy átlagos 5-10 oldalas bemutatkozó weboldal általában 2-4 hét alatt elkészül. A komplexebb projektek (webáruházak, egyedi fejlesztések) 4-8 hetet vehetnek igénybe. Minden esetben részletes ütemtervet adunk a projekt elején.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="faq-q-text">Mikor látom az SEO eredményeket?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Az SEO egy hosszú távú befektetés. Az első mérhető eredmények általában 2-3 hónap után jelennek meg, a teljes potenciál 6-12 hónap alatt bontakozik ki. Havi riportokkal folyamatosan tájékoztatunk a haladásról.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="faq-q-text">Tudok módosításokat kérni a weboldalonmon?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Igen! Minden csomagunkhoz ingyenes módosítási lehetőség jár az átadást követő időszakban. Emellett karbantartási csomagjaink keretében folyamatos frissítéseket és módosításokat is elvégzünk.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="faq-q-text">Szükségem van előismeretekre a weboldalom kezeléséhez?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Nem! Minden weboldalunkat könnyen kezelhető tartalomkezelő rendszerrel (CMS) látjuk el, és személyre szabott oktatást tartunk az átadáskor. Ha mégsem szeretnél foglalkozni az oldallal, karbantartási csomagunk megoldja ezt.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="faq-q-text">Mekkora a minimális büdzsé a Google Ads hirdetésekhez?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>A mi kezelési díjunkon felül általában havi 50-100 ezer Ft-tól érdemes Google Ads kampányt indítani, de ez az iparágtól és céloktól függ. Ingyenes konzultáción kiszámítjuk a számodra optimális büdzsét.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <span class="faq-q-text">Vállaltok garanciát az eredményekre?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer">
-            <p>Míg konkrét keresőmotoros pozíciókat etikusan nem garantálhatunk (mivel a Google algoritmusai változnak), az általunk végzett munkára és az alkalmazott módszerek minőségére 100%-os garanciát vállalunk. Ügyfeleinknél átlagosan 150%+ forgalomnövekedést érünk el.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BANNER -->
-<section id="cta">
-  <div class="container">
-    <div class="cta-inner reveal">
-      <div class="section-tag" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)">Készen állsz?</div>
-      <h2 class="section-title">Kezdjük el együtt<br>a növekedésedet!</h2>
-      <p class="section-sub">Foglalj egy ingyenes, kötelezettségmentes konzultációt és meglátjuk, hogyan tudunk legtöbbet segíteni vállalkozásodnak.</p>
-      <div class="cta-btns">
-        <a href="#contact" class="btn btn-white">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.8 12.63 19.79 19.79 0 01.73 4.05 2 2 0 012.7 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.07-1.07a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Ingyenes konzultáció
-        </a>
-        <a href="#portfolio" class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.3)">Munkáink megtekintése</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
