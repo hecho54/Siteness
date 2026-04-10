@@ -97,7 +97,22 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .hstat{text-align:center}
 .hstat-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.04em;color:#fff}
 .hstat-label{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
-.hero-visual{position:relative}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+/* ── GLOBE ── */
+.globe-wrap{position:relative;width:380px;height:380px;flex-shrink:0}
+.globe-glow-outer{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,216,.18) 0%,transparent 65%);animation:glowPulse 4s ease-in-out infinite;pointer-events:none}
+.globe-atmo{position:absolute;inset:-8px;border-radius:50%;background:radial-gradient(circle at 38% 35%,rgba(0,180,216,.12) 0%,transparent 70%);box-shadow:0 0 50px rgba(0,180,216,.25),0 0 100px rgba(0,119,182,.15);pointer-events:none}
+.globe-sphere{width:380px;height:380px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#0096C7 0%,#0077B6 28%,#023E8A 60%,#03045E 100%);overflow:hidden;position:relative;box-shadow:inset -40px -30px 90px rgba(0,0,0,.7),inset 12px 12px 40px rgba(0,180,216,.08)}
+.globe-scroll{position:absolute;top:0;left:0;width:200%;height:100%;animation:globeRotate 32s linear infinite}
+@keyframes globeRotate{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.globe-map{width:100%;height:100%;display:block}
+.globe-light{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 35%,transparent 65%);pointer-events:none}
+.globe-dark{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 70% 68%,rgba(0,0,0,.55) 0%,transparent 55%);pointer-events:none}
+.globe-ring{position:absolute;border-radius:50%;border:1px solid rgba(0,180,216,.2);pointer-events:none}
+.globe-ring.r1{inset:-14px;animation:ringPulse 4s ease-in-out infinite}
+.globe-ring.r2{inset:-28px;border-color:rgba(0,180,216,.1);animation:ringPulse 4s ease-in-out infinite .8s}
+@keyframes ringPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.01)}}
+@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1}}
 .hero-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:32px;animation:cardFloat 6s ease-in-out infinite}
 @keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 .hero-card-header{display:flex;align-items:center;gap:12px;margin-bottom:28px}
@@ -477,31 +492,84 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
         </div>
       </div>
       <div class="hero-visual">
-        <div class="hero-card">
-          <div class="hero-card-header">
-            <div class="hc-icon">📈</div>
-            <div>
-              <div class="hc-title">Weboldal teljesítmény</div>
-              <div class="hc-sub">Élő analitika dashboard</div>
+        <div class="globe-wrap">
+          <!-- Külső glow -->
+          <div class="globe-glow-outer"></div>
+          <!-- Légkör gyűrű -->
+          <div class="globe-atmo"></div>
+          <!-- Gömb -->
+          <div class="globe-sphere">
+            <div class="globe-scroll">
+              <svg viewBox="0 0 1440 360" xmlns="http://www.w3.org/2000/svg" class="globe-map" preserveAspectRatio="none">
+                <!-- Szélességi körök -->
+                <line x1="0" y1="60"  x2="1440" y2="60"  stroke="rgba(144,224,239,.14)" stroke-width="1"/>
+                <line x1="0" y1="120" x2="1440" y2="120" stroke="rgba(144,224,239,.14)" stroke-width="1"/>
+                <line x1="0" y1="180" x2="1440" y2="180" stroke="rgba(144,224,239,.22)" stroke-width="1.2"/>
+                <line x1="0" y1="240" x2="1440" y2="240" stroke="rgba(144,224,239,.14)" stroke-width="1"/>
+                <line x1="0" y1="300" x2="1440" y2="300" stroke="rgba(144,224,239,.14)" stroke-width="1"/>
+                <!-- Hosszúsági körök -->
+                <line x1="120"  y1="0" x2="120"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="240"  y1="0" x2="240"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="360"  y1="0" x2="360"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="480"  y1="0" x2="480"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="600"  y1="0" x2="600"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="720"  y1="0" x2="720"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="840"  y1="0" x2="840"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="960"  y1="0" x2="960"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="1080" y1="0" x2="1080" y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="1200" y1="0" x2="1200" y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <line x1="1320" y1="0" x2="1320" y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
+                <!-- Kontinensek (duplikálva a seamless loop-hoz) -->
+                <g fill="rgba(0,180,216,.45)" stroke="rgba(144,224,239,.7)" stroke-width="0.6" stroke-linejoin="round">
+                  <!-- Észak-Amerika -->
+                  <path d="M35,65 L78,42 L118,35 L158,32 L200,38 L232,44 L240,92 L232,105 L215,112 L200,118 L192,132 L180,150 L165,155 L152,145 L138,152 L122,170 L105,172 L92,162 L78,148 L65,130 L52,112 L40,92 L32,75 Z"/>
+                  <!-- Grönland -->
+                  <path d="M215,18 L238,15 L252,20 L248,35 L235,40 L218,38 L210,28 Z"/>
+                  <!-- Dél-Amerika -->
+                  <path d="M172,152 L205,145 L230,155 L248,172 L258,195 L255,220 L248,245 L238,265 L225,282 L210,280 L198,268 L188,248 L182,225 L178,200 L175,175 Z"/>
+                  <!-- Európa -->
+                  <path d="M335,88 L352,72 L368,60 L385,52 L408,48 L428,52 L445,62 L448,78 L438,90 L422,98 L405,105 L385,108 L365,105 L348,98 Z"/>
+                  <!-- Afrika -->
+                  <path d="M340,108 L362,102 L388,100 L415,102 L432,112 L452,130 L462,152 L460,172 L452,195 L440,215 L422,238 L402,252 L380,255 L358,250 L340,232 L328,210 L322,185 L322,162 L328,140 L332,122 Z"/>
+                  <!-- Ázsia fő tömb -->
+                  <path d="M448,55 L485,45 L525,40 L565,38 L598,42 L625,48 L648,52 L672,48 L700,50 L718,58 L715,75 L698,82 L672,80 L645,78 L618,82 L598,88 L572,95 L545,100 L518,105 L492,108 L468,110 L448,108 L438,95 Z"/>
+                  <!-- India -->
+                  <path d="M495,108 L518,105 L540,112 L550,130 L545,155 L535,172 L518,178 L502,170 L492,150 L488,130 Z"/>
+                  <!-- Arábia -->
+                  <path d="M448,112 L468,110 L482,118 L485,138 L478,155 L465,162 L452,158 L442,145 L440,128 Z"/>
+                  <!-- Délkelet-Ázsia -->
+                  <path d="M565,148 L588,142 L608,148 L618,162 L612,175 L595,178 L575,172 L562,162 Z"/>
+                  <!-- Japán -->
+                  <path d="M634,88 L648,85 L660,92 L655,108 L640,110 L630,102 Z"/>
+                  <!-- Ausztrália -->
+                  <path d="M582,218 L615,208 L648,210 L665,222 L668,245 L658,262 L638,268 L615,265 L595,255 L582,240 Z"/>
+                  <!-- Antarktisz csík -->
+                  <path d="M0,332 L720,332 L720,360 L0,360 Z"/>
+
+                  <!-- === DUPLIKÁTUM +720 === -->
+                  <path d="M755,65 L798,42 L838,35 L878,32 L920,38 L952,44 L960,92 L952,105 L935,112 L920,118 L912,132 L900,150 L885,155 L872,145 L858,152 L842,170 L825,172 L812,162 L798,148 L785,130 L772,112 L760,92 L752,75 Z"/>
+                  <path d="M935,18 L958,15 L972,20 L968,35 L955,40 L938,38 L930,28 Z"/>
+                  <path d="M892,152 L925,145 L950,155 L968,172 L978,195 L975,220 L968,245 L958,265 L945,282 L930,280 L918,268 L908,248 L902,225 L898,200 L895,175 Z"/>
+                  <path d="M1055,88 L1072,72 L1088,60 L1105,52 L1128,48 L1148,52 L1165,62 L1168,78 L1158,90 L1142,98 L1125,105 L1105,108 L1085,105 L1068,98 Z"/>
+                  <path d="M1060,108 L1082,102 L1108,100 L1135,102 L1152,112 L1172,130 L1182,152 L1180,172 L1172,195 L1160,215 L1142,238 L1122,252 L1100,255 L1078,250 L1060,232 L1048,210 L1042,185 L1042,162 L1048,140 L1052,122 Z"/>
+                  <path d="M1168,55 L1205,45 L1245,40 L1285,38 L1318,42 L1345,48 L1368,52 L1392,48 L1420,50 L1438,58 L1435,75 L1418,82 L1392,80 L1365,78 L1338,82 L1318,88 L1292,95 L1265,100 L1238,105 L1212,108 L1188,110 L1168,108 L1158,95 Z"/>
+                  <path d="M1215,108 L1238,105 L1260,112 L1270,130 L1265,155 L1255,172 L1238,178 L1222,170 L1212,150 L1208,130 Z"/>
+                  <path d="M1168,112 L1188,110 L1202,118 L1205,138 L1198,155 L1185,162 L1172,158 L1162,145 L1160,128 Z"/>
+                  <path d="M1285,148 L1308,142 L1328,148 L1338,162 L1332,175 L1315,178 L1295,172 L1282,162 Z"/>
+                  <path d="M1354,88 L1368,85 L1380,92 L1375,108 L1360,110 L1350,102 Z"/>
+                  <path d="M1302,218 L1335,208 L1368,210 L1385,222 L1388,245 L1378,262 L1358,268 L1335,265 L1315,255 L1302,240 Z"/>
+                  <path d="M720,332 L1440,332 L1440,360 L720,360 Z"/>
+                </g>
+              </svg>
             </div>
+            <!-- Fény highlight -->
+            <div class="globe-light"></div>
+            <!-- Árnyék jobb oldalt -->
+            <div class="globe-dark"></div>
           </div>
-          <div>
-            <div class="metric-row">
-              <span class="metric-label">Organikus forgalom</span>
-              <span class="metric-val">+247%</span>
-            </div>
-            <div class="metric-bar"><div class="metric-fill" style="width:85%;animation:grow 2s ease forwards"></div></div>
-            <div class="metric-row">
-              <span class="metric-label">Konverziós ráta</span>
-              <span class="metric-val">+63%</span>
-            </div>
-            <div class="metric-bar"><div class="metric-fill" style="width:63%;animation:grow 2.3s ease forwards"></div></div>
-            <div class="metric-row">
-              <span class="metric-label">Oldalbetöltési sebesség</span>
-              <span class="metric-val">0.8s</span>
-            </div>
-            <div class="metric-bar"><div class="metric-fill" style="width:92%;animation:grow 2.6s ease forwards"></div></div>
-          </div>
+          <!-- Pulzáló gyűrűk -->
+          <div class="globe-ring r1"></div>
+          <div class="globe-ring r2"></div>
         </div>
       </div>
     </div>
