@@ -527,6 +527,37 @@ footer{background:#050A12}
 /* Scrollbar */
 ::-webkit-scrollbar-thumb{background:var(--grad)}
 
+/* ── PAGE CURTAIN ── */
+#page-curtain{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,#080E1A 0%,#071E3D 45%,#0A2A50 100%);
+  clip-path:inset(0 100% 0 0);
+  pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.curtain-logo{
+  display:flex;align-items:center;gap:12px;
+  opacity:0;transform:scale(0.85);
+}
+.curtain-logo span{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:26px;font-weight:800;color:#fff;letter-spacing:-0.04em;
+}
+
+/* ── NAV ACTIVE INDICATOR ── */
+.nav-links{position:relative}
+.nav-indicator{
+  position:absolute;bottom:-6px;height:2px;border-radius:2px;
+  background:var(--grad);
+  transition:none; /* GSAP kezeli */
+  pointer-events:none;
+}
+.nav-links a{
+  position:relative;
+  transition:color .3s;
+}
+.nav-links a.nav-active{color:var(--teal)!important}
+
 /* ── SEAMLESS SECTION TRANSITIONS ──
    Minden szekció tetején egy finom gradiens, ami az előző szekció
    háttérszínéből transparent-ba fut – a határok "felolvadnak"
@@ -1281,6 +1312,18 @@ footer::before{background:linear-gradient(to bottom,#080E1A 0%,transparent 100%)
   <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
+<!-- PAGE CURTAIN – nav átmenet -->
+<div id="page-curtain">
+  <div class="curtain-logo">
+    <svg width="40" height="40" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="10" fill="url(#cg)"/>
+      <defs><linearGradient id="cg" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#0EA5E9"/><stop offset="100%" stop-color="#00D4B4"/></linearGradient></defs>
+      <path d="M10 18 Q18 8 26 18 Q18 28 10 18Z" fill="white" opacity=".9"/>
+    </svg>
+    <span>Siteness</span>
+  </div>
+</div>
+
 <style>
 @keyframes grow{from{width:0}to{}}
 </style>
@@ -1304,6 +1347,102 @@ const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
 function closeMobile(){ mobileMenu.classList.remove('open'); }
+
+// ─────────────────────────────────────
+// NAV CURTAIN – tab-szerű oldalváltás
+// ─────────────────────────────────────
+const curtain     = document.getElementById('page-curtain');
+const curtainLogo = curtain.querySelector('.curtain-logo');
+const navLinks    = document.querySelectorAll('.nav-links a, .mobile-nav a[href^="#"]');
+
+// Nav aktív indikátor létrehozása
+const navUl = document.querySelector('.nav-links');
+const indicator = document.createElement('span');
+indicator.className = 'nav-indicator';
+navUl.appendChild(indicator);
+
+function moveIndicator(link) {
+  if (!link) return;
+  const ul   = navUl.getBoundingClientRect();
+  const rect = link.getBoundingClientRect();
+  gsap.to(indicator, {
+    left:    rect.left - ul.left,
+    width:   rect.width,
+    duration: 0.4,
+    ease:    'power2.inOut'
+  });
+}
+
+// Indikátor az aktív linkre scroll alapján
+const sections = ['services','portfolio','about','pricing','contact'];
+sections.forEach(id => {
+  ScrollTrigger.create({
+    trigger: '#' + id,
+    start:   'top 55%',
+    end:     'bottom 55%',
+    onToggle: self => {
+      const link = navUl.querySelector('a[href="#' + id + '"]');
+      navUl.querySelectorAll('a').forEach(a => a.classList.remove('nav-active'));
+      if (self.isActive && link) {
+        link.classList.add('nav-active');
+        moveIndicator(link);
+      }
+    }
+  });
+});
+
+// Curtain átmenet nav kattintásra
+navLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetEl = document.querySelector(targetId);
+    if (!targetEl) return;
+
+    const tl = gsap.timeline();
+
+    // 1. Függöny befut balról
+    tl.set(curtain, { pointerEvents: 'all', clipPath: 'inset(0 100% 0 0)' })
+      .to(curtain, {
+        clipPath: 'inset(0 0% 0 0)',
+        duration: 0.55,
+        ease: 'power4.inOut'
+      })
+      // 2. Logo megjelenik a függöny közepén
+      .to(curtainLogo, {
+        opacity: 1, scale: 1,
+        duration: 0.25,
+        ease: 'power2.out'
+      }, '-=0.1')
+      // 3. Ugrás a szekción (láthatatlanul)
+      .add(() => {
+        targetEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+        closeMobile();
+        // Nav aktív állapot frissítés
+        navUl.querySelectorAll('a').forEach(a => a.classList.remove('nav-active'));
+        link.classList.add('nav-active');
+        moveIndicator(link);
+      })
+      // 4. Rövid szünet – logo látható
+      .to({}, { duration: 0.18 })
+      // 5. Logo elhalványul
+      .to(curtainLogo, {
+        opacity: 0, scale: 0.9,
+        duration: 0.2,
+        ease: 'power2.in'
+      })
+      // 6. Függöny jobbra húzódik el
+      .to(curtain, {
+        clipPath: 'inset(0 0% 0 100%)',
+        duration: 0.55,
+        ease: 'power4.inOut',
+        onComplete: () => {
+          gsap.set(curtain, { pointerEvents: 'none', clipPath: 'inset(0 100% 0 0)' });
+          gsap.set(curtainLogo, { opacity: 0, scale: 0.85 });
+        }
+      });
+  });
+});
 
 // ─────────────────────────────────────
 // 1. HERO – cinematic filmszerű belépő
