@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siteness – Profi Weboldal & Marketing Ügynökség</title>
+<meta name="description" content="A Siteness modern weboldalakat, SEO-t és digitális marketinget kínál vállalkozásodnak. Emeld új szintre az online jelenlétedet!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:   #0D2B4A;
+  --blue:   #0077B6;
+  --teal:   #00B4D8;
+  --light:  #90E0EF;
+  --pale:   #CAF0F8;
+  --white:  #FFFFFF;
+  --gray:   #F4F8FB;
+  --text:   #1A2E40;
+  --muted:  #5A7A92;
+  --grad:   linear-gradient(135deg, #0077B6 0%, #00B4D8 100%);
+  --grad2:  linear-gradient(135deg, #0D2B4A 0%, #0077B6 100%);
+  --shadow: 0 20px 60px rgba(0,119,182,0.15);
+  --r:      16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f0f4f8}
+::-webkit-scrollbar-thumb{background:var(--grad);border-radius:3px}
+
+/* ── UTILITIES ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-weight:600;font-size:15px;cursor:pointer;border:none;transition:all .3s ease;text-decoration:none}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(0,180,216,.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,180,216,.5)}
+.btn-outline{background:transparent;color:var(--blue);border:2px solid var(--blue)}
+.btn-outline:hover{background:var(--blue);color:#fff;transform:translateY(-3px)}
+.btn-white{background:#fff;color:var(--blue);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.2)}
+.section-tag{display:inline-block;background:rgba(0,180,216,.1);color:var(--teal);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:16px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.1;color:var(--navy);margin-bottom:16px}
+.section-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── REVEAL ANIMATION ── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:none}
+
+/* ──────────────────────────────────────────
+   NAV
+────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:all .4s ease}
+nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 4px 30px rgba(0,0,0,.2)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:40px}
+.nav-logo span{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;font-size:22px;font-weight:700;text-decoration:none;font-family:'Syne',sans-serif}
+
+/* ──────────────────────────────────────────
+   HERO
+────────────────────────────────────────── */
+#hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.3}
+.blob1{width:600px;height:600px;background:var(--blue);top:-100px;right:-100px}
+.blob2{width:400px;height:400px;background:var(--teal);bottom:-50px;left:-50px}
+.blob3{width:300px;height:300px;background:#0096C7;top:40%;left:30%;animation:float 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:120px 0 80px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--light);font-size:13px;font-weight:600;padding:8px 18px;border-radius:50px;margin-bottom:24px;backdrop-filter:blur(10px)}
+.hero-badge .dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(38px,5.5vw,72px);font-weight:800;color:#fff;line-height:1.05;margin-bottom:24px}
+.hero-title .line2{display:block}
+.hero-desc{font-size:18px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:40px;max-width:480px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:56px}
+.hero-stats{display:flex;gap:40px}
+.hstat{text-align:center}
+.hstat-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#fff}
+.hstat-label{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+.hero-visual{position:relative}
+.hero-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:32px;animation:cardFloat 6s ease-in-out infinite}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-card-header{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.hc-icon{width:44px;height:44px;background:var(--grad);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.hc-title{color:#fff;font-weight:700;font-size:16px}
+.hc-sub{color:rgba(255,255,255,.5);font-size:13px}
+.metric-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.metric-label{color:rgba(255,255,255,.6);font-size:14px}
+.metric-val{color:#fff;font-weight:700}
+.metric-bar{height:6px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:4px;overflow:hidden}
+.metric-fill{height:100%;border-radius:3px;background:var(--grad)}
+.floating-badge{position:absolute;background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:10px}
+.fb-top{top:-30px;right:-20px;animation:float2 5s ease-in-out infinite}
+.fb-bottom{bottom:-20px;left:-30px;animation:float2 7s ease-in-out infinite reverse}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.fb-icon{font-size:24px}
+.fb-num{color:#fff;font-weight:800;font-size:18px;line-height:1}
+.fb-text{color:rgba(255,255,255,.6);font-size:12px}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:12px;cursor:pointer}
+.scroll-arrow{width:20px;height:20px;border-right:2px solid rgba(255,255,255,.4);border-bottom:2px solid rgba(255,255,255,.4);transform:rotate(45deg);animation:scrollBounce 2s infinite}
+@keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
+
+/* ──────────────────────────────────────────
+   LOGO MARQUEE
+────────────────────────────────────────── */
+.marquee-section{background:#f8fbff;padding:32px 0;border-top:1px solid #e8f4fa;border-bottom:1px solid #e8f4fa;overflow:hidden}
+.marquee-label{text-align:center;font-size:13px;color:var(--muted);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
+.marquee-track{display:flex;gap:60px;animation:marquee 25s linear infinite;width:max-content}
+.marquee-section:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:700;font-size:16px;white-space:nowrap;opacity:.6;transition:opacity .3s}
+.marquee-item:hover{opacity:1}
+.marquee-item .mi-icon{width:32px;height:32px;background:var(--grad);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+
+/* ──────────────────────────────────────────
+   SERVICES
+────────────────────────────────────────── */
+#services{padding:120px 0;background:var(--white)}
+.services-header{text-align:center;margin-bottom:72px}
+.services-header .section-sub{margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.service-card{background:var(--white);border:1px solid #e8f2f8;border-radius:24px;padding:40px 32px;position:relative;overflow:hidden;transition:all .4s ease;cursor:default}
+.service-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .4s}
+.service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent}
+.service-card:hover::before{opacity:1}
+.service-card:hover .sc-icon,.service-card:hover .sc-title,.service-card:hover .sc-desc,.service-card:hover .sc-link{color:#fff!important;border-color:rgba(255,255,255,.3)!important}
+.service-card:hover .sc-icon-wrap{background:rgba(255,255,255,.2)!important}
+.service-card *{position:relative;z-index:1}
+.sc-icon-wrap{width:64px;height:64px;background:rgba(0,180,216,.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .4s}
+.sc-icon{font-size:28px}
+.sc-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy);margin-bottom:12px;transition:color .4s}
+.sc-desc{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px;transition:color .4s}
+.sc-features{list-style:none;margin-bottom:28px}
+.sc-features li{font-size:14px;color:var(--muted);padding:6px 0;border-bottom:1px solid #f0f4f8;display:flex;align-items:center;gap:8px;transition:all .4s}
+.sc-features li::before{content:'✓';color:var(--teal);font-weight:700;transition:color .4s}
+.sc-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:600;font-size:14px;text-decoration:none;transition:color .4s}
+.sc-link svg{width:16px;height:16px;transition:transform .3s}
+.sc-link:hover svg{transform:translateX(4px)}
+.service-card.featured{background:var(--navy);border-color:var(--navy)}
+.service-card.featured .sc-title{color:#fff}
+.service-card.featured .sc-desc,.service-card.featured .sc-features li{color:rgba(255,255,255,.6)}
+.service-card.featured .sc-features li{border-color:rgba(255,255,255,.1)}
+.service-card.featured .sc-features li::before{color:var(--teal)}
+.service-card.featured .sc-icon-wrap{background:rgba(0,180,216,.2)}
+.service-card.featured .sc-link{color:var(--teal)}
+.service-card.featured::before{background:linear-gradient(135deg,#0096C7 0%,#00B4D8 100%)}
+
+/* ──────────────────────────────────────────
+   ABOUT / STATS
+────────────────────────────────────────── */
+#about{padding:120px 0;background:var(--gray)}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-img{position:relative}
+.about-img-main{width:100%;border-radius:24px;background:var(--grad2);min-height:480px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.about-img-main::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.about-illustration{position:relative;z-index:1;text-align:center;padding:48px}
+.ai-circle{width:160px;height:160px;background:rgba(255,255,255,.1);border-radius:50%;border:3px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:64px}
+.ai-text{color:#fff;font-family:'Syne',sans-serif;font-size:22px;font-weight:800}
+.ai-sub{color:rgba(255,255,255,.6);font-size:15px;margin-top:8px}
+.about-badge-float{position:absolute;background:#fff;border-radius:16px;padding:16px 20px;box-shadow:0 20px 60px rgba(0,0,0,.15);display:flex;align-items:center;gap:12px}
+.abf1{bottom:-24px;right:-24px}
+.abf2{top:-24px;left:-24px}
+.abf-icon{font-size:28px}
+.abf-num{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--navy);line-height:1}
+.abf-label{font-size:12px;color:var(--muted)}
+.about-content .section-sub{margin-bottom:40px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
+.stat-box{background:#fff;border-radius:16px;padding:24px;border:1px solid #e8f2f8;text-align:center;transition:transform .3s,box-shadow .3s}
+.stat-box:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.stat-num{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:14px;color:var(--muted);margin-top:4px}
+.about-points{display:flex;flex-direction:column;gap:16px}
+.ap{display:flex;align-items:flex-start;gap:14px}
+.ap-icon{width:40px;height:40px;min-width:40px;background:rgba(0,180,216,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.ap-title{font-weight:700;color:var(--navy);font-size:15px;margin-bottom:4px}
+.ap-desc{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ──────────────────────────────────────────
+   PROCESS
+────────────────────────────────────────── */
+#process{padding:120px 0;background:var(--white)}
+.process-header{text-align:center;margin-bottom:72px}
+.process-header .section-sub{margin:0 auto}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.process-steps::before{content:'';position:absolute;top:44px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal));z-index:0}
+.process-step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.ps-num{width:88px;height:88px;background:#fff;border:3px solid var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--blue);position:relative;transition:all .4s;box-shadow:0 8px 30px rgba(0,180,216,.15)}
+.process-step:hover .ps-num{background:var(--grad);color:#fff;border-color:transparent;transform:scale(1.1)}
+.ps-num::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px dashed rgba(0,180,216,.3)}
+.ps-icon{font-size:32px;margin-bottom:16px}
+.ps-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.ps-desc{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ──────────────────────────────────────────
+   PORTFOLIO
+────────────────────────────────────────── */
+#portfolio{padding:120px 0;background:var(--navy)}
+.portfolio-header{text-align:center;margin-bottom:72px}
+.portfolio-header .section-title{color:#fff}
+.portfolio-header .section-sub{color:rgba(255,255,255,.6);margin:0 auto}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.portfolio-item{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;group:true}
+.pi-img{width:100%;aspect-ratio:4/3;background:var(--grad);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .4s}
+.portfolio-item:hover .pi-img{transform:scale(1.03)}
+.pi-mockup{width:80%;max-width:280px;background:rgba(255,255,255,.1);border-radius:12px;border:1px solid rgba(255,255,255,.2);overflow:hidden}
+.pi-mock-bar{height:24px;background:rgba(255,255,255,.08);display:flex;align-items:center;padding:0 10px;gap:5px}
+.pi-dot{width:7px;height:7px;border-radius:50%}
+.pi-content-area{padding:16px;min-height:100px}
+.pi-line{height:8px;background:rgba(255,255,255,.15);border-radius:4px;margin-bottom:8px}
+.pi-line.short{width:60%}
+.pi-overlay{position:absolute;inset:0;background:rgba(13,43,74,.85);opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.portfolio-item:hover .pi-overlay{opacity:1}
+.pi-overlay-content{text-align:center}
+.pi-tag{display:inline-block;background:rgba(0,180,216,.3);color:var(--teal);font-size:12px;font-weight:700;padding:4px 12px;border-radius:50px;margin-bottom:12px}
+.pi-title{color:#fff;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:8px}
+.pi-desc{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:20px}
+.pi-btn{display:inline-flex;align-items:center;gap:6px;background:var(--grad);color:#fff;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none}
+.pi-info{padding:20px 0}
+.pi-info-tag{font-size:12px;color:var(--teal);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.pi-info-title{color:#fff;font-weight:700;font-size:17px}
+.portfolio-cta{text-align:center;margin-top:56px}
+
+/* ──────────────────────────────────────────
+   TESTIMONIALS
+────────────────────────────────────────── */
+#testimonials{padding:120px 0;background:var(--gray)}
+.testimonials-header{text-align:center;margin-bottom:72px}
+.testimonials-header .section-sub{margin:0 auto}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.tcard{background:#fff;border-radius:24px;padding:36px;border:1px solid #e8f2f8;transition:all .4s;position:relative}
+.tcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.tcard-quote{font-size:48px;color:var(--teal);line-height:1;margin-bottom:16px;font-family:Georgia,serif}
+.tcard-text{font-size:16px;color:var(--text);line-height:1.75;margin-bottom:28px;font-style:italic}
+.tcard-stars{display:flex;gap:4px;margin-bottom:20px}
+.star{color:#FFB800;font-size:16px}
+.tcard-author{display:flex;align-items:center;gap:14px;border-top:1px solid #f0f4f8;padding-top:20px}
+.tcard-avatar{width:48px;height:48px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;font-family:'Syne',sans-serif}
+.tcard-name{font-weight:700;color:var(--navy);font-size:15px}
+.tcard-role{font-size:13px;color:var(--muted)}
+
+/* ──────────────────────────────────────────
+   PRICING
+────────────────────────────────────────── */
+#pricing{padding:120px 0;background:var(--white)}
+.pricing-header{text-align:center;margin-bottom:72px}
+.pricing-header .section-sub{margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+.price-card{background:var(--white);border:2px solid #e8f2f8;border-radius:28px;padding:44px 36px;transition:all .4s;position:relative}
+.price-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.price-card.popular{background:var(--navy);border-color:var(--teal)}
+.popular-badge{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:12px;font-weight:800;padding:6px 20px;border-radius:50px;white-space:nowrap;letter-spacing:1px}
+.pc-icon{font-size:36px;margin-bottom:20px}
+.pc-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.price-card.popular .pc-name{color:#fff}
+.pc-desc{font-size:14px;color:var(--muted);margin-bottom:32px;line-height:1.6}
+.price-card.popular .pc-desc{color:rgba(255,255,255,.6)}
+.pc-price{margin-bottom:32px}
+.pc-amount{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--navy);line-height:1}
+.price-card.popular .pc-amount{color:#fff}
+.pc-currency{font-size:24px;vertical-align:top;margin-top:10px;display:inline-block}
+.pc-period{font-size:15px;color:var(--muted)}
+.price-card.popular .pc-period{color:rgba(255,255,255,.5)}
+.pc-features{list-style:none;margin-bottom:40px;display:flex;flex-direction:column;gap:14px}
+.pc-features li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text)}
+.price-card.popular .pc-features li{color:rgba(255,255,255,.85)}
+.pc-features li .check{width:22px;height:22px;min-width:22px;background:rgba(0,180,216,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--teal)}
+.price-card.popular .pc-features li .check{background:rgba(0,180,216,.2);color:var(--light)}
+.pc-features li.off{opacity:.4}
+.pc-features li.off .check{background:#f0f4f8;color:#ccc}
+
+/* ──────────────────────────────────────────
+   FAQ
+────────────────────────────────────────── */
+#faq{padding:120px 0;background:var(--gray)}
+.faq-inner{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+.faq-aside .section-sub{margin-bottom:40px}
+.faq-list{display:flex;flex-direction:column;gap:16px}
+.faq-item{background:#fff;border-radius:16px;border:1px solid #e8f2f8;overflow:hidden;transition:box-shadow .3s}
+.faq-item.open{box-shadow:var(--shadow)}
+.faq-question{padding:22px 28px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px}
+.faq-q-text{font-weight:700;color:var(--navy);font-size:16px}
+.faq-icon{width:28px;height:28px;min-width:28px;background:var(--gray);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:18px;font-weight:300;transition:all .3s}
+.faq-item.open .faq-icon{background:var(--grad);color:#fff;transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-item.open .faq-answer{max-height:300px;padding:0 28px 22px}
+.faq-answer p{font-size:15px;color:var(--muted);line-height:1.7}
+
+/* ──────────────────────────────────────────
+   CTA BANNER
+────────────────────────────────────────── */
+#cta{padding:100px 0;background:var(--grad2);position:relative;overflow:hidden}
+#cta::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='35' fill='none' stroke='white' stroke-opacity='0.04' stroke-width='2'/%3E%3C/svg%3E") repeat;background-size:80px 80px}
+.cta-inner{text-align:center;position:relative;z-index:1}
+.cta-inner .section-title{color:#fff;margin:16px auto 24px}
+.cta-inner .section-sub{color:rgba(255,255,255,.7);margin:0 auto 48px}
+.cta-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+
+/* ──────────────────────────────────────────
+   CONTACT
+────────────────────────────────────────── */
+#contact{padding:120px 0;background:var(--white)}
+.contact-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.contact-info .section-sub{margin-bottom:48px}
+.contact-items{display:flex;flex-direction:column;gap:28px;margin-bottom:48px}
+.ci{display:flex;align-items:flex-start;gap:16px}
+.ci-icon{width:52px;height:52px;min-width:52px;background:rgba(0,180,216,.1);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ci-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.ci-val{font-size:16px;color:var(--navy);font-weight:700}
+.social-links{display:flex;gap:12px}
+.sl{width:44px;height:44px;background:var(--gray);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;transition:all .3s}
+.sl:hover{background:var(--grad);transform:translateY(-3px)}
+.contact-form{background:var(--gray);border-radius:28px;padding:48px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.form-group label{font-size:14px;font-weight:700;color:var(--navy)}
+.form-group input,.form-group textarea,.form-group select{padding:14px 18px;border:2px solid #e8f2f8;border-radius:12px;font-size:15px;font-family:'Inter',sans-serif;color:var(--text);background:#fff;transition:border-color .3s,box-shadow .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(0,180,216,.1)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-submit{width:100%}
+.form-success{display:none;text-align:center;padding:20px;background:rgba(0,180,216,.1);border-radius:12px;color:var(--teal);font-weight:700;margin-top:16px}
+
+/* ──────────────────────────────────────────
+   FOOTER
+────────────────────────────────────────── */
+footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:64px}
+.footer-brand .nav-logo{margin-bottom:20px;display:inline-flex}
+.footer-brand p{font-size:15px;line-height:1.7;margin-bottom:24px}
+.footer-heading{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:20px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .3s}
+.footer-links a:hover{color:var(--teal)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap-16px}
+.footer-bottom p{font-size:14px}
+.footer-bottom-links{display:flex;gap:24px}
+.footer-bottom-links a{color:rgba(255,255,255,.5);font-size:13px;text-decoration:none;transition:color .3s}
+.footer-bottom-links a:hover{color:var(--teal)}
+
+/* ──────────────────────────────────────────
+   BACK TO TOP
+────────────────────────────────────────── */
+#backTop{position:fixed;bottom:32px;right:32px;width:48px;height:48px;background:var(--grad);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(0,180,216,.4);opacity:0;pointer-events:none;transition:all .3s;z-index:900}
+#backTop.show{opacity:1;pointer-events:all}
+#backTop:hover{transform:translateY(-4px)}
+#backTop svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ──────────────────────────────────────────
+   RESPONSIVE
+────────────────────────────────────────── */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .hero-content{grid-template-columns:1fr;gap:48px;text-align:center}
+  .hero-btns{justify-content:center}
+  .hero-stats{justify-content:center}
+  .hero-desc{margin:0 auto 40px}
+  .about-inner{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:repeat(2,1fr);gap:40px}
+  .process-steps::before{display:none}
+  .contact-inner{grid-template-columns:1fr}
+  .faq-inner{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .services-grid{grid-template-columns:1fr}
+  .portfolio-grid{grid-template-columns:1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+  .contact-form{padding:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="8" fill="url(#ng)"/>
+          <defs><linearGradient id="ng" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#0077B6"/><stop offset="100%" stop-color="#00B4D8"/></linearGradient></defs>
+          <rect x="6" y="8" width="24" height="18" rx="3" fill="none" stroke="white" stroke-width="1.8"/>
+          <circle cx="9" cy="11" r="1.2" fill="white" opacity=".6"/>
+          <circle cx="13" cy="11" r="1.2" fill="white" opacity=".6"/>
+          <circle cx="17" cy="11" r="1.2" fill="white" opacity=".6"/>
+          <path d="M14 19.5 Q18 15 22 19.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line x1="10" y1="27" x2="26" y2="27" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span>Siteness</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Szolgáltatások</a></li>
+        <li><a href="#about">Rólunk</a></li>
+        <li><a href="#portfolio">Portfólió</a></li>
+        <li><a href="#pricing">Árak</a></li>
+        <li><a href="#faq">GYIK</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-primary" style="padding:10px 24px;font-size:14px">Kapcsolat</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMobile()">Szolgáltatások</a>
+  <a href="#about" onclick="closeMobile()">Rólunk</a>
+  <a href="#portfolio" onclick="closeMobile()">Portfólió</a>
+  <a href="#pricing" onclick="closeMobile()">Árak</a>
+  <a href="#faq" onclick="closeMobile()">GYIK</a>
+  <a href="#contact" onclick="closeMobile()" class="btn btn-primary">Kapcsolat</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-blob blob3"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Weboldalak & Digitális Marketing
+        </div>
+        <h1 class="hero-title">
+          Weboldal, ami<br>
+          <span class="line2" style="background:linear-gradient(90deg,#00B4D8,#90E0EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">tényleg elad</span>
+        </h1>
+        <p class="hero-desc">Professzionális weboldalak, SEO optimalizálás és digitális marketing megoldások, amelyek valódi ügyfeleket hoznak vállalkozásodnak.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.8 12.63 19.79 19.79 0 01.73 4.05 2 2 0 012.7 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.07-1.07a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Ingyenes konzultáció
+          </a>
+          <a href="#portfolio" class="btn btn-outline" style="color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.3)">
+            Munkáink megtekintése
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat">
+            <div class="hstat-num">200+</div>
+            <div class="hstat-label">Megvalósított projekt</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-num">98%</div>
+            <div class="hstat-label">Elégedett ügyfél</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-num">8 év</div>
+            <div class="hstat-label">Tapasztalat</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="hc-icon">📈</div>
+            <div>
+              <div class="hc-title">Weboldal teljesítmény</div>
+              <div class="hc-sub">Élő analitika dashboard</div>
+            </div>
+          </div>
+          <div>
+            <div class="metric-row">
+              <span class="metric-label">Organikus forgalom</span>
+              <span class="metric-val">+247%</span>
+            </div>
+            <div class="metric-bar"><div class="metric-fill" style="width:85%;animation:grow 2s ease forwards"></div></div>
+            <div class="metric-row">
+              <span class="metric-label">Konverziós ráta</span>
+              <span class="metric-val">+63%</span>
+            </div>
+            <div class="metric-bar"><div class="metric-fill" style="width:63%;animation:grow 2.3s ease forwards"></div></div>
+            <div class="metric-row">
+              <span class="metric-label">Oldalbetöltési sebesség</span>
+              <span class="metric-val">0.8s</span>
+            </div>
+            <div class="metric-bar"><div class="metric-fill" style="width:92%;animation:grow 2.6s ease forwards"></div></div>
+            <div class="metric-row">
+              <span class="metric-label">Google pozíció (átlag)</span>
+              <span class="metric-val">Top 3</span>
+            </div>
+            <div class="metric-bar"><div class="metric-fill" style="width:96%;animation:grow 2.9s ease forwards"></div></div>
+          </div>
+        </div>
+        <div class="floating-badge fb-top">
+          <div class="fb-icon">🚀</div>
+          <div>
+            <div class="fb-num">+127%</div>
+            <div class="fb-text">Több megkeresés</div>
+          </div>
+        </div>
+        <div class="floating-badge fb-bottom">
+          <div class="fb-icon">⭐</div>
+          <div>
+            <div class="fb-num">5.0</div>
+            <div class="fb-text">Google értékelés</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+    <span>Görgess</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-label">Technológiák amelyekkel dolgozunk</div>
+  <div style="overflow:hidden">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-item"><div class="mi-icon">⚛️</div> React</div>
+      <div class="marquee-item"><div class="mi-icon">🟨</div> JavaScript</div>
+      <div class="marquee-item"><div class="mi-icon">🎨</div> Figma</div>
+      <div class="marquee-item"><div class="mi-icon">🔍</div> SEO Pro</div>
+      <div class="marquee-item"><div class="mi-icon">📊</div> Google Analytics</div>
+      <div class="marquee-item"><div class="mi-icon">🛒</div> WooCommerce</div>
+      <div class="marquee-item"><div class="mi-icon">📱</div> React Native</div>
+      <div class="marquee-item"><div class="mi-icon">☁️</div> AWS</div>
+      <div class="marquee-item"><div class="mi-icon">🔒</div> SSL & Security</div>
+      <div class="marquee-item"><div class="mi-icon">🎯</div> Google Ads</div>
+      <div class="marquee-item"><div class="mi-icon">📧</div> Email Marketing</div>
+      <div class="marquee-item"><div class="mi-icon">🌐</div> WordPress</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item"><div class="mi-icon">⚛️</div> React</div>
+      <div class="marquee-item"><div class="mi-icon">🟨</div> JavaScript</div>
+      <div class="marquee-item"><div class="mi-icon">🎨</div> Figma</div>
+      <div class="marquee-item"><div class="mi-icon">🔍</div> SEO Pro</div>
+      <div class="marquee-item"><div class="mi-icon">📊</div> Google Analytics</div>
+      <div class="marquee-item"><div class="mi-icon">🛒</div> WooCommerce</div>
+      <div class="marquee-item"><div class="mi-icon">📱</div> React Native</div>
+      <div class="marquee-item"><div class="mi-icon">☁️</div> AWS</div>
+      <div class="marquee-item"><div class="mi-icon">🔒</div> SSL & Security</div>
+      <div class="marquee-item"><div class="mi-icon">🎯</div> Google Ads</div>
+      <div class="marquee-item"><div class="mi-icon">📧</div> Email Marketing</div>
+      <div class="marquee-item"><div class="mi-icon">🌐</div> WordPress</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div class="section-tag">Szolgáltatások</div>
+      <h2 class="section-title">Mindent egy helyen,<br><span class="grad-text">profi szinten</span></h2>
+      <p class="section-sub">Teljes körű digitális megoldásokat kínálunk – a tervezéstől a megvalósításig és a növekedésig.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="sc-icon-wrap"><div class="sc-icon">🎨</div></div>
+        <div class="sc-title">Weboldal tervezés</div>
+        <div class="sc-desc">Egyedi, modern és mobilbarát weboldalak, amelyek tükrözik a márkád és konvertálnak.</div>
+        <ul class="sc-features">
+          <li>Egyedi UI/UX design</li>
+          <li>Mobilbarát (responsive)</li>
+          <li>Gyors betöltési sebesség</li>
+          <li>CMS integráció</li>
+        </ul>
+        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card featured reveal" style="transition-delay:.1s">
+        <div class="sc-icon-wrap"><div class="sc-icon">🔍</div></div>
+        <div class="sc-title">SEO optimalizálás</div>
+        <div class="sc-desc">Kerülj az első helyre a Google-on és vonzz be folyamatosan új, minőségi látogatókat.</div>
+        <ul class="sc-features">
+          <li>Technikai SEO audit</li>
+          <li>Kulcsszókutatás & stratégia</li>
+          <li>Tartalomoptimalizálás</li>
+          <li>Backlink építés</li>
+        </ul>
+        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.2s">
+        <div class="sc-icon-wrap"><div class="sc-icon">📢</div></div>
+        <div class="sc-title">Digitális marketing</div>
+        <div class="sc-desc">Google Ads, Facebook kampányok és közösségi média stratégiák, amelyek valóban megtérülnek.</div>
+        <ul class="sc-features">
+          <li>Google Ads kampányok</li>
+          <li>Facebook & Instagram hirdetések</li>
+          <li>Email marketing</li>
+          <li>Konverzió optimalizálás</li>
+        </ul>
+        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.3s">
+        <div class="sc-icon-wrap"><div class="sc-icon">🛒</div></div>
+        <div class="sc-title">Webáruház fejlesztés</div>
+        <div class="sc-desc">Professzionális e-commerce megoldások, amelyek növelik az eladásaidat és automatizálják az üzletmenetet.</div>
+        <ul class="sc-features">
+          <li>WooCommerce / Shopify</li>
+          <li>Fizetési integrációk</li>
+          <li>Készletkezelés</li>
+          <li>Konverzióoptimalizált design</li>
+        </ul>
+        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.4s">
+        <div class="sc-icon-wrap"><div class="sc-icon">📊</div></div>
+        <div class="sc-title">Analitika & Riporting</div>
+        <div class="sc-desc">Adatvezérelt döntések: részletes riportok, KPI-ok és growth hacking stratégiák a növekedéshez.</div>
+        <ul class="sc-features">
+          <li>Google Analytics 4 beállítás</li>
+          <li>Havi teljesítményriportok</li>
+          <li>A/B tesztelés</li>
+          <li>ROI mérés és optimalizálás</li>
+        </ul>
+        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.5s">
+        <div class="sc-icon-wrap"><div class="sc-icon">🔧</div></div>
+        <div class="sc-title">Karbantartás & Támogatás</div>
+        <div class="sc-desc">Folyamatos technikai támogatás, frissítések és biztonság – hogy te az üzletedre koncentrálhass.</div>
+        <ul class="sc-features">
+          <li>24/7 monitoring</li>
+          <li>Havi frissítések</li>
+          <li>Biztonsági mentések</li>
+          <li>Prioritásos support</li>
+        </ul>
+        <a href="#contact" class="sc-link">Tudj meg többet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-img reveal-left">
+        <div class="about-img-main">
+          <div class="about-illustration">
+            <div class="ai-circle">💡</div>
+            <div class="ai-text">Kreatív megoldások</div>
+            <div class="ai-sub">Azóta hogy az internet létezik</div>
+          </div>
+        </div>
+        <div class="about-badge-float abf1">
+          <div class="abf-icon">🏆</div>
+          <div>
+            <div class="abf-num">200+</div>
+            <div class="abf-label">Sikeres projekt</div>
+          </div>
+        </div>
+        <div class="about-badge-float abf2">
+          <div class="abf-icon">❤️</div>
+          <div>
+            <div class="abf-num">98%</div>
+            <div class="abf-label">Ügyfélelégedettség</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content reveal-right">
+        <div class="section-tag">Rólunk</div>
+        <h2 class="section-title">Miért válassz<br><span class="grad-text">minket?</span></h2>
+        <p class="section-sub">A Siteness egy szenvedélyes, eredményorientált csapat, amely 2016 óta segít magyar vállalkozásoknak online sikereket elérni. Nem csak weboldalakat készítünk – digitális növekedési partnereid vagyunk.</p>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-num" data-target="200">0</div>
+            <div class="stat-label">Befejezett projekt</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-target="98">0</div>
+            <div class="stat-label">% Elégedett ügyfél</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-target="8">0</div>
+            <div class="stat-label">Év tapasztalat</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-target="15">0</div>
+            <div class="stat-label">Szakértő a csapatban</div>
+          </div>
+        </div>
+        <div class="about-points">
+          <div class="ap">
+            <div class="ap-icon">⚡</div>
+            <div>
+              <div class="ap-title">Gyors átfutási idő</div>
+              <div class="ap-desc">Átlagosan 2-4 hét alatt élőben a weboldal – gyors, minőségi munkával.</div>
+            </div>
+          </div>
+          <div class="ap">
+            <div class="ap-icon">🎯</div>
+            <div>
+              <div class="ap-title">Eredmény-orientált szemlélet</div>
+              <div class="ap-desc">Minden döntésünk mögött adatok vannak – a szépség mellett a teljesítmény az elsődleges.</div>
+            </div>
+          </div>
+          <div class="ap">
+            <div class="ap-icon">🤝</div>
+            <div>
+              <div class="ap-title">Hosszú távú partnerség</div>
+              <div class="ap-desc">Ügyfeleink 80%-a visszatér hozzánk – bizonyára van okunk büszkének lenni erre.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="process-header reveal">
+      <div class="section-tag">Hogyan dolgozunk</div>
+      <h2 class="section-title">Egyszerű folyamat,<br><span class="grad-text">kivételes eredmény</span></h2>
+      <p class="section-sub">Átlátható, strukturált munkamódszerünkkel minden projekt gördülékenyen halad az ötlettől az élő oldalig.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal" style="transition-delay:.0s">
+        <div class="ps-num">01</div>
+        <div class="ps-icon">💬</div>
+        <div class="ps-title">Konzultáció</div>
+        <div class="ps-desc">Megismerjük vállalkozásodat, céljaidat és a célközönségedet. Ingyenes és kötelezettségmentes.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.15s">
+        <div class="ps-num">02</div>
+        <div class="ps-icon">✏️</div>
+        <div class="ps-title">Tervezés & Design</div>
+        <div class="ps-desc">Egyedi tervet és vizuális koncepciót készítünk, amelyet te jóváhagyasz mielőtt fejlesztés indul.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.3s">
+        <div class="ps-num">03</div>
+        <div class="ps-icon">⚙️</div>
+        <div class="ps-title">Fejlesztés</div>
+        <div class="ps-desc">Csapatunk megvalósítja a tervet – gyorsan, precízen, a legmodernebb technológiákkal.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.45s">
+        <div class="ps-num">04</div>
+        <div class="ps-icon">🚀</div>
+        <div class="ps-title">Élesítés & Növekedés</div>
+        <div class="ps-desc">Az oldal élesítése után sem hagyjuk magadra – folyamatos optimalizálással segítjük növekedésedet.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="portfolio-header reveal">
+      <div class="section-tag" style="background:rgba(0,180,216,.2);color:var(--teal)">Portfólió</div>
+      <h2 class="section-title">Munkáink, amelyekre<br><span style="background:linear-gradient(90deg,#00B4D8,#90E0EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">büszkék vagyunk</span></h2>
+      <p class="section-sub">Minden projekt egy-egy sikertörténet. Lássuk a legjobbakat!</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item reveal">
+        <div class="pi-img" style="background:linear-gradient(135deg,#0077B6,#00B4D8)">
+          <div class="pi-mockup">
+            <div class="pi-mock-bar">
+              <div class="pi-dot" style="background:#ff5f57"></div>
+              <div class="pi-dot" style="background:#febc2e"></div>
+              <div class="pi-dot" style="background:#28c840"></div>
+            </div>
+            <div class="pi-content-area">
+              <div class="pi-line"></div>
+              <div class="pi-line short"></div>
+              <div class="pi-line" style="width:80%"></div>
+            </div>
+          </div>
+          <div class="pi-overlay">
+            <div class="pi-overlay-content">
+              <div class="pi-tag">Weboldal</div>
+              <div class="pi-title">BudaPet Állatrendelő</div>
+              <div class="pi-desc">+180% online foglalás növekedés</div>
+              <a href="#contact" class="pi-btn">Részletek →</a>
+            </div>
+          </div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-info-tag">Weboldal + SEO</div>
+          <div class="pi-info-title">BudaPet Állatrendelő</div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" style="transition-delay:.1s">
+        <div class="pi-img" style="background:linear-gradient(135deg,#023E8A,#0077B6)">
+          <div class="pi-mockup">
+            <div class="pi-mock-bar">
+              <div class="pi-dot" style="background:#ff5f57"></div>
+              <div class="pi-dot" style="background:#febc2e"></div>
+              <div class="pi-dot" style="background:#28c840"></div>
+            </div>
+            <div class="pi-content-area">
+              <div class="pi-line"></div>
+              <div class="pi-line short"></div>
+              <div class="pi-line" style="width:90%"></div>
+            </div>
+          </div>
+          <div class="pi-overlay">
+            <div class="pi-overlay-content">
+              <div class="pi-tag">Webáruház</div>
+              <div class="pi-title">FreshBox Ételrendelés</div>
+              <div class="pi-desc">+320% bevétel növekedés 6 hónap alatt</div>
+              <a href="#contact" class="pi-btn">Részletek →</a>
+            </div>
+          </div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-info-tag">E-commerce</div>
+          <div class="pi-info-title">FreshBox Ételrendelés</div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" style="transition-delay:.2s">
+        <div class="pi-img" style="background:linear-gradient(135deg,#00B4D8,#48CAE4)">
+          <div class="pi-mockup">
+            <div class="pi-mock-bar">
+              <div class="pi-dot" style="background:#ff5f57"></div>
+              <div class="pi-dot" style="background:#febc2e"></div>
+              <div class="pi-dot" style="background:#28c840"></div>
+            </div>
+            <div class="pi-content-area">
+              <div class="pi-line"></div>
+              <div class="pi-line short"></div>
+              <div class="pi-line" style="width:75%"></div>
+            </div>
+          </div>
+          <div class="pi-overlay">
+            <div class="pi-overlay-content">
+              <div class="pi-tag">Marketing</div>
+              <div class="pi-title">TechStart Budapest</div>
+              <div class="pi-desc">Top 3 Google pozíció 3 hónap alatt</div>
+              <a href="#contact" class="pi-btn">Részletek →</a>
+            </div>
+          </div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-info-tag">SEO + Google Ads</div>
+          <div class="pi-info-title">TechStart Budapest</div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" style="transition-delay:.3s">
+        <div class="pi-img" style="background:linear-gradient(135deg,#03045E,#0077B6)">
+          <div class="pi-mockup">
+            <div class="pi-mock-bar">
+              <div class="pi-dot" style="background:#ff5f57"></div>
+              <div class="pi-dot" style="background:#febc2e"></div>
+              <div class="pi-dot" style="background:#28c840"></div>
+            </div>
+            <div class="pi-content-area">
+              <div class="pi-line"></div>
+              <div class="pi-line short"></div>
+              <div class="pi-line" style="width:85%"></div>
+            </div>
+          </div>
+          <div class="pi-overlay">
+            <div class="pi-overlay-content">
+              <div class="pi-tag">Weboldal</div>
+              <div class="pi-title">Kovács & Társai Ügyvédi Iroda</div>
+              <div class="pi-desc">+95% több ügyfél megkeresés</div>
+              <a href="#contact" class="pi-btn">Részletek →</a>
+            </div>
+          </div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-info-tag">Prémium weboldal</div>
+          <div class="pi-info-title">Kovács & Társai Ügyvédi Iroda</div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" style="transition-delay:.4s">
+        <div class="pi-img" style="background:linear-gradient(135deg,#0096C7,#00B4D8)">
+          <div class="pi-mockup">
+            <div class="pi-mock-bar">
+              <div class="pi-dot" style="background:#ff5f57"></div>
+              <div class="pi-dot" style="background:#febc2e"></div>
+              <div class="pi-dot" style="background:#28c840"></div>
+            </div>
+            <div class="pi-content-area">
+              <div class="pi-line"></div>
+              <div class="pi-line short"></div>
+              <div class="pi-line" style="width:70%"></div>
+            </div>
+          </div>
+          <div class="pi-overlay">
+            <div class="pi-overlay-content">
+              <div class="pi-tag">E-commerce</div>
+              <div class="pi-title">SportMax Felszerelés</div>
+              <div class="pi-desc">5x-es ROAS a Google Shopping-on</div>
+              <a href="#contact" class="pi-btn">Részletek →</a>
+            </div>
+          </div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-info-tag">Webáruház + Ads</div>
+          <div class="pi-info-title">SportMax Felszerelés</div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal" style="transition-delay:.5s">
+        <div class="pi-img" style="background:linear-gradient(135deg,#0D2B4A,#0096C7)">
+          <div class="pi-mockup">
+            <div class="pi-mock-bar">
+              <div class="pi-dot" style="background:#ff5f57"></div>
+              <div class="pi-dot" style="background:#febc2e"></div>
+              <div class="pi-dot" style="background:#28c840"></div>
+            </div>
+            <div class="pi-content-area">
+              <div class="pi-line"></div>
+              <div class="pi-line short"></div>
+              <div class="pi-line" style="width:88%"></div>
+            </div>
+          </div>
+          <div class="pi-overlay">
+            <div class="pi-overlay-content">
+              <div class="pi-tag">Branding</div>
+              <div class="pi-title">GreenHome Ingatlan</div>
+              <div class="pi-desc">Teljes brand megújítás és weboldal</div>
+              <a href="#contact" class="pi-btn">Részletek →</a>
+            </div>
+          </div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-info-tag">Branding + Web</div>
+          <div class="pi-info-title">GreenHome Ingatlan</div>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-cta reveal">
+      <a href="#contact" class="btn btn-white">Mutasd az összes munkát →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <div class="section-tag">Vélemények</div>
+      <h2 class="section-title">Amit ügyfeleink<br><span class="grad-text">mondanak rólunk</span></h2>
+      <p class="section-sub">Ne csak nekünk higgyél – hallgasd meg azokat, akik már megtapasztalták a Siteness különbségét.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tcard reveal">
+        <div class="tcard-quote">"</div>
+        <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="tcard-text">A Siteness csapata teljesen átalakította online jelenlétünket. 3 hónap alatt megháromszorozódott a weboldal forgalma, és az online foglalásaink száma is drámaian megnőtt. Profik, gyorsak és mindig elérhetők.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">KÁ</div>
+          <div>
+            <div class="tcard-name">Kis Ágnes</div>
+            <div class="tcard-role">BudaPet Állatrendelő – Tulajdonos</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal" style="transition-delay:.15s">
+        <div class="tcard-quote">"</div>
+        <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="tcard-text">Webáruházunk bevétele az első félévben több mint 300%-kal nőtt a Siteness segítségével. A Google Ads kampányaik rendkívül hatékonyak, és a design is pontosan olyan lett, ahogy elképzeltem.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">NP</div>
+          <div>
+            <div class="tcard-name">Nagy Péter</div>
+            <div class="tcard-role">FreshBox – Alapító & CEO</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal" style="transition-delay:.3s">
+        <div class="tcard-quote">"</div>
+        <div class="tcard-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="tcard-text">Korábban több ügynökséggel is próbálkoztam, de a Siteness az első, amelyik valóban értette, mit szeretnék. Az SEO munka eredményeként ma már az összes fő kulcsszónkra az első helyen vagyunk.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">VL</div>
+          <div>
+            <div class="tcard-name">Varga László</div>
+            <div class="tcard-role">TechStart Budapest – Marketing vezető</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <div class="section-tag">Árak</div>
+      <h2 class="section-title">Átlátható árazás,<br><span class="grad-text">meglepetések nélkül</span></h2>
+      <p class="section-sub">Válaszd a vállalkozásodhoz legjobban illő csomagot. Minden csomag egyedi árajánlattal is kérhető.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="pc-icon">🌱</div>
+        <div class="pc-name">Starter</div>
+        <div class="pc-desc">Ideális induló vállalkozásoknak és egyéni vállalkozóknak, akik profi online jelenlétet szeretnének.</div>
+        <div class="pc-price">
+          <span class="pc-amount"><span class="pc-currency">150</span>e Ft</span>
+          <div class="pc-period">egyszeri díj + ÁFA</div>
+        </div>
+        <ul class="pc-features">
+          <li><span class="check">✓</span> 5 oldalas weboldal</li>
+          <li><span class="check">✓</span> Mobilbarát design</li>
+          <li><span class="check">✓</span> Alap SEO beállítás</li>
+          <li><span class="check">✓</span> Kapcsolati űrlap</li>
+          <li><span class="check">✓</span> SSL tanúsítvány</li>
+          <li><span class="check">✓</span> 1 hónap ingyenes support</li>
+          <li class="off"><span class="check">✗</span> Google Ads kampány</li>
+          <li class="off"><span class="check">✗</span> Havi SEO munka</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center">Ajánlatot kérek</a>
+      </div>
+      <div class="price-card popular reveal" style="transition-delay:.15s">
+        <div class="popular-badge">⭐ LEGNÉPSZERŰBB</div>
+        <div class="pc-icon">🚀</div>
+        <div class="pc-name">Business</div>
+        <div class="pc-desc">A teljes csomag növekvő vállalkozásoknak – weboldal, SEO és marketing egy kézből.</div>
+        <div class="pc-price">
+          <span class="pc-amount" style="color:#fff"><span class="pc-currency" style="color:var(--light)">350</span>e Ft</span>
+          <div class="pc-period">egyszeri + havi 80e Ft</div>
+        </div>
+        <ul class="pc-features">
+          <li><span class="check">✓</span> 10 oldalas weboldal</li>
+          <li><span class="check">✓</span> Egyedi prémium design</li>
+          <li><span class="check">✓</span> Teljes SEO optimalizálás</li>
+          <li><span class="check">✓</span> Google Ads beállítás</li>
+          <li><span class="check">✓</span> Havi SEO riport</li>
+          <li><span class="check">✓</span> Blog szekció + CMS</li>
+          <li><span class="check">✓</span> 3 hónap ingyenes support</li>
+          <li><span class="check">✓</span> Havi 1 tartalmi bejegyzés</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center">Ajánlatot kérek</a>
+      </div>
+      <div class="price-card reveal" style="transition-delay:.3s">
+        <div class="pc-icon">💎</div>
+        <div class="pc-name">Enterprise</div>
+        <div class="pc-desc">Komplex megoldások nagyobb vállalkozásoknak – teljes körű digitális stratégia és megvalósítás.</div>
+        <div class="pc-price">
+          <span class="pc-amount"><span class="pc-currency">Egyéni</span></span>
+          <div class="pc-period">igény szerint kalkulálva</div>
+        </div>
+        <ul class="pc-features">
+          <li><span class="check">✓</span> Korlátlan oldalak</li>
+          <li><span class="check">✓</span> Webáruház integráció</li>
+          <li><span class="check">✓</span> Teljes SEO stratégia</li>
+          <li><span class="check">✓</span> Google & Facebook Ads</li>
+          <li><span class="check">✓</span> Email marketing rendszer</li>
+          <li><span class="check">✓</span> Dedikált projektmenedzser</li>
+          <li><span class="check">✓</span> 24/7 prioritásos support</li>
+          <li><span class="check">✓</span> Havi stratégiai konzultáció</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center">Kapcsolatfelvétel</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-aside reveal-left">
+        <div class="section-tag">GYIK</div>
+        <h2 class="section-title">Kérdésed<br>van?</h2>
+        <p class="section-sub">Ha nem találod a választ az alábbi kérdések között, írj nekünk bátran!</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:8px">Kérdezz minket</a>
+      </div>
+      <div class="faq-list reveal-right">
+        <div class="faq-item open">
+          <div class="faq-question">
+            <span class="faq-q-text">Mennyi ideig tart egy weboldal elkészítése?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Egy átlagos 5-10 oldalas bemutatkozó weboldal általában 2-4 hét alatt elkészül. A komplexebb projektek (webáruházak, egyedi fejlesztések) 4-8 hetet vehetnek igénybe. Minden esetben részletes ütemtervet adunk a projekt elején.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text">Mikor látom az SEO eredményeket?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Az SEO egy hosszú távú befektetés. Az első mérhető eredmények általában 2-3 hónap után jelennek meg, a teljes potenciál 6-12 hónap alatt bontakozik ki. Havi riportokkal folyamatosan tájékoztatunk a haladásról.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text">Tudok módosításokat kérni a weboldalonmon?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Igen! Minden csomagunkhoz ingyenes módosítási lehetőség jár az átadást követő időszakban. Emellett karbantartási csomagjaink keretében folyamatos frissítéseket és módosításokat is elvégzünk.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text">Szükségem van előismeretekre a weboldalom kezeléséhez?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Nem! Minden weboldalunkat könnyen kezelhető tartalomkezelő rendszerrel (CMS) látjuk el, és személyre szabott oktatást tartunk az átadáskor. Ha mégsem szeretnél foglalkozni az oldallal, karbantartási csomagunk megoldja ezt.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text">Mekkora a minimális büdzsé a Google Ads hirdetésekhez?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>A mi kezelési díjunkon felül általában havi 50-100 ezer Ft-tól érdemes Google Ads kampányt indítani, de ez az iparágtól és céloktól függ. Ingyenes konzultáción kiszámítjuk a számodra optimális büdzsét.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-q-text">Vállaltok garanciát az eredményekre?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Míg konkrét keresőmotoros pozíciókat etikusan nem garantálhatunk (mivel a Google algoritmusai változnak), az általunk végzett munkára és az alkalmazott módszerek minőségére 100%-os garanciát vállalunk. Ügyfeleinknél átlagosan 150%+ forgalomnövekedést érünk el.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="section-tag" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)">Készen állsz?</div>
+      <h2 class="section-title">Kezdjük el együtt<br>a növekedésedet!</h2>
+      <p class="section-sub">Foglalj egy ingyenes, kötelezettségmentes konzultációt és meglátjuk, hogyan tudunk legtöbbet segíteni vállalkozásodnak.</p>
+      <div class="cta-btns">
+        <a href="#contact" class="btn btn-white">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.8 12.63 19.79 19.79 0 01.73 4.05 2 2 0 012.7 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.07-1.07a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Ingyenes konzultáció
+        </a>
+        <a href="#portfolio" class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.3)">Munkáink megtekintése</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info reveal-left">
+        <div class="section-tag">Kapcsolat</div>
+        <h2 class="section-title">Írj nekünk,<br><span class="grad-text">válaszolunk!</span></h2>
+        <p class="section-sub">Minden megkeresésre 24 órán belül válaszolunk munkanapokon. Ingyenes konzultáción elemezzük a lehetőségeket.</p>
+        <div class="contact-items">
+          <div class="ci">
+            <div class="ci-icon">📧</div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-val">hello@siteness.hu</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">📞</div>
+            <div>
+              <div class="ci-label">Telefon</div>
+              <div class="ci-val">+36 30 123 4567</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Helyszín</div>
+              <div class="ci-val">Budapest, Magyarország</div>
+            </div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon">🕐</div>
+            <div>
+              <div class="ci-label">Munkaidő</div>
+              <div class="ci-val">H–P: 9:00 – 18:00</div>
+            </div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a class="sl" href="#" title="Facebook">📘</a>
+          <a class="sl" href="#" title="Instagram">📷</a>
+          <a class="sl" href="#" title="LinkedIn">💼</a>
+          <a class="sl" href="#" title="YouTube">▶️</a>
+        </div>
+      </div>
+      <div class="contact-form reveal-right">
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Keresztnév *</label>
+              <input type="text" id="fname" placeholder="pl. Kovács" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Vezetéknév *</label>
+              <input type="text" id="lname" placeholder="pl. János" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email cím *</label>
+              <input type="email" id="email" placeholder="hello@cegem.hu" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefonszám</label>
+              <input type="tel" id="phone" placeholder="+36 30 ...">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Melyik szolgáltatás érdekel?</label>
+            <select id="service">
+              <option value="">Válassz egyet...</option>
+              <option>Weboldal tervezés & fejlesztés</option>
+              <option>SEO optimalizálás</option>
+              <option>Digitális marketing</option>
+              <option>Webáruház fejlesztés</option>
+              <option>Teljes Business csomag</option>
+              <option>Egyéb / Komplex projekt</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Üzenet *</label>
+            <textarea id="message" placeholder="Mesélj a projektedről, céljaidról és arról, hogyan segíthetünk..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Üzenet küldése
+          </button>
+          <div class="form-success" id="formSuccess">
+            ✅ Köszönjük megkeresésed! Hamarosan felvesszük veled a kapcsolatot.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect width="36" height="36" rx="8" fill="url(#fg)"/>
+            <defs><linearGradient id="fg" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#0077B6"/><stop offset="100%" stop-color="#00B4D8"/></linearGradient></defs>
+            <rect x="6" y="8" width="24" height="18" rx="3" fill="none" stroke="white" stroke-width="1.8"/>
+            <circle cx="9" cy="11" r="1.2" fill="white" opacity=".6"/>
+            <circle cx="13" cy="11" r="1.2" fill="white" opacity=".6"/>
+            <circle cx="17" cy="11" r="1.2" fill="white" opacity=".6"/>
+            <path d="M14 19.5 Q18 15 22 19.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <line x1="10" y1="27" x2="26" y2="27" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span>Siteness</span>
+        </a>
+        <p>Professzionális weboldalak, SEO és digitális marketing megoldások, amelyek valódi növekedést hoznak vállalkozásodnak.</p>
+        <div class="social-links">
+          <a class="sl" href="#" title="Facebook">📘</a>
+          <a class="sl" href="#" title="Instagram">📷</a>
+          <a class="sl" href="#" title="LinkedIn">💼</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Szolgáltatások</div>
+        <ul class="footer-links">
+          <li><a href="#services">Weboldal tervezés</a></li>
+          <li><a href="#services">SEO optimalizálás</a></li>
+          <li><a href="#services">Digitális marketing</a></li>
+          <li><a href="#services">Webáruház fejlesztés</a></li>
+          <li><a href="#services">Analitika & Riporting</a></li>
+          <li><a href="#services">Karbantartás</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Vállalat</div>
+        <ul class="footer-links">
+          <li><a href="#about">Rólunk</a></li>
+          <li><a href="#portfolio">Portfólió</a></li>
+          <li><a href="#testimonials">Vélemények</a></li>
+          <li><a href="#process">Hogyan dolgozunk</a></li>
+          <li><a href="#faq">GYIK</a></li>
+          <li><a href="#contact">Kapcsolat</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Kapcsolat</div>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@siteness.hu">hello@siteness.hu</a></li>
+          <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+          <li><a href="#">Budapest, Magyarország</a></li>
+          <li><a href="#">H–P: 9:00–18:00</a></li>
+        </ul>
+        <div style="margin-top:24px">
+          <a href="#contact" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Siteness. Minden jog fenntartva.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Adatvédelem</a>
+        <a href="#">ÁSZF</a>
+        <a href="#">Cookie-k</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<style>
+@keyframes grow{from{width:0}to{}}
+</style>
+
+<script>
+// ── NAV SCROLL
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// ── MOBILE MENU
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobile(){ mobileMenu.classList.remove('open'); }
+
+// ── REVEAL ON SCROLL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => observer.observe(el));
+
+// ── COUNTER ANIMATION
+const counters = document.querySelectorAll('[data-target]');
+const cObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.target;
+    const suffix = el.textContent.replace(/[0-9]/g,'');
+    let current = 0;
+    const step = target / 60;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.round(current) + suffix;
+      if(current >= target) clearInterval(timer);
+    }, 25);
+    cObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => cObserver.observe(c));
+
+// ── FAQ ACCORDION
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+// ── FORM SUBMIT
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Küldés...';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('formSuccess').style.display = 'block';
+    btn.style.display = 'none';
+    e.target.reset();
+  }, 1200);
+}
+</script>
+</body>
+</html>
