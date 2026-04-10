@@ -285,10 +285,11 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .pc-desc{font-size:14px;color:var(--muted);margin-bottom:32px;line-height:1.6}
 .price-card.popular .pc-desc{color:rgba(255,255,255,.6)}
 .pc-price{margin-bottom:32px}
-.pc-amount{font-family:'Plus Jakarta Sans',sans-serif;font-size:52px;font-weight:800;letter-spacing:-0.04em;color:var(--navy);line-height:1}
+.pc-amount{font-family:'Plus Jakarta Sans',sans-serif;font-size:48px;font-weight:800;letter-spacing:-0.04em;color:var(--navy);line-height:1;display:block}
 .price-card.popular .pc-amount{color:#fff}
-.pc-currency{font-size:24px;vertical-align:top;margin-top:10px;display:inline-block}
-.pc-period{font-size:15px;color:var(--muted)}
+.pc-suffix{font-size:20px;font-weight:600;color:var(--muted);margin-left:4px}
+.price-card.popular .pc-suffix{color:rgba(255,255,255,.6)}
+.pc-period{font-size:14px;color:var(--muted);margin-top:6px}
 .price-card.popular .pc-period{color:rgba(255,255,255,.5)}
 .pc-features{list-style:none;margin-bottom:40px;display:flex;flex-direction:column;gap:14px}
 .pc-features li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text)}
@@ -851,7 +852,7 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
         <div class="pc-name">Starter</div>
         <div class="pc-desc">Ideális induló vállalkozásoknak és egyéni vállalkozóknak, akik profi online jelenlétet szeretnének.</div>
         <div class="pc-price">
-          <span class="pc-amount"><span class="pc-currency">150</span>e Ft</span>
+          <span class="pc-amount">150 000 <span class="pc-suffix">Ft</span></span>
           <div class="pc-period">egyszeri díj + ÁFA</div>
         </div>
         <ul class="pc-features">
@@ -869,8 +870,8 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
         <div class="pc-name">Business</div>
         <div class="pc-desc">A teljes csomag növekvő vállalkozásoknak – weboldal, SEO és marketing egy kézből.</div>
         <div class="pc-price">
-          <span class="pc-amount" style="color:#fff"><span class="pc-currency" style="color:var(--light)">350</span>e Ft</span>
-          <div class="pc-period">egyszeri + havi 80e Ft</div>
+          <span class="pc-amount" style="color:#fff">350 000 <span class="pc-suffix" style="color:rgba(255,255,255,.6)">Ft</span></span>
+          <div class="pc-period">egyszeri + havi 80 000 Ft</div>
         </div>
         <ul class="pc-features">
           <li><span class="check">✓</span> 10 oldalas weboldal</li>
@@ -886,7 +887,7 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
         <div class="pc-name">Enterprise</div>
         <div class="pc-desc">Komplex megoldások nagyobb vállalkozásoknak – teljes körű digitális stratégia és megvalósítás.</div>
         <div class="pc-price">
-          <span class="pc-amount"><span class="pc-currency">Egyéni</span></span>
+          <span class="pc-amount">Egyéni</span>
           <div class="pc-period">igény szerint kalkulálva</div>
         </div>
         <ul class="pc-features">
