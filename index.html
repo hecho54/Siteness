@@ -999,7 +999,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         </div>
         <div class="sc-tag">Web Design</div>
         <h3 class="sc-title">Weboldal, ami ügyfeleket hoz</h3>
-        <p class="sc-desc">Nem elég, ha szép — el kell adnia. Minden weboldalunkat konverzióra optimalizálva tervezzük, 2-4 hét alatt élőben.</p>
+        <p class="sc-desc">Nem elég, ha szép — el kell adnia. Minden weboldalunkat konverzióra optimalizálva tervezzük, akár 1 hét alatt élőben.</p>
         <ul class="sc-features">
           <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Egyedi, márkához igazított design</li>
           <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Mobilon is tökéletesen működik</li>
@@ -1627,50 +1627,54 @@ window.addEventListener('resize', scalePortfolioIframes);
 
 // 1. HERO – cinematic filmszerű belépő
 // ─────────────────────────────────────
-const heroTl = gsap.timeline({ delay: 0.12 });
-heroTl
-  .from('.hero-line-top', {
-    scaleY: 0, opacity: 0, duration: 0.7, ease: 'power2.out', transformOrigin: 'top'
-  })
-  .from('.hero-badge', {
-    y: -20, opacity: 0, duration: 0.6, ease: 'power3.out'
-  }, '-=0.2')
-  .from('.hero-title', {
-    y: 70, opacity: 0, skewY: 1.2, filter: 'blur(10px)',
-    duration: 1.05, ease: 'power4.out'
-  }, '-=0.25')
-  .from('.hero-divider', {
-    scaleX: 0, opacity: 0, duration: 0.5, ease: 'power2.out'
-  }, '-=0.45')
-  .from('.hero-desc', {
-    y: 28, opacity: 0, filter: 'blur(4px)', duration: 0.7, ease: 'power3.out'
-  }, '-=0.4')
-  .from('.hero-proof', {
-    y: 20, opacity: 0, duration: 0.55, ease: 'power2.out'
-  }, '-=0.45')
-  .from('.hero-btns > *', {
-    y: 18, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.5)'
-  }, '-=0.4')
-  .from('.hero-stats', {
-    y: 24, opacity: 0, filter: 'blur(6px)', duration: 0.7, ease: 'power3.out'
-  }, '-=0.35')
-  .from('.hs-item', {
-    y: 10, opacity: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out'
-  }, '-=0.5')
-  .from('.scroll-hint', { opacity: 0, y: 8, duration: 0.5 }, '-=0.2');
+if (window.innerWidth > 768) {
+  const heroTl = gsap.timeline({ delay: 0.12 });
+  heroTl
+    .from('.hero-line-top', {
+      scaleY: 0, opacity: 0, duration: 0.7, ease: 'power2.out', transformOrigin: 'top'
+    })
+    .from('.hero-badge', {
+      y: -20, opacity: 0, duration: 0.6, ease: 'power3.out'
+    }, '-=0.2')
+    .from('.hero-title', {
+      y: 70, opacity: 0, skewY: 1.2, filter: 'blur(10px)',
+      duration: 1.05, ease: 'power4.out'
+    }, '-=0.25')
+    .from('.hero-divider', {
+      scaleX: 0, opacity: 0, duration: 0.5, ease: 'power2.out'
+    }, '-=0.45')
+    .from('.hero-desc', {
+      y: 28, opacity: 0, filter: 'blur(4px)', duration: 0.7, ease: 'power3.out'
+    }, '-=0.4')
+    .from('.hero-proof', {
+      y: 20, opacity: 0, duration: 0.55, ease: 'power2.out'
+    }, '-=0.45')
+    .from('.hero-btns > *', {
+      y: 18, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.5)'
+    }, '-=0.4')
+    .from('.hero-stats', {
+      y: 24, opacity: 0, filter: 'blur(6px)', duration: 0.7, ease: 'power3.out'
+    }, '-=0.35')
+    .from('.hs-item', {
+      y: 10, opacity: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out'
+    }, '-=0.5')
+    .from('.scroll-hint', { opacity: 0, y: 8, duration: 0.5 }, '-=0.2');
+}
 
 
-// Hero scroll-out: hero tartalom halványan eltűnik scrollozáskor
-gsap.to('.hero-content', {
-  y: -60, opacity: 0,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '#hero',
-    start: 'top top',
-    end: '50% top',
-    scrub: 1.2
-  }
-});
+// Hero scroll-out: csak asztali nézetben
+if (window.innerWidth > 768) {
+  gsap.to('.hero-content', {
+    y: -60, opacity: 0,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#hero',
+      start: 'top top',
+      end: '50% top',
+      scrub: 1.2
+    }
+  });
+}
 
 // ─────────────────────────────────────
 // 2. SECTION TAGS – clip-path reveal
