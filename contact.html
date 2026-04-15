@@ -67,12 +67,13 @@ nav.scrolled{background:rgba(8,14,26,.96);backdrop-filter:blur(20px);padding:12p
   background:radial-gradient(circle,rgba(0,212,180,.07) 0%,transparent 65%);
   pointer-events:none;
 }
-.contact-hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:13px;font-weight:600;padding:7px 18px;border-radius:50px;margin-bottom:28px}
+.contact-hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:13px;font-weight:600;padding:7px 18px;border-radius:50px;margin-bottom:28px;animation:fadeUp .6s .1s both}
 .contact-hero-tag .dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
-.contact-hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.045em;margin-bottom:20px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.contact-hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.045em;margin-bottom:20px;animation:fadeUp .9s .2s both}
 .contact-hero h1 span{background:linear-gradient(90deg,#00D4B4,#0EA5E9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.contact-hero p{font-size:18px;color:rgba(255,255,255,.52);line-height:1.8;max-width:540px;margin:0 auto}
+.contact-hero p{font-size:18px;color:rgba(255,255,255,.52);line-height:1.8;max-width:540px;margin:0 auto;animation:fadeUp .7s .4s both}
 
 /* ── CONTACT SECTION ── */
 #contact{padding:0 0 100px}
