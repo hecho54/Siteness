@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
@@ -74,9 +74,8 @@ body{
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:all .4s ease}
 nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 4px 30px rgba(0,0,0,.2)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo img{height:40px}
-.nav-logo span{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.04em}
+.nav-logo{display:flex;align-items:center;text-decoration:none}
+.nav-logo img{height:44px;width:auto;object-fit:contain;display:block}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;font-weight:500;transition:color .3s}
 .nav-links a:hover{color:var(--teal)}
@@ -104,78 +103,58 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 @keyframes shimmer{0%,100%{opacity:.2;transform:scaleX(.6)}50%{opacity:.8;transform:scaleX(1)}}
 
 /* ── Content layout ── */
-.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:52% 48%;gap:48px;align-items:center;padding:130px 0 90px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:13px;font-weight:600;padding:8px 18px;border-radius:50px;margin-bottom:28px;backdrop-filter:blur(12px)}
-.hero-badge .dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:140px 0 100px;max-width:860px;margin:0 auto}
+
+/* Vertical glow line (decoration) */
+.hero-line-top{width:1px;height:72px;background:linear-gradient(to bottom,transparent,rgba(0,212,180,.55) 55%,transparent);margin:0 auto 28px;flex-shrink:0}
+
+/* Badge */
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.85);font-size:13px;font-weight:600;padding:6px 18px 6px 8px;border-radius:50px;margin-bottom:36px;backdrop-filter:blur(16px);box-shadow:0 0 0 1px rgba(0,212,180,.08),0 8px 32px rgba(0,0,0,.2)}
+.hero-badge .dot{width:28px;height:28px;background:linear-gradient(135deg,rgba(0,212,180,.18),rgba(14,165,233,.18));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hero-badge .dot::after{content:'';width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
-.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(40px,5.6vw,76px);font-weight:900;color:#fff;line-height:1.01;letter-spacing:-0.045em;margin-bottom:20px}
-.hero-title .line2{display:block;padding-bottom:8px}
-.word-cycle{background:linear-gradient(90deg,#00D4B4 0%,#0EA5E9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;min-width:4ch}
-.hero-desc{font-size:17px;color:rgba(255,255,255,.58);line-height:1.85;margin-bottom:28px;max-width:440px;font-weight:400}
+
+/* Title */
+.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(48px,7vw,92px);font-weight:900;color:#fff;line-height:.98;letter-spacing:-0.055em;margin-bottom:0}
+.hero-title .line2{display:block;padding-bottom:10px}
+.word-cycle{background:linear-gradient(90deg,#00D4B4 0%,#0EA5E9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;position:relative}
+.word-cycle::after{content:'';position:absolute;left:4%;bottom:-6px;right:4%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,212,180,.5),rgba(14,165,233,.5),transparent);border-radius:2px}
+
+/* Divider between title and desc */
+.hero-divider{width:44px;height:2px;background:linear-gradient(90deg,transparent,rgba(0,212,180,.55),transparent);border-radius:2px;margin:32px auto 28px;flex-shrink:0}
+
+/* Description */
+.hero-desc{font-size:18px;color:rgba(255,255,255,.52);line-height:1.85;margin-bottom:32px;max-width:540px;font-weight:400}
 
 /* ── Social proof ── */
-.hero-proof{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+.hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
 .proof-avatars{display:flex;align-items:center;flex-shrink:0}
-.proof-avatar{width:32px;height:32px;border-radius:50%;border:2px solid #080E1A;margin-right:-9px;font-size:11px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.proof-avatar{width:34px;height:34px;border-radius:50%;border:2px solid rgba(8,14,26,.9);margin-right:-9px;font-size:11px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
 .proof-divider{width:1px;height:30px;background:rgba(255,255,255,.1);margin-left:14px;flex-shrink:0}
 .proof-info{margin-left:2px}
-.proof-stars{color:#FBBF24;font-size:11px;letter-spacing:1px;line-height:1}
-.proof-label{color:rgba(255,255,255,.4);font-size:12px;margin-top:3px}
+.proof-stars{color:#FBBF24;font-size:12px;letter-spacing:1.5px;line-height:1}
+.proof-label{color:rgba(255,255,255,.38);font-size:12px;margin-top:4px}
 
 /* ── Buttons ── */
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:56px}
 
-/* ── Metrics row ── */
-.hero-metrics{display:flex;align-items:center}
-.hm{padding:0 24px 0 0}
-.hm:first-child{padding-left:0}
-.hm-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:900;letter-spacing:-0.04em;color:#fff;display:block;line-height:1}
-.hm-label{font-size:11px;color:rgba(255,255,255,.32);margin-top:4px;letter-spacing:.3px;text-transform:uppercase}
-.hm-sep{width:1px;height:34px;background:rgba(255,255,255,.08);margin-right:24px;flex-shrink:0}
+/* ── Stats strip ── */
+.hero-stats{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:22px;
+  padding:22px 0;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 24px 60px rgba(0,0,0,.2);
+}
+.hs-item{flex:1;text-align:center;padding:8px 20px;position:relative}
+.hs-item+.hs-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:36px;background:rgba(255,255,255,.08)}
+.hs-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(22px,2.8vw,32px);font-weight:900;letter-spacing:-0.045em;color:#fff;display:block;line-height:1;margin-bottom:6px}
+.hs-num.teal{background:linear-gradient(90deg,#00D4B4,#0EA5E9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hs-label{font-size:11px;color:rgba(255,255,255,.32);letter-spacing:.4px;text-transform:uppercase}
 
-/* ── Globe visual ── */
-.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
-
-/* ── Floating data badges ── */
-.hero-float{position:absolute;background:rgba(4,8,15,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:13px 18px;display:flex;align-items:center;gap:12px;z-index:20;pointer-events:none}
-.hf-top{top:-45px;right:-75px;animation:floatBadge 6s ease-in-out infinite}
-.hf-bot{bottom:-30px;left:-70px;animation:floatBadge 8s ease-in-out infinite 1.2s}
-@keyframes floatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.hf-icon-wrap{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.hf-icon-wrap.teal{background:rgba(0,212,180,.12);border:1px solid rgba(0,212,180,.2)}
-.hf-icon-wrap.blue{background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.2)}
-.hf-icon-wrap svg{width:17px;height:17px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.hf-val{color:#fff;font-weight:800;font-size:14px;line-height:1.2;letter-spacing:-0.02em}
-.hf-lbl{color:rgba(255,255,255,.38);font-size:11px;margin-top:1px}
-.hf-live{display:flex;align-items:center;gap:6px}
-.hf-live-dot{width:7px;height:7px;border-radius:50%;background:#34D399;flex-shrink:0;position:relative}
-.hf-live-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:rgba(52,211,153,.25);animation:pulse 2s infinite}
-/* ── GLOBE ── */
-.globe-wrap{position:relative;width:380px;height:380px;flex-shrink:0}
-.globe-glow-outer{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,216,.18) 0%,transparent 65%);animation:glowPulse 4s ease-in-out infinite;pointer-events:none}
-.globe-atmo{position:absolute;inset:-8px;border-radius:50%;background:radial-gradient(circle at 38% 35%,rgba(0,180,216,.12) 0%,transparent 70%);box-shadow:0 0 50px rgba(0,180,216,.25),0 0 100px rgba(0,119,182,.15);pointer-events:none}
-.globe-sphere{width:380px;height:380px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#0096C7 0%,#0077B6 28%,#023E8A 60%,#03045E 100%);overflow:hidden;position:relative;box-shadow:inset -40px -30px 90px rgba(0,0,0,.7),inset 12px 12px 40px rgba(0,180,216,.08)}
-.globe-scroll{position:absolute;top:0;left:0;width:200%;height:100%;animation:globeRotate 32s linear infinite}
-@keyframes globeRotate{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.globe-map{width:100%;height:100%;display:block}
-.globe-light{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 35%,transparent 65%);pointer-events:none}
-.globe-dark{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 70% 68%,rgba(0,0,0,.55) 0%,transparent 55%);pointer-events:none}
-.globe-ring{position:absolute;border-radius:50%;border:1px solid rgba(0,180,216,.2);pointer-events:none}
-.globe-ring.r1{inset:-14px;animation:ringPulse 4s ease-in-out infinite}
-.globe-ring.r2{inset:-28px;border-color:rgba(0,180,216,.1);animation:ringPulse 4s ease-in-out infinite .8s}
-@keyframes ringPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.01)}}
-@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1}}
-.hero-card{background:rgba(255,255,255,.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:32px;animation:cardFloat 6s ease-in-out infinite}
-@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.hero-card-header{display:flex;align-items:center;gap:12px;margin-bottom:28px}
-.hc-icon{width:44px;height:44px;background:var(--grad);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.hc-title{color:#fff;font-weight:700;font-size:16px}
-.hc-sub{color:rgba(255,255,255,.5);font-size:13px}
-.metric-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.metric-label{color:rgba(255,255,255,.6);font-size:14px}
-.metric-val{color:#fff;font-weight:700}
-.metric-bar{height:6px;background:rgba(255,255,255,.1);border-radius:3px;margin-bottom:4px;overflow:hidden}
-.metric-fill{height:100%;border-radius:3px;background:var(--grad)}
 .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:12px;cursor:pointer}
 .scroll-arrow{width:20px;height:20px;border-right:2px solid rgba(255,255,255,.4);border-bottom:2px solid rgba(255,255,255,.4);transform:rotate(45deg);animation:scrollBounce 2s infinite}
 @keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
@@ -203,7 +182,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 #services{padding:120px 0;background:transparent}
 .services-header{text-align:center;margin-bottom:72px}
 .services-header .section-sub{margin:0 auto}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
 
 /* ── Service card v2 ── */
 .service-card{
@@ -213,6 +192,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
   padding:40px 36px 36px;
   position:relative;
   overflow:hidden;
+  display:flex;flex-direction:column;
   transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, border-color .4s;
   cursor:default;
 }
@@ -288,7 +268,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
   margin-bottom:12px;
 }
 .sc-desc{font-size:15px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:28px}
-.sc-features{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:0}
+.sc-features{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:0;flex:1}
 .sc-features li{
   font-size:14px;color:rgba(255,255,255,.55);
   padding:9px 0;
@@ -305,6 +285,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
   text-decoration:none;
   border-bottom:1px solid rgba(0,212,180,.25);
   padding-bottom:2px;
+  margin-top:auto;
   transition:gap .3s, border-color .3s, color .3s;
 }
 .sc-link:hover{gap:14px;border-color:var(--teal)}
@@ -542,33 +523,144 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
 /* ──────────────────────────────────────────
    RESPONSIVE
 ────────────────────────────────────────── */
+
+/* ── Tablet (≤1024px) ── */
 @media(max-width:1024px){
+  /* Sections */
+  #hero .hero-content{padding:110px 0 80px}
+  #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:80px 0}
+  footer{padding:64px 0 32px}
+
+  /* Grids */
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .portfolio-grid{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
-  .hero-content{grid-template-columns:1fr;gap:48px;text-align:center}
-  .hero-btns{justify-content:center}
-  .hero-proof{justify-content:center}
-  .hero-metrics{justify-content:center}
-  .hero-desc{margin:0 auto;max-width:520px}
-  .about-inner{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:repeat(2,1fr);gap:40px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .about-inner{grid-template-columns:1fr;gap:48px}
+  .process-steps{grid-template-columns:repeat(2,1fr);gap:32px}
   .process-steps::before{display:none}
-  .contact-inner{grid-template-columns:1fr}
-  .faq-inner{grid-template-columns:1fr}
+  .contact-inner{grid-template-columns:1fr;gap:48px}
+  .faq-inner{grid-template-columns:1fr;gap:40px}
+  .pricing-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* Hero */
+  .hero-desc{margin:0 auto}
+  .hero-stats{flex-wrap:wrap;gap:0;padding:16px 12px}
+  .hs-item{flex:1;min-width:130px}
+  .hs-item+.hs-item::before{display:none}
+
+  /* Cards */
+  .service-card{padding:32px 28px 28px}
+  .contact-form{padding:40px 36px}
 }
+
+/* ── Mobile (≤768px) ── */
 @media(max-width:768px){
+  /* Container */
+  .container{padding:0 20px}
+
+  /* Nav */
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
-  .services-grid{grid-template-columns:1fr}
-  .portfolio-grid{grid-template-columns:1fr}
+  .nav-logo img{height:36px}
+
+  /* Sections */
+  #hero .hero-content{padding:100px 0 72px}
+  #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:64px 0}
+  footer{padding:56px 0 28px}
+
+  /* Hero */
+  .hero-line-top{height:48px;margin-bottom:20px}
+  .hero-badge{font-size:12px;padding:5px 14px 5px 6px;margin-bottom:24px}
+  .hero-badge .dot{width:24px;height:24px}
+  .hero-title{font-size:clamp(36px,9vw,92px)}
+  .hero-divider{margin:22px auto 20px}
+  .hero-desc{font-size:16px;margin-bottom:24px}
+  .hero-proof{flex-wrap:wrap;gap:10px;margin-bottom:24px}
+  .hero-btns{gap:10px;margin-bottom:40px}
+  .hero-btns .btn{width:100%;justify-content:center;text-align:center}
+  .hero-stats{gap:0;border-radius:16px;padding:16px 8px}
+  .hs-item{flex:0 0 50%;min-width:0;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .hs-item:nth-child(1),.hs-item:nth-child(2){border-top:none}
+  .hs-item:nth-child(3),.hs-item:nth-child(4){border-bottom:none}
+  .hs-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.06)}
+
+  /* Grids */
+  .services-grid{grid-template-columns:1fr;gap:16px}
+  .portfolio-grid{grid-template-columns:1fr;gap:16px}
   .testimonials-grid{grid-template-columns:1fr}
-  .pricing-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr;gap:16px}
   .stats-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
   .form-row{grid-template-columns:1fr}
-  .hero-stats{gap:24px}
-  .contact-form{padding:28px}
+  .about-bento{grid-template-columns:1fr 1fr;gap:10px}
+  .bento-card.large{grid-column:1 / -1}
+  .process-steps{grid-template-columns:1fr;gap:24px}
+
+  /* Cards */
+  .service-card{padding:28px 24px 24px}
+  .service-card::after{font-size:72px}
+  .contact-form{padding:24px 20px}
+  .faq-question{padding:18px 20px}
+  .faq-item.open .faq-answer{padding:0 20px 18px}
+  .price-card{padding:32px 24px}
+  .tcard{padding:28px 24px}
+
+  /* Typography */
+  .section-title{font-size:clamp(28px,7vw,52px)}
+  .bento-big-num{font-size:48px}
+  .bento-num{font-size:32px}
+  .pc-amount{font-size:40px}
+
+  /* Section headers */
+  .services-header,.section-header,.portfolio-header,.pricing-header{margin-bottom:40px}
+
+  /* Footer */
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .footer-bottom-links{justify-content:center;flex-wrap:wrap;gap:16px}
+  .footer-links{justify-content:center}
+
+  /* Misc */
+  .scroll-hint{display:none}
+}
+
+/* ── Small phones (≤480px) ── */
+@media(max-width:480px){
+  .container{padding:0 16px}
+
+  /* Sections */
+  #hero .hero-content{padding:88px 0 60px}
+  #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:52px 0}
+
+  /* Hero */
+  .hero-title{font-size:clamp(32px,10vw,60px);letter-spacing:-0.04em}
+  .hero-desc{font-size:15px}
+  .hero-stats{gap:0}
+
+  /* Cards */
+  .service-card{padding:24px 20px 20px}
+  .bento-card{padding:20px 18px}
+  .bento-card.large{padding:24px 20px}
+  .price-card{padding:28px 20px}
+
+  /* About bento → single column on very small */
+  .about-bento{grid-template-columns:1fr}
+  .bento-card.large{grid-column:auto}
+
+  /* Process */
+  .process-step{padding:28px 24px}
+
+  /* FAQ */
+  .faq-question{padding:16px 18px;font-size:15px}
+
+  /* Contact */
+  .contact-form{padding:20px 16px}
+  .contact-info{gap:20px}
+
+  /* Pricing */
+  .pc-amount{font-size:36px}
+
+  /* Nav logo */
+  .nav-logo img{height:32px}
 }
 
 /* ═══════════════════════════════════════
@@ -723,17 +815,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="36" height="36" rx="8" fill="url(#ng)"/>
-          <defs><linearGradient id="ng" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#0077B6"/><stop offset="100%" stop-color="#00B4D8"/></linearGradient></defs>
-          <rect x="6" y="8" width="24" height="18" rx="3" fill="none" stroke="white" stroke-width="1.8"/>
-          <circle cx="9" cy="11" r="1.2" fill="white" opacity=".6"/>
-          <circle cx="13" cy="11" r="1.2" fill="white" opacity=".6"/>
-          <circle cx="17" cy="11" r="1.2" fill="white" opacity=".6"/>
-          <path d="M14 19.5 Q18 15 22 19.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line x1="10" y1="27" x2="26" y2="27" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <span>Siteness</span>
+        <img src="Images/Logó 3.png" alt="Siteness logó">
       </a>
       <ul class="nav-links">
         <li><a href="#services">Szolgáltatások</a></li>
@@ -772,163 +854,69 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="hero-content">
 
-      <!-- Bal oldal: tartalom -->
-      <div>
-        <div class="hero-badge">
-          <span class="dot"></span>
-          Weboldal · SEO · Marketing
-        </div>
-        <h1 class="hero-title">
-          Több ügyfél.<br>
-          <span class="line2">Több bevétel. <span class="word-cycle">Online.</span></span>
-        </h1>
-        <p class="hero-desc">Megépítjük azt a digitális jelenlétet, ami valóban dolgozik érted — profi weboldal, Google rangsor, és kampányok, amelyek megtérülnek.</p>
+      <!-- Dekorációs vonal felülről -->
+      <div class="hero-line-top"></div>
 
-        <!-- Social proof -->
-        <div class="hero-proof">
-          <div class="proof-avatars">
-            <span class="proof-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">N</span>
-            <span class="proof-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">K</span>
-            <span class="proof-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">M</span>
-            <span class="proof-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">A</span>
-            <span class="proof-avatar" style="background:linear-gradient(135deg,#fa709a,#fee140)">P</span>
-          </div>
-          <div class="proof-divider"></div>
-          <div class="proof-info">
-            <div class="proof-stars">★★★★★</div>
-            <div class="proof-label">200+ elégedett ügyfél</div>
-          </div>
-        </div>
+      <!-- Badge -->
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Átlagos ügyfélnövekedés ügyfeleinknek: +45%
+      </div>
 
-        <!-- Gombok -->
-        <div class="hero-btns">
-          <a href="#contact" class="btn btn-primary">Ingyenes konzultáció</a>
-          <a href="#portfolio" class="btn btn-outline" style="color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.18)">Munkáink megtekintése</a>
-        </div>
+      <!-- Főcím -->
+      <h1 class="hero-title">
+        Versenytársaid most<br>
+        <span class="line2">elveszik az <span class="word-cycle">ügyfeleidet</span></span>
+      </h1>
 
-        <!-- Metrikák -->
-        <div class="hero-metrics">
-          <div class="hm">
-            <span class="hm-num">200+</span>
-            <span class="hm-label">Projekt</span>
-          </div>
-          <div class="hm-sep"></div>
-          <div class="hm">
-            <span class="hm-num">98%</span>
-            <span class="hm-label">Elégedett ügyfél</span>
-          </div>
-          <div class="hm-sep"></div>
-          <div class="hm">
-            <span class="hm-num">8 év</span>
-            <span class="hm-label">Tapasztalat</span>
-          </div>
+      <!-- Elválasztó -->
+      <div class="hero-divider"></div>
+
+      <!-- Leírás -->
+      <p class="hero-desc">Minden nap, amíg nincs profi weboldalad és Google-rangsorod, ügyfelet veszítesz. Mi ezt megállítjuk — 2-4 héten belül, mérhető eredményekkel.</p>
+
+      <!-- Social proof -->
+      <div class="hero-proof">
+        <div class="proof-avatars">
+          <span class="proof-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">N</span>
+          <span class="proof-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">K</span>
+          <span class="proof-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">M</span>
+          <span class="proof-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">A</span>
+          <span class="proof-avatar" style="background:linear-gradient(135deg,#fa709a,#fee140)">P</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-info">
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-label">200+ vállalkozásnak hoztunk eredményt</div>
         </div>
       </div>
 
-      <!-- Jobb oldal: Globe + floating badge-ek -->
-      <div class="hero-visual">
-        <div class="globe-wrap">
+      <!-- Gombok -->
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">Kérem az ingyenes elemzést</a>
+        <a href="#portfolio" class="btn btn-outline" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.16)">Eredményeink</a>
+      </div>
 
-          <!-- Floating badge – felül -->
-          <div class="hero-float hf-top">
-            <div class="hf-icon-wrap teal">
-              <svg viewBox="0 0 24 24" stroke="#00D4B4"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            </div>
-            <div>
-              <div class="hf-val">+45% konverzió</div>
-              <div class="hf-lbl">Átlagos növelés</div>
-            </div>
-          </div>
-
-          <!-- Floating badge – alul -->
-          <div class="hero-float hf-bot">
-            <div class="hf-live">
-              <div class="hf-live-dot"></div>
-            </div>
-            <div>
-              <div class="hf-val">Google #1</div>
-              <div class="hf-lbl">Keresési rangsor</div>
-            </div>
-          </div>
-          <!-- Külső glow -->
-          <div class="globe-glow-outer"></div>
-          <!-- Légkör gyűrű -->
-          <div class="globe-atmo"></div>
-          <!-- Gömb -->
-          <div class="globe-sphere">
-            <div class="globe-scroll">
-              <svg viewBox="0 0 1440 360" xmlns="http://www.w3.org/2000/svg" class="globe-map" preserveAspectRatio="none">
-                <!-- Szélességi körök -->
-                <line x1="0" y1="60"  x2="1440" y2="60"  stroke="rgba(144,224,239,.14)" stroke-width="1"/>
-                <line x1="0" y1="120" x2="1440" y2="120" stroke="rgba(144,224,239,.14)" stroke-width="1"/>
-                <line x1="0" y1="180" x2="1440" y2="180" stroke="rgba(144,224,239,.22)" stroke-width="1.2"/>
-                <line x1="0" y1="240" x2="1440" y2="240" stroke="rgba(144,224,239,.14)" stroke-width="1"/>
-                <line x1="0" y1="300" x2="1440" y2="300" stroke="rgba(144,224,239,.14)" stroke-width="1"/>
-                <!-- Hosszúsági körök -->
-                <line x1="120"  y1="0" x2="120"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="240"  y1="0" x2="240"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="360"  y1="0" x2="360"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="480"  y1="0" x2="480"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="600"  y1="0" x2="600"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="720"  y1="0" x2="720"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="840"  y1="0" x2="840"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="960"  y1="0" x2="960"  y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="1080" y1="0" x2="1080" y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="1200" y1="0" x2="1200" y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <line x1="1320" y1="0" x2="1320" y2="360" stroke="rgba(144,224,239,.1)" stroke-width="1"/>
-                <!-- Kontinensek (duplikálva a seamless loop-hoz) -->
-                <g fill="rgba(0,180,216,.45)" stroke="rgba(144,224,239,.7)" stroke-width="0.6" stroke-linejoin="round">
-                  <!-- Észak-Amerika -->
-                  <path d="M35,65 L78,42 L118,35 L158,32 L200,38 L232,44 L240,92 L232,105 L215,112 L200,118 L192,132 L180,150 L165,155 L152,145 L138,152 L122,170 L105,172 L92,162 L78,148 L65,130 L52,112 L40,92 L32,75 Z"/>
-                  <!-- Grönland -->
-                  <path d="M215,18 L238,15 L252,20 L248,35 L235,40 L218,38 L210,28 Z"/>
-                  <!-- Dél-Amerika -->
-                  <path d="M172,152 L205,145 L230,155 L248,172 L258,195 L255,220 L248,245 L238,265 L225,282 L210,280 L198,268 L188,248 L182,225 L178,200 L175,175 Z"/>
-                  <!-- Európa -->
-                  <path d="M335,88 L352,72 L368,60 L385,52 L408,48 L428,52 L445,62 L448,78 L438,90 L422,98 L405,105 L385,108 L365,105 L348,98 Z"/>
-                  <!-- Afrika -->
-                  <path d="M340,108 L362,102 L388,100 L415,102 L432,112 L452,130 L462,152 L460,172 L452,195 L440,215 L422,238 L402,252 L380,255 L358,250 L340,232 L328,210 L322,185 L322,162 L328,140 L332,122 Z"/>
-                  <!-- Ázsia fő tömb -->
-                  <path d="M448,55 L485,45 L525,40 L565,38 L598,42 L625,48 L648,52 L672,48 L700,50 L718,58 L715,75 L698,82 L672,80 L645,78 L618,82 L598,88 L572,95 L545,100 L518,105 L492,108 L468,110 L448,108 L438,95 Z"/>
-                  <!-- India -->
-                  <path d="M495,108 L518,105 L540,112 L550,130 L545,155 L535,172 L518,178 L502,170 L492,150 L488,130 Z"/>
-                  <!-- Arábia -->
-                  <path d="M448,112 L468,110 L482,118 L485,138 L478,155 L465,162 L452,158 L442,145 L440,128 Z"/>
-                  <!-- Délkelet-Ázsia -->
-                  <path d="M565,148 L588,142 L608,148 L618,162 L612,175 L595,178 L575,172 L562,162 Z"/>
-                  <!-- Japán -->
-                  <path d="M634,88 L648,85 L660,92 L655,108 L640,110 L630,102 Z"/>
-                  <!-- Ausztrália -->
-                  <path d="M582,218 L615,208 L648,210 L665,222 L668,245 L658,262 L638,268 L615,265 L595,255 L582,240 Z"/>
-                  <!-- Antarktisz csík -->
-                  <path d="M0,332 L720,332 L720,360 L0,360 Z"/>
-
-                  <!-- === DUPLIKÁTUM +720 === -->
-                  <path d="M755,65 L798,42 L838,35 L878,32 L920,38 L952,44 L960,92 L952,105 L935,112 L920,118 L912,132 L900,150 L885,155 L872,145 L858,152 L842,170 L825,172 L812,162 L798,148 L785,130 L772,112 L760,92 L752,75 Z"/>
-                  <path d="M935,18 L958,15 L972,20 L968,35 L955,40 L938,38 L930,28 Z"/>
-                  <path d="M892,152 L925,145 L950,155 L968,172 L978,195 L975,220 L968,245 L958,265 L945,282 L930,280 L918,268 L908,248 L902,225 L898,200 L895,175 Z"/>
-                  <path d="M1055,88 L1072,72 L1088,60 L1105,52 L1128,48 L1148,52 L1165,62 L1168,78 L1158,90 L1142,98 L1125,105 L1105,108 L1085,105 L1068,98 Z"/>
-                  <path d="M1060,108 L1082,102 L1108,100 L1135,102 L1152,112 L1172,130 L1182,152 L1180,172 L1172,195 L1160,215 L1142,238 L1122,252 L1100,255 L1078,250 L1060,232 L1048,210 L1042,185 L1042,162 L1048,140 L1052,122 Z"/>
-                  <path d="M1168,55 L1205,45 L1245,40 L1285,38 L1318,42 L1345,48 L1368,52 L1392,48 L1420,50 L1438,58 L1435,75 L1418,82 L1392,80 L1365,78 L1338,82 L1318,88 L1292,95 L1265,100 L1238,105 L1212,108 L1188,110 L1168,108 L1158,95 Z"/>
-                  <path d="M1215,108 L1238,105 L1260,112 L1270,130 L1265,155 L1255,172 L1238,178 L1222,170 L1212,150 L1208,130 Z"/>
-                  <path d="M1168,112 L1188,110 L1202,118 L1205,138 L1198,155 L1185,162 L1172,158 L1162,145 L1160,128 Z"/>
-                  <path d="M1285,148 L1308,142 L1328,148 L1338,162 L1332,175 L1315,178 L1295,172 L1282,162 Z"/>
-                  <path d="M1354,88 L1368,85 L1380,92 L1375,108 L1360,110 L1350,102 Z"/>
-                  <path d="M1302,218 L1335,208 L1368,210 L1385,222 L1388,245 L1378,262 L1358,268 L1335,265 L1315,255 L1302,240 Z"/>
-                  <path d="M720,332 L1440,332 L1440,360 L720,360 Z"/>
-                </g>
-              </svg>
-            </div>
-            <!-- Fény highlight -->
-            <div class="globe-light"></div>
-            <!-- Árnyék jobb oldalt -->
-            <div class="globe-dark"></div>
-          </div>
-          <!-- Pulzáló gyűrűk -->
-          <div class="globe-ring r1"></div>
-          <div class="globe-ring r2"></div>
+      <!-- Stats strip -->
+      <div class="hero-stats">
+        <div class="hs-item">
+          <span class="hs-num teal">200+</span>
+          <span class="hs-label">Elkészített projekt</span>
+        </div>
+        <div class="hs-item">
+          <span class="hs-num">98%</span>
+          <span class="hs-label">Elégedett ügyfél</span>
+        </div>
+        <div class="hs-item">
+          <span class="hs-num teal">+45%</span>
+          <span class="hs-label">Átlagos konverzió növekedés</span>
+        </div>
+        <div class="hs-item">
+          <span class="hs-num">8 év</span>
+          <span class="hs-label">Tapasztalat</span>
         </div>
       </div>
+
     </div>
   </div>
   <div class="scroll-hint" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
@@ -983,8 +971,8 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="services-header reveal">
       <div class="section-tag">Szolgáltatások</div>
-      <h2 class="section-title">Mindent egy helyen,<br><span class="grad-text">profi szinten</span></h2>
-      <p class="section-sub">Teljes körű digitális megoldásokat kínálunk – a tervezéstől a megvalósításig és a növekedésig.</p>
+      <h2 class="section-title">Mindent amit a növekedéshez<br><span class="grad-text">valóban szükséged van</span></h2>
+      <p class="section-sub">Más ügynökségeknél 3 helyen kell megfizetned, amit mi egy csapatból adunk — weboldal, SEO és marketing összehangolva, egymást erősítve.</p>
     </div>
     <div class="services-grid">
 
@@ -1000,15 +988,15 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           </svg>
         </div>
         <div class="sc-tag">Web Design</div>
-        <h3 class="sc-title">Weboldal tervezés</h3>
-        <p class="sc-desc">Egyedi, modern és mobilbarát weboldalak, amelyek tükrözik a márkád és valóban konvertálnak.</p>
+        <h3 class="sc-title">Weboldal, ami ügyfeleket hoz</h3>
+        <p class="sc-desc">Nem elég, ha szép — el kell adnia. Minden weboldalunkat konverzióra optimalizálva tervezzük, 2-4 hét alatt élőben.</p>
         <ul class="sc-features">
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Egyedi UI/UX design</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Mobilbarát (responsive)</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Gyors betöltési sebesség</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CMS integráció</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Egyedi, márkához igazított design</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Mobilon is tökéletesen működik</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Gyors betöltés = több ügyfél</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Te szerkesztheted, nem függsz tőlünk</li>
         </ul>
-        <a href="#contact" class="sc-link">Kapcsolatfelvétel <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="sc-link">Kérek egy ingyenes konzultációt <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
 
       <!-- Card 2 – SEO (featured) -->
@@ -1020,15 +1008,15 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           </svg>
         </div>
         <div class="sc-tag">SEO & Growth</div>
-        <h3 class="sc-title">SEO optimalizálás</h3>
-        <p class="sc-desc">Kerülj az első helyre a Google-on és vonzz be folyamatosan új, minőségi látogatókat.</p>
+        <h3 class="sc-title">Google #1 — ingyen, folyamatosan</h3>
+        <p class="sc-desc">Ügyfeleink 87%-a 90 napon belül top 3 pozícióba kerül a célzott kulcsszavakon. Organikus forgalom, hirdetési büdzsé nélkül.</p>
         <ul class="sc-features">
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Technikai SEO audit</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Kulcsszókutatás & stratégia</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tartalomoptimalizálás</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Backlink építés</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Technikai audit — megmutatjuk hol veszítesz</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Azok a kulcsszavak, ahol az ügyfelek keresnek</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tartalom, ami rangsorol és meggyőz</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Erős linkprofil a tartós pozícióhoz</li>
         </ul>
-        <a href="#contact" class="sc-link">Kapcsolatfelvétel <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="sc-link">Kérem az ingyenes SEO elemzést <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
 
       <!-- Card 3 – Marketing -->
@@ -1040,15 +1028,15 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           </svg>
         </div>
         <div class="sc-tag">Digital Marketing</div>
-        <h3 class="sc-title">Digitális marketing</h3>
-        <p class="sc-desc">Google Ads, Facebook kampányok és közösségi média stratégiák, amelyek valóban megtérülnek.</p>
+        <h3 class="sc-title">Hirdetés, ami valóban megtérül</h3>
+        <p class="sc-desc">Nem kattintásokat veszünk — ügyfeleket szerzünk. Átlagos ROI ügyfeleinknek: 380%. Minden forint mérhető eredménnyel.</p>
         <ul class="sc-features">
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Google Ads kampányok</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Facebook & Instagram hirdetések</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Email marketing</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Konverzió optimalizálás</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Google Ads — a vevők ott keresnek, ahol te vagy</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Meta hirdetések pontos célzással</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Email sorozatok, amelyek eladnak</li>
+          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Folyamatos optimalizálás, havi riport</li>
         </ul>
-        <a href="#contact" class="sc-link">Kapcsolatfelvétel <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="sc-link">Kérek kampány stratégiát <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
 
     </div>
@@ -1098,28 +1086,28 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       </div>
       <div class="about-content reveal-right">
         <div class="section-tag">Rólunk</div>
-        <h2 class="section-title">Miért válassz<br><span class="grad-text">minket?</span></h2>
-        <p class="section-sub">A Siteness egy szenvedélyes, eredményorientált csapat, amely 2016 óta segít magyar vállalkozásoknak online sikereket elérni. Nem csak weboldalakat készítünk – digitális növekedési partnereid vagyunk.</p>
+        <h2 class="section-title">Nem ígérünk.<br><span class="grad-text">Bizonyítunk.</span></h2>
+        <p class="section-sub">2016 óta 200+ magyar vállalkozásnak hoztunk mérhető eredményt. Addig nem vagyunk elégedett, amíg te sem vagy — ez nem szlogen, ez a szerződésünk alapja.</p>
         <div class="about-points">
           <div class="ap">
             <div class="ap-line"></div>
             <div>
-              <div class="ap-title">Gyors átfutási idő</div>
-              <div class="ap-desc">Átlagosan 2-4 hét alatt élőben a weboldal – gyors, minőségi munkával.</div>
+              <div class="ap-title">2-4 hét — és már ügyfeleket hoz</div>
+              <div class="ap-desc">Nem kell hónapokat várnod. Átlagos projektidőnk 3 hét, és az élő weboldal napjától méred az eredményt.</div>
             </div>
           </div>
           <div class="ap">
             <div class="ap-line"></div>
             <div>
-              <div class="ap-title">Eredmény-orientált szemlélet</div>
-              <div class="ap-desc">Minden döntésünk mögött adatok vannak – a szépség mellett a teljesítmény az elsődleges.</div>
+              <div class="ap-title">Adatok, nem megérzések</div>
+              <div class="ap-desc">Minden döntés mögött mérés, A/B teszt és valódi adatok állnak. Sosem találgatunk a te pénzeddel.</div>
             </div>
           </div>
           <div class="ap">
             <div class="ap-line"></div>
             <div>
-              <div class="ap-title">Hosszú távú partnerség</div>
-              <div class="ap-desc">Ügyfeleink 80%-a visszatér hozzánk – bizonyára van okunk büszkének lenni erre.</div>
+              <div class="ap-title">80% visszatérő ügyfél — ez mindent elmond</div>
+              <div class="ap-desc">Nem azért jönnek vissza, mert kötöttük őket. Hanem mert az eredmények magukért beszélnek. Te is közöttük lehetsz.</div>
             </div>
           </div>
         </div>
@@ -1134,8 +1122,8 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="portfolio-header reveal">
       <div class="section-tag" style="background:rgba(0,180,216,.2);color:var(--teal)">Portfólió</div>
-      <h2 class="section-title">Munkáink, amelyekre<br><span style="background:linear-gradient(90deg,#00B4D8,#90E0EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">büszkék vagyunk</span></h2>
-      <p class="section-sub">Minden projekt egy-egy sikertörténet. Lássuk a legjobbakat!</p>
+      <h2 class="section-title">Valódi eredmények,<br><span style="background:linear-gradient(90deg,#00B4D8,#90E0EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">valódi vállalkozásoknak</span></h2>
+      <p class="section-sub">Nem a látványos designt mutatjuk — hanem a számokat, amelyek mögötte vannak. Ezek a te iparágadban is elérhetők.</p>
     </div>
     <div class="portfolio-grid">
       <div class="portfolio-item reveal">
@@ -1263,14 +1251,14 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="pricing-header reveal">
       <div class="section-tag">Árak</div>
-      <h2 class="section-title">Átlátható árazás,<br><span class="grad-text">meglepetések nélkül</span></h2>
-      <p class="section-sub">Válaszd a vállalkozásodhoz legjobban illő csomagot. Minden csomag egyedi árajánlattal is kérhető.</p>
+      <h2 class="section-title">Befektetés, nem<br><span class="grad-text">költség</span></h2>
+      <p class="section-sub">Egy profi weboldal magát fizeti vissza — átlagosan 6 hónapon belül. Nézd meg melyik csomag illik hozzád, vagy kérj személyre szabott ajánlatot.</p>
     </div>
     <div class="pricing-grid">
       <div class="price-card reveal">
         <div class="pc-icon">🌱</div>
         <div class="pc-name">Starter</div>
-        <div class="pc-desc">Ideális induló vállalkozásoknak és egyéni vállalkozóknak, akik profi online jelenlétet szeretnének.</div>
+        <div class="pc-desc">Tökéletes első lépés — profi jelenlét megfizethető áron, ami már az első héttől ügyfeleket hozhat.</div>
         <div class="pc-price">
           <span class="pc-amount">150 000 <span class="pc-suffix">Ft</span></span>
           <div class="pc-period">egyszeri díj + ÁFA</div>
@@ -1288,7 +1276,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="popular-badge">⭐ LEGNÉPSZERŰBB</div>
         <div class="pc-icon">🚀</div>
         <div class="pc-name">Business</div>
-        <div class="pc-desc">A teljes csomag növekvő vállalkozásoknak – weboldal, SEO és marketing egy kézből.</div>
+        <div class="pc-desc">Weboldal + SEO + Ads — összehangolva, egymást erősítve. A leggyorsabb út a mérhető növekedéshez.</div>
         <div class="pc-price">
           <span class="pc-amount" style="color:#fff">350 000 <span class="pc-suffix" style="color:rgba(255,255,255,.6)">Ft</span></span>
           <div class="pc-period">egyszeri + havi 80 000 Ft</div>
@@ -1305,7 +1293,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       <div class="price-card reveal" style="transition-delay:.3s">
         <div class="pc-icon">💎</div>
         <div class="pc-name">Enterprise</div>
-        <div class="pc-desc">Komplex megoldások nagyobb vállalkozásoknak – teljes körű digitális stratégia és megvalósítás.</div>
+        <div class="pc-desc">Ha komolyabb a tét, komolyabb megoldást kapsz. Dedikált csapat, teljes stratégia, mérhető üzleti eredmény.</div>
         <div class="pc-price">
           <span class="pc-amount">Egyéni</span>
           <div class="pc-period">igény szerint kalkulálva</div>
@@ -1330,8 +1318,8 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     <div class="contact-inner">
       <div class="contact-info reveal-left">
         <div class="section-tag">Kapcsolat</div>
-        <h2 class="section-title">Írj nekünk,<br><span class="grad-text">válaszolunk!</span></h2>
-        <p class="section-sub">Minden megkeresésre 24 órán belül válaszolunk munkanapokon. Ingyenes konzultáción elemezzük a lehetőségeket.</p>
+        <h2 class="section-title">Tudd meg ingyen,<br><span class="grad-text">hol veszítesz ügyfeleket</span></h2>
+        <p class="section-sub">Minden megkeresésre 24 órán belül válaszolunk. Az ingyenes konzultáción konkrét javaslatokat kapsz — kötelezettség nélkül. Hány ügyfelet engedhetsz még el?</p>
         <div class="contact-items">
           <div class="ci">
             <div class="ci-icon">📧</div>
@@ -1426,19 +1414,9 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <rect width="36" height="36" rx="8" fill="url(#fg)"/>
-            <defs><linearGradient id="fg" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#0077B6"/><stop offset="100%" stop-color="#00B4D8"/></linearGradient></defs>
-            <rect x="6" y="8" width="24" height="18" rx="3" fill="none" stroke="white" stroke-width="1.8"/>
-            <circle cx="9" cy="11" r="1.2" fill="white" opacity=".6"/>
-            <circle cx="13" cy="11" r="1.2" fill="white" opacity=".6"/>
-            <circle cx="17" cy="11" r="1.2" fill="white" opacity=".6"/>
-            <path d="M14 19.5 Q18 15 22 19.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <line x1="10" y1="27" x2="26" y2="27" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          <span>Siteness</span>
+          <img src="Images/Logó 3.png" alt="Siteness logó">
         </a>
-        <p>Professzionális weboldalak, SEO és digitális marketing megoldások, amelyek valódi növekedést hoznak vállalkozásodnak.</p>
+        <p>2016 óta segítjük a magyar vállalkozásokat, hogy online is nyerjenek. 200+ sikeres projekt. 98% elégedett ügyfél.</p>
         <div class="social-links">
           <a class="sl" href="#" title="Facebook">📘</a>
           <a class="sl" href="#" title="Instagram">📷</a>
@@ -1499,12 +1477,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <!-- PAGE CURTAIN – nav átmenet -->
 <div id="page-curtain">
   <div class="curtain-logo">
-    <svg width="40" height="40" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="36" height="36" rx="10" fill="url(#cg)"/>
-      <defs><linearGradient id="cg" x1="0" y1="0" x2="36" y2="36"><stop offset="0%" stop-color="#0EA5E9"/><stop offset="100%" stop-color="#00D4B4"/></linearGradient></defs>
-      <path d="M10 18 Q18 8 26 18 Q18 28 10 18Z" fill="white" opacity=".9"/>
-    </svg>
-    <span>Siteness</span>
+    <img src="Images/Logó 3.png" alt="Siteness" style="height:48px;filter:brightness(1.1)">
   </div>
 </div>
 
@@ -1633,33 +1606,35 @@ navLinks.forEach(link => {
 // ─────────────────────────────────────
 const heroTl = gsap.timeline({ delay: 0.12 });
 heroTl
-  .from('.hero-badge', {
-    y: -28, opacity: 0, duration: 0.65, ease: 'power3.out'
+  .from('.hero-line-top', {
+    scaleY: 0, opacity: 0, duration: 0.7, ease: 'power2.out', transformOrigin: 'top'
   })
+  .from('.hero-badge', {
+    y: -20, opacity: 0, duration: 0.6, ease: 'power3.out'
+  }, '-=0.2')
   .from('.hero-title', {
-    y: 80, opacity: 0, skewY: 1.5, filter: 'blur(8px)',
+    y: 70, opacity: 0, skewY: 1.2, filter: 'blur(10px)',
     duration: 1.05, ease: 'power4.out'
-  }, '-=0.3')
-  .from('.hero-desc', {
-    y: 30, opacity: 0, filter: 'blur(4px)', duration: 0.75, ease: 'power3.out'
-  }, '-=0.55')
-  .from('.hero-proof', {
-    y: 22, opacity: 0, duration: 0.6, ease: 'power2.out'
-  }, '-=0.5')
-  .from('.hero-btns > *', {
-    y: 20, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.5)'
+  }, '-=0.25')
+  .from('.hero-divider', {
+    scaleX: 0, opacity: 0, duration: 0.5, ease: 'power2.out'
   }, '-=0.45')
-  .from('.hm, .hm-sep', {
-    y: 16, opacity: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out'
+  .from('.hero-desc', {
+    y: 28, opacity: 0, filter: 'blur(4px)', duration: 0.7, ease: 'power3.out'
+  }, '-=0.4')
+  .from('.hero-proof', {
+    y: 20, opacity: 0, duration: 0.55, ease: 'power2.out'
+  }, '-=0.45')
+  .from('.hero-btns > *', {
+    y: 18, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.5)'
+  }, '-=0.4')
+  .from('.hero-stats', {
+    y: 24, opacity: 0, filter: 'blur(6px)', duration: 0.7, ease: 'power3.out'
   }, '-=0.35')
-  .from('.globe-wrap', {
-    x: 70, opacity: 0, scale: 0.86, filter: 'blur(12px)',
-    duration: 1.35, ease: 'power3.out'
-  }, '-=1.1')
-  .from('.hero-float', {
-    scale: 0.85, opacity: 0, duration: 0.55, stagger: 0.2, ease: 'back.out(1.6)'
-  }, '-=0.6')
-  .from('.scroll-hint', { opacity: 0, y: 8, duration: 0.5 }, '-=0.15');
+  .from('.hs-item', {
+    y: 10, opacity: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out'
+  }, '-=0.5')
+  .from('.scroll-hint', { opacity: 0, y: 8, duration: 0.5 }, '-=0.2');
 
 
 // Hero scroll-out: hero tartalom halványan eltűnik scrollozáskor
