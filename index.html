@@ -374,25 +374,32 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .portfolio-header .section-title{color:#fff}
 .portfolio-header .section-sub{color:rgba(255,255,255,.6);margin:0 auto}
 .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.portfolio-item{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;group:true}
-.pi-img{width:100%;aspect-ratio:4/3;background:var(--grad);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .4s}
-.portfolio-item:hover .pi-img{transform:scale(1.03)}
-.pi-mockup{width:80%;max-width:280px;background:rgba(255,255,255,.1);border-radius:12px;border:1px solid rgba(255,255,255,.2);overflow:hidden}
-.pi-mock-bar{height:24px;background:rgba(255,255,255,.08);display:flex;align-items:center;padding:0 10px;gap:5px}
-.pi-dot{width:7px;height:7px;border-radius:50%}
-.pi-content-area{padding:16px;min-height:100px}
-.pi-line{height:8px;background:rgba(255,255,255,.15);border-radius:4px;margin-bottom:8px}
-.pi-line.short{width:60%}
-.pi-overlay{position:absolute;inset:0;background:rgba(13,43,74,.85);opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.portfolio-item{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;background:#0B1628;border:1px solid rgba(255,255,255,.07);transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .4s}
+.portfolio-item:hover{transform:translateY(-6px);border-color:rgba(0,212,180,.2);box-shadow:0 24px 60px rgba(0,212,180,.08)}
+
+/* Browser chrome bar */
+.pi-bar{height:36px;background:#0d1520;display:flex;align-items:center;padding:0 14px;gap:6px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.pi-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pi-url{flex:1;height:20px;background:rgba(255,255,255,.06);border-radius:6px;margin:0 10px}
+
+/* iframe preview */
+.pi-preview{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#060d18}
+.pi-preview iframe{position:absolute;top:0;left:0;width:1280px;height:800px;border:none;pointer-events:none;transform-origin:top left}
+
+/* Hover overlay */
+.pi-overlay{position:absolute;inset:0;background:rgba(6,10,20,.82);opacity:0;transition:opacity .35s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
 .portfolio-item:hover .pi-overlay{opacity:1}
-.pi-overlay-content{text-align:center}
-.pi-tag{display:inline-block;background:rgba(0,180,216,.3);color:var(--teal);font-size:12px;font-weight:700;padding:4px 12px;border-radius:50px;margin-bottom:12px}
-.pi-title{color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:800;margin-bottom:8px}
-.pi-desc{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:20px}
-.pi-btn{display:inline-flex;align-items:center;gap:6px;background:var(--grad);color:#fff;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none}
-.pi-info{padding:20px 0}
-.pi-info-tag{font-size:12px;color:var(--teal);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
-.pi-info-title{color:#fff;font-weight:700;font-size:17px}
+.pi-overlay-content{text-align:center;padding:20px}
+.pi-tag{display:inline-block;background:rgba(0,212,180,.15);color:var(--teal);font-size:12px;font-weight:700;padding:4px 14px;border-radius:50px;margin-bottom:12px;border:1px solid rgba(0,212,180,.2)}
+.pi-title{color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:800;margin-bottom:6px}
+.pi-desc{color:rgba(255,255,255,.6);font-size:13px;margin-bottom:20px}
+.pi-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#00D4B4,#0EA5E9);color:#fff;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity .2s}
+.pi-btn:hover{opacity:.88}
+
+/* Info below card */
+.pi-info{padding:18px 20px}
+.pi-info-tag{font-size:11px;color:var(--teal);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:5px;opacity:.8}
+.pi-info-title{color:#fff;font-weight:700;font-size:16px}
 .portfolio-cta{text-align:center;margin-top:56px}
 
 /* ──────────────────────────────────────────
@@ -483,8 +490,10 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .ci-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
 .ci-val{font-size:16px;color:var(--navy);font-weight:700}
 .social-links{display:flex;gap:12px}
-.sl{width:44px;height:44px;background:var(--gray);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;transition:all .3s}
-.sl:hover{background:var(--grad);transform:translateY(-3px)}
+.sl{width:44px;height:44px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .3s}
+.sl svg{width:20px;height:20px;fill:rgba(255,255,255,.7);transition:fill .3s}
+.sl:hover{background:var(--grad);border-color:transparent;transform:translateY(-3px)}
+.sl:hover svg{fill:#fff}
 .contact-form{background:var(--gray);border-radius:28px;padding:48px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
 .form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
@@ -815,7 +824,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="Images/Logó 3.png" alt="Siteness logó">
+        <img src="Images/logó 4.png" alt="Siteness logó">
       </a>
       <ul class="nav-links">
         <li><a href="#services">Szolgáltatások</a></li>
@@ -1126,118 +1135,82 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       <p class="section-sub">Nem a látványos designt mutatjuk — hanem a számokat, amelyek mögötte vannak. Ezek a te iparágadban is elérhetők.</p>
     </div>
     <div class="portfolio-grid">
+
+      <!-- Digital Seed -->
       <div class="portfolio-item reveal">
-        <div class="pi-img" style="background:linear-gradient(135deg,#0077B6,#00B4D8)">
-          <div class="pi-mockup">
-            <div class="pi-mock-bar">
-              <div class="pi-dot" style="background:#ff5f57"></div>
-              <div class="pi-dot" style="background:#febc2e"></div>
-              <div class="pi-dot" style="background:#28c840"></div>
-            </div>
-            <div class="pi-content-area">
-              <div class="pi-line"></div>
-              <div class="pi-line short"></div>
-              <div class="pi-line" style="width:80%"></div>
-            </div>
-          </div>
+        <div class="pi-bar">
+          <div class="pi-dot" style="background:#ff5f57"></div>
+          <div class="pi-dot" style="background:#febc2e"></div>
+          <div class="pi-dot" style="background:#28c840"></div>
+          <div class="pi-url"></div>
+        </div>
+        <div class="pi-preview">
+          <iframe src="https://digitalseed-jsey.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Digital Seed"></iframe>
           <div class="pi-overlay">
             <div class="pi-overlay-content">
               <div class="pi-tag">Weboldal</div>
-              <div class="pi-title">BudaPet Állatrendelő</div>
-              <div class="pi-desc">+180% online foglalás növekedés</div>
-              <a href="#contact" class="pi-btn">Részletek →</a>
+              <div class="pi-title">Digital Seed</div>
+              <div class="pi-desc">digitalseed-jsey.vercel.app</div>
+              <a href="https://digitalseed-jsey.vercel.app/" target="_blank" rel="noopener" class="pi-btn">Megtekintés →</a>
             </div>
           </div>
         </div>
         <div class="pi-info">
-          <div class="pi-info-tag">Weboldal + SEO</div>
-          <div class="pi-info-title">BudaPet Állatrendelő</div>
+          <div class="pi-info-tag">Weboldal</div>
+          <div class="pi-info-title">Digital Seed</div>
         </div>
       </div>
+
+      <!-- Pizza Pont -->
       <div class="portfolio-item reveal" style="transition-delay:.1s">
-        <div class="pi-img" style="background:linear-gradient(135deg,#023E8A,#0077B6)">
-          <div class="pi-mockup">
-            <div class="pi-mock-bar">
-              <div class="pi-dot" style="background:#ff5f57"></div>
-              <div class="pi-dot" style="background:#febc2e"></div>
-              <div class="pi-dot" style="background:#28c840"></div>
-            </div>
-            <div class="pi-content-area">
-              <div class="pi-line"></div>
-              <div class="pi-line short"></div>
-              <div class="pi-line" style="width:90%"></div>
-            </div>
-          </div>
-          <div class="pi-overlay">
-            <div class="pi-overlay-content">
-              <div class="pi-tag">Webáruház</div>
-              <div class="pi-title">FreshBox Ételrendelés</div>
-              <div class="pi-desc">+320% bevétel növekedés 6 hónap alatt</div>
-              <a href="#contact" class="pi-btn">Részletek →</a>
-            </div>
-          </div>
+        <div class="pi-bar">
+          <div class="pi-dot" style="background:#ff5f57"></div>
+          <div class="pi-dot" style="background:#febc2e"></div>
+          <div class="pi-dot" style="background:#28c840"></div>
+          <div class="pi-url"></div>
         </div>
-        <div class="pi-info">
-          <div class="pi-info-tag">E-commerce</div>
-          <div class="pi-info-title">FreshBox Ételrendelés</div>
-        </div>
-      </div>
-      <div class="portfolio-item reveal" style="transition-delay:.2s">
-        <div class="pi-img" style="background:linear-gradient(135deg,#00B4D8,#48CAE4)">
-          <div class="pi-mockup">
-            <div class="pi-mock-bar">
-              <div class="pi-dot" style="background:#ff5f57"></div>
-              <div class="pi-dot" style="background:#febc2e"></div>
-              <div class="pi-dot" style="background:#28c840"></div>
-            </div>
-            <div class="pi-content-area">
-              <div class="pi-line"></div>
-              <div class="pi-line short"></div>
-              <div class="pi-line" style="width:75%"></div>
-            </div>
-          </div>
-          <div class="pi-overlay">
-            <div class="pi-overlay-content">
-              <div class="pi-tag">Marketing</div>
-              <div class="pi-title">TechStart Budapest</div>
-              <div class="pi-desc">Top 3 Google pozíció 3 hónap alatt</div>
-              <a href="#contact" class="pi-btn">Részletek →</a>
-            </div>
-          </div>
-        </div>
-        <div class="pi-info">
-          <div class="pi-info-tag">SEO + Google Ads</div>
-          <div class="pi-info-title">TechStart Budapest</div>
-        </div>
-      </div>
-      <div class="portfolio-item reveal" style="transition-delay:.3s">
-        <div class="pi-img" style="background:linear-gradient(135deg,#03045E,#0077B6)">
-          <div class="pi-mockup">
-            <div class="pi-mock-bar">
-              <div class="pi-dot" style="background:#ff5f57"></div>
-              <div class="pi-dot" style="background:#febc2e"></div>
-              <div class="pi-dot" style="background:#28c840"></div>
-            </div>
-            <div class="pi-content-area">
-              <div class="pi-line"></div>
-              <div class="pi-line short"></div>
-              <div class="pi-line" style="width:85%"></div>
-            </div>
-          </div>
+        <div class="pi-preview">
+          <iframe src="https://pizzapont.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Pizza Pont"></iframe>
           <div class="pi-overlay">
             <div class="pi-overlay-content">
               <div class="pi-tag">Weboldal</div>
-              <div class="pi-title">Kovács & Társai Ügyvédi Iroda</div>
-              <div class="pi-desc">+95% több ügyfél megkeresés</div>
-              <a href="#contact" class="pi-btn">Részletek →</a>
+              <div class="pi-title">Pizza Pont</div>
+              <div class="pi-desc">pizzapont.vercel.app</div>
+              <a href="https://pizzapont.vercel.app/" target="_blank" rel="noopener" class="pi-btn">Megtekintés →</a>
             </div>
           </div>
         </div>
         <div class="pi-info">
-          <div class="pi-info-tag">Prémium weboldal</div>
-          <div class="pi-info-title">Kovács & Társai Ügyvédi Iroda</div>
+          <div class="pi-info-tag">Weboldal</div>
+          <div class="pi-info-title">Pizza Pont</div>
         </div>
       </div>
+
+      <!-- Aramis -->
+      <div class="portfolio-item reveal" style="transition-delay:.2s">
+        <div class="pi-bar">
+          <div class="pi-dot" style="background:#ff5f57"></div>
+          <div class="pi-dot" style="background:#febc2e"></div>
+          <div class="pi-dot" style="background:#28c840"></div>
+          <div class="pi-url"></div>
+        </div>
+        <div class="pi-preview">
+          <iframe src="https://aramis-murex.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Aramis"></iframe>
+          <div class="pi-overlay">
+            <div class="pi-overlay-content">
+              <div class="pi-tag">Weboldal</div>
+              <div class="pi-title">Aramis</div>
+              <div class="pi-desc">aramis-murex.vercel.app</div>
+              <a href="https://aramis-murex.vercel.app/" target="_blank" rel="noopener" class="pi-btn">Megtekintés →</a>
+            </div>
+          </div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-info-tag">Weboldal</div>
+          <div class="pi-info-title">Aramis</div>
+        </div>
+      </div>
+
     </div>
     <div class="portfolio-cta reveal">
       <a href="#contact" class="btn btn-white">Mutasd az összes munkát →</a>
@@ -1325,7 +1298,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
             <div class="ci-icon">📧</div>
             <div>
               <div class="ci-label">Email</div>
-              <div class="ci-val">hello@siteness.hu</div>
+              <div class="ci-val">info@siteness.hu</div>
             </div>
           </div>
           <div class="ci">
@@ -1351,10 +1324,12 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           </div>
         </div>
         <div class="social-links">
-          <a class="sl" href="#" title="Facebook">📘</a>
-          <a class="sl" href="#" title="Instagram">📷</a>
-          <a class="sl" href="#" title="LinkedIn">💼</a>
-          <a class="sl" href="#" title="YouTube">▶️</a>
+          <a class="sl" href="#" title="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a class="sl" href="#" title="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
         </div>
       </div>
       <div class="contact-form reveal-right">
@@ -1414,12 +1389,16 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo">
-          <img src="Images/Logó 3.png" alt="Siteness logó">
+          <img src="Images/logó 4.png" alt="Siteness logó">
         </a>
         <p>2016 óta segítjük a magyar vállalkozásokat, hogy online is nyerjenek. 200+ sikeres projekt. 98% elégedett ügyfél.</p>
         <div class="social-links">
-          <a class="sl" href="#" title="Facebook">📘</a>
-          <a class="sl" href="#" title="Instagram">📷</a>
+          <a class="sl" href="#" title="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a class="sl" href="#" title="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
           <a class="sl" href="#" title="LinkedIn">💼</a>
         </div>
       </div>
@@ -1448,7 +1427,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       <div>
         <div class="footer-heading">Kapcsolat</div>
         <ul class="footer-links">
-          <li><a href="mailto:hello@siteness.hu">hello@siteness.hu</a></li>
+          <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
           <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
           <li><a href="#">Budapest, Magyarország</a></li>
           <li><a href="#">H–P: 9:00–18:00</a></li>
@@ -1477,7 +1456,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <!-- PAGE CURTAIN – nav átmenet -->
 <div id="page-curtain">
   <div class="curtain-logo">
-    <img src="Images/Logó 3.png" alt="Siteness" style="height:48px;filter:brightness(1.1)">
+    <img src="Images/logó 4.png" alt="Siteness" style="height:48px;filter:brightness(1.1)">
   </div>
 </div>
 
@@ -1602,6 +1581,16 @@ navLinks.forEach(link => {
 });
 
 // ─────────────────────────────────────
+// Portfolio iframe scale
+function scalePortfolioIframes() {
+  document.querySelectorAll('.pi-preview').forEach(wrap => {
+    const iframe = wrap.querySelector('iframe');
+    if (iframe) iframe.style.transform = `scale(${wrap.offsetWidth / 1280})`;
+  });
+}
+scalePortfolioIframes();
+window.addEventListener('resize', scalePortfolioIframes);
+
 // 1. HERO – cinematic filmszerű belépő
 // ─────────────────────────────────────
 const heroTl = gsap.timeline({ delay: 0.12 });
