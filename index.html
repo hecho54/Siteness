@@ -365,7 +365,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PORTFOLIO
 ────────────────────────────────────────── */
-#portfolio{padding:60px 0;background:transparent}
+#portfolio{padding:32px 0;background:transparent}
 .portfolio-header{text-align:center;margin-bottom:48px}
 .portfolio-header .section-title{color:#fff}
 .portfolio-header .section-sub{color:rgba(255,255,255,.6);margin:0 auto}
@@ -376,7 +376,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .pf-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
 .pf-dot-btn.active{background:var(--teal);width:24px;border-radius:4px}
 .portfolio-item{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;background:#0B1628;border:1px solid rgba(255,255,255,.07);transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .4s}
-.portfolio-item:hover{transform:translateY(-6px);border-color:rgba(0,212,180,.2);box-shadow:0 24px 60px rgba(0,212,180,.08)}
+.portfolio-item:hover{border-color:rgba(0,212,180,.2)}
 
 /* Browser chrome bar */
 .pi-bar{height:36px;background:#0d1520;display:flex;align-items:center;padding:0 14px;gap:6px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
@@ -424,7 +424,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PRICING
 ────────────────────────────────────────── */
-#pricing{padding:120px 0;background:transparent}
+#pricing{padding:60px 0;background:transparent}
 .pricing-header{text-align:center;margin-bottom:72px}
 .pricing-header .section-sub{margin:0 auto}
 .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch;padding-top:20px}
@@ -560,7 +560,7 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
   .process-steps::before{display:none}
   .contact-inner{grid-template-columns:1fr;gap:48px}
   .faq-inner{grid-template-columns:1fr;gap:40px}
-  .pricing-grid{grid-template-columns:1fr;gap:16px}
+  .pricing-grid{gap:16px}
 
   /* Hero */
   .hero-desc{margin:0 auto}
@@ -609,7 +609,12 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
   .pf-track{gap:16px}
   .pf-track .portfolio-item{flex:0 0 100%}
   .testimonials-grid{grid-template-columns:1fr}
-  .pricing-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pricing-slider-wrap{overflow:hidden}
+  .pricing-grid{display:flex!important;flex-wrap:nowrap!important;gap:16px;transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform;padding-top:0;align-items:stretch}
+  .pricing-grid .price-card{flex:0 0 100%!important;width:100%!important;min-width:0;max-width:none}
+  .pricing-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+  .pricing-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
+  .pricing-dot-btn.active{background:var(--teal);width:24px;border-radius:4px}
   .stats-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr;gap:32px}
   .form-row{grid-template-columns:1fr}
@@ -1142,6 +1147,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       <h2 class="section-title">Befektetés, nem<br><span class="grad-text">költség</span></h2>
       <p class="section-sub">Egy profi weboldal magát fizeti vissza — átlagosan 6 hónapon belül. Nézd meg melyik csomag illik hozzád, vagy kérj személyre szabott ajánlatot.</p>
     </div>
+    <div class="pricing-slider-wrap">
     <div class="pricing-grid">
       <div class="price-card reveal">
         <div class="pc-name">Basic</div>
@@ -1208,7 +1214,9 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         </ul>
         <a href="design-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
       </div>
-    </div>
+    </div><!-- /pricing-grid -->
+    <div class="pricing-dots" id="pricingDots"></div>
+    </div><!-- /pricing-slider-wrap -->
   </div>
 </section>
 
@@ -1669,6 +1677,50 @@ gsap.fromTo('.service-card',
   let autoPlay = setInterval(() => goTo(current < pageCount() - 1 ? current + 1 : 0), 4000);
   track.addEventListener('touchstart', () => clearInterval(autoPlay), { passive: true });
   dotsEl.addEventListener('click', () => { clearInterval(autoPlay); autoPlay = setInterval(() => goTo(current < pageCount() - 1 ? current + 1 : 0), 4000); });
+})();
+
+// PRICING MOBILE SLIDER
+(function() {
+  if (window.innerWidth >= 768) return;
+  const wrap = document.querySelector('.pricing-slider-wrap');
+  const grid = document.querySelector('.pricing-grid');
+  const dotsEl = document.getElementById('pricingDots');
+  const cards = grid ? Array.from(grid.querySelectorAll('.price-card')) : [];
+  if (!grid || !cards.length) return;
+
+  let current = 0;
+  const total = cards.length;
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'pricing-dot-btn' + (i === current ? ' active' : '');
+      btn.setAttribute('aria-label', `Csomag ${i+1}`);
+      btn.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(btn);
+    }
+  }
+
+  function goTo(page) {
+    current = Math.max(0, Math.min(page, total - 1));
+    const sliderW = wrap.offsetWidth;
+    grid.style.transform = `translateX(-${current * (sliderW + 16)}px)`;
+    dotsEl.querySelectorAll('.pricing-dot-btn').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  let touchStartX = 0;
+  grid.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  grid.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && current < total - 1) goTo(current + 1);
+      else if (diff < 0 && current > 0) goTo(current - 1);
+    }
+  });
+
+  buildDots();
+  goTo(0);
 })();
 
 // ─────────────────────────────────────
