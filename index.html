@@ -426,11 +426,14 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 #pricing{padding:120px 0;background:transparent}
 .pricing-header{text-align:center;margin-bottom:72px}
 .pricing-header .section-sub{margin:0 auto}
-.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch}
-.price-card{background:var(--white);border:2px solid #e8f2f8;border-radius:24px;padding:32px 24px;transition:all .4s;position:relative;display:flex;flex-direction:column}
-.price-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch;padding-top:20px}
+.price-card{background:var(--white);border:2px solid #e8f2f8;border-radius:24px;padding:32px 24px;transition:transform .15s ease;position:relative;display:flex;flex-direction:column}
+.price-card::after{content:'';position:absolute;inset:-2px;border-radius:26px;border:2px solid rgba(0,212,180,.5);opacity:0;transition:opacity .15s ease;pointer-events:none}
+.price-card:hover{transform:translateY(-5px)}
+.price-card:hover::after{opacity:1}
 .price-card.popular{background:var(--navy);border-color:var(--teal)}
 .popular-badge{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:12px;font-weight:800;padding:6px 20px;border-radius:50px;white-space:nowrap;letter-spacing:1px}
+.price-card.popular{padding-top:48px}
 .pc-icon{font-size:36px;margin-bottom:20px}
 .pc-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
 .price-card.popular .pc-name{color:#fff}
@@ -1365,15 +1368,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
             <div>
               <div class="ci-label">Helyszín</div>
               <div class="ci-val">Budapest, Magyarország</div>
-            </div>
-          </div>
-          <div class="ci">
-            <div class="ci-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div>
-              <div class="ci-label">Munkaidő</div>
-              <div class="ci-val">H–P: 9:00 – 18:00</div>
             </div>
           </div>
         </div>
