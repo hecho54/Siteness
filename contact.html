@@ -36,7 +36,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:a
 nav.scrolled{background:rgba(8,14,26,.96);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 4px 30px rgba(0,0,0,.2)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;text-decoration:none}
-.nav-logo img{height:44px;width:auto;object-fit:contain;display:block}
+.nav-logo img{height:32px;width:auto;object-fit:contain;display:block}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;font-weight:500;transition:color .3s}
 .nav-links a:hover{color:var(--teal)}
@@ -143,19 +143,25 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px);padding:80px 0 40px;
   .container{padding:0 20px}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
-  .nav-logo img{height:36px}
-  .contact-hero{padding:120px 0 60px}
-  .contact-hero h1{font-size:clamp(34px,9vw,72px)}
+  .nav-logo img{height:32px}
+  .contact-hero{padding:110px 0 48px}
+  .contact-hero h1{font-size:clamp(30px,9vw,72px)}
+  .contact-hero p{font-size:16px}
   .contact-form{padding:24px 20px}
   .form-row{grid-template-columns:1fr}
+  .form-group input,.form-group textarea,.form-group select{font-size:16px;padding:13px 16px}
+  .ci-icon{width:40px;height:40px;min-width:40px}
   .footer-grid{grid-template-columns:1fr;gap:32px}
   .footer-bottom{flex-direction:column;gap:12px;text-align:center}
   .footer-bottom-links{justify-content:center;flex-wrap:wrap}
 }
 @media(max-width:480px){
   .container{padding:0 16px}
-  .contact-hero{padding:100px 0 48px}
+  .contact-hero{padding:96px 0 40px}
   .contact-form{padding:20px 16px}
+  .section-title{font-size:28px}
+  .btn{padding:14px 24px;font-size:15px}
+  .form-submit{padding:15px}
 }
 </style>
 </head>
@@ -170,7 +176,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px);padding:80px 0 40px;
       </a>
       <ul class="nav-links">
         <li><a href="index.html#services">Szolgáltatások</a></li>
-        <li><a href="index.html#about">Rólunk</a></li>
         <li><a href="index.html#portfolio">Portfólió</a></li>
         <li><a href="index.html#pricing">Árak</a></li>
       </ul>
@@ -188,7 +193,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px);padding:80px 0 40px;
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html#services" onclick="closeMobile()">Szolgáltatások</a>
   <a href="index.html#portfolio" onclick="closeMobile()">Portfólió</a>
-  <a href="index.html#about" onclick="closeMobile()">Rólunk</a>
   <a href="index.html#pricing" onclick="closeMobile()">Árak</a>
   <a href="contact.html" onclick="closeMobile()" class="btn btn-primary">Kapcsolat</a>
 </div>
@@ -390,11 +394,13 @@ function submitForm(e) {
 }
 
 // GSAP fade-in
-gsap.from('.contact-hero-tag', { y: -20, opacity: 0, duration: 0.6, delay: 0.1, ease: 'power3.out' });
-gsap.from('.contact-hero h1', { y: 50, opacity: 0, filter: 'blur(8px)', duration: 1, delay: 0.2, ease: 'power4.out' });
-gsap.from('.contact-hero p',  { y: 24, opacity: 0, duration: 0.7, delay: 0.5, ease: 'power3.out' });
-gsap.from('.contact-info',    { x: -40, opacity: 0, duration: 0.8, delay: 0.3, ease: 'power3.out' });
-gsap.from('.contact-form',    { x: 40,  opacity: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
+if (window.innerWidth > 768) {
+  gsap.from('.contact-hero-tag', { y: -20, opacity: 0, duration: 0.6, delay: 0.1, ease: 'power3.out' });
+  gsap.from('.contact-hero h1', { y: 50, opacity: 0, filter: 'blur(8px)', duration: 1, delay: 0.2, ease: 'power4.out' });
+  gsap.from('.contact-hero p',  { y: 24, opacity: 0, duration: 0.7, delay: 0.5, ease: 'power3.out' });
+  gsap.from('.contact-info',    { x: -40, opacity: 0, duration: 0.8, delay: 0.3, ease: 'power3.out' });
+  gsap.from('.contact-form',    { x: 40,  opacity: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
+}
 </script>
 </body>
 </html>

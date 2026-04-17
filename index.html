@@ -74,7 +74,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:a
 nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 4px 30px rgba(0,0,0,.2)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;text-decoration:none}
-.nav-logo img{height:44px;width:auto;object-fit:contain;display:block}
+.nav-logo img{height:32px;width:auto;object-fit:contain;display:block}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
 .nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;font-weight:500;transition:color .3s}
 .nav-links a:hover{color:var(--teal)}
@@ -88,7 +88,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    HERO
 ────────────────────────────────────────── */
-#hero{min-height:100vh;background:transparent;position:relative;display:flex;align-items:center;overflow:hidden}
+#hero{background:transparent;position:relative;display:flex;align-items:center;overflow:hidden}
 
 /* ── Background layers ── */
 .hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
@@ -99,7 +99,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 @keyframes shimmer{0%,100%{opacity:.2;transform:scaleX(.6)}50%{opacity:.8;transform:scaleX(1)}}
 
 /* ── Content layout ── */
-.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:140px 0 100px;max-width:860px;margin:0 auto}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:110px 0 70px;max-width:860px;margin:0 auto}
 
 /* Vertical glow line (decoration) */
 .hero-line-top{width:1px;height:72px;background:linear-gradient(to bottom,transparent,rgba(0,212,180,.55) 55%,transparent);margin:0 auto 28px;flex-shrink:0}
@@ -120,7 +120,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .hero-divider{width:44px;height:2px;background:linear-gradient(90deg,transparent,rgba(0,212,180,.55),transparent);border-radius:2px;margin:32px auto 28px;flex-shrink:0}
 
 /* Description */
-.hero-desc{font-size:18px;color:rgba(255,255,255,.52);line-height:1.85;margin-bottom:32px;max-width:540px;font-weight:400}
+.hero-desc{font-size:18px;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:40px;max-width:520px;font-weight:400}
 
 /* ── Social proof ── */
 .hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
@@ -365,8 +365,8 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PORTFOLIO
 ────────────────────────────────────────── */
-#portfolio{padding:120px 0;background:transparent}
-.portfolio-header{text-align:center;margin-bottom:72px}
+#portfolio{padding:60px 0;background:transparent}
+.portfolio-header{text-align:center;margin-bottom:48px}
 .portfolio-header .section-title{color:#fff}
 .portfolio-header .section-sub{color:rgba(255,255,255,.6);margin:0 auto}
 .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -824,7 +824,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       </a>
       <ul class="nav-links">
         <li><a href="#services">Szolgáltatások</a></li>
-        <li><a href="#about">Rólunk</a></li>
         <li><a href="#portfolio">Portfólió</a></li>
         <li><a href="#pricing">Árak</a></li>
       </ul>
@@ -842,7 +841,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" onclick="closeMobile()">Szolgáltatások</a>
   <a href="#portfolio" onclick="closeMobile()">Portfólió</a>
-  <a href="#about" onclick="closeMobile()">Rólunk</a>
   <a href="#pricing" onclick="closeMobile()">Árak</a>
   <a href="contact.html" onclick="closeMobile()" class="btn btn-primary">Árajánlat</a>
 </div>
@@ -859,68 +857,28 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="hero-content">
 
-      <!-- Dekorációs vonal felülről -->
-      <div class="hero-line-top"></div>
-
       <!-- Badge -->
       <div class="hero-badge">
         <span class="dot"></span>
-        Átlagos ügyfélnövekedés ügyfeleinknek: +45%
+        Weboldal · SEO · Hirdetés · Design
       </div>
 
       <!-- Főcím -->
       <h1 class="hero-title">
-        Versenytársaid most<br>
-        <span class="line2">elveszik az <span class="word-cycle">ügyfeleidet</span></span>
+        Profi online jelenlét,<br>
+        <span class="line2">ami <span class="word-cycle">ügyfeleket hoz</span></span>
       </h1>
 
-      <!-- Elválasztó -->
-      <div class="hero-divider"></div>
-
       <!-- Leírás -->
-      <p class="hero-desc">Minden nap, amíg nincs profi weboldalad és Google-rangsorod, ügyfelet veszítesz. Mi ezt megállítjuk — 2-4 héten belül, mérhető eredményekkel.</p>
-
-      <!-- Social proof -->
-      <div class="hero-proof">
-        <div class="proof-avatars">
-          <span class="proof-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">N</span>
-          <span class="proof-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">K</span>
-          <span class="proof-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">M</span>
-          <span class="proof-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">A</span>
-          <span class="proof-avatar" style="background:linear-gradient(135deg,#fa709a,#fee140)">P</span>
-        </div>
-        <div class="proof-divider"></div>
-        <div class="proof-info">
-          <div class="proof-stars">★★★★★</div>
-          <div class="proof-label">200+ vállalkozásnak hoztunk eredményt</div>
-        </div>
-      </div>
+      <p class="hero-desc">Modern weboldal, Google-rangsor és célzott hirdetések — egy csapattól. Gyorsan, mérhetően, eredményesen.</p>
 
       <!-- Gombok -->
       <div class="hero-btns">
-        <a href="contact.html" class="btn btn-primary">Kérem az ingyenes elemzést</a>
-        <a href="#portfolio" class="btn btn-outline" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.16)">Eredményeink</a>
+        <a href="contact.html" class="btn btn-primary">Ingyenes konzultáció</a>
+        <a href="szolgaltatasok.html" class="btn btn-outline" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.16)">Szolgáltatásaink</a>
       </div>
 
       <!-- Stats strip -->
-      <div class="hero-stats">
-        <div class="hs-item">
-          <span class="hs-num teal">200+</span>
-          <span class="hs-label">Elkészített projekt</span>
-        </div>
-        <div class="hs-item">
-          <span class="hs-num">98%</span>
-          <span class="hs-label">Elégedett ügyfél</span>
-        </div>
-        <div class="hs-item">
-          <span class="hs-num teal">+45%</span>
-          <span class="hs-label">Átlagos konverzió növekedés</span>
-        </div>
-        <div class="hs-item">
-          <span class="hs-num">8 év</span>
-          <span class="hs-label">Tapasztalat</span>
-        </div>
-      </div>
 
     </div>
   </div>
@@ -1043,76 +1001,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     </div>
     <div style="text-align:center;margin-top:56px">
       <a href="szolgaltatasok.html" class="btn btn-outline">Összes szolgáltatás megtekintése →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-inner">
-      <div class="about-bento reveal-left">
-        <div class="bento-card large">
-          <div class="bento-large-left">
-            <div class="bento-big-num" data-target="200">0</div>
-            <div class="bento-big-label">Befejezett projekt</div>
-          </div>
-          <div class="bento-bars">
-            <div class="bento-bar-row">
-              <div class="bento-bar-top"><span>Web fejlesztés</span><span>95%</span></div>
-              <div class="bento-bar"><div class="bento-bar-fill" style="width:95%"></div></div>
-            </div>
-            <div class="bento-bar-row">
-              <div class="bento-bar-top"><span>SEO & Marketing</span><span>88%</span></div>
-              <div class="bento-bar"><div class="bento-bar-fill" style="width:88%"></div></div>
-            </div>
-            <div class="bento-bar-row">
-              <div class="bento-bar-top"><span>UI/UX Design</span><span>92%</span></div>
-              <div class="bento-bar"><div class="bento-bar-fill" style="width:92%"></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="bento-card b1">
-          <div class="bento-num">98%</div>
-          <div class="bento-lbl">Elégedett ügyfél</div>
-        </div>
-        <div class="bento-card b2">
-          <div class="bento-num">8+</div>
-          <div class="bento-lbl">Év tapasztalat</div>
-        </div>
-        <div class="bento-card b3">
-          <div class="bento-num">80%</div>
-          <div class="bento-lbl">Visszatérő ügyfelek</div>
-        </div>
-      </div>
-      <div class="about-content reveal-right">
-        <div class="section-tag">Rólunk</div>
-        <h2 class="section-title">Nem ígérünk.<br><span class="grad-text">Bizonyítunk.</span></h2>
-        <p class="section-sub">2016 óta 200+ magyar vállalkozásnak hoztunk mérhető eredményt. Addig nem vagyunk elégedett, amíg te sem vagy — ez nem szlogen, ez a szerződésünk alapja.</p>
-        <div class="about-points">
-          <div class="ap">
-            <div class="ap-line"></div>
-            <div>
-              <div class="ap-title">2-4 hét — és már ügyfeleket hoz</div>
-              <div class="ap-desc">Nem kell hónapokat várnod. Átlagos projektidőnk 3 hét, és az élő weboldal napjától méred az eredményt.</div>
-            </div>
-          </div>
-          <div class="ap">
-            <div class="ap-line"></div>
-            <div>
-              <div class="ap-title">Adatok, nem megérzések</div>
-              <div class="ap-desc">Minden döntés mögött mérés, A/B teszt és valódi adatok állnak. Sosem találgatunk a te pénzeddel.</div>
-            </div>
-          </div>
-          <div class="ap">
-            <div class="ap-line"></div>
-            <div>
-              <div class="ap-title">80% visszatérő ügyfél — ez mindent elmond</div>
-              <div class="ap-desc">Nem azért jönnek vissza, mert kötöttük őket. Hanem mert az eredmények magukért beszélnek. Te is közöttük lehetsz.</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1445,7 +1333,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       <div>
         <div class="footer-heading">Vállalat</div>
         <ul class="footer-links">
-          <li><a href="#about">Rólunk</a></li>
           <li><a href="#portfolio">Portfólió</a></li>
           <li><a href="#testimonials">Vélemények</a></li>
           <li><a href="#process">Hogyan dolgozunk</a></li>
