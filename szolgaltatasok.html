@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Szolgáltatások – Siteness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#080E1A;--blue:#0EA5E9;--teal:#00D4B4;--grad:linear-gradient(135deg,#0EA5E9,#00D4B4)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:#E8F0F8;overflow-x:hidden;-webkit-font-smoothing:antialiased;background-color:#050A15;background-image:radial-gradient(ellipse 80% 50% at 15% 10%,rgba(0,212,180,.07) 0%,transparent 55%),radial-gradient(ellipse 60% 40% at 85% 25%,rgba(14,165,233,.06) 0%,transparent 50%),linear-gradient(175deg,#06101E 0%,#050A15 40%,#04080F 100%);background-attachment:fixed;background-size:cover}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,10,21,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo img{height:36px}
+.nav-back{display:flex;align-items:center;gap:8px;color:#E8F0F8;text-decoration:none;font-size:14px;font-weight:500;opacity:.7;transition:opacity .2s}
+.nav-back:hover{opacity:1}
+.nav-back svg{width:18px;height:18px}
+
+/* HERO */
+.page-hero{padding:130px 24px 60px;text-align:center;max-width:700px;margin:0 auto}
+.page-tag{display:inline-flex;align-items:center;background:rgba(0,212,180,.08);border:1px solid rgba(0,212,180,.2);border-radius:100px;padding:6px 18px;font-size:13px;font-weight:600;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.page-hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,6vw,62px);font-weight:900;line-height:1.05;letter-spacing:-0.04em;margin-bottom:16px}
+.page-hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-hero p{font-size:17px;color:rgba(255,255,255,.55);line-height:1.7}
+
+/* CONTENT */
+.content{max-width:1080px;margin:0 auto;padding:0 24px 100px}
+
+/* Service Block */
+.svc-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.svc-block:last-child{border-bottom:none}
+.svc-block.reverse{direction:rtl}
+.svc-block.reverse > *{direction:ltr}
+.svc-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.svc-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:900;line-height:1.1;letter-spacing:-0.03em;margin-bottom:16px;color:#fff}
+.svc-desc{font-size:15px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:28px}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.svc-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(255,255,255,.75)}
+.svc-list li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:1px}
+.svc-cta{display:inline-flex;align-items:center;gap:8px;color:var(--teal);font-weight:600;font-size:14px;text-decoration:none;border-bottom:1px solid rgba(0,212,180,.3);padding-bottom:2px;transition:gap .2s}
+.svc-cta:hover{gap:12px}
+
+/* Visual panel */
+.svc-visual{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:16px}
+.svc-stat{display:flex;flex-direction:column;gap:4px}
+.svc-stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:40px;font-weight:900;letter-spacing:-0.04em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.svc-stat-label{font-size:13px;color:rgba(255,255,255,.45)}
+.svc-divider{width:100%;height:1px;background:rgba(255,255,255,.06)}
+.svc-tags{display:flex;flex-wrap:wrap;gap:8px}
+.svc-tag{background:rgba(0,212,180,.08);border:1px solid rgba(0,212,180,.15);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--teal)}
+
+/* CTA */
+.bottom-cta{text-align:center;padding:64px 24px}
+.bottom-cta h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(28px,4vw,44px);font-weight:900;margin-bottom:16px}
+.bottom-cta p{color:rgba(255,255,255,.5);font-size:16px;margin-bottom:36px}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#fff;font-weight:700;font-size:16px;padding:16px 36px;border-radius:50px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,212,180,.3)}
+
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .page-hero{padding:110px 20px 40px}
+  .svc-block{grid-template-columns:1fr;gap:32px}
+  .svc-block.reverse{direction:ltr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="Images/logó 4.png" alt="Siteness"></a>
+  <a href="index.html#services" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Vissza
+  </a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-tag">Szolgáltatások</div>
+  <h1>Minden, amire<br><span>online szükséged van</span></h1>
+  <p>Weboldal, SEO, hirdetések és design — egy csapattól, összehangolva.</p>
+</div>
+
+<div class="content">
+
+  <!-- WEB DESIGN -->
+  <div class="svc-block">
+    <div>
+      <div class="svc-label">Web Design</div>
+      <h2 class="svc-title">Weboldal, ami ügyfeleket hoz</h2>
+      <p class="svc-desc">Nem elég, ha szép — el kell adnia. Minden weboldalunkat konverzióra optimalizálva tervezzük, akár 1 hét alatt élőben. Egyedi design, gyors betöltés, mobilbarát megjelenés.</p>
+      <ul class="svc-list">
+        <li>Egyedi, márkához igazított design</li>
+        <li>Mobilon is tökéletesen működik</li>
+        <li>Gyors betöltés = több ügyfél</li>
+        <li>SSL tanúsítvány és biztonságos tárhely</li>
+        <li>Konverzióra optimalizált felépítés</li>
+        <li>Akár 1 héten belül élesítve</li>
+      </ul>
+      <a href="alap-csomag.html" class="svc-cta">Weboldal csomagok megtekintése →</a>
+    </div>
+    <div class="svc-visual">
+      <div class="svc-stat">
+        <span class="svc-stat-num">1 hét</span>
+        <span class="svc-stat-label">átlagos átadási idő</span>
+      </div>
+      <div class="svc-divider"></div>
+      <div class="svc-stat">
+        <span class="svc-stat-num">+68%</span>
+        <span class="svc-stat-label">több ügyfélmegkeresés átlagosan</span>
+      </div>
+      <div class="svc-divider"></div>
+      <div class="svc-tags">
+        <span class="svc-tag">HTML/CSS</span>
+        <span class="svc-tag">WordPress</span>
+        <span class="svc-tag">Webflow</span>
+        <span class="svc-tag">Mobilbarát</span>
+        <span class="svc-tag">SEO-kész</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEO -->
+  <div class="svc-block reverse">
+    <div>
+      <div class="svc-label">SEO & Growth</div>
+      <h2 class="svc-title">Google #1 — ingyen, folyamatosan</h2>
+      <p class="svc-desc">Ügyfeleink 87%-a 90 napon belül top 3 pozícióba kerül a célzott kulcsszavakon. Organikus forgalom, hirdetési büdzsé nélkül — hosszú távon a legolcsóbb ügyfélszerzés.</p>
+      <ul class="svc-list">
+        <li>Technikai audit — megmutatjuk hol veszítesz</li>
+        <li>Kulcsszókutatás, amit az ügyfelek keresnek</li>
+        <li>Tartalom, ami rangsorol és meggyőz</li>
+        <li>Erős linkprofil a tartós pozícióhoz</li>
+        <li>Havi riport és eredménykövetés</li>
+        <li>Versenytárs elemzés</li>
+      </ul>
+      <a href="uzleti-csomag.html" class="svc-cta">SEO csomagok megtekintése →</a>
+    </div>
+    <div class="svc-visual">
+      <div class="svc-stat">
+        <span class="svc-stat-num">87%</span>
+        <span class="svc-stat-label">ügyfél top 3-ban 90 napon belül</span>
+      </div>
+      <div class="svc-divider"></div>
+      <div class="svc-stat">
+        <span class="svc-stat-num">3×</span>
+        <span class="svc-stat-label">több organikus látogató átlagosan</span>
+      </div>
+      <div class="svc-divider"></div>
+      <div class="svc-tags">
+        <span class="svc-tag">On-page SEO</span>
+        <span class="svc-tag">Technikai SEO</span>
+        <span class="svc-tag">Linképítés</span>
+        <span class="svc-tag">Tartalom</span>
+        <span class="svc-tag">Lokális SEO</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIGITAL MARKETING -->
+  <div class="svc-block">
+    <div>
+      <div class="svc-label">Digital Marketing</div>
+      <h2 class="svc-title">Hirdetés, ami valóban megtérül</h2>
+      <p class="svc-desc">Nem kattintásokat veszünk — ügyfeleket szerzünk. Átlagos ROI ügyfeleinknek: 380%. Minden forint mérhető eredménnyel. Google Ads, Facebook és Instagram kampányok, összehangolva.</p>
+      <ul class="svc-list">
+        <li>Google Ads — a vevők ott keresnek, ahol te vagy</li>
+        <li>Meta hirdetések pontos célzással</li>
+        <li>Instagram kampányok fiatal célközönségnek</li>
+        <li>Email sorozatok, amelyek eladnak</li>
+        <li>Folyamatos optimalizálás, havi riport</li>
+        <li>Remarketing — visszahozza az érdeklődőket</li>
+      </ul>
+      <a href="uzleti-csomag.html" class="svc-cta">Marketing csomagok megtekintése →</a>
+    </div>
+    <div class="svc-visual">
+      <div class="svc-stat">
+        <span class="svc-stat-num">380%</span>
+        <span class="svc-stat-label">átlagos ROI ügyfeleinknek</span>
+      </div>
+      <div class="svc-divider"></div>
+      <div class="svc-stat">
+        <span class="svc-stat-num">2 hét</span>
+        <span class="svc-stat-label">kampány indulásáig</span>
+      </div>
+      <div class="svc-divider"></div>
+      <div class="svc-tags">
+        <span class="svc-tag">Google Ads</span>
+        <span class="svc-tag">Facebook Ads</span>
+        <span class="svc-tag">Instagram</span>
+        <span class="svc-tag">Email marketing</span>
+        <span class="svc-tag">Remarketing</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN -->
+  <div class="svc-block reverse">
+    <div>
+      <div class="svc-label">Grafikai Design</div>
+      <h2 class="svc-title">Arculat, ami megkülönböztet</h2>
+      <p class="svc-desc">Az első benyomás másodpercek alatt kialakul. Egyedi logó, egységes vizuális arculat, közösségi média designok — minden felületen profi megjelenés, ami bizalmat épít.</p>
+      <ul class="svc-list">
+        <li>Logó tervezés vektoros formátumban</li>
+        <li>Facebook és Instagram borítóképek</li>
+        <li>Közösségi média poszt sablonok</li>
+        <li>Szórólap és banner tervezés</li>
+        <li>Egységes márkaidentitás kialakítása</li>
+        <li>Havi rendszeres grafikai tartalom</li>
+      </ul>
+      <a href="design-csomag.html" class="svc-cta">Design csomag megtekintése →</a>
+    </div>
+    <div class="svc-visual">
+      <div class="svc-stat">
+        <span class="svc-stat-num">48h</span>
+        <span class="svc-stat-label">első logó koncepció átadása</span>
+      </div>
+      <div class="svc-divider"></div>
+      <div class="svc-stat">
+        <span class="svc-stat-num">∞</span>
+        <span class="svc-stat-label">módosítás a tökéletes eredményig</span>
+      </div>
+      <div class="svc-divider"></div>
+      <div class="svc-tags">
+        <span class="svc-tag">Logó</span>
+        <span class="svc-tag">Arculat</span>
+        <span class="svc-tag">Social Media</span>
+        <span class="svc-tag">Print</span>
+        <span class="svc-tag">Banner</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-cta">
+  <h2>Melyik illik hozzád?</h2>
+  <p>Vedd fel velünk a kapcsolatot, és 24 órán belül visszajelzünk.</p>
+  <a href="contact.html" class="btn-cta">Ajánlatot kérek →</a>
+</div>
+
+</body>
+</html>
