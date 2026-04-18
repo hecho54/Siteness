@@ -88,10 +88,35 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    HERO
 ────────────────────────────────────────── */
-#hero{background:transparent;position:relative;display:flex;align-items:center;overflow:hidden}
+#hero{background:transparent;position:relative;display:flex;align-items:center;overflow:visible;min-height:100vh;padding-bottom:140px}
 
 /* ── Background layers ── */
-.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg{position:absolute;inset:0 0 -480px 0;overflow:hidden;pointer-events:none}
+
+/* Photo background */
+.hero-bg-photo{
+  position:absolute;
+  inset:0;
+  background:url('Images/charlesdeluvio-Lks7vei-eAg-unsplash.png') center top/cover no-repeat;
+  z-index:0;
+}
+.hero-bg-photo::after{
+  content:'';
+  position:absolute;
+  inset:0 0 -120px 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(5,10,21,.55) 0%,
+      rgba(5,10,21,.38) 18%,
+      rgba(5,10,21,.42) 48%,
+      rgba(5,10,21,.55) 62%,
+      rgba(5,10,21,.72) 74%,
+      rgba(5,10,21,.90) 84%,
+      #050A15 92%,
+      #050A15 100%
+    );
+}
+
 .hero-orb{display:none}
 @keyframes orbDrift{0%,100%{transform:translate(0,0)}40%{transform:translate(30px,-20px)}70%{transform:translate(-15px,25px)}}
 .hero-dots{display:none}
@@ -99,19 +124,19 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 @keyframes shimmer{0%,100%{opacity:.2;transform:scaleX(.6)}50%{opacity:.8;transform:scaleX(1)}}
 
 /* ── Content layout ── */
-.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:110px 0 70px;max-width:860px;margin:0 auto}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:110px 0 40px;max-width:860px;margin:0 auto}
 
 /* Vertical glow line (decoration) */
 .hero-line-top{width:1px;height:72px;background:linear-gradient(to bottom,transparent,rgba(0,212,180,.55) 55%,transparent);margin:0 auto 28px;flex-shrink:0}
 
 /* Badge */
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.85);font-size:13px;font-weight:600;padding:6px 18px 6px 8px;border-radius:50px;margin-bottom:36px;backdrop-filter:blur(16px);box-shadow:0 0 0 1px rgba(0,212,180,.08),0 8px 32px rgba(0,0,0,.2)}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.95);font-size:13px;font-weight:600;padding:6px 18px 6px 8px;border-radius:50px;margin-bottom:36px;backdrop-filter:blur(20px);box-shadow:0 0 0 1px rgba(0,212,180,.15),0 8px 32px rgba(0,0,0,.35)}
 .hero-badge .dot{width:28px;height:28px;background:linear-gradient(135deg,rgba(0,212,180,.18),rgba(14,165,233,.18));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .hero-badge .dot::after{content:'';width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
 
 /* Title */
-.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(48px,7vw,92px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.055em;margin-bottom:0}
+.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(48px,7vw,92px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.055em;margin-bottom:0;text-shadow:0 2px 32px rgba(0,0,0,.55),0 1px 4px rgba(0,0,0,.35)}
 .hero-title .line2{display:block;padding-bottom:18px}
 .word-cycle{background:linear-gradient(90deg,#00D4B4 0%,#0EA5E9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;position:relative}
 .word-cycle::after{content:'';position:absolute;left:4%;bottom:-6px;right:4%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,212,180,.5),rgba(14,165,233,.5),transparent);border-radius:2px}
@@ -120,7 +145,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .hero-divider{width:44px;height:2px;background:linear-gradient(90deg,transparent,rgba(0,212,180,.55),transparent);border-radius:2px;margin:32px auto 28px;flex-shrink:0}
 
 /* Description */
-.hero-desc{font-size:18px;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:40px;max-width:520px;font-weight:400}
+.hero-desc{font-size:18px;color:rgba(255,255,255,.82);line-height:1.8;margin-bottom:40px;max-width:520px;font-weight:400;text-shadow:0 1px 12px rgba(0,0,0,.4)}
 
 /* ── Social proof ── */
 .hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
@@ -175,7 +200,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    SERVICES
 ────────────────────────────────────────── */
-#services{padding:120px 0;background:transparent}
+#services{padding:60px 0 120px;background:transparent;margin-top:-140px;position:relative;z-index:1}
 .services-header{text-align:center;margin-bottom:72px}
 .services-header .section-sub{margin:0 auto}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
@@ -365,42 +390,69 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PORTFOLIO
 ────────────────────────────────────────── */
-#portfolio{padding:32px 0;background:transparent}
-.portfolio-header{text-align:center;margin-bottom:48px}
-.portfolio-header .section-title{color:#fff}
-.portfolio-header .section-sub{color:rgba(255,255,255,.6);margin:0 auto}
+#portfolio{padding:80px 0;background:transparent}
+.portfolio-header{text-align:left;margin-bottom:56px}
+.portfolio-header .section-title{
+  font-size:clamp(36px,6vw,68px);
+  background:linear-gradient(to right,#fff 0%,rgba(255,255,255,.45) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.portfolio-header .section-sub{color:rgba(255,255,255,.55);max-width:640px}
+
+/* Slider */
 .portfolio-slider{overflow:hidden;position:relative}
-.pf-track{display:flex;gap:24px;transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform}
-.pf-track .portfolio-item{flex:0 0 calc((100% - 48px) / 3);min-width:0}
-.pf-dots{display:flex;justify-content:center;gap:8px;margin-top:28px}
-.pf-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
-.pf-dot-btn.active{background:var(--teal);width:24px;border-radius:4px}
-.portfolio-item{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;background:#0B1628;border:1px solid rgba(255,255,255,.07);transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .4s}
-.portfolio-item:hover{border-color:rgba(0,212,180,.2)}
+.pf-track{display:flex;gap:16px;transition:transform .5s cubic-bezier(.22,1,.36,1);will-change:transform}
+.pf-track .portfolio-item{flex:0 0 76%;min-width:0}
 
-/* Browser chrome bar */
-.pi-bar{height:36px;background:#0d1520;display:flex;align-items:center;padding:0 14px;gap:6px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
-.pi-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.pi-url{flex:1;height:20px;background:rgba(255,255,255,.06);border-radius:6px;margin:0 10px}
+/* Dots */
+.pf-dots{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:28px}
+.pf-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
+.pf-dot-btn.active{background:#fff;width:24px;border-radius:4px}
+/* Arrows — absolute inside slider, vertically centered */
+.pf-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s;backdrop-filter:blur(6px)}
+.pf-arrow:hover{background:rgba(255,255,255,.18);box-shadow:0 0 0 4px rgba(255,255,255,.08)}
+.pf-arrow svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#pfPrev{left:20px}
+#pfNext{right:20px}
 
-/* iframe preview */
-.pi-preview{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#060d18}
+/* Card */
+.portfolio-item{border-radius:14px;overflow:hidden;position:relative;cursor:grab;background:#111;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.portfolio-item:active{cursor:grabbing}
+
+/* Hide old browser bar */
+.pi-bar{display:none}
+
+/* Preview */
+.pi-preview{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#0a0a0a}
 .pi-preview iframe{position:absolute;top:0;left:0;width:1280px;height:800px;border:none;pointer-events:none;transform-origin:top left}
 
-/* Hover overlay */
-.pi-overlay{position:absolute;inset:0;background:rgba(6,10,20,.82);opacity:0;transition:opacity .35s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
-.portfolio-item:hover .pi-overlay{opacity:1}
-.pi-overlay-content{text-align:center;padding:20px}
-.pi-tag{display:inline-block;background:rgba(0,212,180,.15);color:var(--teal);font-size:12px;font-weight:700;padding:4px 14px;border-radius:50px;margin-bottom:12px;border:1px solid rgba(0,212,180,.2)}
-.pi-title{color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:800;margin-bottom:6px}
-.pi-desc{color:rgba(255,255,255,.6);font-size:13px;margin-bottom:20px}
-.pi-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#00D4B4,#0EA5E9);color:#fff;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity .2s}
-.pi-btn:hover{opacity:.88}
+/* Dim overlay on inactive cards */
+.pi-card-dim{position:absolute;inset:0;background:rgba(0,0,0,.5);transition:opacity .6s ease;pointer-events:none;z-index:1}
+.portfolio-item.is-active .pi-card-dim{opacity:0}
 
-/* Info below card */
-.pi-info{padding:18px 20px}
-.pi-info-tag{font-size:11px;color:var(--teal);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:5px;opacity:.8}
-.pi-info-title{color:#fff;font-weight:700;font-size:16px}
+/* Hide old hover overlay */
+.pi-overlay{display:none}
+
+/* Info bar — always visible, bottom of card */
+.pi-info{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:10px 18px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;flex-direction:row;align-items:flex-end;justify-content:space-between;gap:12px;
+}
+.pi-info-tag{font-size:10px;color:rgba(255,255,255,.55);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.pi-info-title{color:#fff;font-weight:800;font-size:clamp(16px,1.8vw,26px);font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-0.02em;line-height:1.1}
+.pi-details-btn{
+  display:inline-flex;align-items:center;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:#fff;padding:8px 20px;border-radius:50px;
+  font-size:13px;font-weight:600;text-decoration:none;
+  white-space:nowrap;flex-shrink:0;
+  backdrop-filter:blur(4px);transition:background .2s;
+}
+.pi-details-btn:hover{background:rgba(255,255,255,.22)}
 .portfolio-cta{text-align:center;margin-top:56px}
 
 /* ──────────────────────────────────────────
@@ -460,6 +512,22 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .pc-decoy-note strong{color:var(--teal)}
 .price-card.best-value{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal),0 20px 60px rgba(0,212,180,.15)}
 .best-value-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 16px;border-radius:100px;white-space:nowrap}
+
+/* ── Maintenance add-on toggle ── */
+.pc-addon{margin-bottom:16px}
+.pc-addon-toggle{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;border:1.5px dashed rgba(0,212,180,.3);background:rgba(0,212,180,.05);cursor:pointer;transition:border-color .2s,background .2s;user-select:none}
+.pc-addon-toggle:hover{border-color:rgba(0,212,180,.6);background:rgba(0,212,180,.09)}
+.pc-addon-toggle input[type=checkbox]{display:none}
+.pc-addon-check{width:20px;height:20px;min-width:20px;border-radius:6px;border:2px solid rgba(0,212,180,.4);background:transparent;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.pc-addon-toggle input:checked ~ .pc-addon-body .pc-addon-check,
+.pc-addon-toggle.checked .pc-addon-check{background:var(--teal);border-color:var(--teal)}
+.pc-addon-toggle.checked .pc-addon-check::after{content:'✓';font-size:11px;color:#fff;font-weight:800;line-height:1}
+.pc-addon-body{flex:1;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pc-addon-label{font-size:13px;font-weight:600;color:rgba(255,255,255,.85)}
+.pc-addon-price{font-size:12px;font-weight:700;color:var(--teal);white-space:nowrap}
+.pc-addon-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.pc-addon-info{font-size:11px;color:rgba(255,255,255,.4);padding:6px 14px 0;line-height:1.5;display:none}
+.pc-addon-toggle.checked + .pc-addon-info{display:block}
 
 /* ──────────────────────────────────────────
    FAQ
@@ -544,6 +612,9 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
    RESPONSIVE
 ────────────────────────────────────────── */
 
+/* Overflow-x globálisan tiltva — animációk ne okozzanak vízszintes scrollt */
+html,body{overflow-x:hidden}
+
 /* ── Tablet (≤1024px) ── */
 @media(max-width:1024px){
   /* Sections */
@@ -551,9 +622,13 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
   #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:80px 0}
   footer{padding:64px 0 32px}
 
+  /* Hero overlap csökkentése tableten */
+  #hero{padding-bottom:100px}
+  #services{margin-top:-100px}
+
   /* Grids */
   .services-grid{grid-template-columns:repeat(2,1fr)}
-  .pf-track .portfolio-item{flex:0 0 calc((100% - 24px) / 2)}
+  .pf-track .portfolio-item{flex:0 0 85%}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
   .about-inner{grid-template-columns:1fr;gap:48px}
   .process-steps{grid-template-columns:repeat(2,1fr);gap:32px}
@@ -576,117 +651,148 @@ footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
 /* ── Mobile (≤768px) ── */
 @media(max-width:768px){
   /* Container */
-  .container{padding:0 20px}
+  .container{padding:0 18px}
 
   /* Nav */
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
   .nav-logo img{height:36px}
 
+  /* Hero overlap mobilon kisebb */
+  #hero{padding-bottom:80px}
+  #services{margin-top:-80px}
+
   /* Sections */
-  #hero .hero-content{padding:100px 0 72px}
-  #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:64px 0}
+  #hero .hero-content{padding:96px 0 0}
+  #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:56px 0}
   footer{padding:56px 0 28px}
 
   /* Hero */
-  .hero-line-top{height:48px;margin-bottom:20px}
-  .hero-badge{font-size:12px;padding:5px 14px 5px 6px;margin-bottom:24px}
-  .hero-badge .dot{width:24px;height:24px}
-  .hero-title{font-size:clamp(36px,9vw,92px)}
-  .hero-divider{margin:22px auto 20px}
-  .hero-desc{font-size:16px;margin-bottom:24px}
+  .hero-line-top{height:40px;margin-bottom:16px}
+  .hero-badge{font-size:12px;padding:5px 14px 5px 6px;margin-bottom:20px}
+  .hero-badge .dot{width:22px;height:22px}
+  .hero-title{font-size:clamp(34px,9vw,72px);letter-spacing:-0.04em}
+  .hero-title br{display:none} /* mobilon ne törd — folyjon */
+  .hero-divider{margin:20px auto 18px}
+  .hero-desc{font-size:15px;margin-bottom:24px;padding:0 4px}
   .hero-proof{flex-wrap:wrap;gap:10px;margin-bottom:24px}
-  .hero-btns{gap:10px;margin-bottom:40px}
-  .hero-btns .btn{width:100%;justify-content:center;text-align:center}
-  .hero-stats{gap:0;border-radius:16px;padding:16px 8px}
-  .hs-item{flex:0 0 50%;min-width:0;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .hero-btns{gap:10px;margin-bottom:32px;flex-direction:column}
+  .hero-btns .btn{width:100%;justify-content:center;text-align:center;padding:16px 24px}
+  .hero-stats{gap:0;border-radius:16px;padding:12px 4px}
+  .hs-item{flex:0 0 50%;min-width:0;padding:10px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
   .hs-item:nth-child(1),.hs-item:nth-child(2){border-top:none}
   .hs-item:nth-child(3),.hs-item:nth-child(4){border-bottom:none}
   .hs-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.06)}
 
+  /* Typography — word break hosszú magyar szavakhoz */
+  .section-title{font-size:clamp(26px,7vw,48px);overflow-wrap:break-word;word-break:break-word}
+  .section-title br{display:none}
+  .portfolio-header .section-title{font-size:clamp(28px,8vw,52px)}
+  .bento-big-num{font-size:48px}
+  .bento-num{font-size:32px}
+  .pc-amount{font-size:38px}
+
   /* Grids */
-  .services-grid{grid-template-columns:1fr;gap:16px}
-  .pf-track{gap:16px}
-  .pf-track .portfolio-item{flex:0 0 100%}
+  .services-grid{grid-template-columns:1fr;gap:14px}
+  .pf-track{gap:12px}
+  .pf-track .portfolio-item{flex:0 0 92%}
   .testimonials-grid{grid-template-columns:1fr}
   .pricing-slider-wrap{overflow-x:clip;overflow-y:visible}
-  .pricing-grid{display:flex!important;flex-wrap:nowrap!important;gap:16px;transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform;padding-top:0;align-items:stretch}
-  .pricing-grid .price-card{flex:0 0 100%!important;width:100%!important;min-width:0;max-width:none}
+  .pricing-grid{display:flex!important;flex-wrap:nowrap!important;gap:12px;transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform;padding-top:0;align-items:stretch}
+  .pricing-grid .price-card{flex:0 0 92%!important;width:92%!important;min-width:0;max-width:none}
   .pricing-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
   .pricing-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
   .pricing-dot-btn.active{background:var(--teal);width:24px;border-radius:4px}
   .stats-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
   .form-row{grid-template-columns:1fr}
   .about-bento{grid-template-columns:1fr 1fr;gap:10px}
   .bento-card.large{grid-column:1 / -1}
-  .process-steps{grid-template-columns:1fr;gap:24px}
+  .process-steps{grid-template-columns:1fr;gap:20px}
+
+  /* Portfolio nyilak rejtése mobilon — swipe elég */
+  .pf-arrow{display:none}
 
   /* Cards */
-  .service-card{padding:28px 24px 24px}
-  .service-card::after{font-size:72px}
-  .contact-form{padding:24px 20px}
-  .faq-question{padding:18px 20px}
-  .faq-item.open .faq-answer{padding:0 20px 18px}
-  .price-card{padding:32px 24px}
-  .tcard{padding:28px 24px}
+  .service-card{padding:24px 20px 20px}
+  .service-card::after{font-size:64px}
+  .contact-form{padding:24px 18px}
+  .faq-question{padding:16px 18px}
+  .faq-item.open .faq-answer{padding:0 18px 16px}
+  .price-card{padding:28px 20px}
+  .tcard{padding:24px 20px}
 
-  /* Typography */
-  .section-title{font-size:clamp(28px,7vw,52px)}
-  .bento-big-num{font-size:48px}
-  .bento-num{font-size:32px}
-  .pc-amount{font-size:40px}
+  /* Karbantartás toggle — nagyobb érintési terület mobilon */
+  .pc-addon-toggle{padding:14px 14px;min-height:56px}
+  .pc-addon-check{width:22px;height:22px;min-width:22px}
 
   /* Section headers */
-  .services-header,.section-header,.portfolio-header,.pricing-header{margin-bottom:40px}
+  .services-header,.section-header,.portfolio-header,.pricing-header{margin-bottom:36px}
+  .services-header .section-sub,.section-sub{font-size:15px}
+
+  /* Contact */
+  .contact-inner{gap:36px}
+  .contact-items{gap:16px}
+  .form-group input,.form-group textarea,.form-group select{font-size:16px} /* iOS auto-zoom tiltás */
 
   /* Footer */
   .footer-bottom{flex-direction:column;gap:12px;text-align:center}
   .footer-bottom-links{justify-content:center;flex-wrap:wrap;gap:16px}
-  .footer-links{justify-content:center}
+  .footer-links{gap:10px}
 
   /* Misc */
   .scroll-hint{display:none}
+  .btn{font-size:14px}
 }
 
 /* ── Small phones (≤480px) ── */
 @media(max-width:480px){
   .container{padding:0 16px}
 
+  /* Hero overlap még kisebb kis képernyőn */
+  #hero{padding-bottom:60px}
+  #services{margin-top:-60px}
+
   /* Sections */
-  #hero .hero-content{padding:88px 0 60px}
-  #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:52px 0}
+  #hero .hero-content{padding:88px 0 0}
+  #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:48px 0}
 
   /* Hero */
-  .hero-title{font-size:clamp(32px,10vw,60px);letter-spacing:-0.04em}
-  .hero-desc{font-size:15px}
-  .hero-stats{gap:0}
+  .hero-title{font-size:clamp(30px,9.5vw,52px);letter-spacing:-0.03em}
+  .hero-desc{font-size:14px;line-height:1.7}
+  .hero-badge{font-size:11px}
 
   /* Cards */
-  .service-card{padding:24px 20px 20px}
-  .bento-card{padding:20px 18px}
-  .bento-card.large{padding:24px 20px}
-  .price-card{padding:28px 20px}
+  .service-card{padding:22px 18px 18px}
+  .bento-card{padding:18px 16px}
+  .bento-card.large{padding:22px 18px}
+  .price-card{padding:24px 18px}
 
   /* About bento → single column on very small */
   .about-bento{grid-template-columns:1fr}
   .bento-card.large{grid-column:auto}
 
   /* Process */
-  .process-step{padding:28px 24px}
+  .process-step{padding:24px 20px}
+  .ps-num{width:72px;height:72px;font-size:22px}
 
   /* FAQ */
-  .faq-question{padding:16px 18px;font-size:15px}
+  .faq-question{padding:14px 16px;font-size:14px}
 
   /* Contact */
-  .contact-form{padding:20px 16px}
-  .contact-info{gap:20px}
+  .contact-form{padding:18px 14px}
+  .contact-info{gap:16px}
+  .form-group input,.form-group textarea,.form-group select{font-size:16px} /* iOS zoom tiltás */
 
   /* Pricing */
-  .pc-amount{font-size:36px}
+  .pc-amount{font-size:32px}
+  .pricing-grid .price-card{flex:0 0 96%!important;width:96%!important}
 
   /* Nav logo */
-  .nav-logo img{height:32px}
+  .nav-logo img{height:30px}
+
+  /* Typography */
+  .section-title{font-size:clamp(24px,8vw,40px)}
 }
 
 /* ═══════════════════════════════════════
@@ -806,7 +912,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 .nav-links a.nav-active{color:var(--teal)!important}
 
 /* ── SZEKCIÓ POZÍCIONÁLÁS ── */
-#services,#about,#process,#portfolio,#pricing,#faq,#contact,footer{position:relative}
+#services,#about,#process,#portfolio,#pricing,#faq,#contact,footer{position:relative;z-index:1}
 #services>.container,#about>.container,#process>.container,
 #portfolio>.container,#pricing>.container,#faq>.container,
 #contact>.container,footer>.container{position:relative;z-index:2}
@@ -859,6 +965,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
+    <div class="hero-bg-photo"></div>
     <div class="hero-orb orb-teal"></div>
     <div class="hero-orb orb-blue"></div>
     <div class="hero-orb orb-mid"></div>
@@ -941,7 +1048,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="services-header reveal">
       <div class="section-tag">Szolgáltatások</div>
-      <h2 class="section-title">Mindent amit a növekedéshez<br><span class="grad-text">valóban szükséged van</span></h2>
+      <h2 class="section-title">Mindent amit a növekedéshez <span class="grad-text">valóban szükséged van</span></h2>
       <p class="section-sub">Más ügynökségeknél 3 helyen kell megfizetned, amit mi egy csapatból adunk — weboldal, SEO és marketing összehangolva, egymást erősítve.</p>
     </div>
     <div class="services-grid">
@@ -1021,117 +1128,82 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <section id="portfolio">
   <div class="container">
     <div class="portfolio-header reveal">
-      <div class="section-tag" style="background:rgba(0,180,216,.2);color:var(--teal)">Portfólió</div>
-      <h2 class="section-title">Valódi eredmények,<br><span style="background:linear-gradient(90deg,#00B4D8,#90E0EF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">valódi vállalkozásoknak</span></h2>
-      <p class="section-sub">Nem a látványos designt mutatjuk — hanem a számokat, amelyek mögötte vannak. Ezek a te iparágadban is elérhetők.</p>
+      <div class="section-tag" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);margin-bottom:20px">Portfólió</div>
+      <h2 class="section-title">Referencia munkáink</h2>
+      <p class="section-sub">Korábbi projektjeink, különböző technológiákkal és iparágakban — mert minden vállalkozás más megoldást igényel.</p>
     </div>
     <div class="portfolio-slider">
     <div class="pf-track">
 
       <!-- Digital Seed -->
-      <div class="portfolio-item reveal">
-        <div class="pi-bar">
-          <div class="pi-dot" style="background:#ff5f57"></div>
-          <div class="pi-dot" style="background:#febc2e"></div>
-          <div class="pi-dot" style="background:#28c840"></div>
-          <div class="pi-url"></div>
-        </div>
+      <div class="portfolio-item is-active">
         <div class="pi-preview">
           <iframe src="https://digitalseed-jsey.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Digital Seed"></iframe>
-          <div class="pi-overlay">
-            <div class="pi-overlay-content">
-              <div class="pi-tag">Weboldal</div>
-              <div class="pi-title">Digital Seed</div>
-              <div class="pi-desc">digitalseed-jsey.vercel.app</div>
-              <a href="https://digitalseed-jsey.vercel.app/" target="_blank" rel="noopener" class="pi-btn">Megtekintés →</a>
+          <div class="pi-card-dim"></div>
+          <div class="pi-info">
+            <div>
+              <div class="pi-info-tag">Weboldal fejlesztés, UX / UI</div>
+              <div class="pi-info-title">digitalseed.hu</div>
             </div>
+            <a href="https://digitalseed-jsey.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
           </div>
         </div>
-        <div class="pi-info">
-          <div class="pi-info-tag">Weboldal</div>
-          <div class="pi-info-title">Digital Seed</div>
+      </div>
+
+      <!-- Smashpoint -->
+      <div class="portfolio-item">
+        <div class="pi-preview">
+          <iframe src="https://www.smashpoint.hu/" loading="lazy" scrolling="no" tabindex="-1" title="Smashpoint"></iframe>
+          <div class="pi-card-dim"></div>
+          <div class="pi-info">
+            <div>
+              <div class="pi-info-tag">Weboldal fejlesztés, SEO</div>
+              <div class="pi-info-title">smashpoint.hu</div>
+            </div>
+            <a href="https://www.smashpoint.hu/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
+          </div>
         </div>
       </div>
 
       <!-- Pizza Pont -->
-      <div class="portfolio-item reveal" style="transition-delay:.1s">
-        <div class="pi-bar">
-          <div class="pi-dot" style="background:#ff5f57"></div>
-          <div class="pi-dot" style="background:#febc2e"></div>
-          <div class="pi-dot" style="background:#28c840"></div>
-          <div class="pi-url"></div>
-        </div>
+      <div class="portfolio-item">
         <div class="pi-preview">
           <iframe src="https://pizzapont.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Pizza Pont"></iframe>
-          <div class="pi-overlay">
-            <div class="pi-overlay-content">
-              <div class="pi-tag">Weboldal</div>
-              <div class="pi-title">Pizza Pont</div>
-              <div class="pi-desc">pizzapont.vercel.app</div>
-              <a href="https://pizzapont.vercel.app/" target="_blank" rel="noopener" class="pi-btn">Megtekintés →</a>
+          <div class="pi-card-dim"></div>
+          <div class="pi-info">
+            <div>
+              <div class="pi-info-tag">Weboldal fejlesztés, UX / UI</div>
+              <div class="pi-info-title">pizzapont.hu</div>
             </div>
+            <a href="https://pizzapont.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
           </div>
-        </div>
-        <div class="pi-info">
-          <div class="pi-info-tag">Weboldal</div>
-          <div class="pi-info-title">Pizza Pont</div>
         </div>
       </div>
 
       <!-- Aramis -->
-      <div class="portfolio-item reveal" style="transition-delay:.2s">
-        <div class="pi-bar">
-          <div class="pi-dot" style="background:#ff5f57"></div>
-          <div class="pi-dot" style="background:#febc2e"></div>
-          <div class="pi-dot" style="background:#28c840"></div>
-          <div class="pi-url"></div>
-        </div>
+      <div class="portfolio-item">
         <div class="pi-preview">
           <iframe src="https://aramis-murex.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Aramis"></iframe>
-          <div class="pi-overlay">
-            <div class="pi-overlay-content">
-              <div class="pi-tag">Weboldal</div>
-              <div class="pi-title">Aramis</div>
-              <div class="pi-desc">aramis-murex.vercel.app</div>
-              <a href="https://aramis-murex.vercel.app/" target="_blank" rel="noopener" class="pi-btn">Megtekintés →</a>
+          <div class="pi-card-dim"></div>
+          <div class="pi-info">
+            <div>
+              <div class="pi-info-tag">Weboldal fejlesztés, UX / UI</div>
+              <div class="pi-info-title">aramis.hu</div>
             </div>
+            <a href="https://aramis-murex.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
           </div>
-        </div>
-        <div class="pi-info">
-          <div class="pi-info-tag">Weboldal</div>
-          <div class="pi-info-title">Aramis</div>
-        </div>
-      </div>
-
-
-      <!-- Smashpoint -->
-      <div class="portfolio-item reveal" style="transition-delay:.3s">
-        <div class="pi-bar">
-          <div class="pi-dot" style="background:#ff5f57"></div>
-          <div class="pi-dot" style="background:#febc2e"></div>
-          <div class="pi-dot" style="background:#28c840"></div>
-          <div class="pi-url"></div>
-        </div>
-        <div class="pi-preview">
-          <iframe src="https://www.smashpoint.hu/" loading="lazy" scrolling="no" tabindex="-1" title="Smashpoint"></iframe>
-          <div class="pi-overlay">
-            <div class="pi-overlay-content">
-              <div class="pi-tag">Weboldal</div>
-              <div class="pi-title">Smashpoint</div>
-              <div class="pi-desc">smashpoint.hu</div>
-              <a href="https://www.smashpoint.hu/" target="_blank" rel="noopener" class="pi-btn">Megtekintés →</a>
-            </div>
-          </div>
-        </div>
-        <div class="pi-info">
-          <div class="pi-info-tag">Weboldal</div>
-          <div class="pi-info-title">Smashpoint</div>
         </div>
       </div>
 
     </div><!-- /pf-track -->
-    <div class="pf-dots" id="pfDots"></div>
+    <button class="pf-arrow" id="pfPrev" aria-label="Előző">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="pf-arrow" id="pfNext" aria-label="Következő">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
     </div><!-- /portfolio-slider -->
+    <div class="pf-dots" id="pfDots"></div>
     <div class="portfolio-cta reveal">
       <a href="contact.html" class="btn btn-white">Mutasd az összes munkát →</a>
     </div>
@@ -1163,6 +1235,20 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           <li><span class="check">✓</span> SSL tanúsítvány</li>
           <li><span class="check">✓</span> 1 hónap support</li>
         </ul>
+        <div class="pc-addon">
+          <label class="pc-addon-toggle" id="maintToggle">
+            <input type="checkbox" id="maintCheck" onchange="toggleMaint(this)">
+            <div class="pc-addon-check" id="maintCheckBox"></div>
+            <div class="pc-addon-body">
+              <div>
+                <div class="pc-addon-label">Karbantartás</div>
+                <div class="pc-addon-sub">Opcionális kiegészítő</div>
+              </div>
+              <div class="pc-addon-price">+19 900 Ft/hó</div>
+            </div>
+          </label>
+          <div class="pc-addon-info" id="maintInfo">Havonta: frissítések, biztonsági mentés, tartalom módosítások és technikai support.</div>
+        </div>
         <a href="alap-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
       </div>
       <div class="price-card popular reveal" style="transition-delay:.15s">
@@ -1363,7 +1449,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
           <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
           <li><a href="#">Budapest, Magyarország</a></li>
-          <li><a href="#">H–P: 9:00–18:00</a></li>
         </ul>
         <div style="margin-top:24px">
           <a href="contact.html" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
@@ -1440,6 +1525,22 @@ function moveIndicator(link) {
     duration: 0.4,
     ease:    'power2.inOut'
   });
+}
+
+// ── Maintenance add-on toggle ──
+function toggleMaint(cb) {
+  const toggle = document.getElementById('maintToggle');
+  const box    = document.getElementById('maintCheckBox');
+  const info   = document.getElementById('maintInfo');
+  if (cb.checked) {
+    toggle.classList.add('checked');
+    box.textContent = '✓';
+    info.style.display = 'block';
+  } else {
+    toggle.classList.remove('checked');
+    box.textContent = '';
+    info.style.display = 'none';
+  }
 }
 
 // Indikátor az aktív linkre scroll alapján
@@ -1621,62 +1722,104 @@ gsap.fromTo('.service-card',
 );
 
 // ─────────────────────────────────────
-// PORTFOLIO SLIDER
+// PORTFOLIO SLIDER (clone-based infinite)
 // ─────────────────────────────────────
 (function() {
-  const track = document.querySelector('.pf-track');
+  const slider = document.querySelector('.portfolio-slider');
+  const track  = document.querySelector('.pf-track');
   const dotsEl = document.getElementById('pfDots');
-  const items = track ? track.querySelectorAll('.portfolio-item') : [];
-  if (!track || !items.length) return;
+  const btnPrev = document.getElementById('pfPrev');
+  const btnNext = document.getElementById('pfNext');
+  if (!track || !slider) return;
 
-  let current = 0;
+  // Collect originals before cloning
+  const originals = Array.from(track.querySelectorAll('.portfolio-item'));
+  const n = originals.length;
+  if (!n) return;
 
-  function visibleCount() { return window.innerWidth <= 768 ? 1 : 3; }
-  function pageCount() { return Math.ceil(items.length / visibleCount()); }
+  // Prepend clones (same order: clone_0 … clone_n-1 before real_0)
+  // So going left from real_0 hits clone_n-1 (visual copy of last item) ✓
+  const lead = document.createDocumentFragment();
+  originals.forEach(el => { const c = el.cloneNode(true); c.setAttribute('aria-hidden','true'); lead.appendChild(c); });
+  track.insertBefore(lead, originals[0]);
+
+  // Append clones
+  originals.forEach(el => { const c = el.cloneNode(true); c.setAttribute('aria-hidden','true'); track.appendChild(c); });
+
+  // All DOM items: [lead_0..lead_n-1, real_0..real_n-1, trail_0..trail_n-1]
+  let internalIdx = n; // start on real_0
+  let animating   = false;
+
+  function ratio()  { return window.innerWidth <= 768 ? 0.90 : window.innerWidth <= 1024 ? 0.85 : 0.76; }
+  function gap()    { return window.innerWidth <= 768 ? 12 : 16; }
+  function iw()     { return slider.offsetWidth * ratio(); }
+  function pos(i)   { return Math.round(i * (iw() + gap()) - (slider.offsetWidth - iw()) / 2); }
+  function ri()     { return ((internalIdx - n) % n + n) % n; }
+
+  function allItems() { return Array.from(track.querySelectorAll('.portfolio-item')); }
+
+  function syncUI() {
+    const r = ri();
+    allItems().forEach((el, i) => el.classList.toggle('is-active', i % n === r));
+    dotsEl.querySelectorAll('.pf-dot-btn').forEach((d, i) => d.classList.toggle('active', i === r));
+  }
 
   function buildDots() {
     dotsEl.innerHTML = '';
-    const pc = pageCount();
-    for (let i = 0; i < pc; i++) {
-      const btn = document.createElement('button');
-      btn.className = 'pf-dot-btn' + (i === current ? ' active' : '');
-      btn.setAttribute('aria-label', `Oldal ${i+1}`);
-      btn.addEventListener('click', () => goTo(i));
-      dotsEl.appendChild(btn);
+    for (let i = 0; i < n; i++) {
+      const b = document.createElement('button');
+      b.className = 'pf-dot-btn' + (i === ri() ? ' active' : '');
+      b.setAttribute('aria-label', 'Slide ' + (i + 1));
+      b.addEventListener('click', () => { if (!animating) { clearInterval(autoPlay); moveTo(n + i); } });
+      dotsEl.appendChild(b);
     }
   }
 
-  function goTo(page) {
-    const vc = visibleCount();
-    const pc = pageCount();
-    current = Math.max(0, Math.min(page, pc - 1));
-    const sliderW = track.parentElement.offsetWidth;
-    const gap = window.innerWidth <= 768 ? 16 : 24;
-    const itemW = (sliderW - gap * (vc - 1)) / vc;
-    const offset = current * vc * (itemW + gap);
-    const maxOffset = (items.length - vc) * (itemW + gap);
-    track.style.transform = `translateX(-${Math.min(offset, maxOffset)}px)`;
-    dotsEl.querySelectorAll('.pf-dot-btn').forEach((d, i) => d.classList.toggle('active', i === current));
+  function moveTo(idx) {
+    if (animating) return;
+    animating = true;
+    internalIdx = idx;
+    track.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1)';
+    track.style.transform  = 'translateX(-' + pos(internalIdx) + 'px)';
+    syncUI();
   }
 
-  // Touch swipe
-  let touchStartX = 0;
-  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0 && current < pageCount() - 1) goTo(current + 1);
-      else if (diff < 0 && current > 0) goTo(current - 1);
+  track.addEventListener('transitionend', function(e) {
+    if (e.propertyName !== 'transform') return; // ignore other transitioning props
+    animating = false;
+    var snap = false;
+    if (internalIdx < n)           { internalIdx += n; snap = true; }
+    else if (internalIdx >= 2 * n) { internalIdx -= n; snap = true; }
+    if (snap) {
+      track.style.transition = 'none';
+      void track.offsetWidth; // force reflow — collapses transition + position into one paint
+      track.style.transform = 'translateX(-' + pos(internalIdx) + 'px)';
     }
   });
 
-  window.addEventListener('resize', () => { current = 0; buildDots(); goTo(0); });
-  buildDots();
+  function next() { if (!animating) moveTo(internalIdx + 1); }
+  function prev() { if (!animating) moveTo(internalIdx - 1); }
 
-  // Auto-play 4s
-  let autoPlay = setInterval(() => goTo(current < pageCount() - 1 ? current + 1 : 0), 4000);
-  track.addEventListener('touchstart', () => clearInterval(autoPlay), { passive: true });
-  dotsEl.addEventListener('click', () => { clearInterval(autoPlay); autoPlay = setInterval(() => goTo(current < pageCount() - 1 ? current + 1 : 0), 4000); });
+  btnNext.addEventListener('click', () => { clearInterval(autoPlay); next(); });
+  btnPrev.addEventListener('click', () => { clearInterval(autoPlay); prev(); });
+
+  // Touch swipe
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; clearInterval(autoPlay); }, { passive: true });
+  track.addEventListener('touchend',   e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 40) { d > 0 ? next() : prev(); } });
+
+  window.addEventListener('resize', () => {
+    track.style.transition = 'none';
+    track.style.transform  = 'translateX(-' + pos(internalIdx) + 'px)';
+  });
+
+  // Init
+  buildDots();
+  track.style.transition = 'none';
+  track.style.transform  = 'translateX(-' + pos(internalIdx) + 'px)';
+  syncUI();
+
+  var autoPlay = setInterval(next, 4000);
 })();
 
 // PRICING MOBILE SLIDER
