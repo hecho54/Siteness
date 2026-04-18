@@ -106,13 +106,12 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
   inset:0 0 -120px 0;
   background:
     linear-gradient(to bottom,
-      rgba(5,10,21,.55) 0%,
-      rgba(5,10,21,.38) 18%,
-      rgba(5,10,21,.42) 48%,
-      rgba(5,10,21,.55) 62%,
-      rgba(5,10,21,.72) 74%,
-      rgba(5,10,21,.90) 84%,
-      #050A15 92%,
+      rgba(4,9,28,.78) 0%,
+      rgba(4,9,24,.58) 22%,
+      rgba(5,10,22,.52) 50%,
+      rgba(5,10,21,.68) 68%,
+      rgba(5,10,21,.88) 82%,
+      #050A15 93%,
       #050A15 100%
     );
 }
@@ -130,22 +129,22 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .hero-line-top{width:1px;height:72px;background:linear-gradient(to bottom,transparent,rgba(0,212,180,.55) 55%,transparent);margin:0 auto 28px;flex-shrink:0}
 
 /* Badge */
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.95);font-size:13px;font-weight:600;padding:6px 18px 6px 8px;border-radius:50px;margin-bottom:36px;backdrop-filter:blur(20px);box-shadow:0 0 0 1px rgba(0,212,180,.15),0 8px 32px rgba(0,0,0,.35)}
-.hero-badge .dot{width:28px;height:28px;background:linear-gradient(135deg,rgba(0,212,180,.18),rgba(14,165,233,.18));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.hero-badge .dot::after{content:'';width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px}
+.hero-badge .dot{width:6px;height:6px;background:var(--teal);border-radius:50%;flex-shrink:0;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px rgba(0,212,180,.7)}
+.hero-badge span.label{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5)}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
 
 /* Title */
 .hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(48px,7vw,92px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.055em;margin-bottom:0;text-shadow:0 2px 32px rgba(0,0,0,.55),0 1px 4px rgba(0,0,0,.35)}
-.hero-title .line2{display:block;padding-bottom:18px}
-.word-cycle{background:linear-gradient(90deg,#00D4B4 0%,#0EA5E9 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block;position:relative}
-.word-cycle::after{content:'';position:absolute;left:4%;bottom:-6px;right:4%;height:2px;background:linear-gradient(90deg,transparent,rgba(0,212,180,.5),rgba(14,165,233,.5),transparent);border-radius:2px}
+.hero-title .line2{display:block;width:fit-content;margin:0 auto;position:relative;padding-bottom:24px}
+.hero-title .line2::after{content:'';position:absolute;left:0;right:0;bottom:8px;height:2px;background:linear-gradient(90deg,rgba(0,212,180,0) 0%,#00D4B4 25%,#0EA5E9 75%,rgba(14,165,233,0) 100%);border-radius:2px}
+.word-cycle{color:#00D4B4;display:inline;font-style:normal}
 
 /* Divider between title and desc */
 .hero-divider{width:44px;height:2px;background:linear-gradient(90deg,transparent,rgba(0,212,180,.55),transparent);border-radius:2px;margin:32px auto 28px;flex-shrink:0}
 
 /* Description */
-.hero-desc{font-size:18px;color:rgba(255,255,255,.82);line-height:1.8;margin-bottom:40px;max-width:520px;font-weight:400;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.hero-desc{font-size:18px;color:var(--teal);line-height:1.8;margin-bottom:40px;max-width:520px;font-weight:400;text-shadow:0 1px 12px rgba(0,0,0,.4)}
 
 /* ── Social proof ── */
 .hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
@@ -200,7 +199,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    SERVICES
 ────────────────────────────────────────── */
-#services{padding:60px 0 120px;background:transparent;margin-top:-140px;position:relative;z-index:1}
+#services{padding:60px 0 24px;background:transparent;margin-top:-140px;position:relative;z-index:1}
 .services-header{text-align:center;margin-bottom:72px}
 .services-header .section-sub{margin:0 auto}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
@@ -229,7 +228,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 }
 /* Faded background number */
 .service-card::after{
-  content:attr(data-num);
+  content:none;
   position:absolute;
   top:-10px;right:20px;
   font-family:'Plus Jakarta Sans',sans-serif;
@@ -288,17 +287,18 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
   color:#fff;
   margin-bottom:12px;
 }
-.sc-desc{font-size:15px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:28px}
+.sc-desc{font-size:15px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:28px}
 .sc-features{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:0;flex:1}
 .sc-features li{
-  font-size:14px;color:rgba(255,255,255,.55);
+  font-size:14px;color:rgba(255,255,255,.8);
   padding:9px 0;
   border-bottom:1px solid rgba(255,255,255,.06);
   display:flex;align-items:center;gap:10px;
   transition:color .3s;
 }
 .sc-features li:last-child{border-bottom:none}
-.sc-features li svg{width:14px;height:14px;stroke:var(--teal);flex-shrink:0;opacity:.8}
+.sc-features li svg{display:none}
+.sc-features li::before{content:'✓';width:22px;height:22px;min-width:22px;background:rgba(0,212,180,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--teal);flex-shrink:0}
 .service-card:hover .sc-features li{color:rgba(255,255,255,.75)}
 .sc-link{
   display:inline-flex;align-items:center;gap:8px;
@@ -390,8 +390,8 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PORTFOLIO
 ────────────────────────────────────────── */
-#portfolio{padding:80px 0;background:transparent}
-.portfolio-header{text-align:left;margin-bottom:56px}
+#portfolio{padding:10px 0 18px;background:transparent}
+.portfolio-header{text-align:left;margin-bottom:16px;margin-top:36px}
 .portfolio-header .section-title{
   font-size:clamp(36px,6vw,68px);
   background:linear-gradient(to right,#fff 0%,rgba(255,255,255,.45) 100%);
@@ -406,7 +406,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .pf-track .portfolio-item{flex:0 0 76%;min-width:0}
 
 /* Dots */
-.pf-dots{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:28px}
+.pf-dots{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px}
 .pf-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
 .pf-dot-btn.active{background:#fff;width:24px;border-radius:4px}
 /* Arrows — absolute inside slider, vertically centered */
@@ -417,19 +417,20 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 #pfNext{right:20px}
 
 /* Card */
-.portfolio-item{border-radius:14px;overflow:hidden;position:relative;cursor:grab;background:#111;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.portfolio-item{border-radius:14px;overflow:hidden;position:relative;cursor:grab;background:#111;transition:transform .4s cubic-bezier(.22,1,.36,1);isolation:isolate;transform:translateZ(0);backface-visibility:hidden}
 .portfolio-item:active{cursor:grabbing}
 
 /* Hide old browser bar */
 .pi-bar{display:none}
 
 /* Preview */
-.pi-preview{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#0a0a0a}
+.pi-preview{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#0a0a0a;transform:translateZ(0)}
 .pi-preview iframe{position:absolute;top:0;left:0;width:1280px;height:800px;border:none;pointer-events:none;transform-origin:top left}
 
 /* Dim overlay on inactive cards */
 .pi-card-dim{position:absolute;inset:0;background:rgba(0,0,0,.5);transition:opacity .6s ease;pointer-events:none;z-index:1}
 .portfolio-item.is-active .pi-card-dim{opacity:0}
+.pf-clone .pi-card-dim{opacity:.92!important;transition:none!important}
 
 /* Hide old hover overlay */
 .pi-overlay{display:none}
@@ -453,7 +454,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
   backdrop-filter:blur(4px);transition:background .2s;
 }
 .pi-details-btn:hover{background:rgba(255,255,255,.22)}
-.portfolio-cta{text-align:center;margin-top:56px}
+.portfolio-cta{text-align:center;margin-top:20px}
 
 /* ──────────────────────────────────────────
    TESTIMONIALS
@@ -476,8 +477,8 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    PRICING
 ────────────────────────────────────────── */
-#pricing{padding:60px 0;background:transparent}
-.pricing-header{text-align:center;margin-bottom:72px}
+#pricing{padding:4px 0 60px;background:transparent}
+.pricing-header{text-align:center;margin-bottom:32px;margin-top:48px}
 .pricing-header .section-sub{margin:0 auto}
 .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch;padding-top:20px}
 .price-card{background:var(--white);border:2px solid #e8f2f8;border-radius:24px;padding:32px 24px;transition:transform .15s ease;position:relative;display:flex;flex-direction:column}
@@ -490,8 +491,8 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .pc-icon{font-size:36px;margin-bottom:20px}
 .pc-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
 .price-card.popular .pc-name{color:#fff}
-.pc-desc{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:32px;line-height:1.6}
-.price-card.popular .pc-desc{color:rgba(255,255,255,.6)}
+.pc-desc{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:32px;line-height:1.6}
+.price-card.popular .pc-desc{color:rgba(255,255,255,.8)}
 .pc-price{margin-bottom:32px}
 .pc-amount{font-family:'Plus Jakarta Sans',sans-serif;font-size:36px;font-weight:800;letter-spacing:-0.04em;color:var(--navy);line-height:1;display:block}
 .price-card.popular .pc-amount{color:#fff}
@@ -620,6 +621,8 @@ html,body{overflow-x:hidden}
   /* Sections */
   #hero .hero-content{padding:110px 0 80px}
   #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:80px 0}
+  #portfolio{padding:10px 0 18px}
+  #pricing{padding:4px 0 60px}
   footer{padding:64px 0 32px}
 
   /* Hero overlap csökkentése tableten */
@@ -665,6 +668,8 @@ html,body{overflow-x:hidden}
   /* Sections */
   #hero .hero-content{padding:96px 0 0}
   #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:56px 0}
+  #portfolio{padding:10px 0 18px}
+  #pricing{padding:4px 0 60px}
   footer{padding:56px 0 28px}
 
   /* Hero */
@@ -756,6 +761,8 @@ html,body{overflow-x:hidden}
   /* Sections */
   #hero .hero-content{padding:88px 0 0}
   #services,#about,#process,#portfolio,#pricing,#faq,#contact{padding:48px 0}
+  #portfolio{padding:10px 0 18px}
+  #pricing{padding:4px 0 60px}
 
   /* Hero */
   .hero-title{font-size:clamp(30px,9.5vw,52px);letter-spacing:-0.03em}
@@ -820,13 +827,13 @@ nav.scrolled{background:rgba(8,14,26,.96)}
 .ap-title{color:#fff}
 
 /* Portfolio */
-#portfolio{background:transparent}
+#portfolio{padding:10px 0 18px;background:transparent}
 
 /* Pricing cards */
 .price-card{background:var(--card-bg);border-color:var(--card-border)}
 .price-card.popular{background:linear-gradient(145deg,#0A2240,#0D3060);border-color:#1A4070}
 .pc-name{color:#fff}
-.pc-desc{color:var(--muted)}
+.pc-desc{color:rgba(255,255,255,.8)}
 .pc-amount{color:#fff}
 .pc-period{color:var(--muted)}
 .pc-features li{color:rgba(255,255,255,.75)}
@@ -937,7 +944,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="Images/logó 4.png" alt="Siteness logó">
+        <img src="Images/logo4.png" alt="Siteness logó">
       </a>
       <ul class="nav-links">
         <li><a href="#services">Szolgáltatások</a></li>
@@ -945,7 +952,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <li><a href="#pricing">Árak</a></li>
       </ul>
       <div class="nav-cta">
-        <a href="contact.html" class="btn btn-primary" style="padding:10px 24px;font-size:14px">Árajánlat</a>
+        <a href="contact.html" class="btn btn-primary" style="padding:10px 24px;font-size:14px">Ajánlatot kérek</a>
       </div>
       <div class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
@@ -959,7 +966,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <a href="#services" onclick="closeMobile()">Szolgáltatások</a>
   <a href="#portfolio" onclick="closeMobile()">Portfólió</a>
   <a href="#pricing" onclick="closeMobile()">Árak</a>
-  <a href="contact.html" onclick="closeMobile()" class="btn btn-primary">Árajánlat</a>
+  <a href="contact.html" onclick="closeMobile()" class="btn btn-primary">Ajánlatot kérek</a>
 </div>
 
 <!-- HERO -->
@@ -975,16 +982,10 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
   <div class="container">
     <div class="hero-content">
 
-      <!-- Badge -->
-      <div class="hero-badge">
-        <span class="dot"></span>
-        Weboldal · SEO · Hirdetés · Design
-      </div>
-
       <!-- Főcím -->
       <h1 class="hero-title">
         Profi online jelenlét,<br>
-        <span class="line2">ami <span class="word-cycle">ügyfeleket hoz</span></span>
+        <span class="line2">ami <span class="word-cycle">ügyfelekethoz</span></span>
       </h1>
 
       <!-- Leírás -->
@@ -1127,25 +1128,24 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="container">
-    <div class="portfolio-header reveal">
-      <div class="section-tag" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);margin-bottom:20px">Portfólió</div>
-      <h2 class="section-title">Referencia munkáink</h2>
-      <p class="section-sub">Korábbi projektjeink, különböző technológiákkal és iparágakban — mert minden vállalkozás más megoldást igényel.</p>
+    <div class="portfolio-header">
+      <h2 class="section-title">Weboldalak, amik<br><span class="grad-text">eredményt hoznak</span></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.55);max-width:580px">Nem csak szépek — minden oldalunkat azzal a céllal építjük, hogy több ügyfelet, több bevételt hozzon. Nézd meg, mit alkottunk.</p>
     </div>
     <div class="portfolio-slider">
     <div class="pf-track">
 
-      <!-- Digital Seed -->
+      <!-- Aramis -->
       <div class="portfolio-item is-active">
         <div class="pi-preview">
-          <iframe src="https://digitalseed-jsey.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Digital Seed"></iframe>
+          <iframe src="https://aramis-murex.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Aramis"></iframe>
           <div class="pi-card-dim"></div>
           <div class="pi-info">
             <div>
               <div class="pi-info-tag">Weboldal fejlesztés, UX / UI</div>
-              <div class="pi-info-title">digitalseed.hu</div>
+              <div class="pi-info-title">aramis.hu</div>
             </div>
-            <a href="https://digitalseed-jsey.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
+            <a href="https://aramis-murex.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
           </div>
         </div>
       </div>
@@ -1180,17 +1180,17 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         </div>
       </div>
 
-      <!-- Aramis -->
+      <!-- Carpoint -->
       <div class="portfolio-item">
         <div class="pi-preview">
-          <iframe src="https://aramis-murex.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Aramis"></iframe>
+          <iframe src="https://carpoint-mu.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Carpoint"></iframe>
           <div class="pi-card-dim"></div>
           <div class="pi-info">
             <div>
               <div class="pi-info-tag">Weboldal fejlesztés, UX / UI</div>
-              <div class="pi-info-title">aramis.hu</div>
+              <div class="pi-info-title">carpoint.hu</div>
             </div>
-            <a href="https://aramis-murex.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
+            <a href="https://carpoint-mu.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
           </div>
         </div>
       </div>
@@ -1204,9 +1204,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     </button>
     </div><!-- /portfolio-slider -->
     <div class="pf-dots" id="pfDots"></div>
-    <div class="portfolio-cta reveal">
-      <a href="contact.html" class="btn btn-white">Mutasd az összes munkát →</a>
-    </div>
   </div>
 </section>
 
@@ -1214,8 +1211,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <!-- PRICING -->
 <section id="pricing">
   <div class="container">
-    <div class="pricing-header reveal">
-      <div class="section-tag">Árak</div>
+    <div class="pricing-header">
       <h2 class="section-title">Befektetés, nem<br><span class="grad-text">költség</span></h2>
       <p class="section-sub">Egy profi weboldal magát fizeti vissza — átlagosan 6 hónapon belül. Nézd meg melyik csomag illik hozzád, vagy kérj személyre szabott ajánlatot.</p>
     </div>
@@ -1223,17 +1219,18 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     <div class="pricing-grid">
       <div class="price-card reveal">
         <div class="pc-name">Basic</div>
-        <div class="pc-desc">Tökéletes első lépés — profi jelenlét megfizethető áron, ami már az első héttől ügyfeleket hozhat.</div>
+        <div class="pc-desc">Profi webjelenlét, ami az első héttől ügyfeleket hozhat — egyszer fizetsz, hosszan kamatozik.</div>
         <div class="pc-price">
-          <span class="pc-amount">199 900 <span class="pc-suffix">Ft</span></span>
+          <span class="pc-amount">189 900 <span class="pc-suffix">Ft</span></span>
           <div class="pc-period">egyszeri díj + ÁFA</div>
         </div>
         <ul class="pc-features">
-          <li><span class="check">✓</span> Weboldal</li>
-          <li><span class="check">✓</span> Mobilbarát design</li>
+          <li><span class="check">✓</span> Egyedi, mobilbarát weboldal</li>
           <li><span class="check">✓</span> Alap SEO beállítás</li>
-          <li><span class="check">✓</span> SSL tanúsítvány</li>
+          <li><span class="check">✓</span> SSL + Google Analytics</li>
           <li><span class="check">✓</span> 1 hónap support</li>
+          <li><span class="check">✓</span> Hirdetéskezelés</li>
+          <li><span class="check">✓</span> Projektmenedzser</li>
         </ul>
         <div class="pc-addon">
           <label class="pc-addon-toggle" id="maintToggle">
@@ -1254,51 +1251,54 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       <div class="price-card popular reveal" style="transition-delay:.15s">
         <div class="popular-badge">LEGNÉPSZERŰBB</div>
         <div class="pc-name">Plus</div>
-        <div class="pc-desc">Weboldal + SEO + Ads — összehangolva, egymást erősítve. A leggyorsabb út a mérhető növekedéshez.</div>
+        <div class="pc-desc">SEO + Google Ads + Facebook Ads kezelés — hirdetési csatornák összehangolva, support nélkül.</div>
         <div class="pc-price">
           <span class="pc-amount" style="color:#fff">69 900 Ft<span class="pc-suffix" style="color:rgba(255,255,255,.6)">/hó</span></span>
-          <div class="pc-period">Basic csomag + ÁFA</div>
+          <div class="pc-period">+ ÁFA</div>
         </div>
         <ul class="pc-features">
-          <li><span class="check">✓</span> Weboldal</li>
           <li><span class="check">✓</span> Teljes SEO optimalizálás</li>
-          <li><span class="check">✓</span> Google Ads beállítás</li>
-          <li><span class="check">✓</span> Facebook Ads beállítás</li>
-          <li><span class="check">✓</span> 3 hónap support</li>
+          <li><span class="check">✓</span> Google Ads kampánykezelés</li>
+          <li><span class="check">✓</span> Facebook Ads kampánykezelés</li>
+          <li><span class="check">✓</span> Havi teljesítményriport</li>
+          <li><span class="check">✓</span> Dedikált projektmenedzser</li>
+          <li><span class="check">✓</span> Stratégiai konzultáció</li>
         </ul>
         <a href="uzleti-csomag.html" class="btn btn-primary" style="width:100%;justify-content:center">Részletek megtekintése</a>
       </div>
       <div class="price-card reveal" style="transition-delay:.3s">
         <div class="pc-name">Premium</div>
-        <div class="pc-desc">Ha komolyabb a tét, komolyabb megoldást kapsz. Dedikált csapat, teljes stratégia, mérhető üzleti eredmény.</div>
+        <div class="pc-desc">Dedikált csapat, teljes stratégia, webáruház — csak 20 000 Ft-tal több mint a Plus, de sokkal több benne.</div>
         <div class="pc-price">
           <span class="pc-amount">89 900 Ft<span class="pc-suffix">/hó</span></span>
-          <div class="pc-period">Plus csomag + ÁFA</div>
+          <div class="pc-period">Plus csomag tartalma + az alábbiak + ÁFA</div>
         </div>
         <ul class="pc-features">
-          <li><span class="check">✓</span> Webáruház + Ads</li>
+          <li><span class="check">✓</span> Webáruház + összes hirdetés</li>
           <li><span class="check">✓</span> Dedikált projektmenedzser</li>
           <li><span class="check">✓</span> 24/7 prioritásos support</li>
-          <li><span class="check">✓</span> Logó készítés</li>
-          <li><span class="check">✓</span> Grafikai design</li>
+          <li><span class="check">✓</span> Logó és grafikai design</li>
           <li><span class="check">✓</span> Havi stratégiai konzultáció</li>
+          <li><span class="check">✓</span> Havi részletes riport</li>
         </ul>
         <a href="premium-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
       </div>
       <div class="price-card reveal" style="transition-delay:.45s">
-        <div class="pc-name">Design</div>
-        <div class="pc-desc">Havi rendszeres grafikai tartalom — logó, borítóképek és egyedi designok, amik megkülönböztetnek a versenytársaktól.</div>
+        <div class="pc-name">Egyedi</div>
+        <div class="pc-desc">Teljesen személyre szabott megoldás — ha a dobozos csomagok már szűknek bizonyulnak.</div>
         <div class="pc-price">
-          <span class="pc-amount">50 000 <span class="pc-suffix">Ft</span></span>
-          <div class="pc-period">havonta + ÁFA</div>
+          <span class="pc-amount" style="font-size:28px;line-height:1.2">Egyedi ajánlat</span>
+          <div class="pc-period">konzultáció alapján</div>
         </div>
         <ul class="pc-features">
-          <li><span class="check">✓</span> Logó készítés</li>
-          <li><span class="check">✓</span> Borítóképek (Facebook, Instagram)</li>
-          <li><span class="check">✓</span> Közösségi média designok</li>
-          <li><span class="check">✓</span> Szórólap / banner tervezés</li>
+          <li><span class="check">✓</span> Egyedi fejlesztés és integráció</li>
+          <li><span class="check">✓</span> Többnyelvű weboldal</li>
+          <li><span class="check">✓</span> Teljes arculattervezés</li>
+          <li><span class="check">✓</span> Költségvetés alapú hirdetéskezelés</li>
+          <li><span class="check">✓</span> Dedikált account manager</li>
+          <li><span class="check">✓</span> SLA-alapú support</li>
         </ul>
-        <a href="design-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
+        <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center">Ajánlatot kérek</a>
       </div>
     </div><!-- /pricing-grid -->
     <div class="pricing-dots" id="pricingDots"></div>
@@ -1343,14 +1343,6 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
               <div class="ci-val">Budapest, Magyarország</div>
             </div>
           </div>
-        </div>
-        <div class="social-links">
-          <a class="sl" href="#" title="Facebook" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a class="sl" href="#" title="Instagram" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
         </div>
       </div>
       <div class="contact-form reveal-right">
@@ -1410,17 +1402,9 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo">
-          <img src="Images/logó 4.png" alt="Siteness logó">
+          <img src="Images/logo4.png" alt="Siteness logó">
         </a>
-        <p>2016 óta segítjük a magyar vállalkozásokat, hogy online is nyerjenek. 200+ sikeres projekt. 98% elégedett ügyfél.</p>
-        <div class="social-links">
-          <a class="sl" href="#" title="Facebook" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a class="sl" href="#" title="Instagram" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-        </div>
+        <p>Magyar vállalkozásoknak segítünk erős online jelenlétet felépíteni — modern weboldalakkal, hatékony SEO-val és célzott hirdetésekkel.</p>
       </div>
       <div>
         <div class="footer-heading">Szolgáltatások</div>
@@ -1437,8 +1421,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="footer-heading">Vállalat</div>
         <ul class="footer-links">
           <li><a href="#portfolio">Portfólió</a></li>
-          <li><a href="#testimonials">Vélemények</a></li>
-          <li><a href="#process">Hogyan dolgozunk</a></li>
+
           <li><a href="#faq">GYIK</a></li>
           <li><a href="contact.html">Kapcsolat</a></li>
         </ul>
@@ -1458,9 +1441,9 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     <div class="footer-bottom">
       <p>© 2026 Siteness. Minden jog fenntartva.</p>
       <div class="footer-bottom-links">
-        <a href="#">Adatvédelem</a>
-        <a href="#">ÁSZF</a>
-        <a href="#">Cookie-k</a>
+        <a href="adatvedelem.html">Adatvédelem</a>
+        <a href="aszf.html">ÁSZF</a>
+        <a href="cookie.html">Cookie-k</a>
       </div>
     </div>
   </div>
@@ -1474,7 +1457,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <!-- PAGE CURTAIN – nav átmenet -->
 <div id="page-curtain">
   <div class="curtain-logo">
-    <img src="Images/logó 4.png" alt="Siteness" style="height:48px;filter:brightness(1.1)">
+    <img src="Images/logo4.png" alt="Siteness" style="height:48px;filter:brightness(1.1)">
   </div>
 </div>
 
@@ -1722,101 +1705,93 @@ gsap.fromTo('.service-card',
 );
 
 // ─────────────────────────────────────
-// PORTFOLIO SLIDER (clone-based infinite)
+// PORTFOLIO SLIDER
 // ─────────────────────────────────────
 (function() {
-  const slider = document.querySelector('.portfolio-slider');
-  const track  = document.querySelector('.pf-track');
-  const dotsEl = document.getElementById('pfDots');
-  const btnPrev = document.getElementById('pfPrev');
-  const btnNext = document.getElementById('pfNext');
+  var slider  = document.querySelector('.portfolio-slider');
+  var track   = document.querySelector('.pf-track');
+  var dotsEl  = document.getElementById('pfDots');
+  var btnPrev = document.getElementById('pfPrev');
+  var btnNext = document.getElementById('pfNext');
   if (!track || !slider) return;
 
-  // Collect originals before cloning
-  const originals = Array.from(track.querySelectorAll('.portfolio-item'));
-  const n = originals.length;
+  var allItems = Array.from(track.querySelectorAll('.portfolio-item'));
+  var n = allItems.length;
   if (!n) return;
 
-  // Prepend clones (same order: clone_0 … clone_n-1 before real_0)
-  // So going left from real_0 hits clone_n-1 (visual copy of last item) ✓
-  const lead = document.createDocumentFragment();
-  originals.forEach(el => { const c = el.cloneNode(true); c.setAttribute('aria-hidden','true'); lead.appendChild(c); });
-  track.insertBefore(lead, originals[0]);
+  var current   = 0;
+  var animating = false;
 
-  // Append clones
-  originals.forEach(el => { const c = el.cloneNode(true); c.setAttribute('aria-hidden','true'); track.appendChild(c); });
-
-  // All DOM items: [lead_0..lead_n-1, real_0..real_n-1, trail_0..trail_n-1]
-  let internalIdx = n; // start on real_0
-  let animating   = false;
-
-  function ratio()  { return window.innerWidth <= 768 ? 0.90 : window.innerWidth <= 1024 ? 0.85 : 0.76; }
-  function gap()    { return window.innerWidth <= 768 ? 12 : 16; }
-  function iw()     { return slider.offsetWidth * ratio(); }
-  function pos(i)   { return Math.round(i * (iw() + gap()) - (slider.offsetWidth - iw()) / 2); }
-  function ri()     { return ((internalIdx - n) % n + n) % n; }
-
-  function allItems() { return Array.from(track.querySelectorAll('.portfolio-item')); }
+  function ratio() { return window.innerWidth <= 768 ? 0.90 : window.innerWidth <= 1024 ? 0.85 : 0.76; }
+  function gap()   { return window.innerWidth <= 768 ? 12 : 16; }
+  function iw()    { return slider.offsetWidth * ratio(); }
+  function pos(i)  {
+    var raw = Math.round(i * (iw() + gap()) - (slider.offsetWidth - iw()) / 2);
+    var max = Math.max(0, Math.round(n * iw() + (n - 1) * gap() - slider.offsetWidth));
+    return Math.max(0, Math.min(raw, max));
+  }
 
   function syncUI() {
-    const r = ri();
-    allItems().forEach((el, i) => el.classList.toggle('is-active', i % n === r));
-    dotsEl.querySelectorAll('.pf-dot-btn').forEach((d, i) => d.classList.toggle('active', i === r));
+    allItems.forEach(function(el, i) { el.classList.toggle('is-active', i === current); });
+    dotsEl.querySelectorAll('.pf-dot-btn').forEach(function(d, i) { d.classList.toggle('active', i === current); });
   }
 
   function buildDots() {
     dotsEl.innerHTML = '';
-    for (let i = 0; i < n; i++) {
-      const b = document.createElement('button');
-      b.className = 'pf-dot-btn' + (i === ri() ? ' active' : '');
-      b.setAttribute('aria-label', 'Slide ' + (i + 1));
-      b.addEventListener('click', () => { if (!animating) { clearInterval(autoPlay); moveTo(n + i); } });
-      dotsEl.appendChild(b);
+    for (var i = 0; i < n; i++) {
+      (function(idx) {
+        var b = document.createElement('button');
+        b.className = 'pf-dot-btn' + (idx === 0 ? ' active' : '');
+        b.setAttribute('aria-label', 'Slide ' + (idx + 1));
+        b.addEventListener('click', function() { if (!animating) { clearInterval(autoPlay); navigate(idx, true); } });
+        dotsEl.appendChild(b);
+      })(i);
     }
   }
 
-  function moveTo(idx) {
-    if (animating) return;
-    animating = true;
-    internalIdx = idx;
-    track.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1)';
-    track.style.transform  = 'translateX(-' + pos(internalIdx) + 'px)';
+  // animate=true → smooth transition; animate=false → instant (no visible change)
+  function navigate(target, animate) {
+    if (animating && animate) return;
+    current = target;
     syncUI();
+    if (animate) {
+      animating = true;
+      track.style.transition = 'transform .45s cubic-bezier(.22,1,.36,1)';
+    } else {
+      track.style.transition = 'none';
+      void track.offsetWidth;
+    }
+    track.style.transform = 'translateX(-' + pos(current) + 'px)';
   }
 
   track.addEventListener('transitionend', function(e) {
-    if (e.propertyName !== 'transform') return; // ignore other transitioning props
-    animating = false;
-    var snap = false;
-    if (internalIdx < n)           { internalIdx += n; snap = true; }
-    else if (internalIdx >= 2 * n) { internalIdx -= n; snap = true; }
-    if (snap) {
-      track.style.transition = 'none';
-      void track.offsetWidth; // force reflow — collapses transition + position into one paint
-      track.style.transform = 'translateX(-' + pos(internalIdx) + 'px)';
-    }
+    if (e.propertyName === 'transform') animating = false;
   });
 
-  function next() { if (!animating) moveTo(internalIdx + 1); }
-  function prev() { if (!animating) moveTo(internalIdx - 1); }
+  function next() {
+    var wrap = current === n - 1;
+    navigate((current + 1) % n, !wrap); // wrap = instant, else animated
+  }
+  function prev() {
+    var wrap = current === 0;
+    navigate((current - 1 + n) % n, !wrap);
+  }
 
-  btnNext.addEventListener('click', () => { clearInterval(autoPlay); next(); });
-  btnPrev.addEventListener('click', () => { clearInterval(autoPlay); prev(); });
+  btnNext.addEventListener('click', function() { clearInterval(autoPlay); next(); });
+  btnPrev.addEventListener('click', function() { clearInterval(autoPlay); prev(); });
 
-  // Touch swipe
-  let tx = 0;
-  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; clearInterval(autoPlay); }, { passive: true });
-  track.addEventListener('touchend',   e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 40) { d > 0 ? next() : prev(); } });
+  var tx = 0;
+  track.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; clearInterval(autoPlay); }, { passive: true });
+  track.addEventListener('touchend',   function(e) { var d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 40) { d > 0 ? next() : prev(); } });
 
-  window.addEventListener('resize', () => {
+  window.addEventListener('resize', function() {
     track.style.transition = 'none';
-    track.style.transform  = 'translateX(-' + pos(internalIdx) + 'px)';
+    track.style.transform  = 'translateX(-' + pos(current) + 'px)';
   });
 
-  // Init
   buildDots();
   track.style.transition = 'none';
-  track.style.transform  = 'translateX(-' + pos(internalIdx) + 'px)';
+  track.style.transform  = 'translateX(-' + pos(current) + 'px)';
   syncUI();
 
   var autoPlay = setInterval(next, 4000);

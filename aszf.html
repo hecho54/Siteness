@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Általános Szerződési Feltételek – Siteness</title>
+<meta name="description" content="A Siteness általános szerződési feltételei weboldal-készítési és digitális szolgáltatásokhoz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--navy:#080E1A;--blue:#0EA5E9;--teal:#00D4B4;--grad:linear-gradient(135deg,#0EA5E9,#00D4B4)}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:hidden}
+  body{background:var(--navy);color:rgba(255,255,255,.85);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,backdrop-filter .3s}
+  nav.scrolled{background:rgba(8,14,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+  nav .container{width:100%;max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+  .nav-logo img{height:32px;width:auto;object-fit:contain;display:block}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .btn{display:inline-block;padding:10px 22px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+  .btn-primary{background:var(--grad);color:#fff}
+  .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+  .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,14,26,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;z-index:99}
+  .mobile-menu.open{display:block}
+  .mobile-menu ul{list-style:none;padding:0 24px}
+  .mobile-menu ul li{border-bottom:1px solid rgba(255,255,255,.06)}
+  .mobile-menu ul li a{display:block;padding:14px 0;color:rgba(255,255,255,.8);text-decoration:none;font-size:15px;font-weight:500}
+  .mobile-menu .mobile-cta{padding:20px 24px 8px}
+
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none}
+    .hamburger{display:flex}
+    nav .container{padding:0 20px}
+  }
+
+  /* PAGE */
+  .page-hero{padding:140px 0 60px;text-align:center;border-bottom:1px solid rgba(255,255,255,.07)}
+  .page-hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;color:#fff;margin-bottom:16px}
+  .page-hero p{color:rgba(255,255,255,.5);font-size:15px}
+
+  .container{max-width:1200px;margin:0 auto;padding:0 40px}
+  .content-wrap{max-width:760px;margin:0 auto;padding:60px 40px 100px}
+
+  .policy-section{margin-bottom:48px}
+  .policy-section h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .policy-section h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;color:var(--teal);margin:20px 0 8px}
+  .policy-section p{color:rgba(255,255,255,.7);margin-bottom:12px;font-size:15px}
+  .policy-section ul{margin:8px 0 12px 20px;color:rgba(255,255,255,.7);font-size:15px}
+  .policy-section ul li{margin-bottom:6px}
+  .policy-section a{color:var(--blue);text-decoration:none}
+  .policy-section a:hover{text-decoration:underline}
+  .highlight-box{background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.15);border-radius:12px;padding:20px 24px;margin:16px 0}
+  .highlight-box p{margin:0;color:rgba(255,255,255,.75)}
+
+  /* TOC */
+  .toc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px 28px;margin-bottom:48px}
+  .toc p{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+  .toc ol{margin-left:18px;color:rgba(255,255,255,.6);font-size:14px}
+  .toc ol li{margin-bottom:6px}
+  .toc ol li a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+  .toc ol li a:hover{color:var(--teal)}
+
+  /* FOOTER */
+  footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:60px 0 0}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
+  .footer-logo{margin-bottom:12px;display:inline-flex}
+  .footer-logo img{height:28px;width:auto;object-fit:contain}
+  .footer-desc{color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:280px}
+  .footer-heading{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:16px}
+  .footer-links{list-style:none}
+  .footer-links li{margin-bottom:10px}
+  .footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .2s}
+  .footer-links a:hover{color:#fff}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:40px;padding:20px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
+  .footer-bottom p{color:rgba(255,255,255,.35);font-size:13px}
+  .footer-bottom-links{display:flex;gap:20px}
+  .footer-bottom-links a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;transition:color .2s}
+  .footer-bottom-links a:hover,.footer-bottom-links a[aria-current]{color:rgba(255,255,255,.7)}
+
+  /* BACK TO TOP */
+  #backTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;z-index:90}
+  #backTop.visible{opacity:1;transform:translateY(0)}
+  #backTop svg{width:20px;height:20px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  @media(max-width:768px){
+    .content-wrap{padding:40px 20px 80px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:32px;padding:0 20px}
+    .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:20px}
+    .footer-bottom-links{justify-content:center}
+    .page-hero{padding:110px 20px 40px}
+  }
+  @media(max-width:480px){
+    .footer-grid{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="Images/logo4.png" alt="Siteness logó">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Szolgáltatások</a></li>
+      <li><a href="index.html#portfolio">Portfólió</a></li>
+      <li><a href="index.html#pricing">Árak</a></li>
+      <li><a href="index.html#process">Folyamat</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta">Ajánlatot kérek</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#services" onclick="toggleMenu()">Szolgáltatások</a></li>
+    <li><a href="index.html#portfolio" onclick="toggleMenu()">Portfólió</a></li>
+    <li><a href="index.html#pricing" onclick="toggleMenu()">Árak</a></li>
+    <li><a href="index.html#process" onclick="toggleMenu()">Folyamat</a></li>
+  </ul>
+  <div class="mobile-cta">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;display:block">Ajánlatot kérek</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <h1>Általános Szerződési Feltételek</h1>
+    <p>Hatályos: 2026. január 1-től</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <div class="highlight-box" style="margin-bottom:40px">
+    <p>Kérjük, figyelmesen olvassa el jelen Általános Szerződési Feltételeket, mert a Siteness szolgáltatásainak igénybevételével Ön elfogadja az itt leírt feltételeket.</p>
+  </div>
+
+  <div class="toc">
+    <p>Tartalomjegyzék</p>
+    <ol>
+      <li><a href="#s1">Általános rendelkezések</a></li>
+      <li><a href="#s2">A szerződés létrejötte</a></li>
+      <li><a href="#s3">Szolgáltatások köre</a></li>
+      <li><a href="#s4">Díjak és fizetési feltételek</a></li>
+      <li><a href="#s5">Teljesítési határidők</a></li>
+      <li><a href="#s6">Az ügyfél kötelezettségei</a></li>
+      <li><a href="#s7">Szerzői jogok</a></li>
+      <li><a href="#s8">Felelősség korlátozása</a></li>
+      <li><a href="#s9">Karbantartás és támogatás</a></li>
+      <li><a href="#s10">Felmondás</a></li>
+      <li><a href="#s11">Vegyes rendelkezések</a></li>
+    </ol>
+  </div>
+
+  <div class="policy-section" id="s1">
+    <h2>1. Általános rendelkezések</h2>
+    <p>Jelen Általános Szerződési Feltételek (a továbbiakban: ÁSZF) a Siteness (a továbbiakban: „Szolgáltató") és megrendelői (a továbbiakban: „Ügyfél") között létrejövő weboldal-készítési, grafikai tervezési és digitális marketing szolgáltatásokra vonatkozó jogviszony általános feltételeit tartalmazza.</p>
+    <ul>
+      <li><strong>Szolgáltató neve:</strong> Siteness</li>
+      <li><strong>Székhely:</strong> Budapest, Magyarország</li>
+      <li><strong>E-mail:</strong> <a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
+      <li><strong>Telefon:</strong> <a href="tel:+36301234567">+36 30 123 4567</a></li>
+    </ul>
+    <p>Az ÁSZF-et a Szolgáltató bármikor módosíthatja; a módosítás az érintett Ügyfeleknek küldött értesítéssel lép hatályba. A folyamatban lévő megbízásokra a megbízás létrejöttekor hatályos feltételek vonatkoznak.</p>
+  </div>
+
+  <div class="policy-section" id="s2">
+    <h2>2. A szerződés létrejötte</h2>
+    <p>A szerződés az Ügyfél által kitöltött ajánlatkérő űrlap, személyes egyeztetés vagy e-mail útján beadott megrendelés, valamint a Szolgáltató írásos visszaigazolása alapján jön létre.</p>
+    <h3>A szerződés érvényes, ha:</h3>
+    <ul>
+      <li>az Ügyfél megküldte a megrendelést és elfogadta az árajánlatot,</li>
+      <li>a Szolgáltató írásban visszaigazolta a megbízást,</li>
+      <li>az előleg (ha alkalmazandó) megérkezett a Szolgáltató számlájára.</li>
+    </ul>
+    <p>Szóbeli megállapodások csak akkor érvényesek, ha azt mindkét fél írásban (e-mailben) megerősíti.</p>
+  </div>
+
+  <div class="policy-section" id="s3">
+    <h2>3. Szolgáltatások köre</h2>
+    <h3>Weboldal-készítés</h3>
+    <p>A Szolgáltató egyedi tervezésű, reszponzív weboldalakat készít az Ügyfél igényei alapján. A pontos tartalmi és funkcionális elvárásokat az árajánlatban, illetve a projektleírásban rögzítjük.</p>
+    <h3>Karbantartás és tárhely</h3>
+    <p>Havi karbantartási csomag keretében a Szolgáltató elvégzi a szoftverfrissítéseket, biztonsági mentéseket és kisebb tartalomszerkesztési feladatokat. A karbantartás részleteit az egyedi szerződés tartalmazza.</p>
+    <h3>Grafikai tervezés</h3>
+    <p>Logótervezés, arculatkészítés és egyéb vizuális anyagok készítése külön megrendelés alapján, az árajánlatban rögzített feltételekkel.</p>
+    <h3>Nem tartalmazza a szolgáltatás</h3>
+    <ul>
+      <li>Harmadik féltől vásárolt szoftverek, bővítmények, stock fotók licencdíját (ezeket az Ügyfél viseli)</li>
+      <li>Domain regisztrációját és tárhelydíját (hacsak külön meg nem állapodtunk)</li>
+      <li>Az árajánlaton felüli extra funkciókat</li>
+    </ul>
+  </div>
+
+  <div class="policy-section" id="s4">
+    <h2>4. Díjak és fizetési feltételek</h2>
+    <h3>Díjszabás</h3>
+    <p>A szolgáltatások díját az egyedi árajánlat tartalmazza. A weboldalon feltüntetett árak tájékoztató jellegűek; a pontos ár az Ügyfél igényeitől függően változhat.</p>
+    <h3>Fizetési ütemezés</h3>
+    <ul>
+      <li><strong>50% előleg</strong> – a megbízás visszaigazolásakor, a munka megkezdése előtt</li>
+      <li><strong>50% végösszeg</strong> – az elkészült weboldal átadásakor, az élesítés előtt</li>
+    </ul>
+    <p>Havi karbantartási csomagnál a díj minden hónap 1-jén esedékes, 8 napos fizetési határidővel.</p>
+    <h3>Késedelmes fizetés</h3>
+    <p>Késedelmes fizetés esetén a Szolgáltató fenntartja a jogot a munka szüneteltetésére, illetve a Ptk. szerinti késedelmi kamat felszámítására. Az élesített weboldal hozzáférését a Szolgáltató felfüggesztheti a teljes összeg rendezéséig.</p>
+  </div>
+
+  <div class="policy-section" id="s5">
+    <h2>5. Teljesítési határidők</h2>
+    <p>A várható átfutási időt az árajánlat tartalmazza. A határidő az előleg beérkezésétől és az összes szükséges anyag (szövegek, képek, logó stb.) Ügyfél általi megküldésétől számítódik.</p>
+    <p>A határidő módosulhat, ha:</p>
+    <ul>
+      <li>az Ügyfél késedelmesen adja meg a szükséges tartalmakat vagy visszajelzéseket,</li>
+      <li>az Ügyfél az eredeti megrendeléshez képest extra igényeket támaszt,</li>
+      <li>vis maior esemény következik be.</li>
+    </ul>
+    <p>A határidő csúszásáról a Szolgáltató előre értesíti az Ügyfelet.</p>
+  </div>
+
+  <div class="policy-section" id="s6">
+    <h2>6. Az ügyfél kötelezettségei</h2>
+    <p>Az Ügyfél köteles:</p>
+    <ul>
+      <li>a munka megkezdéséhez szükséges anyagokat (szöveg, képek, hozzáférések) határidőre megküldeni,</li>
+      <li>a tervekre, prototípusokra vonatkozó visszajelzést 5 munkanapon belül megadni,</li>
+      <li>gondoskodni arról, hogy a megküldött tartalmak harmadik személyek jogait nem sértik,</li>
+      <li>az átvett weboldalt, grafikai anyagokat jogtiszta módon használni.</li>
+    </ul>
+    <p>Az Ügyfél felelős minden olyan tartalomért (szöveg, kép, adat), amelyet a weboldalon megjelenít. A Szolgáltató nem vállal felelősséget az Ügyfél által biztosított tartalmak jogszerűségéért.</p>
+  </div>
+
+  <div class="policy-section" id="s7">
+    <h2>7. Szerzői jogok</h2>
+    <h3>A kész weboldal</h3>
+    <p>A teljes vételár kifizetése után az Ügyfél korlátlan felhasználási jogot szerez a részére elkészített weboldalra és grafikai anyagokra. A Szolgáltató portfólió céljára hivatkozhat a munkára, és a weboldalon elhelyezhet diszkrét „Készítette: Siteness" feliratot.</p>
+    <h3>Felhasznált eszközök</h3>
+    <p>A Szolgáltató által használt keretrendszerek, sablonok és egyéb eszközök licencét az Ügyfél nem szerzi meg, kivéve, ha ezt külön megállapodtuk. Az Ügyfél kizárólag a végterméket kapja meg, a forráskódhoz való hozzáférés külön egyeztetés tárgya.</p>
+    <h3>Harmadik féltől származó tartalmak</h3>
+    <p>Stock fotók, ikonok, betűtípusok és egyéb licencelt eszközök használatáért a szükséges licenceket az Ügyfélnek kell megszereznie, hacsak külön nem állapodtunk meg másképp.</p>
+  </div>
+
+  <div class="policy-section" id="s8">
+    <h2>8. Felelősség korlátozása</h2>
+    <p>A Szolgáltató nem vállal felelősséget:</p>
+    <ul>
+      <li>az Ügyfél weboldalának keresőmotorokban való helyezéséért (SEO eredményekért),</li>
+      <li>harmadik fél szolgáltatásainak (tárhely, domain, fizetési kapu) kieséseiért,</li>
+      <li>az Ügyfél által biztosított helytelen vagy jogsértő tartalomból eredő károkért,</li>
+      <li>vis maior eseményekből (természeti katasztrófa, internetszolgáltatás kiesése stb.) eredő késedelmekért.</li>
+    </ul>
+    <p>A Szolgáltató kártérítési felelőssége minden esetben a megbízási díj összegére korlátozódik.</p>
+  </div>
+
+  <div class="policy-section" id="s9">
+    <h2>9. Karbantartás és támogatás</h2>
+    <p>A weboldal átadásától számított <strong>30 napon belül</strong> felfedezett, a Szolgáltató hibájából eredő technikai problémákat a Szolgáltató díjmentesen javítja.</p>
+    <p>A 30 napos garancián túli javítások, tartalom-frissítések és bővítések elvégzése havi karbantartási csomag keretében vagy egyedi megbízás alapján lehetséges.</p>
+    <h3>Karbantartási csomag tartalma</h3>
+    <ul>
+      <li>Havi rendszeres biztonsági mentés</li>
+      <li>Szoftverfrissítések (CMS, bővítmények)</li>
+      <li>Kisebb tartalomszerkesztési feladatok (havonta max. 2 óra)</li>
+      <li>E-mail-es technikai támogatás munkanapokon</li>
+    </ul>
+  </div>
+
+  <div class="policy-section" id="s10">
+    <h2>10. Felmondás</h2>
+    <h3>Ügyfél általi felmondás</h3>
+    <p>Az Ügyfél a megbízást írásban bármikor felmondhatja. Ebben az esetben a már elvégzett munkával arányos díjat köteles megfizetni. A befizetett előleg nem visszatérítendő, amennyiben a munka megkezdődött.</p>
+    <h3>Szolgáltató általi felmondás</h3>
+    <p>A Szolgáltató azonnali hatállyal felmondhatja a szerződést, ha:</p>
+    <ul>
+      <li>az Ügyfél fizetési kötelezettségét 15 napot meghaladóan elmulasztja,</li>
+      <li>az Ügyfél jogellenes vagy etikátlan tartalmat kíván közzétenni,</li>
+      <li>az Ügyfél a Szolgáltatóval szemben tisztességtelen magatartást tanúsít.</li>
+    </ul>
+    <h3>Havi megbízások felmondása</h3>
+    <p>Havi karbantartási vagy egyéb ismétlődő szolgáltatás esetén bármelyik fél 30 napos felmondási idővel írásban mondhatja fel a szerződést.</p>
+  </div>
+
+  <div class="policy-section" id="s11">
+    <h2>11. Vegyes rendelkezések</h2>
+    <h3>Irányadó jog</h3>
+    <p>Jelen ÁSZF-re a magyar jog az irányadó. A felek között felmerülő vitás kérdéseket elsősorban tárgyalás útján rendezik; megállapodás hiányában a hatáskörrel rendelkező magyar bíróság illetékes.</p>
+    <h3>Kapcsolattartás</h3>
+    <p>Az ÁSZF-fel kapcsolatos kérdéseket az <a href="mailto:info@siteness.hu">info@siteness.hu</a> e-mail-címen lehet feltenni. A Szolgáltató 3 munkanapon belül válaszol.</p>
+    <h3>Elválaszthatóság</h3>
+    <p>Ha jelen ÁSZF valamely rendelkezése érvénytelennek bizonyul, az nem érinti a többi rendelkezés érvényességét.</p>
+    <div class="highlight-box" style="margin-top:24px">
+      <p>A Siteness szolgáltatásainak igénybevételével Ön kijelenti, hogy jelen ÁSZF-et elolvasta és elfogadja.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><img src="Images/logo4.png" alt="Siteness logó"></div>
+      <p class="footer-desc">Modern weboldalak és digitális megoldások vállalkozásoknak. Gyors, szép, eredményes.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Szolgáltatások</div>
+      <ul class="footer-links">
+        <li><a href="alap-csomag.html">Alap csomag</a></li>
+        <li><a href="uzleti-csomag.html">Üzleti csomag</a></li>
+        <li><a href="premium-csomag.html">Prémium csomag</a></li>
+        <li><a href="design-csomag.html">Egyedi design</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Cég</div>
+      <ul class="footer-links">
+        <li><a href="index.html#about">Rólunk</a></li>
+        <li><a href="index.html#portfolio">Portfólió</a></li>
+        <li><a href="index.html#process">Folyamat</a></li>
+        <li><a href="contact.html">Kapcsolat</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Kapcsolat</div>
+      <ul class="footer-links">
+        <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
+        <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+        <li><a href="#">Budapest, Magyarország</a></li>
+      </ul>
+      <div style="margin-top:24px">
+        <a href="contact.html" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Siteness. Minden jog fenntartva.</p>
+    <div class="footer-bottom-links">
+      <a href="adatvedelem.html">Adatvédelem</a>
+      <a href="aszf.html" aria-current="page">ÁSZF</a>
+      <a href="cookie.html">Cookie-k</a>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    const spans = document.querySelectorAll('.hamburger span');
+    const open = document.getElementById('mobileMenu').classList.contains('open');
+    if (open) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cookie-k – Siteness</title>
+<meta name="description" content="A Siteness cookie-tájékoztatója – hogyan és miért használunk sütiket weboldalunkon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--navy:#080E1A;--blue:#0EA5E9;--teal:#00D4B4;--grad:linear-gradient(135deg,#0EA5E9,#00D4B4)}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:hidden}
+  body{background:var(--navy);color:rgba(255,255,255,.85);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,backdrop-filter .3s}
+  nav.scrolled{background:rgba(8,14,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+  nav .container{width:100%;max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+  .nav-logo img{height:32px;width:auto;object-fit:contain;display:block}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .btn{display:inline-block;padding:10px 22px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+  .btn-primary{background:var(--grad);color:#fff}
+  .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+  .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,14,26,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;z-index:99}
+  .mobile-menu.open{display:block}
+  .mobile-menu ul{list-style:none;padding:0 24px}
+  .mobile-menu ul li{border-bottom:1px solid rgba(255,255,255,.06)}
+  .mobile-menu ul li a{display:block;padding:14px 0;color:rgba(255,255,255,.8);text-decoration:none;font-size:15px;font-weight:500}
+  .mobile-menu .mobile-cta{padding:20px 24px 8px}
+
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none}
+    .hamburger{display:flex}
+    nav .container{padding:0 20px}
+  }
+
+  /* PAGE */
+  .page-hero{padding:140px 0 60px;text-align:center;border-bottom:1px solid rgba(255,255,255,.07)}
+  .page-hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;color:#fff;margin-bottom:16px}
+  .page-hero p{color:rgba(255,255,255,.5);font-size:15px}
+
+  .container{max-width:1200px;margin:0 auto;padding:0 40px}
+  .content-wrap{max-width:760px;margin:0 auto;padding:60px 40px 100px}
+
+  .policy-section{margin-bottom:48px}
+  .policy-section h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .policy-section h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;color:var(--teal);margin:20px 0 8px}
+  .policy-section p{color:rgba(255,255,255,.7);margin-bottom:12px;font-size:15px}
+  .policy-section ul{margin:8px 0 12px 20px;color:rgba(255,255,255,.7);font-size:15px}
+  .policy-section ul li{margin-bottom:6px}
+  .policy-section a{color:var(--blue);text-decoration:none}
+  .policy-section a:hover{text-decoration:underline}
+  .highlight-box{background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.15);border-radius:12px;padding:20px 24px;margin:16px 0}
+  .highlight-box p{margin:0;color:rgba(255,255,255,.75)}
+
+  /* COOKIE TABLE */
+  .cookie-table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14px}
+  .cookie-table th{text-align:left;padding:10px 14px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,.08)}
+  .cookie-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.7);vertical-align:top}
+  .cookie-table tr:last-child td{border-bottom:none}
+  .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+  .badge-required{background:rgba(0,212,180,.12);color:var(--teal)}
+  .badge-analytics{background:rgba(14,165,233,.12);color:var(--blue)}
+  .badge-marketing{background:rgba(255,165,0,.12);color:#FFA500}
+
+  /* FOOTER */
+  footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:60px 0 0}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
+  .footer-logo{margin-bottom:12px;display:inline-flex}
+  .footer-logo img{height:28px;width:auto;object-fit:contain}
+  .footer-desc{color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:280px}
+  .footer-heading{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:16px}
+  .footer-links{list-style:none}
+  .footer-links li{margin-bottom:10px}
+  .footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .2s}
+  .footer-links a:hover{color:#fff}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:40px;padding:20px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
+  .footer-bottom p{color:rgba(255,255,255,.35);font-size:13px}
+  .footer-bottom-links{display:flex;gap:20px}
+  .footer-bottom-links a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;transition:color .2s}
+  .footer-bottom-links a:hover,.footer-bottom-links a[aria-current]{color:rgba(255,255,255,.7)}
+
+  #backTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;z-index:90}
+  #backTop.visible{opacity:1;transform:translateY(0)}
+  #backTop svg{width:20px;height:20px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  @media(max-width:768px){
+    .content-wrap{padding:40px 20px 80px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:32px;padding:0 20px}
+    .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:20px}
+    .footer-bottom-links{justify-content:center}
+    .page-hero{padding:110px 20px 40px}
+    .cookie-table{font-size:13px}
+    .cookie-table th,.cookie-table td{padding:8px 10px}
+  }
+  @media(max-width:480px){
+    .footer-grid{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="Images/logo4.png" alt="Siteness logó">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Szolgáltatások</a></li>
+      <li><a href="index.html#portfolio">Portfólió</a></li>
+      <li><a href="index.html#pricing">Árak</a></li>
+      <li><a href="index.html#process">Folyamat</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta">Ajánlatot kérek</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#services" onclick="toggleMenu()">Szolgáltatások</a></li>
+    <li><a href="index.html#portfolio" onclick="toggleMenu()">Portfólió</a></li>
+    <li><a href="index.html#pricing" onclick="toggleMenu()">Árak</a></li>
+    <li><a href="index.html#process" onclick="toggleMenu()">Folyamat</a></li>
+  </ul>
+  <div class="mobile-cta">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;display:block">Ajánlatot kérek</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <h1>Cookie-tájékoztató</h1>
+    <p>Utoljára frissítve: 2026. január 1.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <div class="highlight-box" style="margin-bottom:40px">
+    <p>Ez a tájékoztató elmagyarázza, hogyan és miért használunk sütiket (cookie-kat) a <strong>siteness.hu</strong> weboldalon, és milyen lehetőségei vannak azok kezelésére.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>1. Mi az a cookie?</h2>
+    <p>A cookie (süti) egy kis méretű szöveges fájl, amelyet a weboldal az Ön eszközén (számítógép, tablet, okostelefon) tárol, amikor meglátogatja azt. A sütik segítségével a weboldal megjegyzi az Ön beállításait, és jobb felhasználói élményt nyújt.</p>
+    <p>A sütik nem tartalmaznak személyes azonosítókat, nem futtatnak programokat, és nem károsítják az eszközét.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>2. Milyen sütiket használunk?</h2>
+
+    <h3>Szükséges sütik</h3>
+    <p>Ezek a sütik elengedhetetlenek a weboldal működéséhez. Nélkülük egyes funkciók nem érhetők el. Ezeket nem lehet kikapcsolni.</p>
+
+    <table class="cookie-table">
+      <thead>
+        <tr>
+          <th>Neve</th>
+          <th>Célja</th>
+          <th>Lejárat</th>
+          <th>Típus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>session_id</td>
+          <td>Munkamenet azonosítása</td>
+          <td>Böngésző bezárásakor</td>
+          <td><span class="badge badge-required">Szükséges</span></td>
+        </tr>
+        <tr>
+          <td>cookie_consent</td>
+          <td>Cookie-hozzájárulás tárolása</td>
+          <td>1 év</td>
+          <td><span class="badge badge-required">Szükséges</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Statisztikai sütik</h3>
+    <p>Ezek a sütik névtelen adatok gyűjtésével segítenek megérteni, hogyan használják a látogatók a weboldalt. Az adatok összesítve, anonim formában kerülnek feldolgozásra.</p>
+
+    <table class="cookie-table">
+      <thead>
+        <tr>
+          <th>Neve</th>
+          <th>Célja</th>
+          <th>Lejárat</th>
+          <th>Típus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>_ga</td>
+          <td>Google Analytics – látogatók megkülönböztetése</td>
+          <td>2 év</td>
+          <td><span class="badge badge-analytics">Statisztikai</span></td>
+        </tr>
+        <tr>
+          <td>_ga_*</td>
+          <td>Google Analytics – munkamenet állapota</td>
+          <td>2 év</td>
+          <td><span class="badge badge-analytics">Statisztikai</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="policy-section">
+    <h2>3. Hogyan kezelheti a sütiket?</h2>
+
+    <h3>Böngésző beállításai</h3>
+    <p>A legtöbb böngészőben beállíthatja, hogy elfogadja, elutasítja, vagy törli a sütiket. Kérjük, vegye figyelembe, hogy egyes funkciók nem működnek megfelelően, ha letiltja a sütiket.</p>
+    <ul>
+      <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+      <li><a href="https://support.mozilla.org/hu/kb/fokozott-vedelem-a-nyomkovetes-ellen" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+      <li><a href="https://support.apple.com/hu-hu/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Apple Safari</a></li>
+      <li><a href="https://support.microsoft.com/hu-hu/microsoft-edge/cookie-k-torlese-a-microsoft-edge-ban" target="_blank" rel="noopener">Microsoft Edge</a></li>
+    </ul>
+
+    <h3>Google Analytics letiltása</h3>
+    <p>A Google Analytics követés teljes letiltásához telepítheti a <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out böngészőkiegészítőt</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>4. Harmadik felek sütijei</h2>
+    <p>Weboldalunk igénybe veszi a Google Analytics szolgáltatást, amelyet a Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) üzemeltet. A Google adatkezelési gyakorlatáról a <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google adatvédelmi irányelvei</a> oldalon tájékozódhat.</p>
+    <p>Egyéb harmadik féltől származó, nyomkövető vagy marketing célú sütiket weboldalunkon nem alkalmazunk.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>5. Tájékoztató módosítása</h2>
+    <p>Fenntartjuk a jogot jelen tájékoztató módosítására. A módosítás dátumát az oldal tetején jelezzük. Javasoljuk, hogy rendszeresen ellenőrizze ezt az oldalt.</p>
+    <p>Kérdés esetén keressen minket az <a href="mailto:info@siteness.hu">info@siteness.hu</a> e-mail-címen.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><img src="Images/logo4.png" alt="Siteness logó"></div>
+      <p class="footer-desc">Modern weboldalak és digitális megoldások vállalkozásoknak. Gyors, szép, eredményes.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Szolgáltatások</div>
+      <ul class="footer-links">
+        <li><a href="alap-csomag.html">Alap csomag</a></li>
+        <li><a href="uzleti-csomag.html">Üzleti csomag</a></li>
+        <li><a href="premium-csomag.html">Prémium csomag</a></li>
+        <li><a href="design-csomag.html">Egyedi design</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Cég</div>
+      <ul class="footer-links">
+        <li><a href="index.html#about">Rólunk</a></li>
+        <li><a href="index.html#portfolio">Portfólió</a></li>
+        <li><a href="index.html#process">Folyamat</a></li>
+        <li><a href="contact.html">Kapcsolat</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Kapcsolat</div>
+      <ul class="footer-links">
+        <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
+        <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+        <li><a href="#">Budapest, Magyarország</a></li>
+      </ul>
+      <div style="margin-top:24px">
+        <a href="contact.html" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Siteness. Minden jog fenntartva.</p>
+    <div class="footer-bottom-links">
+      <a href="adatvedelem.html">Adatvédelem</a>
+      <a href="aszf.html">ÁSZF</a>
+      <a href="cookie.html" aria-current="page">Cookie-k</a>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    const spans = document.querySelectorAll('.hamburger span');
+    const open = document.getElementById('mobileMenu').classList.contains('open');
+    if (open) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  }
+</script>
+</body>
+</html>

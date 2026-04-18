@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adatvédelmi Tájékoztató – Siteness</title>
+<meta name="description" content="A Siteness adatvédelmi tájékoztatója – hogyan kezeljük személyes adatait.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--navy:#080E1A;--blue:#0EA5E9;--teal:#00D4B4;--grad:linear-gradient(135deg,#0EA5E9,#00D4B4)}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:hidden}
+  body{background:var(--navy);color:rgba(255,255,255,.85);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,backdrop-filter .3s}
+  nav.scrolled{background:rgba(8,14,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+  nav .container{width:100%;max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+  .nav-logo img{height:32px;width:auto;object-fit:contain;display:block}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .btn{display:inline-block;padding:10px 22px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+  .btn-primary{background:var(--grad);color:#fff}
+  .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+  .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,14,26,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;z-index:99}
+  .mobile-menu.open{display:block}
+  .mobile-menu ul{list-style:none;padding:0 24px}
+  .mobile-menu ul li{border-bottom:1px solid rgba(255,255,255,.06)}
+  .mobile-menu ul li a{display:block;padding:14px 0;color:rgba(255,255,255,.8);text-decoration:none;font-size:15px;font-weight:500}
+  .mobile-menu .mobile-cta{padding:20px 24px 8px}
+
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none}
+    .hamburger{display:flex}
+    nav .container{padding:0 20px}
+  }
+
+  /* PAGE */
+  .page-hero{padding:140px 0 60px;text-align:center;border-bottom:1px solid rgba(255,255,255,.07)}
+  .page-hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;color:#fff;margin-bottom:16px}
+  .page-hero p{color:rgba(255,255,255,.5);font-size:15px}
+
+  .container{max-width:1200px;margin:0 auto;padding:0 40px}
+  .content-wrap{max-width:760px;margin:0 auto;padding:60px 40px 100px}
+
+  .policy-section{margin-bottom:48px}
+  .policy-section h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .policy-section h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;color:var(--teal);margin:20px 0 8px}
+  .policy-section p{color:rgba(255,255,255,.7);margin-bottom:12px;font-size:15px}
+  .policy-section ul{margin:8px 0 12px 20px;color:rgba(255,255,255,.7);font-size:15px}
+  .policy-section ul li{margin-bottom:6px}
+  .policy-section a{color:var(--blue);text-decoration:none}
+  .policy-section a:hover{text-decoration:underline}
+  .highlight-box{background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.15);border-radius:12px;padding:20px 24px;margin:16px 0}
+  .highlight-box p{margin:0;color:rgba(255,255,255,.75)}
+
+  /* FOOTER */
+  footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:60px 0 0}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
+  .footer-logo{margin-bottom:12px;display:inline-flex}
+  .footer-logo img{height:28px;width:auto;object-fit:contain}
+  .footer-desc{color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:280px}
+  .footer-heading{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:16px}
+  .footer-links{list-style:none}
+  .footer-links li{margin-bottom:10px}
+  .footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .2s}
+  .footer-links a:hover{color:#fff}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:40px;padding:20px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
+  .footer-bottom p{color:rgba(255,255,255,.35);font-size:13px}
+  .footer-bottom-links{display:flex;gap:20px}
+  .footer-bottom-links a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;transition:color .2s}
+  .footer-bottom-links a:hover,.footer-bottom-links a[aria-current]{color:rgba(255,255,255,.7)}
+
+  /* BACK TO TOP */
+  #backTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--grad);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;z-index:90}
+  #backTop.visible{opacity:1;transform:translateY(0)}
+  #backTop svg{width:20px;height:20px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  @media(max-width:768px){
+    .content-wrap{padding:40px 20px 80px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:32px;padding:0 20px}
+    .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:20px}
+    .footer-bottom-links{justify-content:center}
+    .page-hero{padding:110px 20px 40px}
+  }
+  @media(max-width:480px){
+    .footer-grid{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+        <img src="Images/logo4.png" alt="Siteness logó">
+      </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Szolgáltatások</a></li>
+      <li><a href="index.html#portfolio">Portfólió</a></li>
+      <li><a href="index.html#pricing">Árak</a></li>
+      <li><a href="index.html#process">Folyamat</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta">Ajánlatot kérek</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#services" onclick="toggleMenu()">Szolgáltatások</a></li>
+    <li><a href="index.html#portfolio" onclick="toggleMenu()">Portfólió</a></li>
+    <li><a href="index.html#pricing" onclick="toggleMenu()">Árak</a></li>
+    <li><a href="index.html#process" onclick="toggleMenu()">Folyamat</a></li>
+  </ul>
+  <div class="mobile-cta">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;display:block">Ajánlatot kérek</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <h1>Adatvédelmi Tájékoztató</h1>
+    <p>Utoljára frissítve: 2026. január 1.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <div class="policy-section">
+    <p>A Siteness (a továbbiakban: „mi", „Szolgáltató") elkötelezett az Ön személyes adatainak védelme iránt. Ez az adatvédelmi tájékoztató ismerteti, hogy weboldalunk és szolgáltatásaink igénybevétele során milyen adatokat gyűjtünk, azokat hogyan használjuk fel, és milyen jogok illetik meg Önt.</p>
+    <div class="highlight-box">
+      <p>Az adatkezelés az Európai Unió 2016/679 számú általános adatvédelmi rendelete (GDPR) és az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Infotv.) alapján történik.</p>
+    </div>
+  </div>
+
+  <div class="policy-section">
+    <h2>1. Az adatkezelő adatai</h2>
+    <ul>
+      <li><strong>Cégnév:</strong> Siteness</li>
+      <li><strong>Székhely:</strong> Budapest, Magyarország</li>
+      <li><strong>E-mail:</strong> <a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
+      <li><strong>Telefon:</strong> <a href="tel:+36301234567">+36 30 123 4567</a></li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>2. Milyen adatokat gyűjtünk?</h2>
+
+    <h3>Kapcsolatfelvételi adatok</h3>
+    <p>Amikor az ajánlatkérő űrlapot kitölti, az alábbi adatokat kérjük:</p>
+    <ul>
+      <li>Teljes neve</li>
+      <li>E-mail-címe</li>
+      <li>Telefonszáma (opcionális)</li>
+      <li>Vállalkozásának neve (opcionális)</li>
+      <li>Az üzenet szövege</li>
+    </ul>
+
+    <h3>Automatikusan gyűjtött adatok</h3>
+    <p>Weboldalunk látogatásakor automatikusan rögzíthetők az alábbi technikai adatok:</p>
+    <ul>
+      <li>IP-cím (anonimizált formában)</li>
+      <li>Böngésző típusa és verziója</li>
+      <li>Látogatás időpontja és időtartama</li>
+      <li>Megtekintett oldalak</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>3. Miért kezeljük az adatokat?</h2>
+
+    <h3>Ajánlat és kapcsolattartás</h3>
+    <p>Az Ön által megadott adatokat kizárólag arra használjuk, hogy felvegyük Önnel a kapcsolatot, ajánlatot készítsünk, és a megbízás teljesítésével összefüggő ügyintézést elvégezzük.</p>
+    <p><strong>Jogalap:</strong> az Ön hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont), illetve szerződés teljesítése (b) pont).</p>
+
+    <h3>Weboldal működtetése</h3>
+    <p>A technikai adatokat a weboldal biztonságos és stabil működésének biztosítása érdekében rögzítjük.</p>
+    <p><strong>Jogalap:</strong> jogos érdek (GDPR 6. cikk (1) bekezdés f) pont).</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>4. Meddig tároljuk az adatokat?</h2>
+    <p>Az ajánlatkérő űrlapon megadott adatokat a kapcsolatfelvétel lezárásától számított <strong>2 évig</strong> tároljuk, kivéve, ha megbízás jön létre – ebben az esetben a jogszabályi kötelezettségeknek megfelelően (pl. számviteli előírások alapján 8 évig) kezeljük azokat.</p>
+    <p>Ha Ön visszavonja hozzájárulását, az adatokat haladéktalanul töröljük, kivéve, ha más jogalap indokolja a további tárolást.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>5. Kivel osztjuk meg az adatokat?</h2>
+    <p>Személyes adatait harmadik félnek nem adjuk el, és marketing célra nem használjuk fel. Az adatokat az alábbi esetekben továbbíthatjuk:</p>
+    <ul>
+      <li><strong>Tárhelyszolgáltató:</strong> a weboldal üzemeltetéséhez szükséges mértékben</li>
+      <li><strong>Könyvelő / jogi tanácsadó:</strong> törvényi kötelezettség teljesítéséhez</li>
+      <li><strong>Hatóságok:</strong> jogszabályi előírás vagy bírósági végzés alapján</li>
+    </ul>
+    <p>Valamennyi adatfeldolgozónkkal adatfeldolgozási szerződést kötünk.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>6. Az Ön jogai</h2>
+    <p>A GDPR alapján Önt az alábbi jogok illetik meg:</p>
+    <ul>
+      <li><strong>Hozzáférés joga:</strong> tájékoztatást kérhet az általunk kezelt adatairól</li>
+      <li><strong>Helyesbítés joga:</strong> kérheti a pontatlan adatok javítását</li>
+      <li><strong>Törlés joga:</strong> kérheti adatai törlését („az elfeledtetéshez való jog")</li>
+      <li><strong>Adathordozhatóság joga:</strong> kérheti adatait strukturált formátumban</li>
+      <li><strong>Tiltakozás joga:</strong> tiltakozhat az adatkezelés ellen</li>
+      <li><strong>Hozzájárulás visszavonása:</strong> bármikor visszavonhatja korábbi hozzájárulását</li>
+    </ul>
+    <p>Kérelmét az <a href="mailto:info@siteness.hu">info@siteness.hu</a> e-mail-címre küldve juttathatja el hozzánk. Beérkező kérelmekre 30 napon belül válaszolunk.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>7. Panaszkezelés</h2>
+    <p>Ha úgy véli, hogy adatainak kezelése sérti jogait, a Nemzeti Adatvédelmi és Információszabadság Hatósághoz (NAIH) fordulhat:</p>
+    <ul>
+      <li><strong>Weboldal:</strong> <a href="https://www.naih.hu" target="_blank" rel="noopener">www.naih.hu</a></li>
+      <li><strong>Cím:</strong> 1055 Budapest, Falk Miksa utca 9–11.</li>
+      <li><strong>E-mail:</strong> <a href="mailto:ugyfelszolgalat@naih.hu">ugyfelszolgalat@naih.hu</a></li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2>8. Cookie-k (sütik)</h2>
+    <p>Weboldalunk munkamenet-sütiket (session cookies) alkalmaz, amelyek a böngésző bezárásakor automatikusan törlődnek, és kizárólag a weboldal megfelelő működéséhez szükségesek. Harmadik féltől származó, nyomkövető cookie-kat nem alkalmazunk.</p>
+    <p>A böngésző beállításaiban bármikor letilthatja a cookie-k fogadását, azonban ez egyes funkciók működését befolyásolhatja.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>9. Tájékoztató módosítása</h2>
+    <p>Fenntartjuk a jogot jelen tájékoztató módosítására. Lényeges változás esetén weboldalunkon értesítjük látogatóinkat. A tájékoztató aktuális verziója mindig ezen az oldalon érhető el.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><img src="Images/logo4.png" alt="Siteness logó"></div>
+      <p class="footer-desc">Modern weboldalak és digitális megoldások vállalkozásoknak. Gyors, szép, eredményes.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Szolgáltatások</div>
+      <ul class="footer-links">
+        <li><a href="alap-csomag.html">Alap csomag</a></li>
+        <li><a href="uzleti-csomag.html">Üzleti csomag</a></li>
+        <li><a href="premium-csomag.html">Prémium csomag</a></li>
+        <li><a href="design-csomag.html">Egyedi design</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Cég</div>
+      <ul class="footer-links">
+        <li><a href="index.html#about">Rólunk</a></li>
+        <li><a href="index.html#portfolio">Portfólió</a></li>
+        <li><a href="index.html#process">Folyamat</a></li>
+        <li><a href="contact.html">Kapcsolat</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Kapcsolat</div>
+      <ul class="footer-links">
+        <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
+        <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+        <li><a href="#">Budapest, Magyarország</a></li>
+      </ul>
+      <div style="margin-top:24px">
+        <a href="contact.html" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Siteness. Minden jog fenntartva.</p>
+    <div class="footer-bottom-links">
+      <a href="adatvedelem.html" aria-current="page">Adatvédelem</a>
+      <a href="aszf.html">ÁSZF</a>
+      <a href="cookie.html">Cookie-k</a>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Back to top
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  // Hamburger
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    const spans = document.querySelectorAll('.hamburger span');
+    const open = document.getElementById('mobileMenu').classList.contains('open');
+    if (open) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  }
+</script>
+</body>
+</html>
