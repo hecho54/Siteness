@@ -702,7 +702,9 @@ html,body{overflow-x:hidden}
   .pf-track{gap:12px}
   .pf-track .portfolio-item{flex:0 0 92%}
   .testimonials-grid{grid-template-columns:1fr}
-  .pricing-slider-wrap{overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .pricing-slider-wrap{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x}
+  .pricing-grid .price-card{touch-action:pan-x;overflow:hidden}
+  .price-card.popular .popular-badge{position:static;transform:none;display:inline-block;margin:8px 0 12px;border-radius:50px}
   .pricing-slider-wrap::-webkit-scrollbar{display:none}
   .pricing-grid{display:flex!important;flex-wrap:nowrap!important;gap:12px;padding-top:0;align-items:stretch;transform:none!important;transition:none!important}
   .pricing-grid .price-card{flex:0 0 92%!important;width:92%!important;min-width:0;max-width:none;scroll-snap-align:start;scroll-snap-stop:always}
@@ -1244,8 +1246,8 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <a href="alap-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
       </div>
       <div class="price-card popular reveal" style="transition-delay:.15s">
-        <div class="popular-badge">LEGNÉPSZERŰBB</div>
         <div class="pc-name">Plus</div>
+        <div class="popular-badge">LEGNÉPSZERŰBB</div>
         <div class="pc-desc">SEO + Google Ads + Facebook Ads kezelés — hirdetési csatornák összehangolva, support nélkül.</div>
         <div class="pc-price">
           <span class="pc-amount" style="color:#fff">69 900 Ft<span class="pc-suffix" style="color:rgba(255,255,255,.6)">/hó</span></span>
