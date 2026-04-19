@@ -985,11 +985,11 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       <!-- Főcím -->
       <h1 class="hero-title">
         Profi online jelenlét,<br>
-        <span class="line2">ami <span class="word-cycle">ügyfelekethoz</span></span>
+        <span class="line2">ami <span class="word-cycle">ügyfeleket hoz</span></span>
       </h1>
 
       <!-- Leírás -->
-      <p class="hero-desc">Modern weboldal, Google-rangsor és célzott hirdetések — egy csapattól. Gyorsan, mérhetően, eredményesen.</p>
+      <p class="hero-desc" style="white-space:nowrap">Modern weboldal, marketing, mérhetően, eredményesen.</p>
 
       <!-- Gombok -->
       <div class="hero-btns">
@@ -1517,7 +1517,7 @@ function toggleMaint(cb) {
   const info   = document.getElementById('maintInfo');
   if (cb.checked) {
     toggle.classList.add('checked');
-    box.textContent = '✓';
+    box.textContent = '';
     info.style.display = 'block';
   } else {
     toggle.classList.remove('checked');
