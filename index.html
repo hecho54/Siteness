@@ -702,11 +702,10 @@ html,body{overflow-x:hidden}
   .pf-track{gap:12px}
   .pf-track .portfolio-item{flex:0 0 92%}
   .testimonials-grid{grid-template-columns:1fr}
-  .pricing-slider-wrap{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .price-card.popular .popular-badge{position:static;transform:none;display:inline-block;margin:8px 0 12px;border-radius:50px}
-  .pricing-slider-wrap::-webkit-scrollbar{display:none}
-  .pricing-grid{display:flex!important;flex-wrap:nowrap!important;gap:12px;padding-top:0;align-items:stretch;transform:none!important;transition:none!important}
-  .pricing-grid .price-card{flex:0 0 92%!important;width:92%!important;min-width:0;max-width:none;scroll-snap-align:start;scroll-snap-stop:always;max-height:calc(100vh - 180px);overflow-y:auto}
+  .pricing-slider-wrap{overflow-x:clip;overflow-y:visible}
+  .price-card.popular .popular-badge{position:static;transform:none;display:inline-block;margin:0 0 12px}
+  .pricing-grid{display:flex!important;flex-wrap:nowrap!important;gap:12px;transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform;padding-top:0;align-items:stretch}
+  .pricing-grid .price-card{flex:0 0 92%!important;width:92%!important;min-width:0;max-width:none}
   .pricing-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
   .pricing-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
   .pricing-dot-btn.active{background:var(--teal);width:24px;border-radius:4px}
@@ -1802,36 +1801,39 @@ gsap.fromTo('.service-card',
   const cards = grid ? Array.from(grid.querySelectorAll('.price-card')) : [];
   if (!grid || !cards.length) return;
 
-  const total = cards.length;
   let current = 0;
+  const total = cards.length;
 
   function buildDots() {
     dotsEl.innerHTML = '';
     for (let i = 0; i < total; i++) {
       const btn = document.createElement('button');
-      btn.className = 'pricing-dot-btn' + (i === 0 ? ' active' : '');
+      btn.className = 'pricing-dot-btn' + (i === current ? ' active' : '');
       btn.setAttribute('aria-label', `Csomag ${i+1}`);
-      btn.addEventListener('click', () => {
-        cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      });
+      btn.addEventListener('click', () => goTo(i));
       dotsEl.appendChild(btn);
     }
   }
 
-  function updateDots() {
-    const scrollLeft = wrap.scrollLeft;
-    const cardW = cards[0].offsetWidth + 12;
-    current = Math.round(scrollLeft / cardW);
+  function goTo(page) {
+    current = Math.max(0, Math.min(page, total - 1));
+    const cardW = cards[0].offsetWidth;
+    grid.style.transform = `translateX(-${current * (cardW + 12)}px)`;
     dotsEl.querySelectorAll('.pricing-dot-btn').forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
-  let scrollTimer;
-  wrap.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateDots, 50);
-  }, { passive: true });
+  let touchStartX = 0;
+  grid.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  grid.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && current < total - 1) goTo(current + 1);
+      else if (diff < 0 && current > 0) goTo(current - 1);
+    }
+  });
 
   buildDots();
+  goTo(0);
 })();
 
 // ─────────────────────────────────────
