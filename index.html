@@ -7,7 +7,8 @@
 <meta name="description" content="A Siteness modern weboldalakat, SEO-t és digitális marketinget kínál vállalkozásodnak. Emeld új szintre az online jelenlétedet!">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" href="Images/charlesdeluvio-Lks7vei-eAg-unsplash.png" as="image">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
@@ -88,7 +89,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    HERO
 ────────────────────────────────────────── */
-#hero{background:transparent;position:relative;display:flex;align-items:center;overflow:visible;min-height:100vh;padding-bottom:140px}
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 40px;overflow:hidden;padding-bottom:220px}
 
 /* ── Background layers ── */
 .hero-bg{position:absolute;inset:0 0 -480px 0;overflow:hidden;pointer-events:none}
@@ -100,20 +101,17 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
   background:url('Images/charlesdeluvio-Lks7vei-eAg-unsplash.png') center top/cover no-repeat;
   z-index:0;
 }
+.hero-overlay{position:absolute;inset:0;background:rgba(10,15,30,.72);z-index:1}
 .hero-bg-photo::after{
   content:'';
   position:absolute;
-  inset:0 0 -120px 0;
-  background:
-    linear-gradient(to bottom,
-      rgba(4,9,28,.78) 0%,
-      rgba(4,9,24,.58) 22%,
-      rgba(5,10,22,.52) 50%,
-      rgba(5,10,21,.68) 68%,
-      rgba(5,10,21,.88) 82%,
-      #050A15 93%,
-      #050A15 100%
-    );
+  inset:0;
+  background:linear-gradient(to bottom,
+    transparent 35%,
+    rgba(5,10,21,.5) 60%,
+    rgba(5,10,21,.85) 78%,
+    #050A15 92%
+  );
 }
 
 .hero-orb{display:none}
@@ -122,29 +120,11 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .hero-shimmer{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(0,212,180,.4) 50%,transparent 95%);animation:shimmer 5s ease-in-out infinite}
 @keyframes shimmer{0%,100%{opacity:.2;transform:scaleX(.6)}50%{opacity:.8;transform:scaleX(1)}}
 
-/* ── Content layout ── */
-.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:110px 0 40px;max-width:860px;margin:0 auto}
-
-/* Vertical glow line (decoration) */
-.hero-line-top{width:1px;height:72px;background:linear-gradient(to bottom,transparent,rgba(0,212,180,.55) 55%,transparent);margin:0 auto 28px;flex-shrink:0}
-
-/* Badge */
-.hero-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px}
-.hero-badge .dot{width:6px;height:6px;background:var(--teal);border-radius:50%;flex-shrink:0;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px rgba(0,212,180,.7)}
-.hero-badge span.label{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5)}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
-
-/* Title */
-.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(48px,7vw,92px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.055em;margin-bottom:0;text-shadow:0 2px 32px rgba(0,0,0,.55),0 1px 4px rgba(0,0,0,.35)}
-.hero-title .line2{display:block;width:fit-content;margin:0 auto;position:relative;padding-bottom:24px}
-.hero-title .line2::after{content:'';position:absolute;left:0;right:0;bottom:8px;height:2px;background:linear-gradient(90deg,rgba(0,175,221,0) 0%,#0aafdd 25%,#0aafdd 75%,rgba(0,175,221,0) 100%);border-radius:2px}
-.word-cycle{color:#0aafdd;display:inline;font-style:normal}
-
-/* Divider between title and desc */
-.hero-divider{width:44px;height:2px;background:linear-gradient(90deg,transparent,rgba(0,212,180,.55),transparent);border-radius:2px;margin:32px auto 28px;flex-shrink:0}
-
-/* Description */
-.hero-desc{font-size:18px;color:#0aafdd;line-height:1.8;margin-bottom:40px;max-width:520px;font-weight:400;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+/* ── Hero content layout ── */
+.hero-content{position:relative;z-index:2;max-width:700px;text-align:center;margin:0 auto}
+.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:1.2rem;letter-spacing:-1px;text-align:center}
+.hero-title .highlight{color:#0aafdd}
+.hero-desc{font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,.75);max-width:720px;line-height:1.6;margin-bottom:2rem;text-align:center;margin-left:auto;margin-right:auto}
 
 /* ── Social proof ── */
 .hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
@@ -199,140 +179,102 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    SERVICES
 ────────────────────────────────────────── */
-#services{padding:60px 0 24px;background:transparent;margin-top:-140px;position:relative;z-index:1}
-.services-header{text-align:center;margin-bottom:72px}
+#services{padding:60px 0 80px;background:transparent;margin-top:0;position:relative;z-index:1}
+.services-header{text-align:center;margin-bottom:56px}
 .services-header .section-sub{margin:0 auto}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
 
-/* ── Service card v2 ── */
-.service-card{
-  background:#0B1628;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:28px;
-  padding:40px 36px 36px;
-  position:relative;
-  overflow:hidden;
+/* Premium bento */
+.srv-bento{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+.srv-card{
+  position:relative;overflow:hidden;border-radius:20px;
+  padding:40px 36px 32px;
+  border:1px solid rgba(255,255,255,.06);
   display:flex;flex-direction:column;
-  transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, border-color .4s;
+  min-height:340px;
+  height:100%;
+  transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s,border-color .3s;
   cursor:default;
 }
-/* Gradient accent top border */
-.service-card::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent 0%,var(--teal) 40%,var(--blue) 70%,transparent 100%);
-  opacity:.5;
-  transition:opacity .4s;
+.srv-card:hover{
+  transform:translateY(-6px) scale(1.005);
+  box-shadow:0 32px 64px rgba(0,0,0,.4);
 }
-/* Faded background number */
-.service-card::after{
-  content:none;
-  position:absolute;
-  top:-10px;right:20px;
+
+/* Gradient top accent line */
+.srv-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  opacity:.8;transition:opacity .3s;
+}
+.srv-card:hover::before{opacity:1}
+.s-web::before{background:linear-gradient(90deg,transparent,#38BDF8 40%,#0EA5E9 60%,transparent)}
+.s-seo::before{background:linear-gradient(90deg,transparent,#00D4B4 40%,#34D399 60%,transparent)}
+.s-ads::before{background:linear-gradient(90deg,transparent,#FB923C 40%,#F97316 60%,transparent)}
+.s-gfx::before{background:linear-gradient(90deg,transparent,#A78BFA 40%,#8B5CF6 60%,transparent)}
+
+/* Backgrounds — dark, minimal */
+.srv-card.s-web{background:#060E1C}
+.srv-card.s-seo{background:#050F0A}
+.srv-card.s-ads{background:#0E0804}
+.srv-card.s-gfx{background:#090614}
+
+/* Glow orb */
+.srv-card-orb{
+  position:absolute;width:320px;height:320px;border-radius:50%;
+  filter:blur(90px);opacity:.12;pointer-events:none;
+  transition:opacity .5s;top:-60px;right:-100px;
+}
+.srv-card:hover .srv-card-orb{opacity:.22}
+.s-web .srv-card-orb{background:#0EA5E9}
+.s-seo .srv-card-orb{background:#00D4B4}
+.s-ads .srv-card-orb{background:#FB923C}
+.s-gfx .srv-card-orb{background:#8B5CF6}
+
+/* Header row */
+.srv-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.srv-card-cat{
+  font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+}
+.s-web .srv-card-cat{color:#38BDF8}
+.s-seo .srv-card-cat{color:#00D4B4}
+.s-ads .srv-card-cat{color:#FB923C}
+.s-gfx .srv-card-cat{color:#A78BFA}
+
+.srv-card-link{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:600;
+  text-decoration:none;opacity:.5;
+  transition:opacity .2s,gap .2s;
+}
+.srv-card:hover .srv-card-link{opacity:1}
+.srv-card-link svg{width:13px;height:13px;stroke:currentColor;fill:none;flex-shrink:0;transition:transform .2s}
+.srv-card:hover .srv-card-link svg{transform:translate(2px,-2px)}
+.s-web .srv-card-link{color:#38BDF8}
+.s-seo .srv-card-link{color:#00D4B4}
+.s-ads .srv-card-link{color:#FB923C}
+.s-gfx .srv-card-link{color:#A78BFA}
+
+/* Content */
+.srv-card-title{
   font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:96px;font-weight:900;
-  color:rgba(255,255,255,.025);
-  line-height:1;
-  pointer-events:none;
-  user-select:none;
-  transition:color .4s;
+  font-size:clamp(22px,2.4vw,30px);font-weight:800;
+  letter-spacing:-.035em;color:#fff;
+  line-height:1.12;margin-bottom:16px;
 }
-.service-card:hover{
-  transform:translateY(-10px);
-  border-color:rgba(0,212,180,.25);
-  box-shadow:0 24px 60px rgba(0,212,180,.1), 0 0 0 1px rgba(0,212,180,.12) inset;
-}
-.service-card:hover::before{opacity:1}
-.service-card:hover::after{color:rgba(0,212,180,.06)}
-.service-card *{position:relative;z-index:1}
-
-/* Glow layer on hover */
-.service-card .sc-glow{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(0,212,180,.09) 0%,transparent 70%);
-  opacity:0;transition:opacity .5s;pointer-events:none;z-index:0;
-}
-.service-card:hover .sc-glow{opacity:1}
-
-/* Icon */
-.sc-icon-wrap{
-  width:56px;height:56px;
-  border-radius:16px;
-  background:rgba(0,212,180,.08);
-  border:1px solid rgba(0,212,180,.15);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:28px;
-  transition:background .4s, border-color .4s, box-shadow .4s;
-}
-.sc-icon-wrap svg{width:26px;height:26px;stroke:var(--teal);stroke-width:1.8;fill:none;transition:stroke .4s}
-.service-card:hover .sc-icon-wrap{
-  background:rgba(0,212,180,.15);
-  border-color:rgba(0,212,180,.35);
-  box-shadow:0 0 20px rgba(0,212,180,.15);
+.srv-card-desc{
+  font-size:14px;color:rgba(255,255,255,.42);
+  line-height:1.75;flex:1;
 }
 
-/* Label tag */
-.sc-tag{
-  display:inline-block;
-  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--teal);
-  margin-bottom:14px;
-  opacity:.7;
+/* Feature list */
+.srv-card-features{margin-top:28px;display:flex;flex-direction:column;gap:9px}
+.srv-card-feat{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.55)}
+.srv-card-feat::before{
+  content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0;
 }
-.sc-title{
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:21px;font-weight:800;letter-spacing:-0.025em;
-  color:#fff;
-  margin-bottom:12px;
-}
-.sc-desc{font-size:15px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:28px}
-.sc-features{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:0;flex:1}
-.sc-features li{
-  font-size:14px;color:rgba(255,255,255,.8);
-  padding:9px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;align-items:center;gap:10px;
-  transition:color .3s;
-}
-.sc-features li:last-child{border-bottom:none}
-.sc-features li svg{display:none}
-.sc-features li::before{content:'✓';width:22px;height:22px;min-width:22px;background:rgba(0,212,180,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--teal);flex-shrink:0}
-.service-card:hover .sc-features li{color:rgba(255,255,255,.75)}
-.sc-link{
-  display:inline-flex;align-items:center;gap:8px;
-  color:var(--teal);font-weight:600;font-size:14px;
-  text-decoration:none;
-  border-bottom:1px solid rgba(0,212,180,.25);
-  padding-bottom:2px;
-  margin-top:auto;
-  transition:gap .3s, border-color .3s, color .3s;
-}
-.sc-link:hover{gap:14px;border-color:var(--teal)}
-.sc-link svg{width:16px;height:16px;stroke:currentColor;fill:none;flex-shrink:0}
-
-/* Featured (middle) card */
-.service-card.featured{
-  background:linear-gradient(160deg,#0A1F3A 0%,#0D2D52 60%,#0A2540 100%);
-  border-color:rgba(14,165,233,.2);
-}
-.service-card.featured::before{
-  background:linear-gradient(90deg,transparent 0%,#0EA5E9 40%,#00D4B4 70%,transparent 100%);
-  opacity:.7;
-}
-.service-card.featured .sc-tag{color:var(--blue)}
-.service-card.featured .sc-icon-wrap{background:rgba(14,165,233,.1);border-color:rgba(14,165,233,.2)}
-.service-card.featured .sc-icon-wrap svg{stroke:var(--blue)}
-.service-card.featured .sc-features li svg{stroke:var(--blue)}
-.service-card.featured .sc-link{color:var(--blue);border-color:rgba(14,165,233,.3)}
-.service-card.featured:hover{
-  border-color:rgba(14,165,233,.4);
-  box-shadow:0 24px 60px rgba(14,165,233,.12), 0 0 0 1px rgba(14,165,233,.15) inset;
-}
-.service-card.featured .sc-glow{
-  background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(14,165,233,.1) 0%,transparent 70%);
-}
+.s-web .srv-card-feat::before{background:#38BDF8}
+.s-seo .srv-card-feat::before{background:#00D4B4}
+.s-ads .srv-card-feat::before{background:#FB923C}
+.s-gfx .srv-card-feat::before{background:#A78BFA}
 
 /* ──────────────────────────────────────────
    ABOUT / STATS
@@ -401,8 +343,8 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .portfolio-header .section-sub{color:rgba(255,255,255,.55);max-width:640px}
 
 /* Slider */
-.portfolio-slider{overflow:hidden;position:relative}
-.pf-track{display:flex;gap:16px;transition:transform .5s cubic-bezier(.22,1,.36,1);will-change:transform}
+.portfolio-slider{clip-path:inset(0 0 -110px 0);position:relative}
+.pf-track{display:flex;gap:16px;transition:transform 250ms cubic-bezier(.25,.46,.45,.94);will-change:transform;transform:translateZ(0);backface-visibility:hidden}
 .pf-track .portfolio-item{flex:0 0 76%;min-width:0}
 
 /* Dots */
@@ -417,15 +359,15 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 #pfNext{right:20px}
 
 /* Card */
-.portfolio-item{border-radius:14px;overflow:hidden;position:relative;cursor:grab;background:#111;transition:transform .4s cubic-bezier(.22,1,.36,1);isolation:isolate;transform:translateZ(0);backface-visibility:hidden}
+.portfolio-item{border-radius:14px;overflow:visible;position:relative;cursor:grab;background:#111;transition:transform .4s cubic-bezier(.22,1,.36,1);isolation:isolate;transform:translateZ(0);backface-visibility:hidden}
 .portfolio-item:active{cursor:grabbing}
 
 /* Hide old browser bar */
 .pi-bar{display:none}
 
 /* Preview */
-.pi-preview{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#0a0a0a;transform:translateZ(0)}
-.pi-preview iframe{position:absolute;top:0;left:0;width:1280px;height:800px;border:none;pointer-events:none;transform-origin:top left}
+.pi-preview{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#0a0a0a;transform:translateZ(0);border-radius:14px}
+.pi-preview img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top;pointer-events:none;display:block}
 
 /* Dim overlay on inactive cards */
 .pi-card-dim{position:absolute;inset:0;background:rgba(0,0,0,.5);transition:opacity .6s ease;pointer-events:none;z-index:1}
@@ -438,7 +380,8 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* Info bar — always visible, bottom of card */
 .pi-info{
   position:absolute;bottom:0;left:0;right:0;z-index:2;
-  padding:10px 18px;
+  padding:10px 18px 10px 18px;
+  padding-right:160px;
   background:rgba(0,0,0,.45);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   display:flex;flex-direction:row;align-items:flex-end;justify-content:space-between;gap:12px;
@@ -454,6 +397,29 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
   backdrop-filter:blur(4px);transition:background .2s;
 }
 .pi-details-btn:hover{background:rgba(255,255,255,.22)}
+
+/* ── PORTFÓLIÓ TELEFON MOCKUP ── */
+.pi-phone{
+  position:absolute;bottom:-44px;right:24px;z-index:10;
+  width:130px;height:272px;
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.9));
+}
+.pi-phone-frame{
+  width:130px;height:272px;border-radius:15px;
+  background:linear-gradient(160deg,#48484a 0%,#1c1c1e 50%,#3a3a3c 100%);
+  padding:2px;position:relative;
+  box-shadow:0 0 0 0.5px rgba(255,255,255,.12), 0 12px 40px rgba(0,0,0,.7);
+}
+.pi-phone-island{
+  position:absolute;top:8px;left:50%;transform:translateX(-50%);
+  width:46px;height:13px;background:#000;border-radius:7px;z-index:6;
+}
+.pi-phone-screen{
+  width:100%;height:100%;border-radius:14px;overflow:hidden;
+  background:#0a0a0a;position:relative;
+}
+.pi-phone-screen iframe{width:390px;height:830px;transform:scale(0.323);transform-origin:top left;border:none;pointer-events:none;display:block}
+.pi-phone-screen img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;pointer-events:none}
 .portfolio-cta{text-align:center;margin-top:20px}
 
 /* ──────────────────────────────────────────
@@ -480,33 +446,40 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 #pricing{padding:4px 0 60px;background:transparent}
 .pricing-header{text-align:center;margin-bottom:32px;margin-top:48px}
 .pricing-header .section-sub{margin:0 auto}
-.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch;padding-top:20px}
-.price-card{background:var(--white);border:2px solid #e8f2f8;border-radius:24px;padding:32px 24px;transition:transform .15s ease;position:relative;display:flex;flex-direction:column}
-.price-card::after{content:'';position:absolute;inset:-2px;border-radius:26px;border:2px solid rgba(0,212,180,.5);opacity:0;transition:opacity .15s ease;pointer-events:none}
-.price-card:hover{transform:translateY(-5px)}
-.price-card:hover::after{opacity:1}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;padding-top:20px}
+.price-card{background:var(--white);border:2px solid #e8f2f8;border-radius:24px;padding:48px 24px 32px;transition:box-shadow .25s ease;position:relative;display:flex;flex-direction:column;overflow:visible}
+.price-card:hover{box-shadow:0 20px 48px rgba(0,0,0,.35)}
+.price-card::after{content:'';position:absolute;inset:-2px;border-radius:26px;border:2px solid rgba(0,212,180,.5);opacity:1;transition:opacity .15s ease;pointer-events:none}
 .price-card.popular{background:var(--navy);border-color:var(--teal)}
-.popular-badge{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:12px;font-weight:800;padding:6px 20px;border-radius:50px;white-space:nowrap;letter-spacing:1px}
+.popular-badge{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:12px;font-weight:800;padding:6px 20px;border-radius:50px;white-space:nowrap;letter-spacing:1px;z-index:2;text-shadow:0 0 1px rgba(0,0,0,.8),0 1px 2px rgba(0,0,0,.5)}
+.popular-badge::before,.pc-value-badge::before{content:'';position:absolute;inset:-2px -4px;background:inherit;border-radius:inherit;z-index:-1}
 .price-card.popular{padding-top:48px}
+.pc-value-badge{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#F59E0B,#FBBF24);color:#fff;text-shadow:0 0 1px rgba(0,0,0,.8),0 1px 2px rgba(0,0,0,.5);font-size:12px;font-weight:800;padding:6px 20px;border-radius:50px;white-space:nowrap;letter-spacing:1px;z-index:2}
 .pc-icon{font-size:36px;margin-bottom:20px}
-.pc-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.pc-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:8px}
 .price-card.popular .pc-name{color:#fff}
-.pc-desc{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:32px;line-height:1.6}
+.pc-desc{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:24px;line-height:1.6}
 .price-card.popular .pc-desc{color:rgba(255,255,255,.8)}
-.pc-price{margin-bottom:32px}
-.pc-amount{font-family:'Plus Jakarta Sans',sans-serif;font-size:36px;font-weight:800;letter-spacing:-0.04em;color:var(--navy);line-height:1;display:block}
+.pc-price{margin-bottom:24px}
+.price-card .btn{white-space:nowrap;font-size:14px;padding:13px 24px}
+.pc-amount{font-family:'Plus Jakarta Sans',sans-serif;font-size:36px;font-weight:800;letter-spacing:-0.04em;color:#fff;line-height:1;display:block}
 .price-card.popular .pc-amount{color:#fff}
 .pc-suffix{font-size:20px;font-weight:600;color:var(--muted);margin-left:4px}
 .price-card.popular .pc-suffix{color:rgba(255,255,255,.6)}
-.pc-period{font-size:14px;color:var(--muted);margin-top:6px}
+.pc-period{font-size:14px;color:rgba(255,255,255,.5);margin-top:6px}
+.pc-vat{opacity:.55;font-size:12px;display:block;margin-top:2px}
 .price-card.popular .pc-period{color:rgba(255,255,255,.5)}
-.pc-features{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px;flex:1}
-.pc-features li{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text)}
-.price-card.popular .pc-features li{color:rgba(255,255,255,.85)}
-.pc-features li .check{width:22px;height:22px;min-width:22px;background:rgba(0,180,216,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--teal)}
-.price-card.popular .pc-features li .check{background:rgba(0,180,216,.2);color:var(--light)}
-.pc-features li.off{opacity:.4}
-.pc-features li.off .check{background:#f0f4f8;color:#ccc}
+.pc-features{margin-bottom:28px;display:flex;flex-direction:column;gap:0;flex:1}
+.pc-feat-group{display:flex;flex-direction:column;gap:7px;padding-bottom:10px}
+.pc-feat-group:last-child{padding-bottom:0}
+.pc-feat-cat{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:4px;padding-left:2px}
+.pc-feat-item{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.8)}
+.price-card.popular .pc-feat-item{color:rgba(255,255,255,.85)}
+.pc-feat-item .check{width:22px;height:22px;min-width:22px;background:rgba(0,180,216,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--teal);flex-shrink:0}
+.price-card.popular .pc-feat-item .check{background:rgba(14,165,233,.2);color:#0EA5E9}
+.price-card.basic-card .pc-feat-item .check{background:rgba(0,212,180,.2);color:#00D4B4}
+.pc-feat-item.off{opacity:.38}
+.pc-feat-item.off .check{background:rgba(255,255,255,.05);color:rgba(255,255,255,.3)}
 .pc-value-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,180,.1);border:1px solid rgba(0,212,180,.2);border-radius:8px;padding:5px 10px;font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px}
 .price-card.popular .pc-value-tag{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
 .pc-decoy-note{background:rgba(0,212,180,.06);border:1px solid rgba(0,212,180,.15);border-radius:10px;padding:10px 12px;margin-bottom:16px;font-size:12px;color:rgba(255,255,255,.65);line-height:1.5}
@@ -625,12 +598,11 @@ html,body{overflow-x:hidden}
   #pricing{padding:4px 0 60px}
   footer{padding:64px 0 32px}
 
-  /* Hero overlap csökkentése tableten */
-  #hero{padding-bottom:100px}
-  #services{margin-top:-100px}
+  #hero{padding-bottom:60px}
+  #services{margin-top:0}
 
   /* Grids */
-  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .srv-bento{gap:12px}
   .pf-track .portfolio-item{flex:0 0 85%}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
   .about-inner{grid-template-columns:1fr;gap:48px}
@@ -638,7 +610,7 @@ html,body{overflow-x:hidden}
   .process-steps::before{display:none}
   .contact-inner{grid-template-columns:1fr;gap:48px}
   .faq-inner{grid-template-columns:1fr;gap:40px}
-  .pricing-grid{gap:16px}
+  .pricing-grid{grid-template-columns:repeat(2,1fr);gap:16px}
 
   /* Hero */
   .hero-desc{margin:0 auto}
@@ -647,7 +619,7 @@ html,body{overflow-x:hidden}
   .hs-item+.hs-item::before{display:none}
 
   /* Cards */
-  .service-card{padding:32px 28px 28px}
+  
   .contact-form{padding:40px 36px}
 }
 
@@ -677,7 +649,10 @@ html,body{overflow-x:hidden}
   .hero-badge{font-size:12px;padding:5px 14px 5px 6px;margin-bottom:20px}
   .hero-badge .dot{width:22px;height:22px}
   .hero-title{font-size:clamp(34px,9vw,72px);letter-spacing:-0.04em}
-  .hero-title br{display:none} /* mobilon ne törd — folyjon */
+  .hero-title br{display:none}
+  .hero-title .line2{width:100%;text-align:center}
+  .hero-title .line2::after{left:50%;right:auto;transform:translateX(-50%);width:60%}
+  .word-cycle{font-size:8.5vw}
   .hero-divider{margin:20px auto 18px}
   .hero-desc{font-size:15px;margin-bottom:24px;padding:0 4px}
   .hero-proof{flex-wrap:wrap;gap:10px;margin-bottom:24px}
@@ -698,17 +673,15 @@ html,body{overflow-x:hidden}
   .pc-amount{font-size:38px}
 
   /* Grids */
-  .services-grid{grid-template-columns:1fr;gap:14px}
+  .srv-bento{grid-template-columns:1fr} .srv-card{min-height:260px;padding:32px 28px 28px}
   .pf-track{gap:12px}
   .pf-track .portfolio-item{flex:0 0 92%}
   .testimonials-grid{grid-template-columns:1fr}
-  .pricing-slider-wrap{overflow-x:clip;overflow-y:visible}
-  .price-card.popular .popular-badge{position:static;transform:none;display:inline-block;margin:0 0 12px}
-  .pricing-grid{display:flex!important;flex-wrap:nowrap!important;gap:12px;transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform;padding-top:0;align-items:stretch}
-  .pricing-grid .price-card{flex:0 0 92%!important;width:92%!important;min-width:0;max-width:none}
-  .pricing-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
-  .pricing-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
-  .pricing-dot-btn.active{background:var(--teal);width:24px;border-radius:4px}
+  .pricing-slider-wrap{overflow:visible}
+  .popular-badge::before,.pc-value-badge::before{display:none}
+  .pricing-grid{display:flex!important;flex-direction:column!important;flex-wrap:wrap!important;gap:32px;padding-top:16px}
+  .pricing-grid .price-card{flex:1 1 100%!important;width:100%!important;max-width:none}
+  .pricing-dots{display:none}
   .stats-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr;gap:28px}
   .form-row{grid-template-columns:1fr}
@@ -720,8 +693,8 @@ html,body{overflow-x:hidden}
   .pf-arrow{display:none}
 
   /* Cards */
-  .service-card{padding:24px 20px 20px}
-  .service-card::after{font-size:64px}
+  
+  
   .contact-form{padding:24px 18px}
   .faq-question{padding:16px 18px}
   .faq-item.open .faq-answer{padding:0 18px 16px}
@@ -767,11 +740,14 @@ html,body{overflow-x:hidden}
 
   /* Hero */
   .hero-title{font-size:clamp(30px,9.5vw,52px);letter-spacing:-0.03em}
+  .hero-title .line2{width:100%;text-align:center}
+  .hero-title .line2::after{left:50%;right:auto;transform:translateX(-50%);width:60%}
+  .word-cycle{font-size:8.5vw}
   .hero-desc{font-size:14px;line-height:1.7}
   .hero-badge{font-size:11px}
 
   /* Cards */
-  .service-card{padding:22px 18px 18px}
+  
   .bento-card{padding:18px 16px}
   .bento-card.large{padding:22px 18px}
   .price-card{padding:24px 18px}
@@ -794,7 +770,7 @@ html,body{overflow-x:hidden}
 
   /* Pricing */
   .pc-amount{font-size:32px}
-  .pricing-grid .price-card{flex:0 0 96%!important;width:96%!important}
+  .pricing-grid .price-card{flex:1 1 100%!important;width:100%!important}
 
   /* Nav logo */
   .nav-logo img{height:30px}
@@ -832,13 +808,66 @@ nav.scrolled{background:rgba(8,14,26,.96)}
 
 /* Pricing cards */
 .price-card{background:var(--card-bg);border-color:var(--card-border)}
-.price-card.popular{background:linear-gradient(145deg,#0A2240,#0D3060);border-color:#1A4070}
+
+/* Basic – teal sweep */
+.price-card.basic-card{background:linear-gradient(145deg,#002A2A 0%,#00504A 35%,#003D38 60%,#002A2A 100%);border-color:#00806A!important}
+.price-card.basic-card::after{border-color:rgba(0,212,180,.5)!important}
+.price-card.basic-card:hover{box-shadow:0 20px 60px rgba(0,212,180,.25),0 0 60px rgba(0,212,180,.15)}
+.price-card.basic-card .btn-outline{color:var(--teal);border-color:rgba(0,212,180,.5)}
+.price-card.basic-card .btn-outline:hover{background:rgba(0,212,180,.15);color:#fff;border-color:var(--teal);transform:none}
+.price-card.basic-card .pc-name{color:#fff!important}
+.price-card.basic-card .pc-desc{color:rgba(255,255,255,.75)!important}
+.price-card.basic-card .pc-amount{color:#fff!important}
+.price-card.basic-card .pc-period{color:rgba(255,255,255,.5)!important}
+.price-card.basic-card .pc-feat-item{color:rgba(255,255,255,.85)!important}
+.price-card.basic-card .pc-feat-cat{color:rgba(255,255,255,.35)!important}
+.price-card.basic-card .pc-addon-label{color:#fff!important}
+.price-card.basic-card .pc-addon-sub{color:rgba(255,255,255,.4)!important}
+
+/* Plus – kék sweep */
+.price-card.popular{background:linear-gradient(145deg,#0A1E3A 0%,#0D3060 35%,#0A2448 60%,#0A1E3A 100%);border-color:#1A4070!important}
+.price-card.popular::after{border-color:rgba(14,165,233,.5)!important}
+.price-card.popular:hover{box-shadow:0 20px 60px rgba(14,165,233,.25),0 0 60px rgba(14,165,233,.15)}
+.price-card.popular .btn-outline{color:#5DB8E8;border-color:rgba(14,165,233,.5)}
+.price-card.popular .btn-outline:hover{background:rgba(14,165,233,.15);color:#fff;border-color:#0EA5E9;transform:none}
+
+/* Premium – arany sweep */
+.price-card.premium{background:linear-gradient(145deg,#5C4200 0%,#A07800 38%,#BF9200 55%,#A07800 72%,#5C4200 100%);border-color:#C49A00!important;box-shadow:0 0 60px rgba(180,140,0,.3),inset 0 1px 0 rgba(220,180,60,.25)}
+.price-card.premium::after{border-color:rgba(212,175,55,.7)!important}
+.price-card.premium:hover{box-shadow:0 20px 60px rgba(196,153,26,.4),0 0 60px rgba(196,153,26,.3)}
+
+/* Egyedi – lila sweep */
+.price-card.egyedi-card{background:linear-gradient(145deg,#1A0A2A 0%,#2D1548 35%,#220F38 60%,#1A0A2A 100%);border-color:#6B3FA0!important}
+.price-card.egyedi-card::after{border-color:rgba(139,92,246,.5)!important}
+.price-card.egyedi-card:hover{box-shadow:0 20px 60px rgba(139,92,246,.25),0 0 60px rgba(139,92,246,.15)}
+.price-card.egyedi-card .btn-outline{color:#9B72D0;border-color:rgba(139,92,246,.5)}
+.price-card.egyedi-card .btn-outline:hover{background:rgba(139,92,246,.15);color:#fff;border-color:#8B5CF6;transform:none}
+.price-card.egyedi-card .pc-name{color:#fff!important}
+.price-card.egyedi-card .pc-desc{color:rgba(255,255,255,.75)!important}
+.price-card.egyedi-card .pc-amount{color:#fff!important}
+.price-card.egyedi-card .pc-period{color:rgba(255,255,255,.5)!important}
+.price-card.egyedi-card .pc-feat-item{color:rgba(255,255,255,.85)!important}
+.price-card.egyedi-card .pc-feat-cat{color:rgba(255,255,255,.35)!important}
+.price-card.premium .pc-name{color:#fff}
+.price-card.premium .pc-desc{color:rgba(255,255,255,.8)}
+.price-card.premium .pc-amount{color:#fff}
+.price-card.premium .pc-suffix{color:rgba(255,255,255,.6)}
+.price-card.premium .pc-period{color:rgba(255,255,255,.5)}
+.price-card.premium .pc-features li,.price-card.premium .pc-feat-item{color:rgba(255,255,255,.85)}
+.price-card.premium .pc-features li .check,.price-card.premium .pc-feat-item .check{background:rgba(212,175,55,.2);color:#FFD97D}
+.price-card.egyedi-card .pc-features li .check,.price-card.egyedi-card .pc-feat-item .check{background:rgba(139,92,246,.2);color:#9B72D0}
+.price-card.premium .btn-outline{color:#F0D060;border-color:rgba(212,175,55,.6)}
+.price-card.premium .btn-outline:hover{background:rgba(212,175,55,.18);color:#fff;border-color:#D4AF37;transform:none}
 .pc-name{color:#fff}
 .pc-desc{color:rgba(255,255,255,.8)}
 .pc-amount{color:#fff}
 .pc-period{color:var(--muted)}
-.pc-features li{color:rgba(255,255,255,.75)}
-.pc-features li .check{background:rgba(0,212,180,.12);color:var(--teal)}
+.pc-features li,.pc-feat-item{color:rgba(255,255,255,.75)}
+.pc-features li .check,.pc-feat-item .check{background:rgba(0,212,180,.12);color:var(--teal)}
+.price-card.basic-card .pc-features li .check,.price-card.basic-card .pc-feat-item .check{background:rgba(0,212,180,.2)!important;color:#00D4B4!important}
+.price-card.popular .pc-features li .check,.price-card.popular .pc-feat-item .check{background:rgba(14,165,233,.2)!important;color:#0EA5E9!important}
+.price-card.premium .pc-features li .check,.price-card.premium .pc-feat-item .check{background:rgba(212,175,55,.2)!important;color:#FFD97D!important}
+.price-card.egyedi-card .pc-features li .check,.price-card.egyedi-card .pc-feat-item .check{background:rgba(139,92,246,.2)!important;color:#9B72D0!important}
 .btn-outline{color:var(--teal);border-color:var(--teal)}
 .btn-outline:hover{background:var(--teal);color:var(--navy)}
 
@@ -849,6 +878,21 @@ nav.scrolled{background:rgba(8,14,26,.96)}
 .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(0,212,180,.08)}
 .form-group select option{background:#0A1120}
+
+/* Package picker cards */
+.pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.pkg-card{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:2px solid rgba(255,255,255,.08);background:#0A1120;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s;user-select:none}
+.pkg-card:hover{border-color:var(--pkg-color);background:rgba(255,255,255,.03)}
+.pkg-card.selected{border-color:var(--pkg-color);background:color-mix(in srgb,var(--pkg-color) 12%,#0A1120);box-shadow:0 0 18px color-mix(in srgb,var(--pkg-color) 30%,transparent)}
+.pkg-dot{width:10px;height:10px;border-radius:50%;background:var(--pkg-color);flex-shrink:0}
+.pkg-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.65);transition:color .18s}
+.pkg-card.selected .pkg-name,.pkg-card:hover .pkg-name{color:#fff}
+.pkg-sep{grid-column:1/-1;height:1px;background:rgba(255,255,255,.07);margin:2px 0}
+.pkg-other{grid-column:1/-1}
+.pkg-other .pkg-grid-inner{display:flex;flex-wrap:wrap;gap:8px}
+.pkg-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:8px;border:1.5px solid rgba(255,255,255,.08);background:#0A1120;cursor:pointer;font-size:12px;font-weight:600;color:rgba(255,255,255,.55);transition:border-color .18s,color .18s,background .18s;user-select:none}
+.pkg-chip:hover{border-color:rgba(255,255,255,.25);color:#fff}
+.pkg-chip.selected{border-color:var(--teal);color:#fff;background:rgba(0,212,180,.08)}
 .ci-val{color:#fff}
 .ci-label{color:var(--muted)}
 .ci-icon{background:rgba(0,212,180,.1)}
@@ -919,6 +963,33 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 }
 .nav-links a.nav-active{color:var(--teal)!important}
 
+/* ── HERO KÉT OSZLOPOS ELRENDEZÉS ── */
+.hero-content{flex-direction:row!important;align-items:center;text-align:left!important;max-width:1100px!important;gap:48px}
+.hero-text-col{flex:1;max-width:500px;display:flex;flex-direction:column;align-items:flex-start}
+.hero-phone-col{flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+@media(max-width:960px){
+  .hero-content{flex-direction:column!important;text-align:center!important;max-width:860px!important;gap:32px}
+  .hero-text-col{max-width:100%;align-items:center}
+  .hero-phone-col{display:none}
+}
+
+/* ── IPHONE 16 PRO MOCKUP ── */
+.iphone-wrap{position:relative;width:248px;filter:drop-shadow(0 40px 80px rgba(0,0,0,.75))}
+.iphone-frame{
+  width:248px;height:510px;border-radius:46px;
+  background:linear-gradient(145deg,#4a4a4a 0%,#1c1c1e 40%,#3a3a3a 70%,#2c2c2e 100%);
+  padding:11px;position:relative;
+  box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 0 2px rgba(0,0,0,.9);
+}
+.iphone-screen{width:100%;height:100%;border-radius:36px;overflow:hidden;background:#000;position:relative}
+.iphone-screen iframe{width:390px;height:841px;transform:scale(0.580);transform-origin:top left;border:none;pointer-events:none}
+.iphone-island{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:112px;height:32px;background:#000;border-radius:18px;z-index:10}
+.iphone-btn{position:absolute;background:#3a3a3a;border-radius:2px}
+.iphone-action{width:3px;height:24px;left:-3px;top:90px}
+.iphone-vol-up{width:3px;height:38px;left:-3px;top:128px}
+.iphone-vol-down{width:3px;height:38px;left:-3px;top:180px}
+.iphone-power{width:3px;height:64px;right:-3px;top:148px}
+
 /* ── SZEKCIÓ POZÍCIONÁLÁS ── */
 #services,#about,#process,#portfolio,#pricing,#faq,#contact,footer{position:relative;z-index:1}
 #services>.container,#about>.container,#process>.container,
@@ -974,27 +1045,15 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <section id="hero">
   <div class="hero-bg">
     <div class="hero-bg-photo"></div>
-    <div class="hero-orb orb-teal"></div>
-    <div class="hero-orb orb-blue"></div>
-    <div class="hero-orb orb-mid"></div>
-    <div class="hero-dots"></div>
     <div class="hero-shimmer"></div>
   </div>
-  <div class="container">
-    <div class="hero-content">
-
-      <!-- Főcím -->
-      <h1 class="hero-title">
-        Profi online jelenlét,<br>
-        <span class="line2">ami <span class="word-cycle">ügyfeleket hoz</span></span>
-      </h1>
-
-      <!-- Leírás -->
-      <p class="hero-desc">Modern weboldal, marketing, mérhetően, eredményesen.</p>
-
-      <!-- Stats strip -->
-
-    </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="highlight">A weboldalad</span><br>
+      dolgozzon helyetted
+    </h1>
+    <p class="hero-desc" style="white-space:nowrap">Mi kezeljük az online jelenlétedet — te a vállalkozásoddal foglalkozz.</p>
   </div>
 </section>
 
@@ -1042,78 +1101,74 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
-    <div class="services-header reveal">
-      <div class="section-tag">Szolgáltatások</div>
-      <h2 class="section-title">Mindent amit a növekedéshez <span class="grad-text">valóban szükséged van</span></h2>
-      <p class="section-sub">Más ügynökségeknél 3 helyen kell megfizetned, amit mi egy csapatból adunk — weboldal, SEO és marketing összehangolva, egymást erősítve.</p>
+    <div class="services-header" style="margin-bottom:32px">
+      <h2 class="section-title">Mikor nézted meg utoljára,<br><span class="grad-text">hány ügyfelet veszítesz el online?</span></h2>
+      <p class="section-sub" style="max-width:720px;color:rgba(255,255,255,.8)">Más ügynökségeknél 4 helyen kell megfizetned, amit mi egy csapatból adunk — weboldal, SEO, marketing és design összehangolva, egymást erősítve.</p>
     </div>
-    <div class="services-grid">
+    <div class="srv-bento">
 
-      <!-- Card 1 – Web -->
-      <div class="service-card reveal" data-num="01">
-        <div class="sc-glow"></div>
-        <div class="sc-icon-wrap">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/>
-            <path d="M2 7h20"/><circle cx="6" cy="5" r=".8" fill="currentColor" stroke="none"/>
-            <circle cx="9" cy="5" r=".8" fill="currentColor" stroke="none"/>
-            <path d="M8 21h8M12 17v4"/>
-          </svg>
+      <div class="srv-card s-web">
+        <div class="srv-card-orb"></div>
+        <div class="srv-card-header">
+          <span class="srv-card-cat">Web Design</span>
+          <a href="szolgaltatasok.html#web-design" class="srv-card-link">Részletek <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
         </div>
-        <div class="sc-tag">Web Design</div>
-        <h3 class="sc-title">Weboldal, ami ügyfeleket hoz</h3>
-        <p class="sc-desc">Nem elég, ha szép — el kell adnia. Minden weboldalunkat konverzióra optimalizálva tervezzük, akár 1 hét alatt élőben.</p>
-        <ul class="sc-features">
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Egyedi, márkához igazított design</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Mobilon is tökéletesen működik</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Gyors betöltés = több ügyfél</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Te szerkesztheted, nem függsz tőlünk</li>
-        </ul>
-        <a href="contact.html" class="sc-link">Kérek egy ingyenes konzultációt <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <h3 class="srv-card-title">Weboldal, ami<br>dolgozik helyetted</h3>
+        <p class="srv-card-desc">Nem elég, ha szép — el kell adnia. Minden weboldalunkat azzal a céllal építjük, hogy több ügyfelet és több bevételt hozzon.</p>
+        <div class="srv-card-features">
+          <div class="srv-card-feat">Egyedi, márkához igazított design</div>
+          <div class="srv-card-feat">Mobilbarát, gyors betöltés</div>
+          <div class="srv-card-feat">Konverzióra optimalizált struktúra</div>
+        </div>
       </div>
 
-      <!-- Card 2 – SEO (featured) -->
-      <div class="service-card featured reveal" data-num="02">
-        <div class="sc-glow"></div>
-        <div class="sc-icon-wrap">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
+      <div class="srv-card s-seo">
+        <div class="srv-card-orb"></div>
+        <div class="srv-card-header">
+          <span class="srv-card-cat">SEO</span>
+          <a href="szolgaltatasok.html#seo" class="srv-card-link">Részletek <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
         </div>
-        <div class="sc-tag">SEO & Growth</div>
-        <h3 class="sc-title">Google #1 — ingyen, folyamatosan</h3>
-        <p class="sc-desc">Ügyfeleink 87%-a 90 napon belül top 3 pozícióba kerül a célzott kulcsszavakon. Organikus forgalom, hirdetési büdzsé nélkül.</p>
-        <ul class="sc-features">
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Technikai audit — megmutatjuk hol veszítesz</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Azok a kulcsszavak, ahol az ügyfelek keresnek</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tartalom, ami rangsorol és meggyőz</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Erős linkprofil a tartós pozícióhoz</li>
-        </ul>
-        <a href="contact.html" class="sc-link">Kérem az ingyenes SEO elemzést <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <h3 class="srv-card-title">Ha a Google megtalál,<br>az ügyfél is megtalál</h3>
+        <p class="srv-card-desc">Helyi keresésben az első helyek egyikén lenni ingyenes forgalmat jelent — hirdetési büdzsé nélkül.</p>
+        <div class="srv-card-features">
+          <div class="srv-card-feat">Kulcsszókutatás és on-page SEO</div>
+          <div class="srv-card-feat">Google Business kezelés</div>
+          <div class="srv-card-feat">Havi teljesítmény riport</div>
+        </div>
       </div>
 
-      <!-- Card 3 – Marketing -->
-      <div class="service-card reveal" data-num="03">
-        <div class="sc-glow"></div>
-        <div class="sc-icon-wrap">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
+      <div class="srv-card s-ads">
+        <div class="srv-card-orb"></div>
+        <div class="srv-card-header">
+          <span class="srv-card-cat">Digital Marketing</span>
+          <a href="szolgaltatasok.html#digital-marketing" class="srv-card-link">Részletek <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
         </div>
-        <div class="sc-tag">Digital Marketing</div>
-        <h3 class="sc-title">Hirdetés, ami valóban megtérül</h3>
-        <p class="sc-desc">Nem kattintásokat veszünk — ügyfeleket szerzünk. Átlagos ROI ügyfeleinknek: 380%. Minden forint mérhető eredménnyel.</p>
-        <ul class="sc-features">
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Google Ads — a vevők ott keresnek, ahol te vagy</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Meta hirdetések pontos célzással</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Email sorozatok, amelyek eladnak</li>
-          <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Folyamatos optimalizálás, havi riport</li>
-        </ul>
-        <a href="contact.html" class="sc-link">Kérek kampány stratégiát <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <h3 class="srv-card-title">Hirdetés,<br>ami valóban megtérül</h3>
+        <p class="srv-card-desc">Nem kattintásokat veszünk — ügyfeleket szerzünk. Meta és Google hirdetések összehangolva, folyamatos optimalizálással.</p>
+        <div class="srv-card-features">
+          <div class="srv-card-feat">Meta Ads & Google Ads kezelés</div>
+          <div class="srv-card-feat">Célközönség kutatás és beállítás</div>
+          <div class="srv-card-feat">Folyamatos optimalizálás</div>
+        </div>
+      </div>
+
+      <div class="srv-card s-gfx">
+        <div class="srv-card-orb"></div>
+        <div class="srv-card-header">
+          <span class="srv-card-cat">Grafikai Design</span>
+          <a href="szolgaltatasok.html#grafikai-design" class="srv-card-link">Részletek <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+        </div>
+        <h3 class="srv-card-title">Vizuális megjelenés,<br>ami megmarad</h3>
+        <p class="srv-card-desc">Az első benyomás számít. Logó, arculat és hirdetési kreatívok — amik megkülönböztetnek a versenytársaktól.</p>
+        <div class="srv-card-features">
+          <div class="srv-card-feat">Logó és vizuális arculat</div>
+          <div class="srv-card-feat">Social media grafika</div>
+          <div class="srv-card-feat">Hirdetés kreatívok</div>
+        </div>
       </div>
 
     </div>
-    <div style="text-align:center;margin-top:56px">
+    <div style="text-align:center;margin-top:28px">
       <a href="szolgaltatasok.html" class="btn btn-outline">Összes szolgáltatás megtekintése →</a>
     </div>
   </div>
@@ -1123,17 +1178,13 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="container">
-    <div class="portfolio-header">
-      <h2 class="section-title">Weboldalak, amik<br><span class="grad-text">eredményt hoznak</span></h2>
-      <p class="section-sub" style="color:rgba(255,255,255,.55);max-width:580px">Nem csak szépek — minden oldalunkat azzal a céllal építjük, hogy több ügyfelet, több bevételt hozzon. Nézd meg, mit alkottunk.</p>
-    </div>
     <div class="portfolio-slider">
     <div class="pf-track">
 
       <!-- Aramis -->
       <div class="portfolio-item is-active">
         <div class="pi-preview">
-          <iframe src="https://aramis-murex.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Aramis"></iframe>
+          <img src="Images/aramis.png" loading="lazy" alt="Aramis weboldal">
           <div class="pi-card-dim"></div>
           <div class="pi-info">
             <div>
@@ -1143,12 +1194,18 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
             <a href="https://aramis-murex.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
           </div>
         </div>
+        <div class="pi-phone">
+          <div class="pi-phone-island"></div>
+          <div class="pi-phone-frame">
+            <div class="pi-phone-screen"><img src="Images/Aramis Telefon.png" alt=""></div>
+          </div>
+        </div>
       </div>
 
       <!-- Smashpoint -->
       <div class="portfolio-item">
         <div class="pi-preview">
-          <iframe src="https://www.smashpoint.hu/" loading="lazy" scrolling="no" tabindex="-1" title="Smashpoint"></iframe>
+          <img src="Images/smashpoint.png" loading="lazy" alt="Smashpoint weboldal">
           <div class="pi-card-dim"></div>
           <div class="pi-info">
             <div>
@@ -1158,12 +1215,18 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
             <a href="https://www.smashpoint.hu/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
           </div>
         </div>
+        <div class="pi-phone">
+          <div class="pi-phone-island"></div>
+          <div class="pi-phone-frame">
+            <div class="pi-phone-screen"><img src="Images/Smashpoint Telefon.png" alt=""></div>
+          </div>
+        </div>
       </div>
 
       <!-- Pizza Pont -->
       <div class="portfolio-item">
         <div class="pi-preview">
-          <iframe src="https://pizzapont.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Pizza Pont"></iframe>
+          <img src="Images/pizzapont.png" loading="lazy" alt="Pizza Pont weboldal">
           <div class="pi-card-dim"></div>
           <div class="pi-info">
             <div>
@@ -1173,19 +1236,31 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
             <a href="https://pizzapont.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
           </div>
         </div>
+        <div class="pi-phone">
+          <div class="pi-phone-island"></div>
+          <div class="pi-phone-frame">
+            <div class="pi-phone-screen"><img src="Images/Pizzapont Telefon.png" alt=""></div>
+          </div>
+        </div>
       </div>
 
-      <!-- Carpoint -->
+      <!-- KG Kárpit -->
       <div class="portfolio-item">
         <div class="pi-preview">
-          <iframe src="https://carpoint-mu.vercel.app/" loading="lazy" scrolling="no" tabindex="-1" title="Carpoint"></iframe>
+          <img src="Images/KGkárpit.png" loading="lazy" alt="KG Kárpit- és Szőnyegtisztítás weboldal">
           <div class="pi-card-dim"></div>
           <div class="pi-info">
             <div>
               <div class="pi-info-tag">Weboldal fejlesztés, UX / UI</div>
-              <div class="pi-info-title">carpoint.hu</div>
+              <div class="pi-info-title">kgkarpittisztitas.hu</div>
             </div>
-            <a href="https://carpoint-mu.vercel.app/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
+            <a href="https://kgkarpittisztitas.hu/" target="_blank" rel="noopener" class="pi-details-btn">Részletek</a>
+          </div>
+        </div>
+        <div class="pi-phone">
+          <div class="pi-phone-island"></div>
+          <div class="pi-phone-frame">
+            <div class="pi-phone-screen"><img src="Images/KGkárpit telefon.png" alt=""></div>
           </div>
         </div>
       </div>
@@ -1212,24 +1287,31 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     </div>
     <div class="pricing-slider-wrap">
     <div class="pricing-grid">
-      <div class="price-card reveal">
+      <div class="price-card basic-card">
         <div class="pc-name">Basic</div>
-        <div class="pc-desc">Profi webjelenlét, ami az első héttől ügyfeleket hozhat — egyszer fizetsz, hosszan kamatozik.</div>
+        <div class="pc-desc">Profi weboldal, ami az első héttől ügyfeleket hozhat.</div>
         <div class="pc-price">
-          <span class="pc-amount">189 900 <span class="pc-suffix">Ft</span></span>
-          <div class="pc-period">egyszeri díj + ÁFA</div>
+          <span class="pc-amount">230 000 Ft</span>
+          <div class="pc-period">egyszeri díj + ÁFA<span class="pc-vat"> · 292 100 Ft bruttó</span></div>
         </div>
-        <ul class="pc-features">
-          <li><span class="check">✓</span> Egyedi, mobilbarát weboldal</li>
-          <li><span class="check">✓</span> Alap SEO beállítás</li>
-          <li><span class="check">✓</span> SSL + Google Analytics</li>
-          <li><span class="check">✓</span> 1 hónap support</li>
-          <li><span class="check">✓</span> Hirdetéskezelés</li>
-          <li><span class="check">✓</span> Projektmenedzser</li>
-        </ul>
+        <div class="pc-features">
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Weboldal</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Egyedi, mobilbarát weboldal</div>
+            <div class="pc-feat-item"><span class="check">✓</span> SSL + Google Analytics</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">SEO</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Alap SEO beállítás</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Support</div>
+            <div class="pc-feat-item"><span class="check">✓</span> 1 hónap technikai support</div>
+          </div>
+        </div>
         <div class="pc-addon">
           <label class="pc-addon-toggle" id="maintToggle">
-            <input type="checkbox" id="maintCheck" onchange="toggleMaint(this)">
+            <input type="checkbox" id="maintCheck" onchange="document.getElementById('maintToggle').classList.toggle('checked',this.checked)">
             <div class="pc-addon-check" id="maintCheckBox"></div>
             <div class="pc-addon-body">
               <div>
@@ -1239,61 +1321,77 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
               <div class="pc-addon-price">+19 900 Ft/hó</div>
             </div>
           </label>
-          <div class="pc-addon-info" id="maintInfo">Havonta: frissítések, biztonsági mentés, tartalom módosítások és technikai support.</div>
+          <div class="pc-addon-info">Havonta: frissítések, biztonsági mentés, tartalom módosítások és technikai support.</div>
         </div>
         <a href="alap-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
       </div>
-      <div class="price-card popular reveal" style="transition-delay:.15s">
-        <div class="pc-name">Plus</div>
+      <div class="price-card popular">
+        <div class="pc-name">Alap</div>
         <div class="popular-badge">LEGNÉPSZERŰBB</div>
-        <div class="pc-desc">SEO + Google Ads + Facebook Ads kezelés — hirdetési csatornák összehangolva, support nélkül.</div>
+        <div class="pc-desc">Weboldal + folyamatos online jelenlét és social media.</div>
         <div class="pc-price">
-          <span class="pc-amount" style="color:#fff">69 900 Ft<span class="pc-suffix" style="color:rgba(255,255,255,.6)">/hó</span></span>
-          <div class="pc-period">+ ÁFA</div>
+          <span class="pc-amount" style="color:#fff">80 000 Ft<span class="pc-suffix" style="color:rgba(255,255,255,.6)">/hó</span></span>
+          <div class="pc-period">+ ÁFA · felmondható<span class="pc-vat"> · 101 600 Ft/hó bruttó</span></div>
         </div>
-        <ul class="pc-features">
-          <li><span class="check">✓</span> Teljes SEO optimalizálás</li>
-          <li><span class="check">✓</span> Google Ads kampánykezelés</li>
-          <li><span class="check">✓</span> Facebook Ads kampánykezelés</li>
-          <li><span class="check">✓</span> Havi teljesítményriport</li>
-          <li><span class="check">✓</span> Dedikált projektmenedzser</li>
-          <li><span class="check">✓</span> Stratégiai konzultáció</li>
-        </ul>
-        <a href="uzleti-csomag.html" class="btn btn-primary" style="width:100%;justify-content:center">Részletek megtekintése</a>
-      </div>
-      <div class="price-card reveal" style="transition-delay:.3s">
-        <div class="pc-name">Premium</div>
-        <div class="pc-desc">Dedikált csapat, teljes stratégia, webáruház — csak 20 000 Ft-tal több mint a Plus, de sokkal több benne.</div>
-        <div class="pc-price">
-          <span class="pc-amount">89 900 Ft<span class="pc-suffix">/hó</span></span>
-          <div class="pc-period">Plus csomag tartalma + az alábbiak + ÁFA</div>
+        <div class="pc-features">
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Weboldal</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Egyedi, mobilbarát weboldal</div>
+            <div class="pc-feat-item"><span class="check">✓</span> SSL + Google Analytics</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">SEO</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Teljes SEO optimalizálás</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Havi SEO riport</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Social Media</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Social media tartalom kezelés</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Havi posztok ütemezése</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Support</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Dedikált projektmenedzser</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Havi stratégiai konzultáció</div>
+          </div>
         </div>
-        <ul class="pc-features">
-          <li><span class="check">✓</span> Webáruház + összes hirdetés</li>
-          <li><span class="check">✓</span> Dedikált projektmenedzser</li>
-          <li><span class="check">✓</span> 24/7 prioritásos support</li>
-          <li><span class="check">✓</span> Logó és grafikai design</li>
-          <li><span class="check">✓</span> Havi stratégiai konzultáció</li>
-          <li><span class="check">✓</span> Havi részletes riport</li>
-        </ul>
-        <a href="premium-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
+        <a href="uzleti-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
       </div>
-      <div class="price-card reveal" style="transition-delay:.45s">
-        <div class="pc-name">Egyedi</div>
-        <div class="pc-desc">Teljesen személyre szabott megoldás — ha a dobozos csomagok már szűknek bizonyulnak.</div>
+      <div class="price-card egyedi-card">
+        <div class="pc-name">Exclusive</div>
+        <div class="pc-desc">Nagy projektek, webáruház, teljes arculat — egyedi kalkulációval.</div>
         <div class="pc-price">
-          <span class="pc-amount" style="font-size:28px;line-height:1.2">Egyedi ajánlat</span>
+          <span class="pc-amount" style="font-size:28px">Egyedi árajánlat</span>
           <div class="pc-period">konzultáció alapján</div>
         </div>
-        <ul class="pc-features">
-          <li><span class="check">✓</span> Egyedi fejlesztés és integráció</li>
-          <li><span class="check">✓</span> Többnyelvű weboldal</li>
-          <li><span class="check">✓</span> Teljes arculattervezés</li>
-          <li><span class="check">✓</span> Költségvetés alapú hirdetéskezelés</li>
-          <li><span class="check">✓</span> Dedikált account manager</li>
-          <li><span class="check">✓</span> SLA-alapú support</li>
-        </ul>
-        <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center">Ajánlatot kérek</a>
+        <div class="pc-features">
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Weboldal</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Egyedi fejlesztés, webáruház</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Többnyelvű weboldal</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">SEO</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Teljes SEO + PPC stratégia</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Folyamatos SEO kezelés</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Social Media</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Social media tartalom kezelés</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Havi posztok ütemezése</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Hirdetés</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Minden csatorna hirdetéskezelés</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Egyedi kampányköltségvetés</div>
+          </div>
+          <div class="pc-feat-group">
+            <div class="pc-feat-cat">Support</div>
+            <div class="pc-feat-item"><span class="check">✓</span> Dedikált account manager</div>
+            <div class="pc-feat-item"><span class="check">✓</span> SLA-alapú prioritásos support</div>
+          </div>
+        </div>
+        <a href="egyedi-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Csomag összeállítása</a>
       </div>
     </div><!-- /pricing-grid -->
     <div class="pricing-dots" id="pricingDots"></div>
@@ -1326,7 +1424,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
             </div>
             <div>
               <div class="ci-label">Telefon</div>
-              <div class="ci-val">+36 30 123 4567</div>
+              <div class="ci-val">+36 20 621 8477</div>
             </div>
           </div>
           <div class="ci">
@@ -1341,14 +1439,14 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         </div>
       </div>
       <div class="contact-form reveal-right">
-        <form id="contactForm" onsubmit="submitForm(event)">
+        <form id="contactForm" onsubmit="submitForm(event)" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="fname">Keresztnév *</label>
+              <label for="fname">Vezetéknév *</label>
               <input type="text" id="fname" placeholder="pl. Kovács" required>
             </div>
             <div class="form-group">
-              <label for="lname">Vezetéknév *</label>
+              <label for="lname">Keresztnév *</label>
               <input type="text" id="lname" placeholder="pl. János" required>
             </div>
           </div>
@@ -1363,20 +1461,35 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
             </div>
           </div>
           <div class="form-group">
-            <label for="service">Melyik szolgáltatás érdekel?</label>
-            <select id="service">
-              <option value="">Válassz egyet...</option>
-              <option>Weboldal tervezés & fejlesztés</option>
-              <option>SEO optimalizálás</option>
-              <option>Digitális marketing</option>
-              <option>Webáruház fejlesztés</option>
-              <option>Teljes Business csomag</option>
-              <option>Egyéb / Komplex projekt</option>
-            </select>
+            <label for="website">Weboldalad linkje</label>
+            <input type="url" id="website" placeholder="pl. https://cegem.hu">
           </div>
           <div class="form-group">
-            <label for="message">Üzenet *</label>
-            <textarea id="message" placeholder="Mesélj a projektedről, céljaidról és arról, hogyan segíthetünk..." required></textarea>
+            <label>Melyik csomag / szolgáltatás érdekel?</label>
+            <input type="hidden" id="service" name="service">
+            <div class="pkg-grid">
+              <div class="pkg-card" data-value="Basic csomag" style="--pkg-color:#00D4B4" onclick="selectPkg(this)">
+                <span class="pkg-dot"></span><span class="pkg-name">Basic csomag</span>
+              </div>
+              <div class="pkg-card" data-value="Alap csomag" style="--pkg-color:#0EA5E9" onclick="selectPkg(this)">
+                <span class="pkg-dot"></span><span class="pkg-name">Alap csomag</span>
+              </div>
+              <div class="pkg-card" data-value="Exclusive csomag" style="--pkg-color:#8B5CF6" onclick="selectPkg(this)">
+                <span class="pkg-dot"></span><span class="pkg-name">Exclusive csomag</span>
+              </div>
+            </div>
+            <div class="pkg-sep" style="margin-top:10px"></div>
+            <div class="pkg-grid-inner" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+              <div class="pkg-chip" data-value="Weboldal tervezés" onclick="selectPkg(this)">Weboldal tervezés</div>
+              <div class="pkg-chip" data-value="SEO optimalizálás" onclick="selectPkg(this)">SEO optimalizálás</div>
+              <div class="pkg-chip" data-value="Digitális marketing" onclick="selectPkg(this)">Digitális marketing</div>
+              <div class="pkg-chip" data-value="Webáruház fejlesztés" onclick="selectPkg(this)">Webáruház fejlesztés</div>
+              <div class="pkg-chip" data-value="Egyéb / Komplex projekt" onclick="selectPkg(this)">Egyéb</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Üzenet</label>
+            <textarea id="message" placeholder="Mesélj a projektedről, céljaidról és arról, hogyan segíthetünk..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary form-submit">
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -1425,7 +1538,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="footer-heading">Kapcsolat</div>
         <ul class="footer-links">
           <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
-          <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+          <li><a href="tel:+36206218477">+36 20 621 8477</a></li>
           <li><a href="#">Budapest, Magyarország</a></li>
         </ul>
         <div style="margin-top:24px">
@@ -1504,6 +1617,21 @@ function moveIndicator(link) {
     ease:    'power2.inOut'
   });
 }
+
+// ── Pricing card row equalizer ──
+function equalizeCards() {
+  var cards = Array.from(document.querySelectorAll('.pricing-grid .price-card'));
+  if (cards.length < 2) return;
+  ['pc-name', 'pc-desc', 'pc-price'].forEach(function(cls) {
+    var els = cards.map(function(c) { return c.querySelector('.' + cls); }).filter(Boolean);
+    els.forEach(function(e) { e.style.minHeight = ''; });
+    var max = Math.max.apply(null, els.map(function(e) { return e.offsetHeight; }));
+    if (max > 0) els.forEach(function(e) { e.style.minHeight = max + 'px'; });
+  });
+}
+document.fonts.ready.then(equalizeCards);
+window.addEventListener('load', function(){ setTimeout(equalizeCards, 300); });
+window.addEventListener('resize', equalizeCards);
 
 // ── Maintenance add-on toggle ──
 function toggleMaint(cb) {
@@ -1591,17 +1719,6 @@ navLinks.forEach(link => {
       });
   });
 });
-
-// ─────────────────────────────────────
-// Portfolio iframe scale
-function scalePortfolioIframes() {
-  document.querySelectorAll('.pi-preview').forEach(wrap => {
-    const iframe = wrap.querySelector('iframe');
-    if (iframe) iframe.style.transform = `scale(${wrap.offsetWidth / 1280})`;
-  });
-}
-scalePortfolioIframes();
-window.addEventListener('resize', scalePortfolioIframes);
 
 // 1. HERO – cinematic filmszerű belépő
 // ─────────────────────────────────────
@@ -1691,109 +1808,131 @@ gsap.utils.toArray('.section-sub').forEach(el => {
 // ─────────────────────────────────────
 // 4. SERVICE CARDS – blur + scale belépő
 // ─────────────────────────────────────
-gsap.fromTo('.service-card',
-  { y: 60, opacity: 0, scale: 0.94, filter: 'blur(4px)' },
-  { y: 0,  opacity: 1, scale: 1,    filter: 'blur(0px)',
-    duration: 0.7, stagger: { each: 0.1, from: 'start' }, ease: 'power3.out',
-    scrollTrigger: { trigger: '.services-grid', start: 'top 78%' }
+gsap.fromTo('.srv-card',
+  { y: 50, opacity: 0, scale: 0.95 },
+  { y: 0,  opacity: 1, scale: 1,
+    duration: 0.65, stagger: { each: 0.1, from: 'start' }, ease: 'power3.out',
+    scrollTrigger: { trigger: '.srv-bento', start: 'top 80%' }
   }
 );
 
 // ─────────────────────────────────────
-// PORTFOLIO SLIDER
-// ─────────────────────────────────────
-(function() {
-  var slider  = document.querySelector('.portfolio-slider');
-  var track   = document.querySelector('.pf-track');
-  var dotsEl  = document.getElementById('pfDots');
-  var btnPrev = document.getElementById('pfPrev');
-  var btnNext = document.getElementById('pfNext');
-  if (!track || !slider) return;
+// PORTFOLIO SLIDER — végtelen, dupla rAF snap
+(function () {
+  var SPEED = 250;
 
-  var allItems = Array.from(track.querySelectorAll('.portfolio-item'));
-  var n = allItems.length;
-  if (!n) return;
+  var slider = document.querySelector('.portfolio-slider');
+  var track  = document.querySelector('.pf-track');
+  if (!slider || !track) return;
 
-  var current   = 0;
-  var animating = false;
+  var orig = Array.from(track.querySelectorAll('.portfolio-item'));
+  var n = orig.length;
+  if (n < 2) return;
 
-  function ratio() { return window.innerWidth <= 768 ? 0.90 : window.innerWidth <= 1024 ? 0.85 : 0.76; }
-  function gap()   { return window.innerWidth <= 768 ? 12 : 16; }
-  function iw()    { return slider.offsetWidth * ratio(); }
-  function pos(i)  {
-    var raw = Math.round(i * (iw() + gap()) - (slider.offsetWidth - iw()) / 2);
-    var max = Math.max(0, Math.round(n * iw() + (n - 1) * gap() - slider.offsetWidth));
-    return Math.max(0, Math.min(raw, max));
+  // Klónok: utolsó → elé, első → végére
+  var cL = orig[n-1].cloneNode(true), cR = orig[0].cloneNode(true);
+  cL.setAttribute('aria-hidden','true'); cR.setAttribute('aria-hidden','true');
+  // Klónokból kivesszük az iframe src-t → nincs betöltési flash körbeéréskor
+  [cL, cR].forEach(function(c){
+    c.querySelectorAll('iframe').forEach(function(f){ f.removeAttribute('src'); });
+  });
+  track.insertBefore(cL, orig[0]);
+  track.appendChild(cR);
+  // Track: [cL, orig0..orig(n-1), cR]  indexek: 0, 1..n, n+1
+
+  var cur = 1, busy = false, auto;
+
+  function iw()   { return Math.round(slider.offsetWidth * (innerWidth<=768?.90:innerWidth<=1024?.85:.76)); }
+  function gap()  { return innerWidth<=768?12:16; }
+  function off(i) { return i*(iw()+gap()) - (slider.offsetWidth-iw())/2; }
+
+  // Dupla rAF: garantáltan transition:none ELŐTT fut a transform
+  function snap(i) {
+    requestAnimationFrame(function() {
+      track.style.transition = 'none';
+      requestAnimationFrame(function() {
+        cur = i;
+        track.style.transform = 'translateX('+(-off(i))+'px)';
+      });
+    });
   }
 
-  function syncUI() {
-    allItems.forEach(function(el, i) { el.classList.toggle('is-active', i === current); });
-    dotsEl.querySelectorAll('.pf-dot-btn').forEach(function(d, i) { d.classList.toggle('active', i === current); });
+  function go(i) {
+    if (busy) return;
+    busy = true;
+    track.style.transition = 'transform '+SPEED+'ms cubic-bezier(.25,.46,.45,.94)';
+    cur = i;
+    track.style.transform = 'translateX('+(-off(i))+'px)';
+    setTimeout(function() {
+      if      (cur <= 0)   snap(n);
+      else if (cur >= n+1) snap(1);
+      ui();
+      busy = false;
+    }, SPEED + 40);
   }
 
-  function buildDots() {
+  function realI() { return ((cur-1)%n+n)%n; }
+  function ui() {
+    orig.forEach(function(el,i){ el.classList.toggle('is-active', i===realI()); });
+    document.querySelectorAll('#pfDots .pf-dot-btn').forEach(function(d,i){ d.classList.toggle('active', i===realI()); });
+  }
+
+  function next() { go(cur+1); }
+  function prev() { go(cur-1); }
+
+  var dotsEl = document.getElementById('pfDots');
+  if (dotsEl) {
     dotsEl.innerHTML = '';
-    for (var i = 0; i < n; i++) {
-      (function(idx) {
+    for (var i=0; i<n; i++) {
+      (function(ii){
         var b = document.createElement('button');
-        b.className = 'pf-dot-btn' + (idx === 0 ? ' active' : '');
-        b.setAttribute('aria-label', 'Slide ' + (idx + 1));
-        b.addEventListener('click', function() { if (!animating) { clearInterval(autoPlay); navigate(idx, true); } });
+        b.className = 'pf-dot-btn'+(ii===0?' active':'');
+        b.setAttribute('aria-label','Slide '+(ii+1));
+        b.addEventListener('click',function(){ if(!busy){ clearInterval(auto); go(ii+1); startAuto(); } });
         dotsEl.appendChild(b);
       })(i);
     }
   }
 
-  // animate=true → smooth transition; animate=false → instant (no visible change)
-  function navigate(target, animate) {
-    if (animating && animate) return;
-    current = target;
-    syncUI();
-    if (animate) {
-      animating = true;
-      track.style.transition = 'transform .45s cubic-bezier(.22,1,.36,1)';
-    } else {
-      track.style.transition = 'none';
-      void track.offsetWidth;
-    }
-    track.style.transform = 'translateX(-' + pos(current) + 'px)';
-  }
+  var bN=document.getElementById('pfNext'), bP=document.getElementById('pfPrev');
+  if (bN) bN.addEventListener('click',function(){ clearInterval(auto); next(); startAuto(); });
+  if (bP) bP.addEventListener('click',function(){ clearInterval(auto); prev(); startAuto(); });
 
-  track.addEventListener('transitionend', function(e) {
-    if (e.propertyName === 'transform') animating = false;
-  });
+  var tx=0;
+  track.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; clearInterval(auto); },{passive:true});
+  track.addEventListener('touchend',  function(e){ var d=tx-e.changedTouches[0].clientX; if(Math.abs(d)>50){d>0?next():prev();} startAuto(); });
+  window.addEventListener('resize',   function(){ snap(cur); });
 
-  function next() {
-    var wrap = current === n - 1;
-    navigate((current + 1) % n, !wrap); // wrap = instant, else animated
-  }
-  function prev() {
-    var wrap = current === 0;
-    navigate((current - 1 + n) % n, !wrap);
-  }
+  function startAuto() { auto = setInterval(next, 4000); }
 
-  btnNext.addEventListener('click', function() { clearInterval(autoPlay); next(); });
-  btnPrev.addEventListener('click', function() { clearInterval(autoPlay); prev(); });
-
-  var tx = 0;
-  track.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; clearInterval(autoPlay); }, { passive: true });
-  track.addEventListener('touchend',   function(e) { var d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 40) { d > 0 ? next() : prev(); } });
-
-  window.addEventListener('resize', function() {
-    track.style.transition = 'none';
-    track.style.transform  = 'translateX(-' + pos(current) + 'px)';
-  });
-
-  buildDots();
-  track.style.transition = 'none';
-  track.style.transform  = 'translateX(-' + pos(current) + 'px)';
-  syncUI();
-
-  var autoPlay = setInterval(next, 4000);
+  snap(cur); ui(); startAuto();
 })();
 
-// PRICING MOBILE SLIDER
+// PACKAGE PICKER
+function updateServiceInput() {
+  const selected = [...document.querySelectorAll('.pkg-card.selected, .pkg-chip.selected')].map(e => e.dataset.value);
+  const inp = document.getElementById('service');
+  if (inp) inp.value = selected.join(', ');
+}
+window.selectPkg = function(el) {
+  if (el.classList.contains('pkg-card')) {
+    document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  } else {
+    el.classList.toggle('selected');
+  }
+  updateServiceInput();
+};
+window.pickPackage = function(pkg) {
+  setTimeout(() => {
+    const el = document.querySelector(`.pkg-card[data-value="${pkg}"]`);
+    if (el) selectPkg(el);
+  }, 300);
+};
+
+// PRICING MOBILE SLIDER (disabled — cards stack vertically)
 (function() {
+  return;
   if (window.innerWidth >= 768) return;
   const wrap = document.querySelector('.pricing-slider-wrap');
   const grid = document.querySelector('.pricing-grid');
@@ -1837,7 +1976,26 @@ gsap.fromTo('.service-card',
 })();
 
 // ─────────────────────────────────────
-// 5. PORTFOLIO – scale reveal + scrub parallax
+// 5. PORTFOLIO PHONE – lazy iframe betöltés
+// ─────────────────────────────────────
+(function() {
+  const section = document.getElementById('portfolio');
+  if (!section) return;
+  let loaded = false;
+  const observer = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !loaded) {
+      loaded = true;
+      document.querySelectorAll('.pi-phone-screen iframe[data-src]').forEach(function(iframe) {
+        iframe.src = iframe.dataset.src;
+      });
+      observer.disconnect();
+    }
+  }, { rootMargin: '200px' });
+  observer.observe(section);
+})();
+
+// ─────────────────────────────────────
+// 6. PORTFOLIO – scale reveal + scrub parallax
 // ─────────────────────────────────────
 gsap.fromTo('.portfolio-item',
   { y: 90, opacity: 0, scale: 0.93 },
@@ -1926,10 +2084,10 @@ gsap.fromTo('.ps-num',
 // 9. PRICING CARDS – fan belépő
 // ─────────────────────────────────────
 gsap.fromTo('.price-card',
-  { y: 70, opacity: 0, scale: 0.93, filter: 'blur(3px)' },
-  { y: 0,  opacity: 1, scale: 1,    filter: 'blur(0px)',
-    duration: 0.75, stagger: 0.15, ease: 'power3.out',
-    scrollTrigger: { trigger: '.pricing-grid', start: 'top 78%' }
+  { opacity: 0, scale: 0.94 },
+  { opacity: 1, scale: 1,
+    duration: 0.7, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '.pricing-grid', start: 'top 80%', once: true }
   }
 );
 
@@ -1986,23 +2144,43 @@ gsap.utils.toArray('.reveal-right').forEach(el => {
 // ─────────────────────────────────────
 // 12. MAGNETIC BUTTONS – prémium hover
 // ─────────────────────────────────────
-document.querySelectorAll('.btn-primary, .btn-white').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r   = btn.getBoundingClientRect();
-    const dx  = e.clientX - (r.left + r.width  / 2);
-    const dy  = e.clientY - (r.top  + r.height / 2);
-    gsap.to(btn, { x: dx * 0.22, y: dy * 0.22, duration: 0.35, ease: 'power2.out' });
-  });
-  btn.addEventListener('mouseleave', () => {
-    gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
-  });
+document.querySelectorAll('.price-card').forEach(card => {
+  card.addEventListener('mouseenter', () => gsap.to(card, { y: -10, duration: 0.12, ease: 'power2.out', overwrite: true }));
+  card.addEventListener('mouseleave', () => gsap.to(card, { y: 0,   duration: 0.18, ease: 'power2.out', overwrite: true }));
 });
 
 // ─────────────────────────────────────
 // FORM SUBMIT
 // ─────────────────────────────────────
+function showFieldError(input, msg) {
+  clearFieldError(input);
+  input.style.borderColor = '#F87171';
+  input.style.boxShadow = '0 0 0 4px rgba(248,113,113,.12)';
+  const err = document.createElement('div');
+  err.className = 'field-error';
+  err.textContent = msg;
+  err.style.cssText = 'font-size:12px;color:#F87171;margin-top:5px;display:flex;align-items:center;gap:5px';
+  err.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' + msg;
+  input.parentNode.appendChild(err);
+  input.addEventListener('input', () => clearFieldError(input), { once: true });
+}
+function clearFieldError(input) {
+  input.style.borderColor = '';
+  input.style.boxShadow = '';
+  const err = input.parentNode.querySelector('.field-error');
+  if (err) err.remove();
+}
 function submitForm(e) {
   e.preventDefault();
+  const fname = document.getElementById('fname');
+  const lname = document.getElementById('lname');
+  const email = document.getElementById('email');
+  let ok = true;
+  if (!fname.value.trim()) { showFieldError(fname, 'Kérjük, add meg a vezetéknevedet.'); ok = false; }
+  if (!lname.value.trim()) { showFieldError(lname, 'Kérjük, add meg a keresztnevedet.'); ok = false; }
+  if (!email.value.trim()) { showFieldError(email, 'Kérjük, add meg az email címedet.'); ok = false; }
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { showFieldError(email, 'Érvénytelen email cím.'); ok = false; }
+  if (!ok) return;
   const btn = e.target.querySelector('.form-submit');
   btn.textContent = 'Küldés...';
   btn.disabled = true;
@@ -2012,6 +2190,45 @@ function submitForm(e) {
     e.target.reset();
   }, 1200);
 }
+// WORD CYCLE
+(function() {
+  const el = document.getElementById('wordCycle');
+  if (!el) return;
+  const words = ['az elveszett ügyfelekből!','a láthatatlanságból!','a stagnálásból!','a rossz hirdetésekből!'];
+  let i = 0;
+
+  function fitWord() {
+    el.style.transform = '';
+    var maxW = el.parentElement.clientWidth;
+    if (maxW <= 0) return;
+    if (el.scrollWidth > maxW) {
+      el.style.transform = 'scale(' + (maxW / el.scrollWidth * 0.97).toFixed(3) + ')';
+    }
+  }
+
+  function lockAndFit() {
+    el.style.transform = '';
+    el.style.fontSize = '';
+    var parent = el.parentElement;
+    parent.style.minHeight = '';
+    var h = parent.offsetHeight;
+    if (h > 0) parent.style.minHeight = h + 'px';
+    fitWord();
+  }
+
+  document.fonts.ready.then(lockAndFit);
+  window.addEventListener('resize', lockAndFit);
+
+  setInterval(() => {
+    el.classList.add('fade-out');
+    setTimeout(() => {
+      i = (i + 1) % words.length;
+      el.textContent = words[i];
+      fitWord();
+      el.classList.remove('fade-out');
+    }, 360);
+  }, 2800);
+})();
 </script>
 </body>
 </html>

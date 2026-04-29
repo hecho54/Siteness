@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exclusive csomag – Siteness</title>
+<meta name="description" content="Állítsd össze saját csomagodat. Grafika, SEO, Social Media — válaszd ki amire szükséged van.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--navy:#080E1A;--blue:#0EA5E9;--teal:#00D4B4;--grad:linear-gradient(135deg,#0EA5E9,#00D4B4);--purple:#8B5CF6;--purple-grad:linear-gradient(135deg,#8B5CF6,#6D28D9)}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:hidden}
+  body{background:var(--navy);color:rgba(255,255,255,.85);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,backdrop-filter .3s}
+  nav.scrolled{background:rgba(8,14,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+  nav .container{width:100%;max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+  .nav-logo img{height:32px;width:auto;object-fit:contain;display:block}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:50px;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+  .btn-primary{background:var(--grad);color:#fff}
+  .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+  .btn-purple{background:var(--purple-grad);color:#fff;box-shadow:0 8px 24px rgba(139,92,246,.25)}
+  .btn-purple:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 12px 32px rgba(139,92,246,.35)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+  .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,14,26,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;z-index:99}
+  .mobile-menu.open{display:block}
+  .mobile-menu ul{list-style:none;padding:0 24px}
+  .mobile-menu ul li{border-bottom:1px solid rgba(255,255,255,.06)}
+  .mobile-menu ul li a{display:block;padding:14px 0;color:rgba(255,255,255,.8);text-decoration:none;font-size:15px;font-weight:500}
+  .mobile-menu .mobile-cta{padding:20px 24px 8px}
+
+  /* HERO */
+  .page-hero{padding:140px 0 72px;text-align:center;position:relative;overflow:hidden}
+  .page-hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.08) 0%,transparent 65%);pointer-events:none}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#A78BFA;font-size:13px;font-weight:600;padding:7px 18px;border-radius:50px;margin-bottom:24px}
+  .hero-badge .dot{width:7px;height:7px;background:var(--purple);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .page-hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px;animation:fadeUp .7s .1s both}
+  .page-hero h1 span{background:var(--purple-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .page-hero p{font-size:17px;color:rgba(255,255,255,.5);max-width:500px;margin:0 auto;animation:fadeUp .7s .25s both}
+
+  /* CONTAINER */
+  .container{max-width:1200px;margin:0 auto;padding:0 40px}
+
+  /* CONFIGURATOR */
+  .config-section{padding:0 0 100px}
+  .config-wrap{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start}
+
+  .config-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:8px}
+  .config-sub{font-size:14px;color:rgba(255,255,255,.45);margin-bottom:32px}
+
+  /* SERVICE CARDS */
+  .service-options{display:flex;flex-direction:column;gap:14px}
+  .service-opt{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);border-radius:16px;padding:20px 22px;cursor:pointer;transition:all .25s;user-select:none}
+  .service-opt:hover{border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.04)}
+  .service-opt.selected{border-color:rgba(139,92,246,.6);background:rgba(139,92,246,.08);box-shadow:0 0 0 1px rgba(139,92,246,.2)}
+  .service-opt input[type=checkbox]{display:none}
+
+  .opt-check{width:24px;height:24px;min-width:24px;border-radius:7px;border:2px solid rgba(255,255,255,.2);background:transparent;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+  .service-opt.selected .opt-check{background:var(--purple-grad);border-color:transparent}
+  .opt-check svg{width:13px;height:13px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.6);transition:all .2s}
+  .service-opt.selected .opt-check svg{opacity:1;transform:scale(1)}
+
+  .opt-icon{width:48px;height:48px;min-width:48px;border-radius:12px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);display:flex;align-items:center;justify-content:center;transition:all .25s}
+  .service-opt.selected .opt-icon{background:rgba(139,92,246,.18);border-color:rgba(139,92,246,.4)}
+  .opt-icon svg{width:22px;height:22px;stroke:rgba(139,92,246,.8);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}
+  .service-opt.selected .opt-icon svg{stroke:#A78BFA}
+
+  .opt-info{flex:1}
+  .opt-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:3px}
+  .opt-desc{font-size:13px;color:rgba(255,255,255,.45)}
+
+  .opt-price{text-align:right;flex-shrink:0}
+  .opt-price-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:800;color:#fff}
+  .opt-price-sub{font-size:12px;color:rgba(255,255,255,.35)}
+
+  /* SUMMARY CARD */
+  .summary-card{background:rgba(139,92,246,.06);border:1.5px solid rgba(139,92,246,.2);border-radius:20px;padding:28px;position:sticky;top:96px}
+  .summary-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+  .summary-title::before{content:'';width:8px;height:8px;background:var(--purple-grad);border-radius:50%;display:inline-block}
+
+  .summary-items{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;min-height:60px}
+  .summary-item{display:flex;justify-content:space-between;align-items:center;font-size:14px}
+  .summary-item-name{color:rgba(255,255,255,.7)}
+  .summary-item-price{color:#fff;font-weight:600}
+  .summary-empty{font-size:13px;color:rgba(255,255,255,.3);text-align:center;padding:12px 0}
+
+  .summary-divider{height:1px;background:rgba(255,255,255,.08);margin:16px 0}
+
+  .discount-badge{display:none;align-items:center;gap:8px;background:rgba(0,212,180,.08);border:1px solid rgba(0,212,180,.2);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--teal);font-weight:600}
+  .discount-badge.show{display:flex}
+  .discount-badge svg{width:16px;height:16px;stroke:var(--teal);fill:none;stroke-width:2;flex-shrink:0}
+
+  .summary-total-row{display:flex;justify-content:space-between;align-items:baseline}
+  .summary-total-label{font-size:13px;color:rgba(255,255,255,.5)}
+  .summary-total-price{font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;font-weight:800;color:#fff;transition:all .3s}
+  .summary-total-sub{font-size:12px;color:rgba(255,255,255,.35);margin-top:2px;text-align:right}
+  .summary-original{font-size:14px;color:rgba(255,255,255,.3);text-decoration:line-through;text-align:right;margin-bottom:2px;display:none}
+
+  .summary-cta{width:100%;justify-content:center;margin-top:20px;padding:15px;font-size:15px}
+  .summary-note{font-size:12px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.5}
+
+  /* INFO BOXES */
+  .info-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+  .info-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px;text-align:center}
+  .info-box-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;background:var(--purple-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+  .info-box-label{font-size:13px;color:rgba(255,255,255,.45)}
+
+  /* FOOTER */
+  footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:60px 0 0}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
+  .footer-logo{margin-bottom:12px;display:inline-flex}
+  .footer-logo img{height:28px;width:auto;object-fit:contain}
+  .footer-desc{color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:280px}
+  .footer-heading{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:16px}
+  .footer-links{list-style:none}
+  .footer-links li{margin-bottom:10px}
+  .footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .2s}
+  .footer-links a:hover{color:#fff}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:40px;padding:20px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
+  .footer-bottom p{color:rgba(255,255,255,.35);font-size:13px}
+  .footer-bottom-links{display:flex;gap:20px}
+  .footer-bottom-links a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;transition:color .2s}
+  .footer-bottom-links a:hover{color:rgba(255,255,255,.7)}
+
+  #backTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--purple-grad);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;z-index:90}
+  #backTop.visible{opacity:1;transform:translateY(0)}
+  #backTop svg{width:20px;height:20px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  @media(max-width:900px){
+    .config-wrap{grid-template-columns:1fr}
+    .summary-card{position:static}
+    .info-boxes{grid-template-columns:1fr}
+  }
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none}
+    .hamburger{display:flex}
+    nav .container{padding:0 20px}
+    .container{padding:0 20px}
+    .page-hero{padding:110px 0 48px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:28px;padding:0 20px}
+    .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:20px}
+    .footer-bottom-links{justify-content:center}
+    .opt-price-val{font-size:15px}
+  }
+  @media(max-width:480px){
+    .footer-grid{grid-template-columns:1fr;gap:24px}
+    .info-boxes{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="Images/logo4.png" alt="Siteness logó">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Szolgáltatások</a></li>
+      <li><a href="index.html#portfolio">Portfólió</a></li>
+      <li><a href="index.html#pricing">Árak</a></li>
+      <li><a href="index.html#process">Folyamat</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta">Ajánlatot kérek</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#services" onclick="toggleMenu()">Szolgáltatások</a></li>
+    <li><a href="index.html#portfolio" onclick="toggleMenu()">Portfólió</a></li>
+    <li><a href="index.html#pricing" onclick="toggleMenu()">Árak</a></li>
+    <li><a href="index.html#process" onclick="toggleMenu()">Folyamat</a></li>
+  </ul>
+  <div class="mobile-cta">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;text-align:center;display:block">Ajánlatot kérek</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Exclusive csomag
+    </div>
+    <h1>Állítsd össze<br><span>a saját csomagodat</span></h1>
+    <p>Válaszd ki amire szükséged van — fizetj csak azért amit tényleg használsz.</p>
+  </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<section class="config-section">
+  <div class="container">
+    <div class="config-wrap">
+
+      <!-- Bal: opciók -->
+      <div>
+        <div class="config-title">Válaszd ki a szolgáltatásokat</div>
+        <div class="config-sub">Több szolgáltatás választásakor kedvezményt kapsz az összárból.</div>
+
+        <div class="service-options">
+
+          <!-- Weboldal -->
+          <label class="service-opt" data-price="249900" data-key="weboldal">
+            <input type="checkbox">
+            <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="opt-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="opt-info">
+              <div class="opt-name">Weboldal készítés</div>
+              <div class="opt-desc">Egyedi, mobilbarát weboldal + alap SEO + Google Analytics</div>
+            </div>
+            <div class="opt-price">
+              <div class="opt-price-val">230 000 Ft</div>
+              <div class="opt-price-sub">egyszeri</div>
+            </div>
+          </label>
+
+          <!-- Karbantartás -->
+          <label class="service-opt karbantartas-opt" data-price="19900" data-key="karbantartas" id="karbantartasOpt" style="display:none;margin-left:20px;border-style:dashed;background:rgba(0,212,180,.03);border-color:rgba(0,212,180,.2)">
+            <input type="checkbox">
+            <div class="opt-check" style="border-color:rgba(0,212,180,.3)"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="opt-icon" style="background:rgba(0,212,180,.08);border-color:rgba(0,212,180,.2)"><svg viewBox="0 0 24 24" style="stroke:var(--teal)"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div class="opt-info">
+              <div class="opt-name" style="font-size:15px">+ Karbantartás</div>
+              <div class="opt-desc">Frissítések, biztonsági mentés, kisebb módosítások</div>
+            </div>
+            <div class="opt-price">
+              <div class="opt-price-val" style="font-size:15px">+19 900 Ft</div>
+              <div class="opt-price-sub">/hó</div>
+            </div>
+          </label>
+
+          <!-- SEO -->
+          <label class="service-opt" data-price="49900" data-key="seo">
+            <input type="checkbox">
+            <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="opt-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div class="opt-info">
+              <div class="opt-name">SEO kezelés</div>
+              <div class="opt-desc">Kulcsszókutatás, technikai SEO, Google Business, linképítés, havi riport</div>
+            </div>
+            <div class="opt-price">
+              <div class="opt-price-val">30 000 Ft</div>
+              <div class="opt-price-sub">/hó</div>
+            </div>
+          </label>
+
+          <!-- Social Media -->
+          <label class="service-opt" data-price="49900" data-key="social">
+            <input type="checkbox">
+            <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="opt-icon"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+            <div class="opt-info">
+              <div class="opt-name">Social Media kezelés</div>
+              <div class="opt-desc">Facebook + Instagram: tartalom, posztok, sztorik, közösség kezelés</div>
+            </div>
+            <div class="opt-price">
+              <div class="opt-price-val">30 000 Ft</div>
+              <div class="opt-price-sub">/hó</div>
+            </div>
+          </label>
+
+          <!-- Google/Facebook Ads -->
+          <label class="service-opt" data-price="69900" data-key="ads">
+            <input type="checkbox">
+            <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="opt-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="opt-info">
+              <div class="opt-name">Hirdetéskezelés</div>
+              <div class="opt-desc">Google Ads + Facebook Ads kampányok, célközönség, optimalizálás, ROI riport</div>
+            </div>
+            <div class="opt-price">
+              <div class="opt-price-val">69 900 Ft</div>
+              <div class="opt-price-sub">/hó</div>
+            </div>
+          </label>
+
+          <!-- Grafikai munka -->
+          <label class="service-opt" data-price="59900" data-key="grafika">
+            <input type="checkbox">
+            <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="opt-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
+            <div class="opt-info">
+              <div class="opt-name">Grafikai munka</div>
+              <div class="opt-desc">Logó, arculat, hirdetési kreatívok, social grafika, nyomtatványok</div>
+            </div>
+            <div class="opt-price">
+              <div class="opt-price-val">50 000 Ft</div>
+              <div class="opt-price-sub">/hó</div>
+            </div>
+          </label>
+
+        </div>
+
+        <!-- Info dobozok -->
+        <div class="info-boxes">
+          <div class="info-box">
+            <div class="info-box-num">2 db</div>
+            <div class="info-box-label">10% kedvezmény</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-num">3 db</div>
+            <div class="info-box-label">20% kedvezmény</div>
+          </div>
+          <div class="info-box">
+            <div class="info-box-num">24h</div>
+            <div class="info-box-label">Válaszidő</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jobb: összesítő -->
+      <div class="summary-card">
+        <div class="summary-title">Összesítő</div>
+
+        <div class="summary-items" id="summaryItems">
+          <div class="summary-empty" id="summaryEmpty">Még nem választottál szolgáltatást</div>
+        </div>
+
+        <div class="discount-badge" id="discountBadge">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span id="discountText">10% kedvezmény alkalmazva</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-original" id="summaryOriginal"></div>
+        <div class="summary-total-row">
+          <div class="summary-total-label">Havi díj</div>
+          <div class="summary-total-price" id="summaryTotal">0 Ft</div>
+        </div>
+        <div class="summary-total-sub" id="summaryVat">+ ÁFA</div>
+
+        <a href="contact.html" class="btn btn-purple summary-cta" id="summaryCta">
+          Ajánlatot kérek
+        </a>
+        <div class="summary-note">Kötelezettségmentes konzultáció.<br>24 órán belül visszajelzünk.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><img src="Images/logo4.png" alt="Siteness logó"></div>
+      <p class="footer-desc">Modern weboldalak és digitális megoldások vállalkozásoknak. Gyors, szép, eredményes.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Szolgáltatások</div>
+      <ul class="footer-links">
+        <li><a href="alap-csomag.html">Alap csomag</a></li>
+        <li><a href="uzleti-csomag.html">Üzleti csomag</a></li>
+        <li><a href="premium-csomag.html">Prémium csomag</a></li>
+        <li><a href="egyedi-csomag.html">Exclusive csomag</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Cég</div>
+      <ul class="footer-links">
+        <li><a href="index.html#about">Rólunk</a></li>
+        <li><a href="index.html#portfolio">Portfólió</a></li>
+        <li><a href="index.html#process">Folyamat</a></li>
+        <li><a href="contact.html">Kapcsolat</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Kapcsolat</div>
+      <ul class="footer-links">
+        <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
+        <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+        <li><a href="#">Budapest, Magyarország</a></li>
+      </ul>
+      <div style="margin-top:24px">
+        <a href="contact.html" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Siteness. Minden jog fenntartva.</p>
+    <div class="footer-bottom-links">
+      <a href="adatvedelem.html">Adatvédelem</a>
+      <a href="aszf.html">ÁSZF</a>
+      <a href="cookie.html">Cookie-k</a>
+    </div>
+  </div>
+</footer>
+
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+  // Nav + back to top
+  const navbar = document.getElementById('navbar');
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+    backTop.classList.toggle('visible', window.scrollY > 300);
+  });
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    const spans = document.querySelectorAll('.hamburger span');
+    const open = document.getElementById('mobileMenu').classList.contains('open');
+    if (open) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  }
+
+  // Konfigurátor logika — JS állapot, nem checkbox
+  const services = [
+    { key: 'weboldal',     name: 'Weboldal készítés',    price: 230000, sub: 'egyszeri' },
+    { key: 'karbantartas', name: 'Karbantartás',          price: 19900,  sub: '/hó' },
+    { key: 'seo',          name: 'SEO kezelés',           price: 30000,  sub: '/hó' },
+    { key: 'social',       name: 'Social Media kezelés',  price: 30000,  sub: '/hó' },
+    { key: 'ads',          name: 'Hirdetéskezelés',       price: 69900,  sub: '/hó' },
+    { key: 'grafika',      name: 'Grafikai munka',        price: 50000,  sub: '/hó' },
+  ];
+
+  const state = { weboldal: false, karbantartas: false, seo: false, social: false, ads: false, grafika: false };
+
+  function formatPrice(n) {
+    return n.toLocaleString('hu-HU') + ' Ft';
+  }
+
+  function updateConfig() {
+    // Karbantartás csak ha weboldal be van kapcsolva
+    const karbOpt = document.getElementById('karbantartasOpt');
+    if (!state.weboldal) {
+      state.karbantartas = false;
+      karbOpt.style.display = 'none';
+    } else {
+      karbOpt.style.display = 'flex';
+    }
+
+    // Vizuális frissítés + selected lista
+    const opts = document.querySelectorAll('.service-opt');
+    const selected = [];
+    opts.forEach(opt => {
+      const key = opt.dataset.key;
+      if (state[key]) {
+        opt.classList.add('selected');
+        const svc = services.find(s => s.key === key);
+        if (svc) selected.push(svc);
+      } else {
+        opt.classList.remove('selected');
+      }
+    });
+
+    const count = selected.length;
+
+    // Karbantartás külön — nem számít a kedvezménybe
+    const karbSvc = selected.find(s => s.key === 'karbantartas');
+    const discountable = selected.filter(s => s.key !== 'karbantartas');
+    const karbPrice = karbSvc ? karbSvc.price : 0;
+    const discountableTotal = discountable.reduce((sum, s) => sum + s.price, 0);
+    const rawTotal = discountableTotal + karbPrice;
+
+    // Kedvezmény csak a nem-karbantartás tételekre, 2+ választásnál
+    let discount = 0;
+    if (discountable.length === 2) discount = 0.10;
+    if (discountable.length >= 3) discount = 0.20;
+    const finalTotal = Math.round(discountableTotal * (1 - discount)) + karbPrice;
+
+    // Summary items
+    const itemsEl = document.getElementById('summaryItems');
+    const emptyEl = document.getElementById('summaryEmpty');
+    if (count === 0) {
+      itemsEl.innerHTML = '';
+      itemsEl.appendChild(emptyEl);
+      emptyEl.style.display = 'block';
+    } else {
+      itemsEl.innerHTML = '';
+      selected.forEach(s => {
+        const div = document.createElement('div');
+        div.className = 'summary-item';
+        div.innerHTML = `<span class="summary-item-name">${s.name}</span><span class="summary-item-price">${formatPrice(s.price)}<span style="font-size:11px;color:rgba(255,255,255,.35);font-weight:400"> ${s.sub}</span></span>`;
+        itemsEl.appendChild(div);
+      });
+    }
+
+    // Kedvezmény badge
+    const badge = document.getElementById('discountBadge');
+    const discText = document.getElementById('discountText');
+    if (discount > 0) {
+      badge.classList.add('show');
+      discText.textContent = `${discount * 100}% kedvezmény alkalmazva`;
+    } else {
+      badge.classList.remove('show');
+    }
+
+    // Eredeti ár áthúzva
+    const origEl = document.getElementById('summaryOriginal');
+    if (discount > 0 && discountable.length > 0) {
+      origEl.style.display = 'block';
+      origEl.textContent = formatPrice(rawTotal);
+    } else {
+      origEl.style.display = 'none';
+    }
+
+    // Végösszeg
+    const totalEl = document.getElementById('summaryTotal');
+    totalEl.textContent = finalTotal > 0 ? formatPrice(finalTotal) : '0 Ft';
+
+    // CTA szöveg
+    const cta = document.getElementById('summaryCta');
+    if (count > 0) {
+      const names = selected.map(s => s.name).join(', ');
+      cta.href = `contact.html?csomag=${encodeURIComponent(names)}`;
+    } else {
+      cta.href = 'contact.html';
+    }
+  }
+
+  // Kattintásra toggle — JS state alapján, nem checkbox
+  document.querySelectorAll('.service-opt').forEach(opt => {
+    opt.addEventListener('click', function(e) {
+      e.preventDefault();
+      const key = this.dataset.key;
+      if (key in state) {
+        state[key] = !state[key];
+        updateConfig();
+      }
+    });
+  });
+
+  // Kezdeti állapot: 0 Ft
+  updateConfig();
+</script>
+</body>
+</html>

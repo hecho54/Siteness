@@ -78,7 +78,7 @@ footer{background:rgba(2,5,10,.8);backdrop-filter:blur(8px);padding:80px 0 40px;
 .content{max-width:1080px;margin:0 auto;padding:0 24px 100px}
 
 /* Service Block */
-.svc-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.svc-block{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0;border-bottom:1px solid rgba(255,255,255,.06);scroll-margin-top:28vh}
 .svc-block:last-child{border-bottom:none}
 .svc-block.reverse{direction:rtl}
 .svc-block.reverse > *{direction:ltr}
@@ -119,6 +119,21 @@ footer{background:rgba(2,5,10,.8);backdrop-filter:blur(8px);padding:80px 0 40px;
   .footer-bottom-links{justify-content:center}
 }
 </style>
+<script>
+// Intercept hash-based navigation and position section at ~28% from viewport top
+(function(){
+  if (!location.hash) return;
+  var targetHash = location.hash;
+  history.replaceState(null, document.title, location.pathname + location.search);
+  document.addEventListener('DOMContentLoaded', function(){
+    var el = document.querySelector(targetHash);
+    if (!el) return;
+    var margin = Math.round(window.innerHeight * 0.28);
+    window.scrollTo({ top: Math.max(0, el.offsetTop - margin) });
+    history.replaceState(null, document.title, location.pathname + location.search + targetHash);
+  });
+})();
+</script>
 </head>
 <body>
 
@@ -158,7 +173,7 @@ footer{background:rgba(2,5,10,.8);backdrop-filter:blur(8px);padding:80px 0 40px;
 <div class="content">
 
   <!-- WEB DESIGN -->
-  <div class="svc-block">
+  <div id="web-design" class="svc-block">
     <div>
       <div class="svc-label">Web Design</div>
       <h2 class="svc-title">Weboldal, ami ügyfeleket hoz</h2>
@@ -195,7 +210,7 @@ footer{background:rgba(2,5,10,.8);backdrop-filter:blur(8px);padding:80px 0 40px;
   </div>
 
   <!-- SEO -->
-  <div class="svc-block reverse">
+  <div id="seo" class="svc-block reverse">
     <div>
       <div class="svc-label">SEO & Growth</div>
       <h2 class="svc-title">Google #1 — ingyen, folyamatosan</h2>
@@ -232,7 +247,7 @@ footer{background:rgba(2,5,10,.8);backdrop-filter:blur(8px);padding:80px 0 40px;
   </div>
 
   <!-- DIGITAL MARKETING -->
-  <div class="svc-block">
+  <div id="digital-marketing" class="svc-block">
     <div>
       <div class="svc-label">Digital Marketing</div>
       <h2 class="svc-title">Hirdetés, ami valóban megtérül</h2>
@@ -269,7 +284,7 @@ footer{background:rgba(2,5,10,.8);backdrop-filter:blur(8px);padding:80px 0 40px;
   </div>
 
   <!-- DESIGN -->
-  <div class="svc-block reverse">
+  <div id="grafikai-design" class="svc-block reverse">
     <div>
       <div class="svc-label">Grafikai Design</div>
       <h2 class="svc-title">Arculat, ami megkülönböztet</h2>
@@ -353,7 +368,7 @@ footer{background:rgba(2,5,10,.8);backdrop-filter:blur(8px);padding:80px 0 40px;
         <div class="footer-heading">Kapcsolat</div>
         <ul class="footer-links">
           <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
-          <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+          <li><a href="tel:+36206218477">+36 20 621 8477</a></li>
           <li><a href="#">Budapest, Magyarország</a></li>
         </ul>
         <div style="margin-top:24px">
