@@ -9,8 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" href="Images/charlesdeluvio-Lks7vei-eAg-unsplash.png" as="image">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
 :root {
   --navy:   #080E1A;
@@ -349,7 +347,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 
 /* Dots */
 .pf-dots{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px}
-.pf-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22);border:none;cursor:pointer;transition:all .3s;padding:0;flex-shrink:0}
+.pf-dot-btn{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22);border:none;cursor:pointer;transition:all .55s cubic-bezier(0.645,0.045,0.355,1.0);padding:0;flex-shrink:0}
 .pf-dot-btn.active{background:#fff;width:24px;border-radius:4px}
 /* Arrows — absolute inside slider, vertically centered */
 .pf-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,box-shadow .2s;backdrop-filter:blur(6px)}
@@ -538,8 +536,8 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 .contact-info .section-sub{margin-bottom:48px}
 .contact-items{display:flex;flex-direction:column;gap:28px;margin-bottom:48px}
 .ci{display:flex;align-items:flex-start;gap:16px}
-.ci-icon{width:48px;height:48px;min-width:48px;background:rgba(0,212,180,.08);border:1px solid rgba(0,212,180,.15);border-radius:14px;display:flex;align-items:center;justify-content:center}
-.ci-icon svg{width:20px;height:20px}
+.ci-icon{width:38px;height:38px;min-width:38px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.ci-icon svg{width:16px;height:16px}
 .ci-label{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
 .ci-val{font-size:16px;color:var(--navy);font-weight:700}
 .social-links{display:flex;gap:12px}
@@ -560,19 +558,21 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 /* ──────────────────────────────────────────
    FOOTER
 ────────────────────────────────────────── */
-footer{background:var(--navy);padding:80px 0 40px;color:rgba(255,255,255,.7)}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:64px}
-.footer-brand .nav-logo{margin-bottom:20px;display:inline-flex}
-.footer-brand p{font-size:15px;line-height:1.7;margin-bottom:24px}
-.footer-heading{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:20px}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
-.footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .3s}
-.footer-links a:hover{color:var(--teal)}
-.footer-bottom{padding-top:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap-16px}
-.footer-bottom p{font-size:14px}
-.footer-bottom-links{display:flex;gap:24px}
-.footer-bottom-links a{color:rgba(255,255,255,.5);font-size:13px;text-decoration:none;transition:color .3s}
-.footer-bottom-links a:hover{color:var(--teal)}
+footer{background:var(--navy);padding:40px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
+.footer-logo{margin-bottom:12px;display:inline-flex}
+.footer-logo img{height:28px;width:auto;object-fit:contain}
+.footer-desc{color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:280px}
+.footer-heading{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:16px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:10px}
+.footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:24px;padding:16px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{color:rgba(255,255,255,.35);font-size:13px}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom-links a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;transition:color .2s}
+.footer-bottom-links a:hover{color:rgba(255,255,255,.7)}
 
 /* ──────────────────────────────────────────
    BACK TO TOP
@@ -683,7 +683,7 @@ html,body{overflow-x:hidden}
   .pricing-grid .price-card{flex:1 1 100%!important;width:100%!important;max-width:none}
   .pricing-dots{display:none}
   .stats-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px;padding:0 20px}
   .form-row{grid-template-columns:1fr}
   .about-bento{grid-template-columns:1fr 1fr;gap:10px}
   .bento-card.large{grid-column:1 / -1}
@@ -715,9 +715,8 @@ html,body{overflow-x:hidden}
   .form-group input,.form-group textarea,.form-group select{font-size:16px} /* iOS auto-zoom tiltás */
 
   /* Footer */
-  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
-  .footer-bottom-links{justify-content:center;flex-wrap:wrap;gap:16px}
-  .footer-links{gap:10px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:20px}
+  .footer-bottom-links{justify-content:center}
 
   /* Misc */
   .scroll-hint{display:none}
@@ -727,6 +726,7 @@ html,body{overflow-x:hidden}
 /* ── Small phones (≤480px) ── */
 @media(max-width:480px){
   .container{padding:0 16px}
+  .footer-grid{grid-template-columns:1fr;gap:24px}
 
   /* Hero overlap még kisebb kis képernyőn */
   #hero{padding-bottom:60px}
@@ -895,15 +895,14 @@ nav.scrolled{background:rgba(8,14,26,.96)}
 .pkg-chip.selected{border-color:var(--teal);color:#fff;background:rgba(0,212,180,.08)}
 .ci-val{color:#fff}
 .ci-label{color:var(--muted)}
-.ci-icon{background:rgba(0,212,180,.1)}
+.ci-icon{background:rgba(14,165,233,.12);border-color:rgba(14,165,233,.25)}
 .sl{background:var(--card-bg)}
 
 /* Footer */
 footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 .footer-links a{color:rgba(255,255,255,.4)}
-.footer-links a:hover{color:var(--teal)}
+.footer-links a:hover{color:rgba(255,255,255,.8)}
 .footer-bottom{border-top-color:rgba(255,255,255,.06)}
-.footer-brand p{color:rgba(255,255,255,.45)}
 
 /* Scrollbar */
 ::-webkit-scrollbar-track{background:#0A1120}
@@ -1169,7 +1168,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 
     </div>
     <div style="text-align:center;margin-top:28px">
-      <a href="szolgaltatasok.html" class="btn btn-outline">Összes szolgáltatás megtekintése →</a>
+      <a href="szolgaltatasok.html" class="btn btn-primary">Összes szolgáltatás megtekintése →</a>
     </div>
   </div>
 </section>
@@ -1197,7 +1196,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="pi-phone">
           <div class="pi-phone-island"></div>
           <div class="pi-phone-frame">
-            <div class="pi-phone-screen"><img src="Images/Aramis Telefon.png" alt=""></div>
+            <div class="pi-phone-screen"><img src="Images/Aramis Telefon.png" alt="" loading="lazy"></div>
           </div>
         </div>
       </div>
@@ -1218,7 +1217,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="pi-phone">
           <div class="pi-phone-island"></div>
           <div class="pi-phone-frame">
-            <div class="pi-phone-screen"><img src="Images/Smashpoint Telefon.png" alt=""></div>
+            <div class="pi-phone-screen"><img src="Images/Smashpoint Telefon.png" alt="" loading="lazy"></div>
           </div>
         </div>
       </div>
@@ -1239,7 +1238,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="pi-phone">
           <div class="pi-phone-island"></div>
           <div class="pi-phone-frame">
-            <div class="pi-phone-screen"><img src="Images/Pizzapont Telefon.png" alt=""></div>
+            <div class="pi-phone-screen"><img src="Images/Pizzapont Telefon.png" alt="" loading="lazy"></div>
           </div>
         </div>
       </div>
@@ -1260,7 +1259,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="pi-phone">
           <div class="pi-phone-island"></div>
           <div class="pi-phone-frame">
-            <div class="pi-phone-screen"><img src="Images/KGkárpit telefon.png" alt=""></div>
+            <div class="pi-phone-screen"><img src="Images/KGkárpit telefon.png" alt="" loading="lazy"></div>
           </div>
         </div>
       </div>
@@ -1292,7 +1291,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="pc-desc">Profi weboldal, ami az első héttől ügyfeleket hozhat.</div>
         <div class="pc-price">
           <span class="pc-amount">230 000 Ft</span>
-          <div class="pc-period">egyszeri díj + ÁFA<span class="pc-vat"> · 292 100 Ft bruttó</span></div>
+          <div class="pc-period">egyszeri díj</div>
         </div>
         <div class="pc-features">
           <div class="pc-feat-group">
@@ -1323,15 +1322,15 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           </label>
           <div class="pc-addon-info">Havonta: frissítések, biztonsági mentés, tartalom módosítások és technikai support.</div>
         </div>
-        <a href="alap-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
+        <a href="basic-csomag.html" class="btn btn-outline" style="width:100%;justify-content:center">Részletek megtekintése</a>
       </div>
       <div class="price-card popular">
-        <div class="pc-name">Alap</div>
+        <div class="pc-name">Plus</div>
         <div class="popular-badge">LEGNÉPSZERŰBB</div>
         <div class="pc-desc">Weboldal + folyamatos online jelenlét és social media.</div>
         <div class="pc-price">
           <span class="pc-amount" style="color:#fff">80 000 Ft<span class="pc-suffix" style="color:rgba(255,255,255,.6)">/hó</span></span>
-          <div class="pc-period">+ ÁFA · felmondható<span class="pc-vat"> · 101 600 Ft/hó bruttó</span></div>
+          <div class="pc-period">felmondható</div>
         </div>
         <div class="pc-features">
           <div class="pc-feat-group">
@@ -1411,7 +1410,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <div class="contact-items">
           <div class="ci">
             <div class="ci-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div>
               <div class="ci-label">Email</div>
@@ -1420,7 +1419,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           </div>
           <div class="ci">
             <div class="ci-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6.09 6.09l1.95-1.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6.09 6.09l1.95-1.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </div>
             <div>
               <div class="ci-label">Telefon</div>
@@ -1429,7 +1428,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
           </div>
           <div class="ci">
             <div class="ci-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
               <div class="ci-label">Helyszín</div>
@@ -1471,8 +1470,8 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
               <div class="pkg-card" data-value="Basic csomag" style="--pkg-color:#00D4B4" onclick="selectPkg(this)">
                 <span class="pkg-dot"></span><span class="pkg-name">Basic csomag</span>
               </div>
-              <div class="pkg-card" data-value="Alap csomag" style="--pkg-color:#0EA5E9" onclick="selectPkg(this)">
-                <span class="pkg-dot"></span><span class="pkg-name">Alap csomag</span>
+              <div class="pkg-card" data-value="Plus csomag" style="--pkg-color:#0EA5E9" onclick="selectPkg(this)">
+                <span class="pkg-dot"></span><span class="pkg-name">Plus csomag</span>
               </div>
               <div class="pkg-card" data-value="Exclusive csomag" style="--pkg-color:#8B5CF6" onclick="selectPkg(this)">
                 <span class="pkg-dot"></span><span class="pkg-name">Exclusive csomag</span>
@@ -1506,53 +1505,26 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo">
-          <img src="Images/logo4.png" alt="Siteness logó">
-        </a>
-        <p>Magyar vállalkozásoknak segítünk erős online jelenlétet felépíteni — modern weboldalakkal, hatékony SEO-val és célzott hirdetésekkel.</p>
-      </div>
-      <div>
-        <div class="footer-heading">Szolgáltatások</div>
-        <ul class="footer-links">
-          <li><a href="#services">Weboldal tervezés</a></li>
-          <li><a href="#services">SEO optimalizálás</a></li>
-          <li><a href="#services">Digitális marketing</a></li>
-          <li><a href="#services">Webáruház fejlesztés</a></li>
-          <li><a href="#services">Analitika & Riporting</a></li>
-          <li><a href="#services">Karbantartás</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-heading">Vállalat</div>
-        <ul class="footer-links">
-          <li><a href="#portfolio">Portfólió</a></li>
-
-          <li><a href="#faq">GYIK</a></li>
-          <li><a href="contact.html">Kapcsolat</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-heading">Kapcsolat</div>
-        <ul class="footer-links">
-          <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
-          <li><a href="tel:+36206218477">+36 20 621 8477</a></li>
-          <li><a href="#">Budapest, Magyarország</a></li>
-        </ul>
-        <div style="margin-top:24px">
-          <a href="contact.html" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
-        </div>
-      </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><img src="Images/logo4.png" alt="Siteness logó"></div>
+      <p class="footer-desc">Modern weboldalak és digitális megoldások vállalkozásoknak. Gyors, szép, eredményes.</p>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Siteness. Minden jog fenntartva.</p>
-      <div class="footer-bottom-links">
-        <a href="adatvedelem.html">Adatvédelem</a>
-        <a href="aszf.html">ÁSZF</a>
-        <a href="cookie.html">Cookie-k</a>
-      </div>
+    <div>
+      <div class="footer-heading">Kapcsolat</div>
+      <ul class="footer-links">
+        <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
+        <li><a href="tel:+36206218477">+36 20 621 8477</a></li>
+        <li><a href="#">Budapest, Magyarország</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Siteness. Minden jog fenntartva.</p>
+    <div class="footer-bottom-links">
+      <a href="adatvedelem.html">Adatvédelem</a>
+      <a href="aszf.html">ÁSZF</a>
+      <a href="cookie.html">Cookie-k</a>
     </div>
   </div>
 </footer>
@@ -1573,6 +1545,8 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
 @keyframes grow{from{width:0}to{}}
 </style>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
@@ -1580,10 +1554,17 @@ gsap.registerPlugin(ScrollTrigger);
 // NAV – scroll state + back-to-top
 // ─────────────────────────────────────
 const nav = document.getElementById('navbar');
+let scrollTicking = false;
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
-});
+  if (!scrollTicking) {
+    requestAnimationFrame(() => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+      document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });
 
 // ─────────────────────────────────────
 // MOBILE MENU
@@ -1777,7 +1758,7 @@ if (window.innerWidth > 768) {
 gsap.utils.toArray('.section-tag').forEach(el => {
   gsap.fromTo(el,
     { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
-    { clipPath: 'inset(0 0% 0 0)',   opacity: 1,
+    { clipPath: 'inset(0 0% 0 0)',   opacity: 1, immediateRender: false,
       duration: 0.7, ease: 'power3.inOut',
       scrollTrigger: { trigger: el, start: 'top 90%' }
     }
@@ -1789,8 +1770,8 @@ gsap.utils.toArray('.section-tag').forEach(el => {
 // ─────────────────────────────────────
 gsap.utils.toArray('.section-title').forEach(el => {
   gsap.fromTo(el,
-    { y: 60, opacity: 0, filter: 'blur(6px)' },
-    { y: 0,  opacity: 1, filter: 'blur(0px)',
+    { y: 60, opacity: 0 },
+    { y: 0,  opacity: 1, immediateRender: false,
       duration: 0.9, ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 88%' }
     }
@@ -1799,7 +1780,7 @@ gsap.utils.toArray('.section-title').forEach(el => {
 gsap.utils.toArray('.section-sub').forEach(el => {
   gsap.fromTo(el,
     { y: 28, opacity: 0 },
-    { y: 0,  opacity: 1, duration: 0.7, ease: 'power2.out',
+    { y: 0,  opacity: 1, immediateRender: false, duration: 0.7, ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 89%' }
     }
   );
@@ -1810,7 +1791,7 @@ gsap.utils.toArray('.section-sub').forEach(el => {
 // ─────────────────────────────────────
 gsap.fromTo('.srv-card',
   { y: 50, opacity: 0, scale: 0.95 },
-  { y: 0,  opacity: 1, scale: 1,
+  { y: 0,  opacity: 1, scale: 1, immediateRender: false,
     duration: 0.65, stagger: { each: 0.1, from: 'start' }, ease: 'power3.out',
     scrollTrigger: { trigger: '.srv-bento', start: 'top 80%' }
   }
@@ -1819,7 +1800,7 @@ gsap.fromTo('.srv-card',
 // ─────────────────────────────────────
 // PORTFOLIO SLIDER — végtelen, dupla rAF snap
 (function () {
-  var SPEED = 250;
+  var SPEED = 550;
 
   var slider = document.querySelector('.portfolio-slider');
   var track  = document.querySelector('.pf-track');
@@ -1860,9 +1841,10 @@ gsap.fromTo('.srv-card',
   function go(i) {
     if (busy) return;
     busy = true;
-    track.style.transition = 'transform '+SPEED+'ms cubic-bezier(.25,.46,.45,.94)';
+    track.style.transition = 'transform '+SPEED+'ms cubic-bezier(0.645,0.045,0.355,1.0)';
     cur = i;
     track.style.transform = 'translateX('+(-off(i))+'px)';
+    ui();
     setTimeout(function() {
       if      (cur <= 0)   snap(n);
       else if (cur >= n+1) snap(1);
@@ -1904,6 +1886,11 @@ gsap.fromTo('.srv-card',
   window.addEventListener('resize',   function(){ snap(cur); });
 
   function startAuto() { auto = setInterval(next, 4000); }
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) clearInterval(auto);
+    else startAuto();
+  });
 
   snap(cur); ui(); startAuto();
 })();
@@ -1999,7 +1986,7 @@ window.pickPackage = function(pkg) {
 // ─────────────────────────────────────
 gsap.fromTo('.portfolio-item',
   { y: 90, opacity: 0, scale: 0.93 },
-  { y: 0,  opacity: 1, scale: 1,
+  { y: 0,  opacity: 1, scale: 1, immediateRender: false,
     duration: 0.75, stagger: { each: 0.12, from: 'start' }, ease: 'power3.out',
     scrollTrigger: { trigger: '.pf-track', start: 'top 80%' }
   }
@@ -2008,17 +1995,15 @@ gsap.fromTo('.portfolio-item',
 // ─────────────────────────────────────
 // 6. ABOUT – bento kártyák & szöveg
 // ─────────────────────────────────────
-// Bento large kártya külön, drámai belépővel
 gsap.fromTo('.bento-card.large',
   { y: 50, opacity: 0, scale: 0.95 },
-  { y: 0,  opacity: 1, scale: 1, duration: 0.85, ease: 'power3.out',
+  { y: 0,  opacity: 1, scale: 1, immediateRender: false, duration: 0.85, ease: 'power3.out',
     scrollTrigger: { trigger: '.about-bento', start: 'top 80%' }
   }
 );
-// Kis kártyák stagger-rel, alulról pattanva fel
 gsap.fromTo('.bento-card.b1, .bento-card.b2, .bento-card.b3',
   { y: 45, opacity: 0, scale: 0.9 },
-  { y: 0,  opacity: 1, scale: 1,
+  { y: 0,  opacity: 1, scale: 1, immediateRender: false,
     duration: 0.65, stagger: 0.1, ease: 'back.out(1.3)',
     scrollTrigger: { trigger: '.about-bento', start: 'top 78%' }
   }
@@ -2083,11 +2068,10 @@ gsap.fromTo('.ps-num',
 // ─────────────────────────────────────
 // 9. PRICING CARDS – fan belépő
 // ─────────────────────────────────────
-gsap.fromTo('.price-card',
-  { opacity: 0, scale: 0.94 },
-  { opacity: 1, scale: 1,
+gsap.from('.price-card',
+  { opacity: 0, scale: 0.94, immediateRender: false,
     duration: 0.7, stagger: 0.12, ease: 'power3.out',
-    scrollTrigger: { trigger: '.pricing-grid', start: 'top 80%', once: true }
+    scrollTrigger: { trigger: '.pricing-grid', start: 'top 85%', once: true }
   }
 );
 
@@ -2229,6 +2213,7 @@ function submitForm(e) {
     }, 360);
   }, 2800);
 })();
+
 </script>
 </body>
 </html>

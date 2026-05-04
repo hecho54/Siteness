@@ -117,8 +117,8 @@
   .info-box-label{font-size:13px;color:rgba(255,255,255,.45)}
 
   /* FOOTER */
-  footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:60px 0 0}
-  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
+  footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:40px 0 0}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
   .footer-logo{margin-bottom:12px;display:inline-flex}
   .footer-logo img{height:28px;width:auto;object-fit:contain}
   .footer-desc{color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:280px}
@@ -127,7 +127,7 @@
   .footer-links li{margin-bottom:10px}
   .footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .2s}
   .footer-links a:hover{color:#fff}
-  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:40px;padding:20px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:24px;padding:16px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
   .footer-bottom p{color:rgba(255,255,255,.35);font-size:13px}
   .footer-bottom-links{display:flex;gap:20px}
   .footer-bottom-links a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;transition:color .2s}
@@ -148,14 +148,21 @@
     nav .container{padding:0 20px}
     .container{padding:0 20px}
     .page-hero{padding:110px 0 48px}
+    .page-hero h1{font-size:clamp(26px,8vw,44px)}
     .footer-grid{grid-template-columns:1fr 1fr;gap:28px;padding:0 20px}
     .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:20px}
     .footer-bottom-links{justify-content:center}
     .opt-price-val{font-size:15px}
+    .service-opt{padding:16px 18px}
   }
   @media(max-width:480px){
+    .page-hero{padding:90px 0 36px}
+    .page-hero p{font-size:15px}
     .footer-grid{grid-template-columns:1fr;gap:24px}
     .info-boxes{grid-template-columns:1fr 1fr}
+    .summary-card{padding:20px}
+    .service-opt{padding:14px 14px;gap:12px}
+    .opt-icon{display:none}
   }
 </style>
 </head>
@@ -246,7 +253,7 @@
           </label>
 
           <!-- SEO -->
-          <label class="service-opt" data-price="49900" data-key="seo">
+          <label class="service-opt" data-price="20000" data-key="seo">
             <input type="checkbox">
             <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="opt-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
@@ -255,13 +262,13 @@
               <div class="opt-desc">Kulcsszókutatás, technikai SEO, Google Business, linképítés, havi riport</div>
             </div>
             <div class="opt-price">
-              <div class="opt-price-val">30 000 Ft</div>
+              <div class="opt-price-val">20 000 Ft</div>
               <div class="opt-price-sub">/hó</div>
             </div>
           </label>
 
           <!-- Social Media -->
-          <label class="service-opt" data-price="49900" data-key="social">
+          <label class="service-opt" data-price="30000" data-key="social">
             <input type="checkbox">
             <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="opt-icon"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
@@ -276,7 +283,7 @@
           </label>
 
           <!-- Google/Facebook Ads -->
-          <label class="service-opt" data-price="69900" data-key="ads">
+          <label class="service-opt" data-price="30000" data-key="ads">
             <input type="checkbox">
             <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="opt-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
@@ -285,13 +292,13 @@
               <div class="opt-desc">Google Ads + Facebook Ads kampányok, célközönség, optimalizálás, ROI riport</div>
             </div>
             <div class="opt-price">
-              <div class="opt-price-val">69 900 Ft</div>
+              <div class="opt-price-val">30 000 Ft</div>
               <div class="opt-price-sub">/hó</div>
             </div>
           </label>
 
           <!-- Grafikai munka -->
-          <label class="service-opt" data-price="59900" data-key="grafika">
+          <label class="service-opt" data-price="40000" data-key="grafika">
             <input type="checkbox">
             <div class="opt-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div class="opt-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
@@ -300,7 +307,7 @@
               <div class="opt-desc">Logó, arculat, hirdetési kreatívok, social grafika, nyomtatványok</div>
             </div>
             <div class="opt-price">
-              <div class="opt-price-val">50 000 Ft</div>
+              <div class="opt-price-val">40 000 Ft</div>
               <div class="opt-price-sub">/hó</div>
             </div>
           </label>
@@ -311,11 +318,11 @@
         <div class="info-boxes">
           <div class="info-box">
             <div class="info-box-num">2 db</div>
-            <div class="info-box-label">10% kedvezmény</div>
+            <div class="info-box-label">5% kedvezmény</div>
           </div>
           <div class="info-box">
             <div class="info-box-num">3 db</div>
-            <div class="info-box-label">20% kedvezmény</div>
+            <div class="info-box-label">10% kedvezmény</div>
           </div>
           <div class="info-box">
             <div class="info-box-num">24h</div>
@@ -344,7 +351,7 @@
           <div class="summary-total-label">Havi díj</div>
           <div class="summary-total-price" id="summaryTotal">0 Ft</div>
         </div>
-        <div class="summary-total-sub" id="summaryVat">+ ÁFA</div>
+        <div class="summary-total-sub" id="summaryVat"></div>
 
         <a href="contact.html" class="btn btn-purple summary-cta" id="summaryCta">
           Ajánlatot kérek
@@ -364,33 +371,12 @@
       <p class="footer-desc">Modern weboldalak és digitális megoldások vállalkozásoknak. Gyors, szép, eredményes.</p>
     </div>
     <div>
-      <div class="footer-heading">Szolgáltatások</div>
-      <ul class="footer-links">
-        <li><a href="alap-csomag.html">Alap csomag</a></li>
-        <li><a href="uzleti-csomag.html">Üzleti csomag</a></li>
-        <li><a href="premium-csomag.html">Prémium csomag</a></li>
-        <li><a href="egyedi-csomag.html">Exclusive csomag</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-heading">Cég</div>
-      <ul class="footer-links">
-        <li><a href="index.html#about">Rólunk</a></li>
-        <li><a href="index.html#portfolio">Portfólió</a></li>
-        <li><a href="index.html#process">Folyamat</a></li>
-        <li><a href="contact.html">Kapcsolat</a></li>
-      </ul>
-    </div>
-    <div>
       <div class="footer-heading">Kapcsolat</div>
       <ul class="footer-links">
         <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
-        <li><a href="tel:+36301234567">+36 30 123 4567</a></li>
+        <li><a href="tel:+36206218477">+36 20 621 8477</a></li>
         <li><a href="#">Budapest, Magyarország</a></li>
       </ul>
-      <div style="margin-top:24px">
-        <a href="contact.html" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
-      </div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -433,10 +419,10 @@
   const services = [
     { key: 'weboldal',     name: 'Weboldal készítés',    price: 230000, sub: 'egyszeri' },
     { key: 'karbantartas', name: 'Karbantartás',          price: 19900,  sub: '/hó' },
-    { key: 'seo',          name: 'SEO kezelés',           price: 30000,  sub: '/hó' },
+    { key: 'seo',          name: 'SEO kezelés',           price: 20000,  sub: '/hó' },
     { key: 'social',       name: 'Social Media kezelés',  price: 30000,  sub: '/hó' },
-    { key: 'ads',          name: 'Hirdetéskezelés',       price: 69900,  sub: '/hó' },
-    { key: 'grafika',      name: 'Grafikai munka',        price: 50000,  sub: '/hó' },
+    { key: 'ads',          name: 'Hirdetéskezelés',       price: 30000,  sub: '/hó' },
+    { key: 'grafika',      name: 'Grafikai munka',        price: 40000,  sub: '/hó' },
   ];
 
   const state = { weboldal: false, karbantartas: false, seo: false, social: false, ads: false, grafika: false };
@@ -480,8 +466,8 @@
 
     // Kedvezmény csak a nem-karbantartás tételekre, 2+ választásnál
     let discount = 0;
-    if (discountable.length === 2) discount = 0.10;
-    if (discountable.length >= 3) discount = 0.20;
+    if (discountable.length === 2) discount = 0.05;
+    if (discountable.length >= 3) discount = 0.10;
     const finalTotal = Math.round(discountableTotal * (1 - discount)) + karbPrice;
 
     // Summary items

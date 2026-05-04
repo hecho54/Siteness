@@ -62,8 +62,8 @@
   .highlight-box p{margin:0;color:rgba(255,255,255,.75)}
 
   /* FOOTER */
-  footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:60px 0 0}
-  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
+  footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.07);padding:40px 0 0}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr;gap:40px;max-width:1200px;margin:0 auto;padding:0 40px}
   .footer-logo{margin-bottom:12px;display:inline-flex}
   .footer-logo img{height:28px;width:auto;object-fit:contain}
   .footer-desc{color:rgba(255,255,255,.5);font-size:14px;line-height:1.6;max-width:280px}
@@ -72,7 +72,7 @@
   .footer-links li{margin-bottom:10px}
   .footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;transition:color .2s}
   .footer-links a:hover{color:#fff}
-  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:40px;padding:20px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:24px;padding:16px 40px;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center}
   .footer-bottom p{color:rgba(255,255,255,.35);font-size:13px}
   .footer-bottom-links{display:flex;gap:20px}
   .footer-bottom-links a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;transition:color .2s}
@@ -91,6 +91,8 @@
     .page-hero{padding:110px 20px 40px}
   }
   @media(max-width:480px){
+    .page-hero{padding:90px 16px 32px}
+    .content-wrap{padding:24px 16px 60px}
     .footer-grid{grid-template-columns:1fr;gap:24px}
   }
 </style>
@@ -252,33 +254,12 @@
       <p class="footer-desc">Modern weboldalak és digitális megoldások vállalkozásoknak. Gyors, szép, eredményes.</p>
     </div>
     <div>
-      <div class="footer-heading">Szolgáltatások</div>
-      <ul class="footer-links">
-        <li><a href="alap-csomag.html">Alap csomag</a></li>
-        <li><a href="uzleti-csomag.html">Üzleti csomag</a></li>
-        <li><a href="premium-csomag.html">Prémium csomag</a></li>
-        <li><a href="design-csomag.html">Egyedi design</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-heading">Cég</div>
-      <ul class="footer-links">
-        <li><a href="index.html#about">Rólunk</a></li>
-        <li><a href="index.html#portfolio">Portfólió</a></li>
-        <li><a href="index.html#process">Folyamat</a></li>
-        <li><a href="contact.html">Kapcsolat</a></li>
-      </ul>
-    </div>
-    <div>
       <div class="footer-heading">Kapcsolat</div>
       <ul class="footer-links">
         <li><a href="mailto:info@siteness.hu">info@siteness.hu</a></li>
         <li><a href="tel:+36206218477">+36 20 621 8477</a></li>
         <li><a href="#">Budapest, Magyarország</a></li>
       </ul>
-      <div style="margin-top:24px">
-        <a href="contact.html" class="btn btn-primary" style="padding:12px 24px;font-size:14px">Ajánlatot kérek</a>
-      </div>
     </div>
   </div>
   <div class="footer-bottom">
