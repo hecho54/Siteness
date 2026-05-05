@@ -365,7 +365,7 @@ nav.scrolled{background:rgba(13,43,74,.95);backdrop-filter:blur(20px);padding:12
 
 /* Preview */
 .pi-preview{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:#0a0a0a;transform:translateZ(0);border-radius:14px}
-.pi-preview img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top;pointer-events:none;display:block}
+.pi-preview img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center top;pointer-events:none;display:block}
 
 /* Dim overlay on inactive cards */
 .pi-card-dim{position:absolute;inset:0;background:rgba(0,0,0,.5);transition:opacity .6s ease;pointer-events:none;z-index:1}
@@ -1229,7 +1229,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       <!-- Pizza Pont -->
       <div class="portfolio-item" data-href="https://pizzapont.vercel.app/">
         <div class="pi-preview">
-          <img src="Images/pizzapont.png" loading="lazy" alt="Pizza Pont weboldal">
+          <img src="Images/pizzapont.png" loading="lazy" alt="Pizza Pont weboldal" style="object-position:left top;">
           <div class="pi-card-dim"></div>
           <div class="pi-info">
             <div>
@@ -2218,16 +2218,14 @@ function submitForm(e) {
   }, 2800);
 })();
 
-  // Mobilon portfolió kártya egész felülete kattintható
-  if(window.innerWidth <= 768){
-    document.querySelectorAll('.portfolio-item[data-href]').forEach(function(card){
-      card.addEventListener('click', function(e){
-        if(!e.target.closest('.pf-arrow') && !e.target.closest('.pf-dot-btn')){
-          window.open(card.dataset.href, '_blank');
-        }
-      });
+  // Portfolió kártya egész felülete kattintható (mobil + gépen)
+  document.querySelectorAll('.portfolio-item[data-href]').forEach(function(card){
+    card.addEventListener('click', function(e){
+      if(!e.target.closest('.pf-arrow') && !e.target.closest('.pf-dot-btn') && !e.target.closest('.pi-details-btn')){
+        window.open(card.dataset.href, '_blank');
+      }
     });
-  }
+  });
 </script>
 </body>
 </html>
