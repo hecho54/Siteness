@@ -634,7 +634,7 @@ html,body{overflow-x:hidden}
   .nav-logo img{height:36px}
 
   /* Hero overlap mobilon kisebb */
-  #hero{padding-bottom:80px}
+  #hero{padding:0 0 80px;overflow:hidden}
   #services{margin-top:-80px}
 
   /* Sections */
@@ -692,6 +692,8 @@ html,body{overflow-x:hidden}
 
   /* Portfolio nyilak rejtése mobilon — swipe elég */
   .pf-arrow{display:none}
+  .pi-details-btn{display:none}
+  .portfolio-item[data-href]{cursor:pointer}
 
   /* Telefon mockup kisebb mobilon */
   .pi-phone{width:90px;height:188px;bottom:-30px;right:14px}
@@ -1190,7 +1192,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
     <div class="pf-track">
 
       <!-- Aramis -->
-      <div class="portfolio-item is-active">
+      <div class="portfolio-item is-active" data-href="https://aramis-murex.vercel.app/">
         <div class="pi-preview">
           <img src="Images/aramis.png" loading="lazy" alt="Aramis weboldal">
           <div class="pi-card-dim"></div>
@@ -1211,7 +1213,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       </div>
 
       <!-- Smashpoint -->
-      <div class="portfolio-item">
+      <div class="portfolio-item" data-href="https://www.smashpoint.hu/">
         <div class="pi-preview">
           <img src="Images/smashpoint.png" loading="lazy" alt="Smashpoint weboldal">
           <div class="pi-card-dim"></div>
@@ -1232,7 +1234,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       </div>
 
       <!-- Pizza Pont -->
-      <div class="portfolio-item">
+      <div class="portfolio-item" data-href="https://pizzapont.vercel.app/">
         <div class="pi-preview">
           <img src="Images/pizzapont.png" loading="lazy" alt="Pizza Pont weboldal">
           <div class="pi-card-dim"></div>
@@ -1253,7 +1255,7 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
       </div>
 
       <!-- KG Kárpit -->
-      <div class="portfolio-item">
+      <div class="portfolio-item" data-href="https://kgkarpittisztitas.hu/">
         <div class="pi-preview">
           <img src="Images/KGkárpit.png" loading="lazy" alt="KG Kárpit- és Szőnyegtisztítás weboldal">
           <div class="pi-card-dim"></div>
@@ -2223,6 +2225,16 @@ function submitForm(e) {
   }, 2800);
 })();
 
+  // Mobilon portfolió kártya egész felülete kattintható
+  if(window.innerWidth <= 768){
+    document.querySelectorAll('.portfolio-item[data-href]').forEach(function(card){
+      card.addEventListener('click', function(e){
+        if(!e.target.closest('.pf-arrow') && !e.target.closest('.pf-dot-btn')){
+          window.open(card.dataset.href, '_blank');
+        }
+      });
+    });
+  }
 </script>
 </body>
 </html>
