@@ -282,7 +282,7 @@ html,body{height:100%;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif
 
 <script>
 var currentHtml = '';
-var history     = [];
+var chatHistory = [];
 var FREE_LIMIT  = 2;
 
 function getCredits() {
@@ -392,7 +392,7 @@ async function sendPrompt() {
   document.getElementById('sendBtn').disabled = true;
 
   appendMsg('user', prompt);
-  history.push({ role: 'user', content: prompt });
+  chatHistory.push({ role: 'user', content: prompt });
 
   showTyping();
 
@@ -400,7 +400,7 @@ async function sendPrompt() {
     var res = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: prompt, history: history.slice(0, -1) })
+      body: JSON.stringify({ prompt: prompt, history: chatHistory.slice(0, -1) })
     });
 
     hideTyping();
@@ -417,7 +417,7 @@ async function sendPrompt() {
     }
 
     currentHtml = data.html;
-    history.push({ role: 'assistant', content: 'A weboldal elkészült! Töltsd le ZIP-ben.' });
+    chatHistory.push({ role: 'assistant', content: 'A weboldal elkészült! Töltsd le ZIP-ben.' });
 
     useCredit();
     appendMsg('ai', 'A weboldal elkészült! Töltsd le ZIP-ben.', true);
