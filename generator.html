@@ -400,23 +400,28 @@ async function sendPrompt() {
     var res = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: prompt, history: chatHistory.slice(0, -1) })
+      body: JSON.stringify({ prompt: prompt, chatHistory: chatHistory.slice(0, -1) })
     });
 
     hideTyping();
 
-    var data;
-    try { data = await res.json(); } catch(e) {
+    if (!res.ok) {
       appendMsg('ai', 'Szerver hiba (' + res.status + '). Próbáld újra.');
       return;
     }
 
-    if (!res.ok || data.error) {
-      appendMsg('ai', 'Hiba (' + res.status + '): ' + (data.error || 'Ismeretlen hiba'));
-      return;
+    var reader = res.body.getReader();
+    var decoder = new TextDecoder();
+    var html = '';
+
+    while (true) {
+      var chunk = await reader.read();
+      if (chunk.done) break;
+      html += decoder.decode(chunk.value, { stream: true });
     }
 
-    currentHtml = data.html;
+    html = html.replace(/^```html\s*/i, '').replace(/```\s*$/, '').trim();
+    currentHtml = html;
     chatHistory.push({ role: 'assistant', content: 'A weboldal elkészült! Töltsd le ZIP-ben.' });
 
     useCredit();
