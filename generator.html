@@ -402,12 +402,17 @@ async function sendPrompt() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt: prompt, history: history.slice(0, -1) })
     });
-    var data = await res.json();
 
     hideTyping();
 
-    if (data.error) {
-      appendMsg('ai', 'Hiba: ' + data.error);
+    var data;
+    try { data = await res.json(); } catch(e) {
+      appendMsg('ai', 'Szerver hiba (' + res.status + '). Próbáld újra.');
+      return;
+    }
+
+    if (!res.ok || data.error) {
+      appendMsg('ai', 'Hiba (' + res.status + '): ' + (data.error || 'Ismeretlen hiba'));
       return;
     }
 
