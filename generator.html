@@ -281,20 +281,7 @@ var currentHtml = '';
 var chatHistory = [];
 var FREE_LIMIT  = 2;
 
-function getCredits() {
-  return parseInt(localStorage.getItem('sn_gen_credits') ?? FREE_LIMIT);
-}
-function useCredit() {
-  var c = getCredits() - 1;
-  localStorage.setItem('sn_gen_credits', Math.max(0, c));
-  updateCreditsLabel();
-}
-function updateCreditsLabel() {
-  var c = getCredits();
-  document.getElementById('creditsLabel').textContent = c + ' / ' + FREE_LIMIT + ' maradt';
-  document.getElementById('creditsLabel').style.color = c === 0 ? '#ef4444' : 'var(--teal)';
-}
-updateCreditsLabel();
+function useCredit() {}
 
 function handleKey(e) {
   if (e.key === 'Enter' && e.ctrlKey) { e.preventDefault(); sendPrompt(); }
@@ -399,9 +386,8 @@ async function sendPrompt() {
       body: JSON.stringify({ prompt: prompt, chatHistory: chatHistory.slice(0, -1) })
     });
 
-    hideTyping();
-
     if (!res.ok) {
+      hideTyping();
       appendMsg('ai', 'Szerver hiba (' + res.status + '). Próbáld újra.');
       return;
     }
@@ -420,6 +406,7 @@ async function sendPrompt() {
     currentHtml = html;
     chatHistory.push({ role: 'assistant', content: 'A weboldal elkészült! Töltsd le ZIP-ben.' });
 
+    hideTyping();
     useCredit();
     appendMsg('ai', 'A weboldal elkészült! Töltsd le ZIP-ben.', true);
     showPreview(currentHtml);
