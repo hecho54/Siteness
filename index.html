@@ -1026,7 +1026,8 @@ footer{background:rgba(2,5,10,.6);backdrop-filter:blur(8px)}
         <li><a href="#portfolio">Portfólió</a></li>
         <li><a href="#pricing">Árak</a></li>
       </ul>
-      <div class="nav-cta">
+      <div class="nav-cta" style="display:flex;gap:10px;align-items:center">
+        <a href="generator.html" class="btn btn-outline" style="padding:10px 20px;font-size:14px">✦ AI Generátor</a>
         <a href="contact.html" class="btn btn-primary" style="padding:10px 24px;font-size:14px">Ajánlatot kérek</a>
       </div>
       <div class="hamburger" id="hamburger">
@@ -2170,13 +2171,39 @@ function submitForm(e) {
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { showFieldError(email, 'Érvénytelen email cím.'); ok = false; }
   if (!ok) return;
   const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Küldés...';
+  btn.innerHTML = 'Küldés...';
   btn.disabled = true;
-  setTimeout(() => {
-    document.getElementById('formSuccess').style.display = 'block';
-    btn.style.display = 'none';
-    e.target.reset();
-  }, 1200);
+  fetch('/send-mail.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      fname: fname.value.trim(),
+      lname: lname.value.trim(),
+      email: email.value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      website: document.getElementById('website').value.trim(),
+      service: document.getElementById('service').value.trim(),
+      message: document.getElementById('message').value.trim()
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if (data.ok) {
+      document.getElementById('formSuccess').style.display = 'block';
+      btn.style.display = 'none';
+      e.target.reset();
+      document.querySelectorAll('.pkg-card.selected,.pkg-chip.selected').forEach(function(el){ el.classList.remove('selected'); });
+    } else {
+      btn.innerHTML = '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Üzenet küldése';
+      btn.disabled = false;
+      alert('Hiba történt a küldés során. Kérjük, próbáld újra.');
+    }
+  })
+  .catch(function(){
+    btn.innerHTML = '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Üzenet küldése';
+    btn.disabled = false;
+    alert('Hiba történt a küldés során. Kérjük, próbáld újra.');
+  });
 }
 // WORD CYCLE
 (function() {

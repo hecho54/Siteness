@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Weboldal Generátor — Siteness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d12;
+  --sidebar:#13131a;
+  --border:rgba(255,255,255,.08);
+  --teal:#00B4D8;
+  --grad:linear-gradient(90deg,#00B4D8,#00F5C4);
+  --muted:rgba(255,255,255,.45);
+  --text:#f0f0f0;
+  --user-bubble:#1a2a3a;
+  --ai-bubble:#1a1a24;
+}
+html,body{height:100%;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text)}
+
+/* ── LAYOUT ── */
+.gen-layout{display:flex;height:100vh}
+
+/* ── SIDEBAR ── */
+.gen-sidebar{
+  width:380px;flex-shrink:0;
+  display:flex;flex-direction:column;
+  background:var(--sidebar);
+  border-right:1px solid var(--border);
+}
+.sidebar-header{
+  padding:18px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.sidebar-logo{font-size:18px;font-weight:800;letter-spacing:-.03em;color:#fff}
+.sidebar-logo span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-back{
+  font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;
+  display:flex;align-items:center;gap:5px;transition:color .2s;
+}
+.sidebar-back:hover{color:#fff}
+
+.gen-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+.gen-messages::-webkit-scrollbar{width:4px}
+.gen-messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
+
+.msg{display:flex;flex-direction:column;gap:6px;max-width:88%}
+.msg.user{align-self:flex-end;align-items:flex-end}
+.msg.ai{align-self:flex-start;align-items:flex-start}
+.msg-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.msg-bubble{
+  padding:11px 14px;border-radius:14px;font-size:14px;line-height:1.55;
+}
+.msg.user .msg-bubble{background:var(--user-bubble);border:1px solid rgba(0,180,216,.25);color:#fff}
+.msg.ai .msg-bubble{background:var(--ai-bubble);border:1px solid var(--border);color:var(--text)}
+.msg-preview-btn{
+  display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;
+  background:var(--grad);border:none;cursor:pointer;font-family:inherit;
+  font-size:13px;font-weight:700;color:#000;margin-top:4px;transition:opacity .2s;
+}
+.msg-preview-btn:hover{opacity:.88}
+.msg-preview-btn svg{width:14px;height:14px}
+
+.typing-dots{display:flex;gap:4px;align-items:center;padding:14px}
+.typing-dots span{
+  width:6px;height:6px;border-radius:50%;background:var(--muted);
+  animation:typingBounce 1.2s infinite;
+}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes typingBounce{0%,80%,100%{transform:scale(1)}40%{transform:scale(1.4)}}
+
+.sidebar-footer{
+  padding:16px 20px;border-top:1px solid var(--border);
+  display:flex;flex-direction:column;gap:10px;
+}
+.credits-row{display:flex;align-items:center;justify-content:space-between}
+.credits-label{font-size:12px;color:var(--muted);font-weight:600}
+.credits-val{font-size:12px;font-weight:700;color:var(--teal)}
+.gen-input-row{display:flex;gap:8px;align-items:flex-end}
+.gen-textarea{
+  flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border);
+  border-radius:12px;padding:11px 14px;color:#fff;font-family:inherit;
+  font-size:13px;resize:none;min-height:44px;max-height:120px;
+  outline:none;transition:border-color .2s;line-height:1.5;
+}
+.gen-textarea:focus{border-color:rgba(0,180,216,.5)}
+.gen-textarea::placeholder{color:rgba(255,255,255,.28)}
+.gen-send-btn{
+  width:44px;height:44px;border-radius:12px;border:none;cursor:pointer;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:opacity .2s,transform .15s;
+}
+.gen-send-btn:hover{opacity:.88;transform:translateY(-1px)}
+.gen-send-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.gen-send-btn svg{width:18px;height:18px;fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.kbd-hint{font-size:11px;color:rgba(255,255,255,.2);text-align:right}
+
+/* ── PREVIEW AREA ── */
+.gen-preview{
+  flex:1;display:flex;flex-direction:column;overflow:hidden;
+}
+.preview-toolbar{
+  padding:10px 16px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;background:var(--sidebar);
+  flex-shrink:0;
+}
+.tab-group{display:flex;gap:4px;border:1px solid var(--border);border-radius:8px;padding:3px}
+.tab-btn{
+  padding:5px 14px;border-radius:6px;border:none;cursor:pointer;
+  font-family:inherit;font-size:13px;font-weight:600;
+  background:transparent;color:var(--muted);transition:all .2s;
+}
+.tab-btn.active{background:rgba(255,255,255,.1);color:#fff}
+.toolbar-sep{flex:1}
+.tool-btn{
+  display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;
+  border:1px solid var(--border);background:transparent;cursor:pointer;
+  font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);
+  transition:all .2s;white-space:nowrap;
+}
+.tool-btn:hover{border-color:rgba(255,255,255,.2);color:#fff;background:rgba(255,255,255,.05)}
+.tool-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tool-btn.primary{background:var(--grad);border-color:transparent;color:#000}
+.tool-btn.primary:hover{opacity:.88;color:#000}
+
+.preview-pane{flex:1;position:relative;overflow:hidden}
+.preview-iframe{width:100%;height:100%;border:none;display:block;background:#fff}
+
+.preview-empty{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;color:var(--muted);
+}
+.preview-empty-icon{font-size:48px;opacity:.3}
+.preview-empty h3{font-size:18px;font-weight:700;color:rgba(255,255,255,.4)}
+.preview-empty p{font-size:14px;text-align:center;max-width:300px;line-height:1.6}
+
+.code-pane{
+  flex:1;overflow:auto;background:#0a0a10;padding:20px;display:none;
+}
+.code-pane pre{font-size:12px;font-family:'Courier New',monospace;color:#cdd6f4;line-height:1.6;white-space:pre-wrap;word-break:break-all}
+
+/* ── VIEWPORT SELECTOR ── */
+.viewport-btns{display:flex;gap:4px;margin-left:auto}
+.vp-btn{
+  width:32px;height:32px;border-radius:7px;border:1px solid var(--border);
+  background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);transition:all .2s;
+}
+.vp-btn:hover,.vp-btn.active{border-color:rgba(255,255,255,.2);color:#fff;background:rgba(255,255,255,.06)}
+.vp-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── EMPTY STATE ── */
+.welcome-state{
+  padding:32px 20px;display:flex;flex-direction:column;gap:12px;
+}
+.welcome-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:4px}
+.welcome-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.example-chip{
+  padding:8px 12px;border-radius:8px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);font-size:12px;color:var(--muted);cursor:pointer;
+  transition:all .2s;
+}
+.example-chip:hover{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.15)}
+
+/* ── NOTIFICATIONS ── */
+.gen-toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:#1e1e2e;border:1px solid var(--border);border-radius:10px;
+  padding:12px 20px;font-size:13px;font-weight:600;color:#fff;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:999;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.gen-toast.show{opacity:1}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .gen-layout{flex-direction:column}
+  .gen-sidebar{width:100%;height:50vh;border-right:none;border-bottom:1px solid var(--border)}
+  .gen-preview{height:50vh}
+  .preview-toolbar{overflow-x:auto}
+  .viewport-btns{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="gen-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="gen-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">Site<span>ness</span> AI</div>
+      <a href="index.html" class="sidebar-back">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Vissza
+      </a>
+    </div>
+
+    <div class="gen-messages" id="messages">
+      <div class="welcome-state" id="welcomeState">
+        <div class="welcome-title">Írj le egy weboldalt</div>
+        <div class="welcome-sub">Mesélj a vállalkozásodról, stílusodról és amit szeretnél — az AI elkészíti a teljes weboldalt.</div>
+        <div class="example-chip" onclick="fillExample(this)">Pizzéria weboldal, piros-fekete, modern stílus, online rendeléssel</div>
+        <div class="example-chip" onclick="fillExample(this)">Fodrász szalon oldal, elegáns, arany-fehér színekkel, árlista és időpontfoglalás</div>
+        <div class="example-chip" onclick="fillExample(this)">IT startup landing page, dark mode, kék-lila gradiens, SaaS termékhez</div>
+        <div class="example-chip" onclick="fillExample(this)">Fitness edző weboldal, energikus, narancssárga, edzéstervekkel</div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="credits-row">
+        <span class="credits-label">Ingyenes generálások</span>
+        <span class="credits-val" id="creditsLabel">2 / 2 maradt</span>
+      </div>
+      <div class="gen-input-row">
+        <textarea
+          class="gen-textarea"
+          id="genInput"
+          placeholder="Mit szeretnél építeni?"
+          rows="1"
+          onkeydown="handleKey(event)"
+          oninput="autoResize(this)"
+        ></textarea>
+        <button class="gen-send-btn" id="sendBtn" onclick="sendPrompt()" title="Küldés (Ctrl+Enter)">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <div class="kbd-hint">Ctrl+Enter a küldéshez</div>
+    </div>
+  </aside>
+
+  <!-- ── PREVIEW ── -->
+  <main class="gen-preview">
+    <div class="preview-toolbar">
+      <div class="tab-group">
+        <button class="tab-btn active" id="tabDemo" onclick="switchTab('demo')">Demo</button>
+        <button class="tab-btn" id="tabCode" onclick="switchTab('code')">Kód</button>
+      </div>
+
+      <div class="toolbar-sep"></div>
+
+      <button class="tool-btn" onclick="copyCode()" title="Kód másolása">
+        <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Másolás
+      </button>
+      <button class="tool-btn primary" onclick="downloadZip()" id="downloadBtn">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Letöltés ZIP
+      </button>
+
+      <div class="viewport-btns">
+        <button class="vp-btn active" id="vpDesktop" onclick="setViewport('desktop')" title="Asztali">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </button>
+        <button class="vp-btn" id="vpTablet" onclick="setViewport('tablet')" title="Tablet">
+          <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </button>
+        <button class="vp-btn" id="vpMobile" onclick="setViewport('mobile')" title="Mobil">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="preview-pane" id="previewPane">
+      <div class="preview-empty" id="emptyState">
+        <div class="preview-empty-icon">✦</div>
+        <h3>Előnézet itt jelenik meg</h3>
+        <p>Írd le bal oldalt a weboldalt, amit szeretnél — az AI azonnal elkészíti.</p>
+      </div>
+      <iframe class="preview-iframe" id="previewFrame" style="display:none"></iframe>
+      <div class="code-pane" id="codePane"><pre id="codeContent"></pre></div>
+    </div>
+  </main>
+
+</div>
+
+<div class="gen-toast" id="toast"></div>
+
+<script>
+var currentHtml = '';
+var history     = [];
+var FREE_LIMIT  = 2;
+
+function getCredits() {
+  return parseInt(localStorage.getItem('sn_gen_credits') ?? FREE_LIMIT);
+}
+function useCredit() {
+  var c = getCredits() - 1;
+  localStorage.setItem('sn_gen_credits', Math.max(0, c));
+  updateCreditsLabel();
+}
+function updateCreditsLabel() {
+  var c = getCredits();
+  document.getElementById('creditsLabel').textContent = c + ' / ' + FREE_LIMIT + ' maradt';
+  document.getElementById('creditsLabel').style.color = c === 0 ? '#ef4444' : 'var(--teal)';
+}
+updateCreditsLabel();
+
+function handleKey(e) {
+  if (e.key === 'Enter' && e.ctrlKey) { e.preventDefault(); sendPrompt(); }
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendPrompt(); }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+function fillExample(el) {
+  var input = document.getElementById('genInput');
+  input.value = el.textContent;
+  autoResize(input);
+  input.focus();
+}
+
+function appendMsg(role, text, withBtn) {
+  var welcome = document.getElementById('welcomeState');
+  if (welcome) welcome.remove();
+
+  var msgs = document.getElementById('messages');
+  var div  = document.createElement('div');
+  div.className = 'msg ' + role;
+
+  var label  = document.createElement('div');
+  label.className = 'msg-label';
+  label.textContent = role === 'user' ? 'Te' : 'Siteness AI';
+
+  var bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.textContent = text;
+
+  div.appendChild(label);
+  div.appendChild(bubble);
+
+  if (withBtn) {
+    var btn = document.createElement('button');
+    btn.className = 'msg-preview-btn';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Preview';
+    btn.onclick = function() { showPreview(currentHtml); };
+    div.appendChild(btn);
+  }
+
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+function showTyping() {
+  var welcome = document.getElementById('welcomeState');
+  if (welcome) welcome.remove();
+  var msgs = document.getElementById('messages');
+  var div  = document.createElement('div');
+  div.className = 'msg ai';
+  div.id = 'typingIndicator';
+  div.innerHTML = '<div class="msg-label">Siteness AI</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function hideTyping() {
+  var el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+function showPreview(html) {
+  document.getElementById('emptyState').style.display   = 'none';
+  document.getElementById('previewFrame').style.display = 'block';
+  document.getElementById('codePane').style.display     = 'none';
+  document.getElementById('tabDemo').classList.add('active');
+  document.getElementById('tabCode').classList.remove('active');
+
+  var frame = document.getElementById('previewFrame');
+  frame.srcdoc = html;
+  document.getElementById('codeContent').textContent = html;
+}
+
+async function sendPrompt() {
+  var input = document.getElementById('genInput');
+  var prompt = input.value.trim();
+  if (!prompt) return;
+
+  if (getCredits() <= 0) {
+    showToast('Elfogytak az ingyenes generálásaid.');
+    return;
+  }
+
+  input.value = '';
+  autoResize(input);
+  document.getElementById('sendBtn').disabled = true;
+
+  appendMsg('user', prompt);
+  history.push({ role: 'user', content: prompt });
+
+  showTyping();
+
+  try {
+    var res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: prompt, history: history.slice(0, -1) })
+    });
+    var data = await res.json();
+
+    hideTyping();
+
+    if (data.error) {
+      appendMsg('ai', 'Hiba: ' + data.error);
+      return;
+    }
+
+    currentHtml = data.html;
+    history.push({ role: 'assistant', content: 'A weboldal elkészült! Töltsd le ZIP-ben.' });
+
+    useCredit();
+    appendMsg('ai', 'A weboldal elkészült! Töltsd le ZIP-ben.', true);
+    showPreview(currentHtml);
+
+  } catch (err) {
+    hideTyping();
+    appendMsg('ai', 'Hálózati hiba. Próbáld újra.');
+  } finally {
+    document.getElementById('sendBtn').disabled = false;
+  }
+}
+
+function switchTab(tab) {
+  var frame    = document.getElementById('previewFrame');
+  var codePane = document.getElementById('codePane');
+  if (!currentHtml) return;
+
+  if (tab === 'demo') {
+    frame.style.display    = 'block';
+    codePane.style.display = 'none';
+    document.getElementById('tabDemo').classList.add('active');
+    document.getElementById('tabCode').classList.remove('active');
+  } else {
+    frame.style.display    = 'none';
+    codePane.style.display = 'block';
+    document.getElementById('tabCode').classList.add('active');
+    document.getElementById('tabDemo').classList.remove('active');
+  }
+}
+
+function copyCode() {
+  if (!currentHtml) { showToast('Még nincs generált weboldal.'); return; }
+  navigator.clipboard.writeText(currentHtml).then(function() { showToast('Kód másolva!'); });
+}
+
+async function downloadZip() {
+  if (!currentHtml) { showToast('Még nincs generált weboldal.'); return; }
+  var btn = document.getElementById('downloadBtn');
+  btn.textContent = 'Letöltés...';
+  try {
+    var res  = await fetch('/api/download-zip', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ html: currentHtml })
+    });
+    var blob = await res.blob();
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href   = url; a.download = 'weboldal.zip'; a.click();
+    URL.revokeObjectURL(url);
+  } finally {
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Letöltés ZIP';
+  }
+}
+
+function setViewport(vp) {
+  var frame = document.getElementById('previewFrame');
+  var pane  = document.getElementById('previewPane');
+  document.querySelectorAll('.vp-btn').forEach(function(b){ b.classList.remove('active'); });
+
+  if (vp === 'desktop') {
+    frame.style.width  = '100%';
+    frame.style.margin = '0';
+    document.getElementById('vpDesktop').classList.add('active');
+  } else if (vp === 'tablet') {
+    frame.style.width  = '768px';
+    frame.style.margin = '0 auto';
+    document.getElementById('vpTablet').classList.add('active');
+  } else {
+    frame.style.width  = '390px';
+    frame.style.margin = '0 auto';
+    document.getElementById('vpMobile').classList.add('active');
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+</script>
+</body>
+</html>

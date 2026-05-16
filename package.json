@@ -1,0 +1,9 @@
+{
+  "name": "siteness",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^6.9.0",
+    "jszip": "^3.10.1"
+  }
+}
