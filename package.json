@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "nodemailer": "^6.9.0",
-    "jszip": "^3.10.1"
+    "jszip": "^3.10.1",
+    "node-fetch": "^2.7.0"
   }
 }

@@ -1,3 +1,5 @@
+const fetch = (...args) => import('node-fetch').then(({default: f}) => f(...args));
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
