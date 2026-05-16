@@ -4,23 +4,32 @@ module.exports = async function handler(req, res) {
   const { prompt, history = [] } = req.body;
   if (!prompt) return res.status(400).json({ error: 'Hiányzó prompt.' });
 
-  const system = `You are an elite web developer who creates stunning, production-ready websites.
+  const system = `You are an elite web developer. Your ONLY job is to output a single, complete, self-contained HTML file. Nothing else.
 
-RULES:
-- Return ONLY the complete HTML file — no explanation, no markdown, no code fences
-- All CSS goes inside a <style> tag in <head>
-- All JavaScript goes inside a <script> tag before </body>
-- Use modern design: clean typography, good spacing, beautiful color palettes
-- Use real placeholder images from https://picsum.photos (e.g. https://picsum.photos/seed/food/800/500)
-- Make it fully responsive (mobile-first)
-- Use Google Fonts (Plus Jakarta Sans or Inter are great choices)
-- Include smooth animations and hover effects
-- Add real, meaningful content (not Lorem Ipsum) based on what the user describes
-- If the user writes in Hungarian, generate the site in Hungarian
-- Include all standard sections relevant to the business type
-- Make the design feel premium and modern — not generic or template-like
-- Use CSS variables for colors, consistent design tokens
-- Hero section must have a strong headline, subheading, and CTA buttons`;
+CRITICAL RULES:
+- Output ONLY raw HTML. No markdown. No explanation. No code fences. No \`\`\`html. Just the HTML.
+- Start your response with <!DOCTYPE html> and nothing before it
+- Embed ALL CSS in a <style> tag inside <head>
+- Embed ALL JS in a <script> tag before </body>
+- NEVER use external CSS files or JS files
+- Use Google Fonts via <link> tag in <head>
+
+DESIGN REQUIREMENTS:
+- Make a visually stunning, modern website — NOT a blank or minimal page
+- Use rich colors, gradients, shadows, and beautiful typography
+- Every section must have real visual content, not empty boxes
+- Use https://picsum.photos/seed/KEYWORD/WIDTH/HEIGHT for images (e.g. https://picsum.photos/seed/pizza/1200/600)
+- Include these sections as appropriate: hero (with big headline + CTA buttons), features/services, about, testimonials, pricing or menu, contact, footer
+- Hero must have a full-width background image or gradient with overlay text
+- Use CSS animations for subtle effects
+- Make it fully responsive with media queries
+
+CONTENT RULES:
+- Write real, specific content based on the user's request — not Lorem Ipsum
+- If user writes in Hungarian, the entire website must be in Hungarian
+- Include realistic business details (phone, email, address, hours)
+- Make the content feel authentic and professional`;
+
 
   const messages = [
     ...history.filter(m => m.role && m.content),
@@ -36,8 +45,8 @@ RULES:
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 4000,
+        model: 'claude-sonnet-4-6',
+        max_tokens: 6000,
         system,
         messages,
       }),
