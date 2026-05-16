@@ -373,7 +373,11 @@ function showPreview(html) {
   document.getElementById('tabCode').classList.remove('active');
 
   var frame = document.getElementById('previewFrame');
-  frame.srcdoc = html;
+  var blob = new Blob([html], { type: 'text/html' });
+  var blobUrl = URL.createObjectURL(blob);
+  if (frame._blobUrl) URL.revokeObjectURL(frame._blobUrl);
+  frame._blobUrl = blobUrl;
+  frame.src = blobUrl;
   document.getElementById('codeContent').textContent = html;
 }
 
