@@ -356,11 +356,13 @@ function showPreview(html) {
   document.getElementById('tabCode').classList.remove('active');
 
   var frame = document.getElementById('previewFrame');
-  var blob = new Blob([html], { type: 'text/html' });
-  var blobUrl = URL.createObjectURL(blob);
-  if (frame._blobUrl) URL.revokeObjectURL(frame._blobUrl);
-  frame._blobUrl = blobUrl;
-  frame.src = blobUrl;
+  frame.src = 'about:blank';
+  frame.onload = function() {
+    frame.contentDocument.open();
+    frame.contentDocument.write(html);
+    frame.contentDocument.close();
+    frame.onload = null;
+  };
   document.getElementById('codeContent').textContent = html;
 }
 
